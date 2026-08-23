@@ -13,6 +13,7 @@
     "db:up": "bash back/scripts/db-up.sh",
     "db:down": "bash back/scripts/db-down.sh",
     "db:reset": "cd back && docker compose down -v && docker compose up -d",
+    "de:pipeline": "bash de/scripts/run_pipeline.sh",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
     "deploy": "bash scripts/deploy.sh",

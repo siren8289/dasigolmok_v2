@@ -4,6 +4,8 @@ import com.dasigolmok.domain.admin.entity.AuditAction;
 import com.dasigolmok.domain.admin.entity.AuditLog;
 import com.dasigolmok.domain.admin.repository.AuditLogRepository;
 import com.dasigolmok.domain.analytics.repository.StoryCurationQueryRepository;
+import com.dasigolmok.domain.area.dto.AreaContextResponse;
+import com.dasigolmok.domain.area.service.AreaContextService;
 import com.dasigolmok.domain.region.entity.Place;
 import com.dasigolmok.domain.region.repository.PlaceRepository;
 import com.dasigolmok.domain.region.entity.Region;
@@ -47,6 +49,7 @@ public class StoryService {
     private final StorageService storageService;
     private final StoryCurationQueryRepository storyCurationQueryRepository;
     private final AnalyticsViewRefresher analyticsViewRefresher;
+    private final AreaContextService areaContextService;
 
     private static final int CURATION_LIMIT = 50;
 
@@ -147,7 +150,10 @@ public class StoryService {
         if (userId != null) {
             liked = reactionRepository.existsByUserIdAndStoryIdAndType(userId, storyId, ReactionType.LIKE);
         }
-        return toDetail(story, liked);
+        AreaContextResponse areaContext = story.getPlace() != null
+                ? areaContextService.findForPlace(story.getPlace().getId())
+                : null;
+        return toDetail(story, liked, areaContext);
     }
 
     public ImageUploadResponse uploadImage(MultipartFile file) {
@@ -228,7 +234,7 @@ public class StoryService {
                 .build();
     }
 
-    private StoryDetailResponse toDetail(Story story, boolean liked) {
+    private StoryDetailResponse toDetail(Story story, boolean liked, AreaContextResponse areaContext) {
         String imageUrl = firstImage(story);
         List<StoryDetailResponse.TagItem> tags = story.getTags().stream()
                 .map(t -> StoryDetailResponse.TagItem.builder()
@@ -260,6 +266,7 @@ public class StoryService {
                                 .build())
                         .build())
                 .tags(tags)
+                .areaContext(areaContext)
                 .build();
     }
 }

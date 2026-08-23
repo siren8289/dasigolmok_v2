@@ -48,3 +48,16 @@ backup_*.sql
 
 # uploads
 /public/uploads/*
+
+# DE pipeline runtime artifacts (keep fixtures/catalog)
+/de/data/raw/**
+/de/data/quarantine/**
+/de/data/staging/**
+/de/reports/**
+!/de/data/raw/.gitkeep
+!/de/data/quarantine/.gitkeep
+!/de/data/staging/.gitkeep
+!/de/reports/.gitkeep
+
+# IDE
+.idea/

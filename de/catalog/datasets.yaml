@@ -1,0 +1,41 @@
+datasets:
+  - id: seoul_store_area
+    name: 서울시 상권분석서비스(점포-상권)
+    source_url: https://data.seoul.go.kr/dataList/OA-15577/S/1/datasetView.do
+    license_type: 공공누리 1유형
+    fixture: stores_area_2024Q1.csv
+    min_year: 2021
+    usage: context_only
+  - id: seoul_sales_area
+    name: 서울시 상권분석서비스(추정매출-상권)
+    source_url: https://data.seoul.go.kr/dataList/OA-15572/S/1/datasetView.do
+    license_type: 공공누리 1유형
+    fixture: sales_area_2024Q1.csv
+    min_year: 2021
+    usage: context_only
+    notes: 추정값. 개인 점포 매출 추론 금지.
+  - id: seoul_area_geometry
+    name: 서울시 상권분석서비스(영역-상권)
+    source_url: https://www.data.go.kr/data/15076394/fileData.do
+    license_type: 공공누리 1유형
+    fixture: areas_geometry.csv
+    min_year: 2021
+    usage: mapping_and_viz
+  - id: semas_store_info
+    name: 소상공인시장진흥공단 상가(상권)정보
+    source_url: https://www.data.go.kr/data/15083033/fileData.do
+    license_type: 관련 법령 준수
+    fixture: null
+    role: auxiliary
+    notes: 서울 필터만. 원천 우선순위는 서울시 상권분석.
+
+defaults:
+  area_mapping_version: "2024-standard-unit-zone"
+  standard_unit_zone_version: "2024"
+  schema_version: "v1"
+  preferred_area_type: 골목상권
+  dq:
+    completeness_min: 0.98
+    schema_pass_min: 0.99
+    uniqueness_required: true
+    row_reconcile_max_diff: 0.001
