@@ -1,5 +1,7 @@
 package com.dasigolmok.domain.analytics.controller;
 
+import com.dasigolmok.domain.analytics.dto.AreaEngagementResponse;
+import com.dasigolmok.domain.analytics.dto.KpiSnapshotResponse;
 import com.dasigolmok.domain.analytics.dto.RegionStatsResponse;
 import com.dasigolmok.domain.analytics.service.AnalyticsService;
 import com.dasigolmok.global.response.ApiResponse;
@@ -20,5 +22,15 @@ public class AnalyticsController {
     @GetMapping("/regions")
     public ApiResponse<List<RegionStatsResponse>> regionStats() {
         return ApiResponse.ok(analyticsService.getRegionStats());
+    }
+
+    @GetMapping("/kpi")
+    public ApiResponse<List<KpiSnapshotResponse>> kpiDashboard() {
+        return ApiResponse.ok(analyticsService.getLatestKpis());
+    }
+
+    @GetMapping("/area-engagement")
+    public ApiResponse<List<AreaEngagementResponse>> areaEngagement() {
+        return ApiResponse.ok(analyticsService.getAreaStoryDensity());
     }
 }

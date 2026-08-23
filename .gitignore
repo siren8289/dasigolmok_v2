@@ -59,5 +59,9 @@ backup_*.sql
 !/de/data/staging/.gitkeep
 !/de/reports/.gitkeep
 
+# DA reports (keep structure)
+/da/reports/**
+!/da/reports/.gitkeep
+
 # IDE
 .idea/
