@@ -33,3 +33,11 @@ app:
   upload:
     dir: ${UPLOAD_DIR:uploads}
   version: ${APP_VERSION:0.1.0}
+  ai:
+    # MVP: keep false. No LLM/RAG/Agent/learning model in the request path.
+    enabled: ${AI_ENABLED:false}
+    adapter: disabled
+    model-version: none-mvp
+    prompt-version: none-mvp
+    tag-suggest:
+      enabled: ${AI_TAG_SUGGEST_ENABLED:false}

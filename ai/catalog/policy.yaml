@@ -1,0 +1,20 @@
+mvp:
+  learning_model: false
+  llm: false
+  rag: false
+  agent: false
+  ai_video: false
+  curation: deterministic_rules
+
+constraints:
+  - AI outputs are proposals only (AI-R1)
+  - Never auto approve/reject/publish
+  - Record model/prompt/retrieval versions when enabled (AI-R2)
+  - Fallback to rule baseline on AI failure
+  - PENDING stories must not be used as training data
+
+adapters:
+  - name: disabled
+    status: ACTIVE_MVP
+  - name: future_llm_tag_suggest
+    status: DESIGNED_NOT_IMPLEMENTED

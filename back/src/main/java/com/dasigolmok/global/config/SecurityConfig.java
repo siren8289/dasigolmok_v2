@@ -42,6 +42,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/v1/regions", "/api/v1/places").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/stories/map", "/api/v1/stories/curation").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/analytics/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/ai/status").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/ai/suggestions/**").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/v1/stories/*").permitAll()
                         .requestMatchers("/uploads/**").permitAll()
                         .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
