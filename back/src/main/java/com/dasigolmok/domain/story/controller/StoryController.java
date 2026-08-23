@@ -32,6 +32,10 @@ public class StoryController {
         return ApiResponse.ok(storyService.getMapStories(regionId));
     }
 
+    /**
+     * Deterministic rule curation (latest/popular/tag). Not an AI feature.
+     * Engine metadata: GET /api/v1/ai/status → curationEngine=deterministic_rules
+     */
     @GetMapping("/curation")
     public ApiResponse<List<StoryCardResponse>> curationStories(
             @RequestParam(required = false, defaultValue = "popular") String sort,
