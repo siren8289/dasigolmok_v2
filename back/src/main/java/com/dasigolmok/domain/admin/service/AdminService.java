@@ -62,6 +62,10 @@ public class AdminService {
                 .orElseThrow(() -> new BusinessException(ErrorCode.NOT_FOUND, "스토리를 찾을 수 없습니다."));
         StoryStatus before = story.getStatus();
         StoryStatus after = StoryStatus.valueOf(status);
+        if (!isAllowedTransition(before, after)) {
+            throw new BusinessException(ErrorCode.VALIDATION_ERROR,
+                    "허용되지 않는 상태 전이입니다: " + before + " → " + after);
+        }
         story.setStatus(after);
         if (after == StoryStatus.DELETED) {
             story.setDeletedAt(LocalDateTime.now());
@@ -92,6 +96,19 @@ public class AdminService {
                 .build());
         analyticsViewRefresher.refreshAll();
         return storyService.toCard(story);
+    }
+
+    private boolean isAllowedTransition(StoryStatus before, StoryStatus after) {
+        if (before == after) {
+            return true;
+        }
+        return switch (before) {
+            case PENDING -> after == StoryStatus.APPROVED || after == StoryStatus.REJECTED;
+            case APPROVED -> after == StoryStatus.HIDDEN || after == StoryStatus.DELETED;
+            case HIDDEN -> after == StoryStatus.APPROVED || after == StoryStatus.DELETED;
+            case REJECTED -> after == StoryStatus.PENDING || after == StoryStatus.DELETED;
+            case DELETED -> false;
+        };
     }
 
     @Transactional(readOnly = true)

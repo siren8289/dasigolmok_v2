@@ -59,6 +59,11 @@ public class Story {
     @Builder.Default
     private Integer likeCount = 0;
 
+    @Version
+    @Column(nullable = false)
+    @Builder.Default
+    private Long version = 0L;
+
     private LocalDateTime deletedAt;
 
     @OneToMany(mappedBy = "story", cascade = CascadeType.ALL, orphanRemoval = true)

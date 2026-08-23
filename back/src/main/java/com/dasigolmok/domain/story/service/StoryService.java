@@ -108,7 +108,10 @@ public class StoryService {
                     .build());
         }
 
-        storyRepository.save(story);
+        if (story.getId() == null) {
+            story.setId(UUID.randomUUID().toString());
+        }
+        storyRepository.saveAndFlush(story);
         auditLogRepository.save(AuditLog.builder()
                 .user(user)
                 .action(AuditAction.CREATE)
