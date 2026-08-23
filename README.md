@@ -6,6 +6,84 @@
 
 ---
 
+## 프로젝트 구조
+
+```text
+dasigolmog/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
+├── ai/
+│   └── catalog/
+│       └── policy.yaml
+├── back/                          # Spring Boot API
+│   ├── db/
+│   │   └── README.md
+│   ├── gradle/
+│   │   └── wrapper/
+│   ├── scripts/
+│   │   ├── db-up.sh
+│   │   └── db-down.sh
+│   ├── src/
+│   │   └── main/                  # java + resources + migration
+│   ├── build.gradle.kts
+│   ├── Dockerfile
+│   ├── docker-compose.yml
+│   └── gradlew*
+├── da/                            # Data Analytics
+│   ├── catalog/
+│   │   └── kpi.yaml
+│   ├── pipeline/                  # star build · KPI
+│   ├── scripts/
+│   │   └── run_analytics.sh
+│   ├── sql/
+│   │   └── kpi_queries.sql
+│   └── reports/
+├── de/                            # Data Engineering
+│   ├── catalog/
+│   │   └── datasets.yaml
+│   ├── fixtures/                  # 상권 CSV
+│   ├── data/                      # raw · quarantine · staging
+│   ├── pipeline/                  # ingest → DQ → mart
+│   ├── scripts/
+│   │   └── run_pipeline.sh
+│   └── reports/
+├── front/                         # Next.js
+│   ├── src/
+│   │   ├── app/                   # page routes (admin/auth/curation/map/stories)
+│   │   ├── components/            # Header, StoryCard, StoryMap...
+│   │   ├── lib/                   # api-client, auth-context
+│   │   └── types/
+│   ├── package.json
+│   ├── next.config.ts
+│   └── Dockerfile
+├── qa/
+│   ├── catalog/
+│   │   └── traceability.yaml
+│   ├── evidence/
+│   ├── reports/
+│   │   └── latest_run.json
+│   └── scripts/
+│       └── run_gm_tc.{py,sh}
+├── scripts/                       # deploy, health-check, rollback
+├── docker-compose.yml
+├── docker-compose.dev.yml
+├── package.json                   # monorepo scripts
+├── DEPLOYMENT.md
+└── README.md
+```
+
+| 경로 | 역할 |
+|------|------|
+| `back/` | BE API (Auth·Story·Admin·Analytics·AI scaffold) |
+| `front/` | FE (지도·큐레이션·등록·관리자) |
+| `de/` | 상권 공공데이터 파이프라인 |
+| `da/` | 이벤트·스타 스키마·KPI |
+| `ai/` | AI 정책 카탈로그 (기능은 `back/.../ai`) |
+| `qa/` | GM-TC 자동화·증거 팩 |
+
+---
+
 ## 2. 문제: 사용자가 통계 재계산까지 기다리는 구조
 
 기존에는 `AnalyticsViewRefresher.refreshAll()`이 스토리 등록, 좋아요, 관리자 승인 같은 쓰기 트랜잭션 안에서 두 개의 Materialized View를 바로 갱신하고 있었습니다.
