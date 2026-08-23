@@ -1,5 +1,6 @@
 package com.dasigolmok.domain.story.dto;
 
+import com.dasigolmok.domain.area.dto.AreaContextResponse;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -23,6 +24,8 @@ public class StoryDetailResponse {
     private StoryCardResponse.CreatedBy createdBy;
     private PlaceDetail place;
     private List<TagItem> tags;
+    /** Optional public-data context layer; null when unmapped or DE unavailable. */
+    private AreaContextResponse areaContext;
 
     @Getter
     @Builder
