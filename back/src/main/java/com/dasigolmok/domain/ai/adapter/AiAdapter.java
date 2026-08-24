@@ -1,12 +1,16 @@
 package com.dasigolmok.domain.ai.adapter;
 
+import com.dasigolmok.domain.ai.dto.ClassifySuggestionResponse;
+import com.dasigolmok.domain.ai.dto.CurationCandidateResponse;
+import com.dasigolmok.domain.ai.dto.SummarySuggestionResponse;
 import com.dasigolmok.domain.ai.dto.TagSuggestionResponse;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
- * Future AI adapter seam. Implementations must never auto-approve/reject/publish content.
- * MVP uses {@link DisabledAiAdapter} and always falls back to deterministic rules.
+ * AI assist seam. Implementations must never auto-approve/reject/publish content
+ * and must not write Story/Review state. Empty Optional → caller uses rule fallback.
  */
 public interface AiAdapter {
 
@@ -16,9 +20,11 @@ public interface AiAdapter {
 
     String promptVersion();
 
-    /**
-     * Optional tag suggestions. Empty means caller must use non-AI baseline.
-     * Only APPROVED or draft-in-progress text should be considered; PENDING must not train models.
-     */
     Optional<TagSuggestionResponse> suggestTags(String title, String description);
+
+    Optional<SummarySuggestionResponse> summarize(String title, String description);
+
+    Optional<ClassifySuggestionResponse> classify(String title, String description, String category);
+
+    Optional<CurationCandidateResponse> curationCandidates(List<String> storyIds, List<String> preferTags, int limit);
 }

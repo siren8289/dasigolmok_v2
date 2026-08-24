@@ -34,10 +34,19 @@ app:
     dir: ${UPLOAD_DIR:uploads}
   version: ${APP_VERSION:0.1.0}
   ai:
-    # MVP: keep false. No LLM/RAG/Agent/learning model in the request path.
+    # Assist-only. Defaults off; FastAPI failure must not block Story CRUD / map / admin review.
     enabled: ${AI_ENABLED:false}
-    adapter: disabled
-    model-version: none-mvp
-    prompt-version: none-mvp
+    adapter: ${AI_ADAPTER:disabled} # disabled | fastapi
+    model-version: ${AI_MODEL_VERSION:heuristic-v1}
+    prompt-version: ${AI_PROMPT_VERSION:n/a}
+    base-url: ${AI_BASE_URL:http://localhost:8000}
+    connect-timeout-ms: ${AI_CONNECT_TIMEOUT_MS:1000}
+    read-timeout-ms: ${AI_READ_TIMEOUT_MS:3000}
     tag-suggest:
       enabled: ${AI_TAG_SUGGEST_ENABLED:false}
+    summary:
+      enabled: ${AI_SUMMARY_ENABLED:false}
+    classify:
+      enabled: ${AI_CLASSIFY_ENABLED:false}
+    curation-assist:
+      enabled: ${AI_CURATION_ASSIST_ENABLED:false}

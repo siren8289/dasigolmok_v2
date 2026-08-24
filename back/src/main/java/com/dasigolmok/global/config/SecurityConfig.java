@@ -62,6 +62,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/v1/stories/map", "/api/v1/stories/curation").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/analytics/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/ai/status").permitAll()
+                        // AI suggestions are proposals only; never mutate Story review status.
                         .requestMatchers(HttpMethod.POST, "/api/v1/ai/suggestions/**").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/v1/stories/*").permitAll()
                         .requestMatchers("/uploads/**").permitAll()

@@ -17,6 +17,17 @@ services:
       timeout: 5s
       retries: 5
 
+  ai:
+    build:
+      context: ./ai/service
+      dockerfile: Dockerfile
+    image: dasi-golmok-ai:v0.1.0
+    container_name: dasi-golmok-ai
+    restart: unless-stopped
+    ports:
+      - "${AI_PORT:-8000}:8000"
+    # Assist only — no DB volume; never mutates Story status.
+
   back:
     build:
       context: ./back
@@ -34,6 +45,13 @@ services:
       CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:3000}
       APP_VERSION: ${APP_VERSION:-0.1.0}
       UPLOAD_DIR: /app/uploads
+      AI_ENABLED: ${AI_ENABLED:-false}
+      AI_ADAPTER: ${AI_ADAPTER:-disabled}
+      AI_BASE_URL: ${AI_BASE_URL:-http://ai:8000}
+      AI_TAG_SUGGEST_ENABLED: ${AI_TAG_SUGGEST_ENABLED:-false}
+      AI_SUMMARY_ENABLED: ${AI_SUMMARY_ENABLED:-false}
+      AI_CLASSIFY_ENABLED: ${AI_CLASSIFY_ENABLED:-false}
+      AI_CURATION_ASSIST_ENABLED: ${AI_CURATION_ASSIST_ENABLED:-false}
     volumes:
       - uploads_data:/app/uploads
     depends_on:

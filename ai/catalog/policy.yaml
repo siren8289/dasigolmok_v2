@@ -4,7 +4,7 @@ mvp:
   rag: false
   agent: false
   ai_video: false
-  curation: deterministic_rules
+  curation: deterministic_rules_with_optional_fastapi_assist
 
 constraints:
   - AI outputs are proposals only (AI-R1)
@@ -12,9 +12,26 @@ constraints:
   - Record model/prompt/retrieval versions when enabled (AI-R2)
   - Fallback to rule baseline on AI failure
   - PENDING stories must not be used as training data
+  - FastAPI must not write Story/Review/Reaction tables
+  - Core Story CRUD / map / admin review remain available if FastAPI is down
 
 adapters:
   - name: disabled
-    status: ACTIVE_MVP
+    status: ACTIVE_DEFAULT
+  - name: fastapi
+    status: AVAILABLE
+    base_path: ai/service
+    endpoints:
+      - POST /v1/analyze/tags
+      - POST /v1/analyze/summary
+      - POST /v1/analyze/classify
+      - POST /v1/curation/candidates
   - name: future_llm_tag_suggest
     status: DESIGNED_NOT_IMPLEMENTED
+
+spring_gateway:
+  - GET /api/v1/ai/status
+  - POST /api/v1/ai/suggestions/tags
+  - POST /api/v1/ai/suggestions/summary
+  - POST /api/v1/ai/suggestions/classify
+  - POST /api/v1/ai/suggestions/curation

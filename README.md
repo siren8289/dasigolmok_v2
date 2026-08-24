@@ -14,8 +14,14 @@ dasigolmog/
 │   └── workflows/
 │       └── deploy.yml
 ├── ai/
-│   └── catalog/
-│       └── policy.yaml
+│   ├── catalog/
+│   │   └── policy.yaml
+│   ├── scripts/
+│   │   └── run_ai.sh
+│   └── service/                   # FastAPI AI assist (tags/summary/classify/curation)
+│       ├── app/
+│       ├── Dockerfile
+│       └── requirements.txt
 ├── back/                          # Spring Boot API
 │   ├── db/
 │   │   └── README.md
@@ -75,7 +81,8 @@ dasigolmog/
 
 | 경로 | 역할 |
 |------|------|
-| `back/` | BE API (Auth·Story·Admin·Analytics·AI scaffold) |
+| `back/` | BE API (Auth·Story·Admin·Analytics·AI gateway) |
+| `ai/` | FastAPI AI assist + policy catalog (제안만, 검수 대체 없음) |
 | `front/` | FE (지도·큐레이션·등록·관리자) |
 | `de/` | 상권 공공데이터 파이프라인 |
 | `da/` | 이벤트·스타 스키마·KPI |

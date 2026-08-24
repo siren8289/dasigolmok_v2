@@ -67,5 +67,11 @@ backup_*.sql
 /qa/evidence/**
 !/qa/evidence/.gitkeep
 
+# AI FastAPI local venv
+/ai/service/.venv/
+/ai/service/__pycache__/
+/ai/service/**/__pycache__/
+*.pyc
+
 # IDE
 .idea/
