@@ -30,8 +30,8 @@ services:
 
   back:
     build:
-      context: ./back
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: back/Dockerfile
     image: dasi-golmok-back:v0.1.0
     container_name: dasi-golmok-back
     restart: unless-stopped

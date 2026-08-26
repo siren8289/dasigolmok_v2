@@ -12,39 +12,39 @@
 ## 디렉터리 구조
 
 ```
+db/
+├── README.md                 # 이 문서
+├── migration/                # Flyway SQL (V1~)
+│   ├── V1__init_schema.sql
+│   ├── V2__seed_data.sql
+│   ├── V3__efficiency_optimization.sql
+│   ├── V4__mock_data_extended.sql
+│   ├── V5__area_context_external.sql
+│   ├── V6__analytics_star_schema.sql
+│   ├── V7__ai_adapter_scaffold.sql
+│   └── V8__story_optimistic_lock.sql
+└── scripts/
+    ├── db-up.sh              # DB 컨테이너 기동 (back/docker-compose.yml)
+    └── db-down.sh            # DB 컨테이너 중지
+
 back/
-├── docker-compose.yml          # 로컬 PostgreSQL
-├── db/
-│   └── README.md               # 이 문서
-├── scripts/
-│   ├── db-up.sh                # DB 컨테이너 기동
-│   └── db-down.sh              # DB 컨테이너 중지
-└── src/main/resources/db/migration/
-    ├── V1__init_schema.sql              # 테이블·인덱스 생성
-    ├── V2__seed_data.sql                # 기본 시드
-    ├── V3__efficiency_optimization.sql  # 제약·인덱스·Materialized View
-    └── V4__mock_data_extended.sql       # 확장 목업 데이터
+├── docker-compose.yml        # 로컬 PostgreSQL
+└── build.gradle.kts          # processResources → classpath:db/migration
 ```
+
+백엔드 기동 시 Gradle이 `db/migration/`을 `classpath:db/migration`으로 패키징하고, Flyway가 적용합니다.
 
 ## 빠른 시작
 
 ```bash
 # 1. DB 컨테이너 실행
-cd back
-docker compose up -d
+npm run db:up
 
 # 2. 환경변수 (선택)
-cp .env.example .env
+cp back/.env.example back/.env
 
 # 3. 백엔드 실행 — Flyway가 마이그레이션 자동 적용
-./gradlew bootRun
-```
-
-루트에서 실행:
-
-```bash
-npm run db:up      # back/docker-compose.yml 사용
-npm run dev:back   # 마이그레이션 후 API 기동
+npm run dev:back
 ```
 
 ## 연결 정보 (기본값)
@@ -67,8 +67,8 @@ npm run dev:back   # 마이그레이션 후 API 기동
 
 ## 마이그레이션 규칙
 
-- 파일명: `V{버전}__{설명}.sql` (예: `V3__add_story_view_count.sql`)
-- 스키마 변경은 **반드시 새 마이그레이션 파일**로 추가
+- 파일명: `V{버전}__{설명}.sql` (예: `V9__add_story_view_count.sql`)
+- 스키마 변경은 **반드시 `db/migration/`에 새 파일**로 추가
 - `ddl-auto`는 `validate` — Hibernate가 Flyway 스키마와 일치하는지 검증만 수행
 
 ## 데이터 효율화 (적용 내역)
@@ -103,5 +103,5 @@ LIMIT 12;
 - 신고 3건, 좋아요 반응, 숨김 스토리 1건
 
 ```bash
-npm run db:reset   # 볼륨 삭제 후 재기동 → V1~V4 전체 적용
+npm run db:reset   # 볼륨 삭제 후 재기동 → 전체 마이그레이션 재적용
 ```

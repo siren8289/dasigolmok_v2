@@ -44,6 +44,13 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
+// Flyway SQL lives in repo-root db/migration (classpath:db/migration).
+tasks.named<ProcessResources>("processResources") {
+    from("${rootProject.projectDir}/../db/migration") {
+        into("db/migration")
+    }
+}
+
 tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
     archiveFileName.set("dasi-golmok-api.jar")
 }

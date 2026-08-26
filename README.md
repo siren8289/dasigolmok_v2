@@ -23,19 +23,20 @@ dasigolmog/
 │       ├── Dockerfile
 │       └── requirements.txt
 ├── back/                          # Spring Boot API
-│   ├── db/
-│   │   └── README.md
 │   ├── gradle/
 │   │   └── wrapper/
+│   ├── src/
+│   │   └── main/                  # java + resources
+│   ├── build.gradle.kts
+│   ├── Dockerfile
+│   ├── docker-compose.yml         # 로컬 PostgreSQL
+│   └── gradlew*
+├── db/                            # Database (Flyway)
+│   ├── migration/                 # V1~ schema SQL
 │   ├── scripts/
 │   │   ├── db-up.sh
 │   │   └── db-down.sh
-│   ├── src/
-│   │   └── main/                  # java + resources + migration
-│   ├── build.gradle.kts
-│   ├── Dockerfile
-│   ├── docker-compose.yml
-│   └── gradlew*
+│   └── README.md
 ├── da/                            # Data Analytics
 │   ├── catalog/
 │   │   └── kpi.yaml
@@ -82,11 +83,11 @@ dasigolmog/
 | 경로 | 역할 |
 |------|------|
 | `back/` | BE API (Auth·Story·Admin·Analytics·AI gateway) |
+| `db/` | Flyway 마이그레이션·DB 문서·로컬 기동 스크립트 |
 | `ai/` | FastAPI AI assist + policy catalog (제안만, 검수 대체 없음) |
 | `front/` | FE (지도·큐레이션·등록·관리자) |
 | `de/` | 상권 공공데이터 파이프라인 |
 | `da/` | 이벤트·스타 스키마·KPI |
-| `ai/` | AI 정책 카탈로그 (기능은 `back/.../ai`) |
 | `qa/` | GM-TC 자동화·증거 팩 |
 
 ---
