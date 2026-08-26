@@ -20,10 +20,14 @@ back/
 │   ├── db-up.sh                # DB 컨테이너 기동
 │   └── db-down.sh              # DB 컨테이너 중지
 └── src/main/resources/db/migration/
-    ├── V1__init_schema.sql              # 테이블·인덱스 생성
+    ├── V1__init_schema.sql              # 핵심 도메인 스키마
     ├── V2__seed_data.sql                # 기본 시드
     ├── V3__efficiency_optimization.sql  # 제약·인덱스·Materialized View
-    └── V4__mock_data_extended.sql       # 확장 목업 데이터
+    ├── V4__mock_data_extended.sql       # 확장 목업 데이터
+    ├── V5__area_context_external.sql    # 외부 상권 컨텍스트 적재 스키마
+    ├── V6__analytics_star_schema.sql    # DA 스타 스키마/이벤트 mart
+    ├── V7__ai_adapter_scaffold.sql      # AI 어댑터용 스키마
+    └── V8__story_optimistic_lock.sql    # 스토리 낙관적 락
 ```
 
 ## 빠른 시작
@@ -71,30 +75,18 @@ npm run dev:back   # 마이그레이션 후 API 기동
 - 스키마 변경은 **반드시 새 마이그레이션 파일**로 추가
 - `ddl-auto`는 `validate` — Hibernate가 Flyway 스키마와 일치하는지 검증만 수행
 
-## 데이터 효율화 (적용 내역)
+## 데이터베이스 범위
 
-| 단계 | 적용 내용 |
-|------|-----------|
-| 1. 모델·무결성 | CHECK 제약(상태값·역할·연도), `regions.slug` UNIQUE |
-| 2. 인덱스 | 부분 인덱스(`PENDING`/`APPROVED`/`RECEIVED`), 복합 인덱스 |
-| 3. 집계 뷰 | `mv_region_story_stats`, `mv_story_curation_summary` |
-| 4. 쿼리 | 지역 필터 SQL 이관, `@EntityGraph` + `@BatchSize`로 N+1 완화 |
-| 5. 목록 API | 큐레이션 MV 조회, 관리자 목록 `Pageable` 상한(100건) |
-| 6. 갱신 | 스토리 등록·승인·좋아요 시 MV `CONCURRENTLY` 리프레시 |
+이 문서는 `back/` 기준의 운영 DB 실행과 Flyway 마이그레이션에 집중합니다.
 
-### 실행 계획 확인
+DA(Data Analyst) 관련 항목은 `da/` 아래로 분리했습니다.
 
-```sql
-EXPLAIN ANALYZE
-SELECT id, title, like_count
-FROM mv_story_curation_summary
-ORDER BY like_count DESC
-LIMIT 12;
-```
-
-### 지역 통계 API
-
-`GET /api/v1/analytics/regions` — 지역별 승인/대기/좋아요 집계
+| 항목 | 문서 |
+|------|------|
+| DA 문서 허브 | [`../../da/README.md`](../../da/README.md) |
+| 통계 갱신 구조 | [`../../da/docs/analytics-refresh.md`](../../da/docs/analytics-refresh.md) |
+| KPI 정의 | [`../../da/catalog/kpi.yaml`](../../da/catalog/kpi.yaml) |
+| 스타 스키마 DDL | [`../src/main/resources/db/migration/V6__analytics_star_schema.sql`](../src/main/resources/db/migration/V6__analytics_star_schema.sql) |
 
 ### 확장 목업 (V4)
 
@@ -103,5 +95,5 @@ LIMIT 12;
 - 신고 3건, 좋아요 반응, 숨김 스토리 1건
 
 ```bash
-npm run db:reset   # 볼륨 삭제 후 재기동 → V1~V4 전체 적용
+npm run db:reset   # 볼륨 삭제 후 재기동 → 전체 Flyway 마이그레이션 재적용
 ```
