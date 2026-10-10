@@ -1,0 +1,2560 @@
+{
+  "districts": [
+    "강남구",
+    "강동구",
+    "강북구",
+    "강서구",
+    "관악구",
+    "광진구",
+    "구로구",
+    "금천구",
+    "노원구",
+    "도봉구",
+    "동대문구",
+    "동작구",
+    "마포구",
+    "서대문구",
+    "서초구",
+    "성동구",
+    "성북구",
+    "송파구",
+    "양천구",
+    "영등포구",
+    "용산구",
+    "은평구",
+    "종로구",
+    "중구",
+    "중랑구"
+  ],
+  "dongs": [
+    {
+      "district": "강남구",
+      "dong": "개포1동",
+      "dong_code": "11680660"
+    },
+    {
+      "district": "강남구",
+      "dong": "개포2동",
+      "dong_code": "11680670"
+    },
+    {
+      "district": "강남구",
+      "dong": "개포4동",
+      "dong_code": "11680690"
+    },
+    {
+      "district": "강남구",
+      "dong": "논현1동",
+      "dong_code": "11680521"
+    },
+    {
+      "district": "강남구",
+      "dong": "논현2동",
+      "dong_code": "11680531"
+    },
+    {
+      "district": "강남구",
+      "dong": "대치1동",
+      "dong_code": "11680600"
+    },
+    {
+      "district": "강남구",
+      "dong": "대치2동",
+      "dong_code": "11680610"
+    },
+    {
+      "district": "강남구",
+      "dong": "대치4동",
+      "dong_code": "11680630"
+    },
+    {
+      "district": "강남구",
+      "dong": "도곡1동",
+      "dong_code": "11680655"
+    },
+    {
+      "district": "강남구",
+      "dong": "도곡2동",
+      "dong_code": "11680656"
+    },
+    {
+      "district": "강남구",
+      "dong": "삼성1동",
+      "dong_code": "11680580"
+    },
+    {
+      "district": "강남구",
+      "dong": "삼성2동",
+      "dong_code": "11680590"
+    },
+    {
+      "district": "강남구",
+      "dong": "세곡동",
+      "dong_code": "11680700"
+    },
+    {
+      "district": "강남구",
+      "dong": "수서동",
+      "dong_code": "11680750"
+    },
+    {
+      "district": "강남구",
+      "dong": "신사동",
+      "dong_code": "11680510"
+    },
+    {
+      "district": "강남구",
+      "dong": "압구정동",
+      "dong_code": "11680545"
+    },
+    {
+      "district": "강남구",
+      "dong": "역삼1동",
+      "dong_code": "11680640"
+    },
+    {
+      "district": "강남구",
+      "dong": "역삼2동",
+      "dong_code": "11680650"
+    },
+    {
+      "district": "강남구",
+      "dong": "일원1동",
+      "dong_code": "11680730"
+    },
+    {
+      "district": "강남구",
+      "dong": "일원2동",
+      "dong_code": "11680740"
+    },
+    {
+      "district": "강남구",
+      "dong": "일원본동",
+      "dong_code": "11680720"
+    },
+    {
+      "district": "강남구",
+      "dong": "청담동",
+      "dong_code": "11680565"
+    },
+    {
+      "district": "강동구",
+      "dong": "강일동",
+      "dong_code": "11740515"
+    },
+    {
+      "district": "강동구",
+      "dong": "고덕1동",
+      "dong_code": "11740550"
+    },
+    {
+      "district": "강동구",
+      "dong": "고덕2동",
+      "dong_code": "11740560"
+    },
+    {
+      "district": "강동구",
+      "dong": "길동",
+      "dong_code": "11740685"
+    },
+    {
+      "district": "강동구",
+      "dong": "둔촌1동",
+      "dong_code": "11740690"
+    },
+    {
+      "district": "강동구",
+      "dong": "둔촌2동",
+      "dong_code": "11740700"
+    },
+    {
+      "district": "강동구",
+      "dong": "명일1동",
+      "dong_code": "11740530"
+    },
+    {
+      "district": "강동구",
+      "dong": "명일2동",
+      "dong_code": "11740540"
+    },
+    {
+      "district": "강동구",
+      "dong": "상일동",
+      "dong_code": "11740520"
+    },
+    {
+      "district": "강동구",
+      "dong": "성내1동",
+      "dong_code": "11740640"
+    },
+    {
+      "district": "강동구",
+      "dong": "성내2동",
+      "dong_code": "11740650"
+    },
+    {
+      "district": "강동구",
+      "dong": "성내3동",
+      "dong_code": "11740660"
+    },
+    {
+      "district": "강동구",
+      "dong": "암사1동",
+      "dong_code": "11740570"
+    },
+    {
+      "district": "강동구",
+      "dong": "암사2동",
+      "dong_code": "11740580"
+    },
+    {
+      "district": "강동구",
+      "dong": "암사3동",
+      "dong_code": "11740590"
+    },
+    {
+      "district": "강동구",
+      "dong": "천호1동",
+      "dong_code": "11740600"
+    },
+    {
+      "district": "강동구",
+      "dong": "천호2동",
+      "dong_code": "11740610"
+    },
+    {
+      "district": "강동구",
+      "dong": "천호3동",
+      "dong_code": "11740620"
+    },
+    {
+      "district": "강북구",
+      "dong": "미아동",
+      "dong_code": "11305535"
+    },
+    {
+      "district": "강북구",
+      "dong": "번1동",
+      "dong_code": "11305595"
+    },
+    {
+      "district": "강북구",
+      "dong": "번2동",
+      "dong_code": "11305603"
+    },
+    {
+      "district": "강북구",
+      "dong": "번3동",
+      "dong_code": "11305608"
+    },
+    {
+      "district": "강북구",
+      "dong": "삼각산동",
+      "dong_code": "11305575"
+    },
+    {
+      "district": "강북구",
+      "dong": "삼양동",
+      "dong_code": "11305534"
+    },
+    {
+      "district": "강북구",
+      "dong": "송중동",
+      "dong_code": "11305545"
+    },
+    {
+      "district": "강북구",
+      "dong": "송천동",
+      "dong_code": "11305555"
+    },
+    {
+      "district": "강북구",
+      "dong": "수유1동",
+      "dong_code": "11305615"
+    },
+    {
+      "district": "강북구",
+      "dong": "수유2동",
+      "dong_code": "11305625"
+    },
+    {
+      "district": "강북구",
+      "dong": "수유3동",
+      "dong_code": "11305635"
+    },
+    {
+      "district": "강북구",
+      "dong": "우이동",
+      "dong_code": "11305645"
+    },
+    {
+      "district": "강북구",
+      "dong": "인수동",
+      "dong_code": "11305660"
+    },
+    {
+      "district": "강서구",
+      "dong": "가양1동",
+      "dong_code": "11500603"
+    },
+    {
+      "district": "강서구",
+      "dong": "가양2동",
+      "dong_code": "11500604"
+    },
+    {
+      "district": "강서구",
+      "dong": "가양3동",
+      "dong_code": "11500605"
+    },
+    {
+      "district": "강서구",
+      "dong": "공항동",
+      "dong_code": "11500620"
+    },
+    {
+      "district": "강서구",
+      "dong": "등촌1동",
+      "dong_code": "11500520"
+    },
+    {
+      "district": "강서구",
+      "dong": "등촌2동",
+      "dong_code": "11500530"
+    },
+    {
+      "district": "강서구",
+      "dong": "등촌3동",
+      "dong_code": "11500535"
+    },
+    {
+      "district": "강서구",
+      "dong": "발산1동",
+      "dong_code": "11500611"
+    },
+    {
+      "district": "강서구",
+      "dong": "방화1동",
+      "dong_code": "11500630"
+    },
+    {
+      "district": "강서구",
+      "dong": "방화2동",
+      "dong_code": "11500640"
+    },
+    {
+      "district": "강서구",
+      "dong": "방화3동",
+      "dong_code": "11500641"
+    },
+    {
+      "district": "강서구",
+      "dong": "염창동",
+      "dong_code": "11500510"
+    },
+    {
+      "district": "강서구",
+      "dong": "우장산동",
+      "dong_code": "11500615"
+    },
+    {
+      "district": "강서구",
+      "dong": "화곡1동",
+      "dong_code": "11500540"
+    },
+    {
+      "district": "강서구",
+      "dong": "화곡2동",
+      "dong_code": "11500550"
+    },
+    {
+      "district": "강서구",
+      "dong": "화곡3동",
+      "dong_code": "11500560"
+    },
+    {
+      "district": "강서구",
+      "dong": "화곡4동",
+      "dong_code": "11500570"
+    },
+    {
+      "district": "강서구",
+      "dong": "화곡6동",
+      "dong_code": "11500591"
+    },
+    {
+      "district": "강서구",
+      "dong": "화곡8동",
+      "dong_code": "11500593"
+    },
+    {
+      "district": "강서구",
+      "dong": "화곡본동",
+      "dong_code": "11500590"
+    },
+    {
+      "district": "관악구",
+      "dong": "낙성대동",
+      "dong_code": "11620585"
+    },
+    {
+      "district": "관악구",
+      "dong": "난곡동",
+      "dong_code": "11620775"
+    },
+    {
+      "district": "관악구",
+      "dong": "난향동",
+      "dong_code": "11620715"
+    },
+    {
+      "district": "관악구",
+      "dong": "남현동",
+      "dong_code": "11620630"
+    },
+    {
+      "district": "관악구",
+      "dong": "대학동",
+      "dong_code": "11620735"
+    },
+    {
+      "district": "관악구",
+      "dong": "미성동",
+      "dong_code": "11620765"
+    },
+    {
+      "district": "관악구",
+      "dong": "보라매동",
+      "dong_code": "11620525"
+    },
+    {
+      "district": "관악구",
+      "dong": "삼성동",
+      "dong_code": "11620745"
+    },
+    {
+      "district": "관악구",
+      "dong": "서림동",
+      "dong_code": "11620665"
+    },
+    {
+      "district": "관악구",
+      "dong": "서원동",
+      "dong_code": "11620645"
+    },
+    {
+      "district": "관악구",
+      "dong": "성현동",
+      "dong_code": "11620565"
+    },
+    {
+      "district": "관악구",
+      "dong": "신림동",
+      "dong_code": "11620695"
+    },
+    {
+      "district": "관악구",
+      "dong": "신사동",
+      "dong_code": "11620685"
+    },
+    {
+      "district": "관악구",
+      "dong": "신원동",
+      "dong_code": "11620655"
+    },
+    {
+      "district": "관악구",
+      "dong": "은천동",
+      "dong_code": "11620605"
+    },
+    {
+      "district": "관악구",
+      "dong": "인헌동",
+      "dong_code": "11620625"
+    },
+    {
+      "district": "관악구",
+      "dong": "조원동",
+      "dong_code": "11620725"
+    },
+    {
+      "district": "관악구",
+      "dong": "중앙동",
+      "dong_code": "11620615"
+    },
+    {
+      "district": "관악구",
+      "dong": "청룡동",
+      "dong_code": "11620595"
+    },
+    {
+      "district": "관악구",
+      "dong": "청림동",
+      "dong_code": "11620545"
+    },
+    {
+      "district": "관악구",
+      "dong": "행운동",
+      "dong_code": "11620575"
+    },
+    {
+      "district": "광진구",
+      "dong": "광장동",
+      "dong_code": "11215810"
+    },
+    {
+      "district": "광진구",
+      "dong": "구의1동",
+      "dong_code": "11215850"
+    },
+    {
+      "district": "광진구",
+      "dong": "구의2동",
+      "dong_code": "11215860"
+    },
+    {
+      "district": "광진구",
+      "dong": "구의3동",
+      "dong_code": "11215870"
+    },
+    {
+      "district": "광진구",
+      "dong": "군자동",
+      "dong_code": "11215730"
+    },
+    {
+      "district": "광진구",
+      "dong": "능동",
+      "dong_code": "11215780"
+    },
+    {
+      "district": "광진구",
+      "dong": "자양1동",
+      "dong_code": "11215820"
+    },
+    {
+      "district": "광진구",
+      "dong": "자양2동",
+      "dong_code": "11215830"
+    },
+    {
+      "district": "광진구",
+      "dong": "자양3동",
+      "dong_code": "11215840"
+    },
+    {
+      "district": "광진구",
+      "dong": "자양4동",
+      "dong_code": "11215847"
+    },
+    {
+      "district": "광진구",
+      "dong": "중곡1동",
+      "dong_code": "11215740"
+    },
+    {
+      "district": "광진구",
+      "dong": "중곡2동",
+      "dong_code": "11215750"
+    },
+    {
+      "district": "광진구",
+      "dong": "중곡3동",
+      "dong_code": "11215760"
+    },
+    {
+      "district": "광진구",
+      "dong": "중곡4동",
+      "dong_code": "11215770"
+    },
+    {
+      "district": "광진구",
+      "dong": "화양동",
+      "dong_code": "11215710"
+    },
+    {
+      "district": "구로구",
+      "dong": "가리봉동",
+      "dong_code": "11530595"
+    },
+    {
+      "district": "구로구",
+      "dong": "개봉1동",
+      "dong_code": "11530740"
+    },
+    {
+      "district": "구로구",
+      "dong": "개봉2동",
+      "dong_code": "11530750"
+    },
+    {
+      "district": "구로구",
+      "dong": "개봉3동",
+      "dong_code": "11530760"
+    },
+    {
+      "district": "구로구",
+      "dong": "고척1동",
+      "dong_code": "11530720"
+    },
+    {
+      "district": "구로구",
+      "dong": "고척2동",
+      "dong_code": "11530730"
+    },
+    {
+      "district": "구로구",
+      "dong": "구로1동",
+      "dong_code": "11530520"
+    },
+    {
+      "district": "구로구",
+      "dong": "구로2동",
+      "dong_code": "11530530"
+    },
+    {
+      "district": "구로구",
+      "dong": "구로3동",
+      "dong_code": "11530540"
+    },
+    {
+      "district": "구로구",
+      "dong": "구로4동",
+      "dong_code": "11530550"
+    },
+    {
+      "district": "구로구",
+      "dong": "구로5동",
+      "dong_code": "11530560"
+    },
+    {
+      "district": "구로구",
+      "dong": "수궁동",
+      "dong_code": "11530790"
+    },
+    {
+      "district": "구로구",
+      "dong": "신도림동",
+      "dong_code": "11530510"
+    },
+    {
+      "district": "구로구",
+      "dong": "오류1동",
+      "dong_code": "11530770"
+    },
+    {
+      "district": "구로구",
+      "dong": "오류2동",
+      "dong_code": "11530780"
+    },
+    {
+      "district": "구로구",
+      "dong": "항동",
+      "dong_code": "11530800"
+    },
+    {
+      "district": "금천구",
+      "dong": "가산동",
+      "dong_code": "11545510"
+    },
+    {
+      "district": "금천구",
+      "dong": "독산1동",
+      "dong_code": "11545610"
+    },
+    {
+      "district": "금천구",
+      "dong": "독산2동",
+      "dong_code": "11545620"
+    },
+    {
+      "district": "금천구",
+      "dong": "독산3동",
+      "dong_code": "11545630"
+    },
+    {
+      "district": "금천구",
+      "dong": "독산4동",
+      "dong_code": "11545640"
+    },
+    {
+      "district": "금천구",
+      "dong": "시흥1동",
+      "dong_code": "11545670"
+    },
+    {
+      "district": "금천구",
+      "dong": "시흥2동",
+      "dong_code": "11545680"
+    },
+    {
+      "district": "금천구",
+      "dong": "시흥3동",
+      "dong_code": "11545690"
+    },
+    {
+      "district": "금천구",
+      "dong": "시흥4동",
+      "dong_code": "11545700"
+    },
+    {
+      "district": "금천구",
+      "dong": "시흥5동",
+      "dong_code": "11545710"
+    },
+    {
+      "district": "노원구",
+      "dong": "공릉1동",
+      "dong_code": "11350595"
+    },
+    {
+      "district": "노원구",
+      "dong": "공릉2동",
+      "dong_code": "11350600"
+    },
+    {
+      "district": "노원구",
+      "dong": "상계10동",
+      "dong_code": "11350720"
+    },
+    {
+      "district": "노원구",
+      "dong": "상계1동",
+      "dong_code": "11350630"
+    },
+    {
+      "district": "노원구",
+      "dong": "상계2동",
+      "dong_code": "11350640"
+    },
+    {
+      "district": "노원구",
+      "dong": "상계3·4동",
+      "dong_code": "11350665"
+    },
+    {
+      "district": "노원구",
+      "dong": "상계5동",
+      "dong_code": "11350670"
+    },
+    {
+      "district": "노원구",
+      "dong": "상계6·7동",
+      "dong_code": "11350695"
+    },
+    {
+      "district": "노원구",
+      "dong": "상계8동",
+      "dong_code": "11350700"
+    },
+    {
+      "district": "노원구",
+      "dong": "상계9동",
+      "dong_code": "11350710"
+    },
+    {
+      "district": "노원구",
+      "dong": "월계1동",
+      "dong_code": "11350560"
+    },
+    {
+      "district": "노원구",
+      "dong": "월계2동",
+      "dong_code": "11350570"
+    },
+    {
+      "district": "노원구",
+      "dong": "월계3동",
+      "dong_code": "11350580"
+    },
+    {
+      "district": "노원구",
+      "dong": "중계1동",
+      "dong_code": "11350621"
+    },
+    {
+      "district": "노원구",
+      "dong": "중계2·3동",
+      "dong_code": "11350625"
+    },
+    {
+      "district": "노원구",
+      "dong": "중계4동",
+      "dong_code": "11350624"
+    },
+    {
+      "district": "노원구",
+      "dong": "중계본동",
+      "dong_code": "11350619"
+    },
+    {
+      "district": "노원구",
+      "dong": "하계1동",
+      "dong_code": "11350611"
+    },
+    {
+      "district": "노원구",
+      "dong": "하계2동",
+      "dong_code": "11350612"
+    },
+    {
+      "district": "도봉구",
+      "dong": "도봉1동",
+      "dong_code": "11320521"
+    },
+    {
+      "district": "도봉구",
+      "dong": "도봉2동",
+      "dong_code": "11320522"
+    },
+    {
+      "district": "도봉구",
+      "dong": "방학1동",
+      "dong_code": "11320690"
+    },
+    {
+      "district": "도봉구",
+      "dong": "방학2동",
+      "dong_code": "11320700"
+    },
+    {
+      "district": "도봉구",
+      "dong": "방학3동",
+      "dong_code": "11320710"
+    },
+    {
+      "district": "도봉구",
+      "dong": "쌍문1동",
+      "dong_code": "11320660"
+    },
+    {
+      "district": "도봉구",
+      "dong": "쌍문2동",
+      "dong_code": "11320670"
+    },
+    {
+      "district": "도봉구",
+      "dong": "쌍문3동",
+      "dong_code": "11320680"
+    },
+    {
+      "district": "도봉구",
+      "dong": "쌍문4동",
+      "dong_code": "11320681"
+    },
+    {
+      "district": "도봉구",
+      "dong": "창1동",
+      "dong_code": "11320511"
+    },
+    {
+      "district": "도봉구",
+      "dong": "창2동",
+      "dong_code": "11320512"
+    },
+    {
+      "district": "도봉구",
+      "dong": "창3동",
+      "dong_code": "11320513"
+    },
+    {
+      "district": "도봉구",
+      "dong": "창4동",
+      "dong_code": "11320514"
+    },
+    {
+      "district": "도봉구",
+      "dong": "창5동",
+      "dong_code": "11320515"
+    },
+    {
+      "district": "동대문구",
+      "dong": "답십리1동",
+      "dong_code": "11230600"
+    },
+    {
+      "district": "동대문구",
+      "dong": "답십리2동",
+      "dong_code": "11230610"
+    },
+    {
+      "district": "동대문구",
+      "dong": "용신동",
+      "dong_code": "11230536"
+    },
+    {
+      "district": "동대문구",
+      "dong": "이문1동",
+      "dong_code": "11230740"
+    },
+    {
+      "district": "동대문구",
+      "dong": "이문2동",
+      "dong_code": "11230750"
+    },
+    {
+      "district": "동대문구",
+      "dong": "장안1동",
+      "dong_code": "11230650"
+    },
+    {
+      "district": "동대문구",
+      "dong": "장안2동",
+      "dong_code": "11230660"
+    },
+    {
+      "district": "동대문구",
+      "dong": "전농1동",
+      "dong_code": "11230560"
+    },
+    {
+      "district": "동대문구",
+      "dong": "전농2동",
+      "dong_code": "11230570"
+    },
+    {
+      "district": "동대문구",
+      "dong": "제기동",
+      "dong_code": "11230545"
+    },
+    {
+      "district": "동대문구",
+      "dong": "청량리동",
+      "dong_code": "11230705"
+    },
+    {
+      "district": "동대문구",
+      "dong": "회기동",
+      "dong_code": "11230710"
+    },
+    {
+      "district": "동대문구",
+      "dong": "휘경1동",
+      "dong_code": "11230720"
+    },
+    {
+      "district": "동대문구",
+      "dong": "휘경2동",
+      "dong_code": "11230730"
+    },
+    {
+      "district": "동작구",
+      "dong": "노량진1동",
+      "dong_code": "11590510"
+    },
+    {
+      "district": "동작구",
+      "dong": "노량진2동",
+      "dong_code": "11590520"
+    },
+    {
+      "district": "동작구",
+      "dong": "대방동",
+      "dong_code": "11590660"
+    },
+    {
+      "district": "동작구",
+      "dong": "사당1동",
+      "dong_code": "11590620"
+    },
+    {
+      "district": "동작구",
+      "dong": "사당2동",
+      "dong_code": "11590630"
+    },
+    {
+      "district": "동작구",
+      "dong": "사당3동",
+      "dong_code": "11590640"
+    },
+    {
+      "district": "동작구",
+      "dong": "사당4동",
+      "dong_code": "11590650"
+    },
+    {
+      "district": "동작구",
+      "dong": "사당5동",
+      "dong_code": "11590651"
+    },
+    {
+      "district": "동작구",
+      "dong": "상도1동",
+      "dong_code": "11590530"
+    },
+    {
+      "district": "동작구",
+      "dong": "상도2동",
+      "dong_code": "11590540"
+    },
+    {
+      "district": "동작구",
+      "dong": "상도3동",
+      "dong_code": "11590550"
+    },
+    {
+      "district": "동작구",
+      "dong": "상도4동",
+      "dong_code": "11590560"
+    },
+    {
+      "district": "동작구",
+      "dong": "신대방1동",
+      "dong_code": "11590670"
+    },
+    {
+      "district": "동작구",
+      "dong": "신대방2동",
+      "dong_code": "11590680"
+    },
+    {
+      "district": "동작구",
+      "dong": "흑석동",
+      "dong_code": "11590605"
+    },
+    {
+      "district": "마포구",
+      "dong": "공덕동",
+      "dong_code": "11440565"
+    },
+    {
+      "district": "마포구",
+      "dong": "대흥동",
+      "dong_code": "11440600"
+    },
+    {
+      "district": "마포구",
+      "dong": "도화동",
+      "dong_code": "11440585"
+    },
+    {
+      "district": "마포구",
+      "dong": "망원1동",
+      "dong_code": "11440690"
+    },
+    {
+      "district": "마포구",
+      "dong": "망원2동",
+      "dong_code": "11440700"
+    },
+    {
+      "district": "마포구",
+      "dong": "상암동",
+      "dong_code": "11440740"
+    },
+    {
+      "district": "마포구",
+      "dong": "서강동",
+      "dong_code": "11440655"
+    },
+    {
+      "district": "마포구",
+      "dong": "서교동",
+      "dong_code": "11440660"
+    },
+    {
+      "district": "마포구",
+      "dong": "성산1동",
+      "dong_code": "11440720"
+    },
+    {
+      "district": "마포구",
+      "dong": "성산2동",
+      "dong_code": "11440730"
+    },
+    {
+      "district": "마포구",
+      "dong": "신수동",
+      "dong_code": "11440630"
+    },
+    {
+      "district": "마포구",
+      "dong": "아현동",
+      "dong_code": "11440555"
+    },
+    {
+      "district": "마포구",
+      "dong": "연남동",
+      "dong_code": "11440710"
+    },
+    {
+      "district": "마포구",
+      "dong": "염리동",
+      "dong_code": "11440610"
+    },
+    {
+      "district": "마포구",
+      "dong": "용강동",
+      "dong_code": "11440590"
+    },
+    {
+      "district": "마포구",
+      "dong": "합정동",
+      "dong_code": "11440680"
+    },
+    {
+      "district": "서대문구",
+      "dong": "남가좌1동",
+      "dong_code": "11410690"
+    },
+    {
+      "district": "서대문구",
+      "dong": "남가좌2동",
+      "dong_code": "11410700"
+    },
+    {
+      "district": "서대문구",
+      "dong": "북가좌1동",
+      "dong_code": "11410710"
+    },
+    {
+      "district": "서대문구",
+      "dong": "북가좌2동",
+      "dong_code": "11410720"
+    },
+    {
+      "district": "서대문구",
+      "dong": "북아현동",
+      "dong_code": "11410555"
+    },
+    {
+      "district": "서대문구",
+      "dong": "신촌동",
+      "dong_code": "11410585"
+    },
+    {
+      "district": "서대문구",
+      "dong": "연희동",
+      "dong_code": "11410615"
+    },
+    {
+      "district": "서대문구",
+      "dong": "천연동",
+      "dong_code": "11410520"
+    },
+    {
+      "district": "서대문구",
+      "dong": "충현동",
+      "dong_code": "11410565"
+    },
+    {
+      "district": "서대문구",
+      "dong": "홍은1동",
+      "dong_code": "11410660"
+    },
+    {
+      "district": "서대문구",
+      "dong": "홍은2동",
+      "dong_code": "11410685"
+    },
+    {
+      "district": "서대문구",
+      "dong": "홍제1동",
+      "dong_code": "11410620"
+    },
+    {
+      "district": "서대문구",
+      "dong": "홍제2동",
+      "dong_code": "11410655"
+    },
+    {
+      "district": "서대문구",
+      "dong": "홍제3동",
+      "dong_code": "11410640"
+    },
+    {
+      "district": "서초구",
+      "dong": "내곡동",
+      "dong_code": "11650660"
+    },
+    {
+      "district": "서초구",
+      "dong": "반포1동",
+      "dong_code": "11650560"
+    },
+    {
+      "district": "서초구",
+      "dong": "반포2동",
+      "dong_code": "11650570"
+    },
+    {
+      "district": "서초구",
+      "dong": "반포3동",
+      "dong_code": "11650580"
+    },
+    {
+      "district": "서초구",
+      "dong": "반포4동",
+      "dong_code": "11650581"
+    },
+    {
+      "district": "서초구",
+      "dong": "반포본동",
+      "dong_code": "11650550"
+    },
+    {
+      "district": "서초구",
+      "dong": "방배1동",
+      "dong_code": "11650600"
+    },
+    {
+      "district": "서초구",
+      "dong": "방배2동",
+      "dong_code": "11650610"
+    },
+    {
+      "district": "서초구",
+      "dong": "방배3동",
+      "dong_code": "11650620"
+    },
+    {
+      "district": "서초구",
+      "dong": "방배4동",
+      "dong_code": "11650621"
+    },
+    {
+      "district": "서초구",
+      "dong": "방배본동",
+      "dong_code": "11650590"
+    },
+    {
+      "district": "서초구",
+      "dong": "서초1동",
+      "dong_code": "11650510"
+    },
+    {
+      "district": "서초구",
+      "dong": "서초2동",
+      "dong_code": "11650520"
+    },
+    {
+      "district": "서초구",
+      "dong": "서초3동",
+      "dong_code": "11650530"
+    },
+    {
+      "district": "서초구",
+      "dong": "서초4동",
+      "dong_code": "11650531"
+    },
+    {
+      "district": "서초구",
+      "dong": "양재1동",
+      "dong_code": "11650651"
+    },
+    {
+      "district": "서초구",
+      "dong": "양재2동",
+      "dong_code": "11650652"
+    },
+    {
+      "district": "서초구",
+      "dong": "잠원동",
+      "dong_code": "11650540"
+    },
+    {
+      "district": "성동구",
+      "dong": "금호1가동",
+      "dong_code": "11200590"
+    },
+    {
+      "district": "성동구",
+      "dong": "금호2·3가동",
+      "dong_code": "11200615"
+    },
+    {
+      "district": "성동구",
+      "dong": "금호4가동",
+      "dong_code": "11200620"
+    },
+    {
+      "district": "성동구",
+      "dong": "마장동",
+      "dong_code": "11200540"
+    },
+    {
+      "district": "성동구",
+      "dong": "사근동",
+      "dong_code": "11200550"
+    },
+    {
+      "district": "성동구",
+      "dong": "성수1가1동",
+      "dong_code": "11200650"
+    },
+    {
+      "district": "성동구",
+      "dong": "성수1가2동",
+      "dong_code": "11200660"
+    },
+    {
+      "district": "성동구",
+      "dong": "성수2가1동",
+      "dong_code": "11200670"
+    },
+    {
+      "district": "성동구",
+      "dong": "성수2가3동",
+      "dong_code": "11200690"
+    },
+    {
+      "district": "성동구",
+      "dong": "송정동",
+      "dong_code": "11200720"
+    },
+    {
+      "district": "성동구",
+      "dong": "옥수동",
+      "dong_code": "11200645"
+    },
+    {
+      "district": "성동구",
+      "dong": "왕십리2동",
+      "dong_code": "11200520"
+    },
+    {
+      "district": "성동구",
+      "dong": "왕십리도선동",
+      "dong_code": "11200535"
+    },
+    {
+      "district": "성동구",
+      "dong": "용답동",
+      "dong_code": "11200790"
+    },
+    {
+      "district": "성동구",
+      "dong": "응봉동",
+      "dong_code": "11200580"
+    },
+    {
+      "district": "성동구",
+      "dong": "행당1동",
+      "dong_code": "11200560"
+    },
+    {
+      "district": "성동구",
+      "dong": "행당2동",
+      "dong_code": "11200570"
+    },
+    {
+      "district": "성북구",
+      "dong": "길음1동",
+      "dong_code": "11290660"
+    },
+    {
+      "district": "성북구",
+      "dong": "길음2동",
+      "dong_code": "11290685"
+    },
+    {
+      "district": "성북구",
+      "dong": "돈암1동",
+      "dong_code": "11290580"
+    },
+    {
+      "district": "성북구",
+      "dong": "돈암2동",
+      "dong_code": "11290590"
+    },
+    {
+      "district": "성북구",
+      "dong": "동선동",
+      "dong_code": "11290575"
+    },
+    {
+      "district": "성북구",
+      "dong": "보문동",
+      "dong_code": "11290610"
+    },
+    {
+      "district": "성북구",
+      "dong": "삼선동",
+      "dong_code": "11290555"
+    },
+    {
+      "district": "성북구",
+      "dong": "석관동",
+      "dong_code": "11290810"
+    },
+    {
+      "district": "성북구",
+      "dong": "성북동",
+      "dong_code": "11290525"
+    },
+    {
+      "district": "성북구",
+      "dong": "안암동",
+      "dong_code": "11290600"
+    },
+    {
+      "district": "성북구",
+      "dong": "월곡1동",
+      "dong_code": "11290715"
+    },
+    {
+      "district": "성북구",
+      "dong": "월곡2동",
+      "dong_code": "11290725"
+    },
+    {
+      "district": "성북구",
+      "dong": "장위1동",
+      "dong_code": "11290760"
+    },
+    {
+      "district": "성북구",
+      "dong": "장위2동",
+      "dong_code": "11290770"
+    },
+    {
+      "district": "성북구",
+      "dong": "장위3동",
+      "dong_code": "11290780"
+    },
+    {
+      "district": "성북구",
+      "dong": "정릉1동",
+      "dong_code": "11290620"
+    },
+    {
+      "district": "성북구",
+      "dong": "정릉2동",
+      "dong_code": "11290630"
+    },
+    {
+      "district": "성북구",
+      "dong": "정릉3동",
+      "dong_code": "11290640"
+    },
+    {
+      "district": "성북구",
+      "dong": "정릉4동",
+      "dong_code": "11290650"
+    },
+    {
+      "district": "성북구",
+      "dong": "종암동",
+      "dong_code": "11290705"
+    },
+    {
+      "district": "송파구",
+      "dong": "가락1동",
+      "dong_code": "11710631"
+    },
+    {
+      "district": "송파구",
+      "dong": "가락2동",
+      "dong_code": "11710632"
+    },
+    {
+      "district": "송파구",
+      "dong": "가락본동",
+      "dong_code": "11710620"
+    },
+    {
+      "district": "송파구",
+      "dong": "거여1동",
+      "dong_code": "11710531"
+    },
+    {
+      "district": "송파구",
+      "dong": "거여2동",
+      "dong_code": "11710532"
+    },
+    {
+      "district": "송파구",
+      "dong": "마천1동",
+      "dong_code": "11710540"
+    },
+    {
+      "district": "송파구",
+      "dong": "마천2동",
+      "dong_code": "11710550"
+    },
+    {
+      "district": "송파구",
+      "dong": "문정1동",
+      "dong_code": "11710641"
+    },
+    {
+      "district": "송파구",
+      "dong": "문정2동",
+      "dong_code": "11710642"
+    },
+    {
+      "district": "송파구",
+      "dong": "방이1동",
+      "dong_code": "11710561"
+    },
+    {
+      "district": "송파구",
+      "dong": "방이2동",
+      "dong_code": "11710562"
+    },
+    {
+      "district": "송파구",
+      "dong": "삼전동",
+      "dong_code": "11710610"
+    },
+    {
+      "district": "송파구",
+      "dong": "석촌동",
+      "dong_code": "11710600"
+    },
+    {
+      "district": "송파구",
+      "dong": "송파1동",
+      "dong_code": "11710580"
+    },
+    {
+      "district": "송파구",
+      "dong": "송파2동",
+      "dong_code": "11710590"
+    },
+    {
+      "district": "송파구",
+      "dong": "오금동",
+      "dong_code": "11710570"
+    },
+    {
+      "district": "송파구",
+      "dong": "오륜동",
+      "dong_code": "11710566"
+    },
+    {
+      "district": "송파구",
+      "dong": "위례동",
+      "dong_code": "11710647"
+    },
+    {
+      "district": "송파구",
+      "dong": "잠실2동",
+      "dong_code": "11710670"
+    },
+    {
+      "district": "송파구",
+      "dong": "잠실3동",
+      "dong_code": "11710680"
+    },
+    {
+      "district": "송파구",
+      "dong": "잠실4동",
+      "dong_code": "11710690"
+    },
+    {
+      "district": "송파구",
+      "dong": "잠실6동",
+      "dong_code": "11710710"
+    },
+    {
+      "district": "송파구",
+      "dong": "잠실7동",
+      "dong_code": "11710720"
+    },
+    {
+      "district": "송파구",
+      "dong": "잠실본동",
+      "dong_code": "11710650"
+    },
+    {
+      "district": "송파구",
+      "dong": "장지동",
+      "dong_code": "11710646"
+    },
+    {
+      "district": "송파구",
+      "dong": "풍납1동",
+      "dong_code": "11710510"
+    },
+    {
+      "district": "송파구",
+      "dong": "풍납2동",
+      "dong_code": "11710520"
+    },
+    {
+      "district": "양천구",
+      "dong": "목1동",
+      "dong_code": "11470510"
+    },
+    {
+      "district": "양천구",
+      "dong": "목2동",
+      "dong_code": "11470520"
+    },
+    {
+      "district": "양천구",
+      "dong": "목3동",
+      "dong_code": "11470530"
+    },
+    {
+      "district": "양천구",
+      "dong": "목4동",
+      "dong_code": "11470540"
+    },
+    {
+      "district": "양천구",
+      "dong": "목5동",
+      "dong_code": "11470550"
+    },
+    {
+      "district": "양천구",
+      "dong": "신월1동",
+      "dong_code": "11470560"
+    },
+    {
+      "district": "양천구",
+      "dong": "신월2동",
+      "dong_code": "11470570"
+    },
+    {
+      "district": "양천구",
+      "dong": "신월3동",
+      "dong_code": "11470580"
+    },
+    {
+      "district": "양천구",
+      "dong": "신월4동",
+      "dong_code": "11470590"
+    },
+    {
+      "district": "양천구",
+      "dong": "신월5동",
+      "dong_code": "11470600"
+    },
+    {
+      "district": "양천구",
+      "dong": "신월6동",
+      "dong_code": "11470610"
+    },
+    {
+      "district": "양천구",
+      "dong": "신월7동",
+      "dong_code": "11470611"
+    },
+    {
+      "district": "양천구",
+      "dong": "신정1동",
+      "dong_code": "11470620"
+    },
+    {
+      "district": "양천구",
+      "dong": "신정2동",
+      "dong_code": "11470630"
+    },
+    {
+      "district": "양천구",
+      "dong": "신정3동",
+      "dong_code": "11470640"
+    },
+    {
+      "district": "양천구",
+      "dong": "신정4동",
+      "dong_code": "11470650"
+    },
+    {
+      "district": "양천구",
+      "dong": "신정6동",
+      "dong_code": "11470670"
+    },
+    {
+      "district": "양천구",
+      "dong": "신정7동",
+      "dong_code": "11470680"
+    },
+    {
+      "district": "영등포구",
+      "dong": "당산1동",
+      "dong_code": "11560550"
+    },
+    {
+      "district": "영등포구",
+      "dong": "당산2동",
+      "dong_code": "11560560"
+    },
+    {
+      "district": "영등포구",
+      "dong": "대림1동",
+      "dong_code": "11560700"
+    },
+    {
+      "district": "영등포구",
+      "dong": "대림2동",
+      "dong_code": "11560710"
+    },
+    {
+      "district": "영등포구",
+      "dong": "대림3동",
+      "dong_code": "11560720"
+    },
+    {
+      "district": "영등포구",
+      "dong": "도림동",
+      "dong_code": "11560585"
+    },
+    {
+      "district": "영등포구",
+      "dong": "문래동",
+      "dong_code": "11560605"
+    },
+    {
+      "district": "영등포구",
+      "dong": "신길1동",
+      "dong_code": "11560630"
+    },
+    {
+      "district": "영등포구",
+      "dong": "신길3동",
+      "dong_code": "11560650"
+    },
+    {
+      "district": "영등포구",
+      "dong": "신길4동",
+      "dong_code": "11560660"
+    },
+    {
+      "district": "영등포구",
+      "dong": "신길5동",
+      "dong_code": "11560670"
+    },
+    {
+      "district": "영등포구",
+      "dong": "신길6동",
+      "dong_code": "11560680"
+    },
+    {
+      "district": "영등포구",
+      "dong": "신길7동",
+      "dong_code": "11560690"
+    },
+    {
+      "district": "영등포구",
+      "dong": "양평1동",
+      "dong_code": "11560610"
+    },
+    {
+      "district": "영등포구",
+      "dong": "양평2동",
+      "dong_code": "11560620"
+    },
+    {
+      "district": "영등포구",
+      "dong": "여의동",
+      "dong_code": "11560540"
+    },
+    {
+      "district": "영등포구",
+      "dong": "영등포동",
+      "dong_code": "11560535"
+    },
+    {
+      "district": "영등포구",
+      "dong": "영등포본동",
+      "dong_code": "11560515"
+    },
+    {
+      "district": "용산구",
+      "dong": "남영동",
+      "dong_code": "11170530"
+    },
+    {
+      "district": "용산구",
+      "dong": "보광동",
+      "dong_code": "11170700"
+    },
+    {
+      "district": "용산구",
+      "dong": "서빙고동",
+      "dong_code": "11170690"
+    },
+    {
+      "district": "용산구",
+      "dong": "용문동",
+      "dong_code": "11170590"
+    },
+    {
+      "district": "용산구",
+      "dong": "용산2가동",
+      "dong_code": "11170520"
+    },
+    {
+      "district": "용산구",
+      "dong": "원효로1동",
+      "dong_code": "11170560"
+    },
+    {
+      "district": "용산구",
+      "dong": "원효로2동",
+      "dong_code": "11170570"
+    },
+    {
+      "district": "용산구",
+      "dong": "이촌1동",
+      "dong_code": "11170630"
+    },
+    {
+      "district": "용산구",
+      "dong": "이촌2동",
+      "dong_code": "11170640"
+    },
+    {
+      "district": "용산구",
+      "dong": "이태원1동",
+      "dong_code": "11170650"
+    },
+    {
+      "district": "용산구",
+      "dong": "이태원2동",
+      "dong_code": "11170660"
+    },
+    {
+      "district": "용산구",
+      "dong": "청파동",
+      "dong_code": "11170555"
+    },
+    {
+      "district": "용산구",
+      "dong": "한강로동",
+      "dong_code": "11170625"
+    },
+    {
+      "district": "용산구",
+      "dong": "한남동",
+      "dong_code": "11170685"
+    },
+    {
+      "district": "용산구",
+      "dong": "효창동",
+      "dong_code": "11170580"
+    },
+    {
+      "district": "용산구",
+      "dong": "후암동",
+      "dong_code": "11170510"
+    },
+    {
+      "district": "은평구",
+      "dong": "갈현1동",
+      "dong_code": "11380551"
+    },
+    {
+      "district": "은평구",
+      "dong": "갈현2동",
+      "dong_code": "11380552"
+    },
+    {
+      "district": "은평구",
+      "dong": "구산동",
+      "dong_code": "11380560"
+    },
+    {
+      "district": "은평구",
+      "dong": "녹번동",
+      "dong_code": "11380510"
+    },
+    {
+      "district": "은평구",
+      "dong": "대조동",
+      "dong_code": "11380570"
+    },
+    {
+      "district": "은평구",
+      "dong": "불광1동",
+      "dong_code": "11380520"
+    },
+    {
+      "district": "은평구",
+      "dong": "불광2동",
+      "dong_code": "11380530"
+    },
+    {
+      "district": "은평구",
+      "dong": "수색동",
+      "dong_code": "11380650"
+    },
+    {
+      "district": "은평구",
+      "dong": "신사1동",
+      "dong_code": "11380631"
+    },
+    {
+      "district": "은평구",
+      "dong": "신사2동",
+      "dong_code": "11380632"
+    },
+    {
+      "district": "은평구",
+      "dong": "역촌동",
+      "dong_code": "11380625"
+    },
+    {
+      "district": "은평구",
+      "dong": "응암1동",
+      "dong_code": "11380580"
+    },
+    {
+      "district": "은평구",
+      "dong": "응암2동",
+      "dong_code": "11380590"
+    },
+    {
+      "district": "은평구",
+      "dong": "응암3동",
+      "dong_code": "11380600"
+    },
+    {
+      "district": "은평구",
+      "dong": "증산동",
+      "dong_code": "11380640"
+    },
+    {
+      "district": "은평구",
+      "dong": "진관동",
+      "dong_code": "11380690"
+    },
+    {
+      "district": "종로구",
+      "dong": "가회동",
+      "dong_code": "11110600"
+    },
+    {
+      "district": "종로구",
+      "dong": "교남동",
+      "dong_code": "11110580"
+    },
+    {
+      "district": "종로구",
+      "dong": "무악동",
+      "dong_code": "11110570"
+    },
+    {
+      "district": "종로구",
+      "dong": "부암동",
+      "dong_code": "11110550"
+    },
+    {
+      "district": "종로구",
+      "dong": "사직동",
+      "dong_code": "11110530"
+    },
+    {
+      "district": "종로구",
+      "dong": "삼청동",
+      "dong_code": "11110540"
+    },
+    {
+      "district": "종로구",
+      "dong": "숭인1동",
+      "dong_code": "11110700"
+    },
+    {
+      "district": "종로구",
+      "dong": "숭인2동",
+      "dong_code": "11110710"
+    },
+    {
+      "district": "종로구",
+      "dong": "이화동",
+      "dong_code": "11110640"
+    },
+    {
+      "district": "종로구",
+      "dong": "종로1·2·3·4가동",
+      "dong_code": "11110615"
+    },
+    {
+      "district": "종로구",
+      "dong": "종로5·6가동",
+      "dong_code": "11110630"
+    },
+    {
+      "district": "종로구",
+      "dong": "창신1동",
+      "dong_code": "11110670"
+    },
+    {
+      "district": "종로구",
+      "dong": "창신2동",
+      "dong_code": "11110680"
+    },
+    {
+      "district": "종로구",
+      "dong": "창신3동",
+      "dong_code": "11110690"
+    },
+    {
+      "district": "종로구",
+      "dong": "청운효자동",
+      "dong_code": "11110515"
+    },
+    {
+      "district": "종로구",
+      "dong": "평창동",
+      "dong_code": "11110560"
+    },
+    {
+      "district": "종로구",
+      "dong": "혜화동",
+      "dong_code": "11110650"
+    },
+    {
+      "district": "중구",
+      "dong": "광희동",
+      "dong_code": "11140590"
+    },
+    {
+      "district": "중구",
+      "dong": "다산동",
+      "dong_code": "11140625"
+    },
+    {
+      "district": "중구",
+      "dong": "동화동",
+      "dong_code": "11140665"
+    },
+    {
+      "district": "중구",
+      "dong": "명동",
+      "dong_code": "11140550"
+    },
+    {
+      "district": "중구",
+      "dong": "소공동",
+      "dong_code": "11140520"
+    },
+    {
+      "district": "중구",
+      "dong": "신당5동",
+      "dong_code": "11140650"
+    },
+    {
+      "district": "중구",
+      "dong": "신당동",
+      "dong_code": "11140615"
+    },
+    {
+      "district": "중구",
+      "dong": "약수동",
+      "dong_code": "11140635"
+    },
+    {
+      "district": "중구",
+      "dong": "을지로동",
+      "dong_code": "11140605"
+    },
+    {
+      "district": "중구",
+      "dong": "장충동",
+      "dong_code": "11140580"
+    },
+    {
+      "district": "중구",
+      "dong": "중림동",
+      "dong_code": "11140680"
+    },
+    {
+      "district": "중구",
+      "dong": "청구동",
+      "dong_code": "11140645"
+    },
+    {
+      "district": "중구",
+      "dong": "필동",
+      "dong_code": "11140570"
+    },
+    {
+      "district": "중구",
+      "dong": "황학동",
+      "dong_code": "11140670"
+    },
+    {
+      "district": "중구",
+      "dong": "회현동",
+      "dong_code": "11140540"
+    },
+    {
+      "district": "중랑구",
+      "dong": "망우3동",
+      "dong_code": "11260660"
+    },
+    {
+      "district": "중랑구",
+      "dong": "망우본동",
+      "dong_code": "11260655"
+    },
+    {
+      "district": "중랑구",
+      "dong": "면목2동",
+      "dong_code": "11260520"
+    },
+    {
+      "district": "중랑구",
+      "dong": "면목3·8동",
+      "dong_code": "11260575"
+    },
+    {
+      "district": "중랑구",
+      "dong": "면목4동",
+      "dong_code": "11260540"
+    },
+    {
+      "district": "중랑구",
+      "dong": "면목5동",
+      "dong_code": "11260550"
+    },
+    {
+      "district": "중랑구",
+      "dong": "면목7동",
+      "dong_code": "11260570"
+    },
+    {
+      "district": "중랑구",
+      "dong": "면목본동",
+      "dong_code": "11260565"
+    },
+    {
+      "district": "중랑구",
+      "dong": "묵1동",
+      "dong_code": "11260620"
+    },
+    {
+      "district": "중랑구",
+      "dong": "묵2동",
+      "dong_code": "11260630"
+    },
+    {
+      "district": "중랑구",
+      "dong": "상봉1동",
+      "dong_code": "11260580"
+    },
+    {
+      "district": "중랑구",
+      "dong": "상봉2동",
+      "dong_code": "11260590"
+    },
+    {
+      "district": "중랑구",
+      "dong": "신내1동",
+      "dong_code": "11260680"
+    },
+    {
+      "district": "중랑구",
+      "dong": "신내2동",
+      "dong_code": "11260690"
+    },
+    {
+      "district": "중랑구",
+      "dong": "중화1동",
+      "dong_code": "11260600"
+    },
+    {
+      "district": "중랑구",
+      "dong": "중화2동",
+      "dong_code": "11260610"
+    }
+  ],
+  "industries": [
+    {
+      "industry": "DVD방",
+      "industry_code": "CS200039"
+    },
+    {
+      "industry": "PC방",
+      "industry_code": "CS200019"
+    },
+    {
+      "industry": "가구",
+      "industry_code": "CS300031"
+    },
+    {
+      "industry": "가방",
+      "industry_code": "CS300015"
+    },
+    {
+      "industry": "가전제품",
+      "industry_code": "CS300032"
+    },
+    {
+      "industry": "가전제품수리",
+      "industry_code": "CS200032"
+    },
+    {
+      "industry": "가정용품임대",
+      "industry_code": "CS200047"
+    },
+    {
+      "industry": "건축물청소",
+      "industry_code": "CS200043"
+    },
+    {
+      "industry": "게스트하우스",
+      "industry_code": "CS200035"
+    },
+    {
+      "industry": "고시원",
+      "industry_code": "CS200036"
+    },
+    {
+      "industry": "골프연습장",
+      "industry_code": "CS200017"
+    },
+    {
+      "industry": "기타법무서비스",
+      "industry_code": "CS200013"
+    },
+    {
+      "industry": "기타오락장",
+      "industry_code": "CS200021"
+    },
+    {
+      "industry": "네일숍",
+      "industry_code": "CS200029"
+    },
+    {
+      "industry": "노래방",
+      "industry_code": "CS200037"
+    },
+    {
+      "industry": "녹음실",
+      "industry_code": "CS200040"
+    },
+    {
+      "industry": "당구장",
+      "industry_code": "CS200016"
+    },
+    {
+      "industry": "독서실",
+      "industry_code": "CS200038"
+    },
+    {
+      "industry": "동물병원",
+      "industry_code": "CS200009"
+    },
+    {
+      "industry": "모터사이클및부품",
+      "industry_code": "CS300039"
+    },
+    {
+      "industry": "모터사이클수리",
+      "industry_code": "CS200027"
+    },
+    {
+      "industry": "문구",
+      "industry_code": "CS300021"
+    },
+    {
+      "industry": "미곡판매",
+      "industry_code": "CS300006"
+    },
+    {
+      "industry": "미용실",
+      "industry_code": "CS200028"
+    },
+    {
+      "industry": "미용재료",
+      "industry_code": "CS300023"
+    },
+    {
+      "industry": "반찬가게",
+      "industry_code": "CS300010"
+    },
+    {
+      "industry": "법무사사무소",
+      "industry_code": "CS200012"
+    },
+    {
+      "industry": "변리사사무소",
+      "industry_code": "CS200011"
+    },
+    {
+      "industry": "변호사사무소",
+      "industry_code": "CS200010"
+    },
+    {
+      "industry": "복권방",
+      "industry_code": "CS200022"
+    },
+    {
+      "industry": "볼링장",
+      "industry_code": "CS200018"
+    },
+    {
+      "industry": "부동산중개업",
+      "industry_code": "CS200033"
+    },
+    {
+      "industry": "분식전문점",
+      "industry_code": "CS100008"
+    },
+    {
+      "industry": "비디오/서적임대",
+      "industry_code": "CS200045"
+    },
+    {
+      "industry": "사진관",
+      "industry_code": "CS200041"
+    },
+    {
+      "industry": "서적",
+      "industry_code": "CS300020"
+    },
+    {
+      "industry": "섬유제품",
+      "industry_code": "CS300027"
+    },
+    {
+      "industry": "세무사사무소",
+      "industry_code": "CS200015"
+    },
+    {
+      "industry": "세탁소",
+      "industry_code": "CS200031"
+    },
+    {
+      "industry": "수산물판매",
+      "industry_code": "CS300008"
+    },
+    {
+      "industry": "슈퍼마켓",
+      "industry_code": "CS300001"
+    },
+    {
+      "industry": "스포츠 강습",
+      "industry_code": "CS200005"
+    },
+    {
+      "industry": "스포츠클럽",
+      "industry_code": "CS200024"
+    },
+    {
+      "industry": "시계및귀금속",
+      "industry_code": "CS300017"
+    },
+    {
+      "industry": "신발",
+      "industry_code": "CS300014"
+    },
+    {
+      "industry": "악기",
+      "industry_code": "CS300034"
+    },
+    {
+      "industry": "안경",
+      "industry_code": "CS300016"
+    },
+    {
+      "industry": "애완동물",
+      "industry_code": "CS300029"
+    },
+    {
+      "industry": "양식음식점",
+      "industry_code": "CS100004"
+    },
+    {
+      "industry": "여관",
+      "industry_code": "CS200034"
+    },
+    {
+      "industry": "여행사",
+      "industry_code": "CS200044"
+    },
+    {
+      "industry": "예술품",
+      "industry_code": "CS300041"
+    },
+    {
+      "industry": "예술학원",
+      "industry_code": "CS200003"
+    },
+    {
+      "industry": "완구",
+      "industry_code": "CS300026"
+    },
+    {
+      "industry": "외국어학원",
+      "industry_code": "CS200002"
+    },
+    {
+      "industry": "운동/경기용품",
+      "industry_code": "CS300024"
+    },
+    {
+      "industry": "유아의류",
+      "industry_code": "CS300013"
+    },
+    {
+      "industry": "육류판매",
+      "industry_code": "CS300007"
+    },
+    {
+      "industry": "의료기기",
+      "industry_code": "CS300019"
+    },
+    {
+      "industry": "의류임대",
+      "industry_code": "CS200046"
+    },
+    {
+      "industry": "의약품",
+      "industry_code": "CS300018"
+    },
+    {
+      "industry": "인테리어",
+      "industry_code": "CS300035"
+    },
+    {
+      "industry": "일반교습학원",
+      "industry_code": "CS200001"
+    },
+    {
+      "industry": "일반의류",
+      "industry_code": "CS300011"
+    },
+    {
+      "industry": "일반의원",
+      "industry_code": "CS200006"
+    },
+    {
+      "industry": "일식음식점",
+      "industry_code": "CS100003"
+    },
+    {
+      "industry": "자동차미용",
+      "industry_code": "CS200026"
+    },
+    {
+      "industry": "자동차부품",
+      "industry_code": "CS300038"
+    },
+    {
+      "industry": "자동차수리",
+      "industry_code": "CS200025"
+    },
+    {
+      "industry": "자전거 및 기타운송장비",
+      "industry_code": "CS300025"
+    },
+    {
+      "industry": "재생용품 판매점",
+      "industry_code": "CS300040"
+    },
+    {
+      "industry": "전자게임장",
+      "industry_code": "CS200020"
+    },
+    {
+      "industry": "전자상거래업",
+      "industry_code": "CS300043"
+    },
+    {
+      "industry": "제과점",
+      "industry_code": "CS100005"
+    },
+    {
+      "industry": "조명용품",
+      "industry_code": "CS300036"
+    },
+    {
+      "industry": "주류도매",
+      "industry_code": "CS300005"
+    },
+    {
+      "industry": "주유소",
+      "industry_code": "CS300042"
+    },
+    {
+      "industry": "중고가구",
+      "industry_code": "CS300030"
+    },
+    {
+      "industry": "중고차판매",
+      "industry_code": "CS300037"
+    },
+    {
+      "industry": "중식음식점",
+      "industry_code": "CS100002"
+    },
+    {
+      "industry": "철물점",
+      "industry_code": "CS300033"
+    },
+    {
+      "industry": "청과상",
+      "industry_code": "CS300009"
+    },
+    {
+      "industry": "치과의원",
+      "industry_code": "CS200007"
+    },
+    {
+      "industry": "치킨전문점",
+      "industry_code": "CS100007"
+    },
+    {
+      "industry": "커피-음료",
+      "industry_code": "CS100010"
+    },
+    {
+      "industry": "컴퓨터및주변장치판매",
+      "industry_code": "CS300003"
+    },
+    {
+      "industry": "컴퓨터학원",
+      "industry_code": "CS200004"
+    },
+    {
+      "industry": "통번역서비스",
+      "industry_code": "CS200042"
+    },
+    {
+      "industry": "통신기기수리",
+      "industry_code": "CS200023"
+    },
+    {
+      "industry": "패스트푸드점",
+      "industry_code": "CS100006"
+    },
+    {
+      "industry": "편의점",
+      "industry_code": "CS300002"
+    },
+    {
+      "industry": "피부관리실",
+      "industry_code": "CS200030"
+    },
+    {
+      "industry": "한복점",
+      "industry_code": "CS300012"
+    },
+    {
+      "industry": "한식음식점",
+      "industry_code": "CS100001"
+    },
+    {
+      "industry": "한의원",
+      "industry_code": "CS200008"
+    },
+    {
+      "industry": "핸드폰",
+      "industry_code": "CS300004"
+    },
+    {
+      "industry": "호프-간이주점",
+      "industry_code": "CS100009"
+    },
+    {
+      "industry": "화장품",
+      "industry_code": "CS300022"
+    },
+    {
+      "industry": "화초",
+      "industry_code": "CS300028"
+    },
+    {
+      "industry": "회계사사무소",
+      "industry_code": "CS200014"
+    }
+  ],
+  "semas_dong_count": 25,
+  "semas_upjong_count": 10
+}
