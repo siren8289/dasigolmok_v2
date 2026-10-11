@@ -29,6 +29,7 @@ services:
       SPRING_DATASOURCE_USERNAME: dasi
       SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
       APP_AI_BASE_URL: http://ai:8000
+      APP_CORS_ALLOWED_ORIGINS: http://localhost:5173,http://127.0.0.1:5173,http://13.125.231.255
     depends_on:
       db:
         condition: service_healthy
