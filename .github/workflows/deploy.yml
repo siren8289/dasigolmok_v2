@@ -3,16 +3,90 @@ name: CD
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dasigolmok-production
+  cancel-in-progress: false
 
 jobs:
-  docker:
-    name: Docker compose build
+  deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Check compose file
-        run: docker compose config
-      - name: Build images
-        run: docker compose build
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
         env:
-          DB_PASSWORD: ci-build-only
+          SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          EC2_USER: ${{ secrets.EC2_USER || 'ubuntu' }}
+        run: |
+          set -eu
+          mkdir -p "$HOME/.ssh"
+          chmod 700 "$HOME/.ssh"
+
+          if [ -z "${SSH_KEY:-}" ]; then
+            echo "::error::EC2_SSH_KEY 시크릿이 설정되지 않았습니다."
+            exit 1
+          fi
+
+          if [ -z "${EC2_HOST:-}" ]; then
+            echo "::error::EC2_HOST 시크릿이 설정되지 않았습니다."
+            exit 1
+          fi
+
+          printf '%s\n' "$SSH_KEY" | tr -d '\r' > "$HOME/.ssh/deploy_key"
+          echo "" >> "$HOME/.ssh/deploy_key"
+          chmod 600 "$HOME/.ssh/deploy_key"
+
+          ssh-keygen -y -f "$HOME/.ssh/deploy_key" > /dev/null
+
+          touch "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/known_hosts"
+          ssh-keyscan -T 10 -H "$EC2_HOST" >> "$HOME/.ssh/known_hosts" 2>/dev/null || true
+
+      - name: Deploy to EC2
+        env:
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          EC2_USER: ${{ secrets.EC2_USER || 'ubuntu' }}
+        run: |
+          ssh -i "$HOME/.ssh/deploy_key" \
+            -o BatchMode=yes \
+            -o StrictHostKeyChecking=accept-new \
+            -o ConnectTimeout=30 \
+            "$EC2_USER@$EC2_HOST" \
+            'bash -se' <<'EOF'
+          set -e
+          if [ -d /home/ubuntu/dasigolmok_v2 ]; then
+            cd /home/ubuntu/dasigolmok_v2
+          elif [ -d "$HOME/dasigolmok_v2" ]; then
+            cd "$HOME/dasigolmok_v2"
+          else
+            echo "::error::dasigolmok_v2 디렉터리를 찾을 수 없습니다."
+            exit 1
+          fi
+
+          git fetch origin main
+          git checkout main
+          git pull --ff-only origin main
+
+          if [ ! -f .env ]; then
+            echo "::error::.env 파일이 없습니다. 서버 디렉터리에 .env 파일을 생성해주세요."
+            exit 1
+          fi
+
+          docker compose config --quiet
+          docker compose up -d --build --remove-orphans
+
+          docker compose ps
+          curl --fail --retry 10 --retry-delay 3 --retry-connrefused \
+            http://localhost/ > /dev/null
+
+          echo "DEPLOY_SUCCESS"
+          EOF
