@@ -4,13 +4,14 @@ name: dasigolmok
 
 services:
   db:
-    image: postgres:16-alpine
+    image: pgvector/pgvector:pg16
     environment:
       POSTGRES_DB: dasigolmok
       POSTGRES_USER: dasi
       POSTGRES_PASSWORD: ${DB_PASSWORD:?.env 에 DB_PASSWORD 를 넣어 주세요}
     volumes:
       - db-data:/var/lib/postgresql/data
+      - ./db/migration:/docker-entrypoint-initdb.d:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U dasi -d dasigolmok"]
       interval: 5s
@@ -21,6 +22,10 @@ services:
     environment:
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
       GEMINI_MODEL: ${GEMINI_MODEL:-gemini-2.5-flash}
+      DATABASE_URL: postgresql://dasi:${DB_PASSWORD}@db:5432/dasigolmok
+    depends_on:
+      db:
+        condition: service_healthy
 
   back:
     build: ./back
