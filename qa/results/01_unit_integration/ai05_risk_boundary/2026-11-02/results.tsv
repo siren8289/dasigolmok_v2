@@ -1,0 +1,24 @@
+﻿tc_id	area	section	feature	item	verify_a	verify_a_result	verify_b	verify_b_result	final_status	expected	actual	defect_id	code_path	executed_on
+AI05-001	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 3.99% HH	pytest	PASS	모킹	NOT_RUN	NOT_RUN	stable,false	classify(3.99,'HH')=('stable', False) 기대=('stable',False)		ai/src/risk.py	2026-11-02
+AI05-002	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 4.00% HH	pytest	PASS	모킹	NOT_RUN	NOT_RUN	warning,false	classify(4.0,'HH')=('warning', False) 기대=('warning',False)		ai/src/risk.py	2026-11-02
+AI05-003	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 4.01% HH	pytest	PASS	모킹	NOT_RUN	NOT_RUN	warning,false	classify(4.01,'HH')=('warning', False) 기대=('warning',False)		ai/src/risk.py	2026-11-02
+AI05-004	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 7.99% HH	pytest	PASS	모킹	NOT_RUN	NOT_RUN	warning,false	classify(7.99,'HH')=('warning', False) 기대=('warning',False)		ai/src/risk.py	2026-11-02
+AI05-005	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 8.00% HH	pytest	PASS	모킹	NOT_RUN	NOT_RUN	danger,true	classify(8.0,'HH')=('danger', True) 기대=('danger',True)		ai/src/risk.py	2026-11-02
+AI05-006	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 8.01% HH	pytest	PASS	모킹	NOT_RUN	NOT_RUN	danger,true	classify(8.01,'HH')=('danger', True) 기대=('danger',True)		ai/src/risk.py	2026-11-02
+AI05-007	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 0% HH	pytest	PASS	모킹	NOT_RUN	NOT_RUN	stable,false	classify(0,'HH')=('stable', False) 기대=('stable',False)		ai/src/risk.py	2026-11-02
+AI05-008	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 2% HL	pytest	PASS	모킹	NOT_RUN	NOT_RUN	danger,true	classify(2,'HL')=('danger', True) 기대=('danger',True)		ai/src/risk.py	2026-11-02
+AI05-009	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 4% HL	pytest	PASS	모킹	NOT_RUN	NOT_RUN	danger,true	classify(4,'HL')=('danger', True) 기대=('danger',True)		ai/src/risk.py	2026-11-02
+AI05-010	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 9% HL	pytest	PASS	모킹	NOT_RUN	NOT_RUN	danger,true	classify(9,'HL')=('danger', True) 기대=('danger',True)		ai/src/risk.py	2026-11-02
+AI05-011	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 2% LL	pytest	PASS	모킹	NOT_RUN	NOT_RUN	warning,false	classify(2,'LL')=('warning', False) 기대=('warning',False)		ai/src/risk.py	2026-11-02
+AI05-012	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 8% LL	pytest	PASS	모킹	NOT_RUN	NOT_RUN	danger,true	classify(8,'LL')=('danger', True) 기대=('danger',True)		ai/src/risk.py	2026-11-02
+AI05-013	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 2% LH	pytest	PASS	모킹	NOT_RUN	NOT_RUN	stable,false	classify(2,'LH')=('stable', False) 기대=('stable',False)		ai/src/risk.py	2026-11-02
+AI05-014	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 8% LH	pytest	PASS	모킹	NOT_RUN	NOT_RUN	danger,true	classify(8,'LH')=('danger', True) 기대=('danger',True)		ai/src/risk.py	2026-11-02
+AI05-015	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 None	pytest	PASS	모킹	NOT_RUN	NOT_RUN	unknown,false	classify(None,'HL')=('unknown', False) 기대=('unknown',False)		ai/src/risk.py	2026-11-02
+AI05-016	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	변화코드 기타	pytest	PASS	모킹	NOT_RUN	NOT_RUN	stable,false	classify(2,'XX')=('stable', False) 기대=('stable',False)		ai/src/risk.py	2026-11-02
+AI05-017	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	음수 폐업률	pytest	FAIL	모킹	NOT_RUN	FAIL	범위 오류가 별도로 검증돼야 함	classify(-1,'HH')=('stable', False) (기대: 범위 오류)	DEF-AI05-017	ai/src/risk.py	2026-11-02
+AI05-018	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 120%	pytest	FAIL	모킹	NOT_RUN	FAIL	100% 초과 데이터 오류 감지 필요	classify(120,'HH')=('danger', True) (기대: 100% 초과 오류)	DEF-AI05-018	ai/src/risk.py	2026-11-02
+AI05-019	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	문자열 폐업률	pytest	PASS	모킹	NOT_RUN	NOT_RUN	타입 안전성 검증/명확한 실패	"문자열 폐업률 classify('5','HH')=""TypeError: '>=' not supported between instances of 'str' and 'int'"""		ai/src/risk.py	2026-11-02
+AI05-020	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	NaN 폐업률	pytest	FAIL	모킹	NOT_RUN	FAIL	unknown 등 안전한 상태로 처리	결측 폐업률 classify(nan,'HH')=('stable', False)	DEF-AI05-020	ai/src/risk.py	2026-11-02
+AI05-021	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	정수 4	pytest	PASS	모킹	NOT_RUN	NOT_RUN	warning,false	classify(4,'HH')=('warning', False) 기대=('warning',False)		ai/src/risk.py	2026-11-02
+AI05-022	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	실수 정밀도	pytest	PASS	모킹	NOT_RUN	NOT_RUN	stable,false	classify(3.999999,'HH')=('stable', False) 기대=('stable',False)		ai/src/risk.py	2026-11-02
+AI05-023	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	예상 폐업률 사용 여부	pytest	PASS	모킹	NOT_RUN	NOT_RUN	진단은 실제값, 추천은 예측값으로 구분	진단 status=stable close_rate=2 ml=10 / 추천 status=danger close_rate=2 ml=10		ai/src/risk.py	2026-11-02

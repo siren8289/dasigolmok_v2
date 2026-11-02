@@ -1,0 +1,2 @@
+﻿tc_id	area	section	feature	item	verify_a	verify_a_result	verify_b	verify_b_result	final_status	expected	actual	defect_id	code_path	executed_on
+TC-WEB-API-001	02_web_api	ai01_fastapi_contract	FastAPI HTTP 계약	httpx TestClient와 Schemathesis OpenAPI ASGI로 헬스·옵션 API를 교차	httpx_contract	PASS	schemathesis	PASS	PASS	health status=ok 이고 options에 districts/dongs/industries	A=PASS, B=PASS, final=PASS		UNKNOWN	2026-11-03

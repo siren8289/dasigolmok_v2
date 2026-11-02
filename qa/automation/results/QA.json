@@ -1,0 +1,341 @@
+{
+  "command": "/tmp/qa-venv/bin/python -m pytest qa/automation/ops/test_ops.py qa/automation/qa_docs/test_qa.py",
+  "cases": [
+    {
+      "id": "QA01-001",
+      "status": "PASS",
+      "evidence": "find_stat(' OR 1=1 --')는 None이다. JPA는 메서드 이름 쿼리이고 pgvector는 %s와 cursor.execute(sql, params)를 쓴다.",
+      "defect_id": "",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-002",
+      "status": "PASS",
+      "evidence": "vitest FE03-023 통과. explanation의 img/script 문자열이 텍스트로만 보이고 script·img 요소는 생기지 않는다.",
+      "defect_id": "",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-003",
+      "status": "PASS",
+      "evidence": "detect_prompt_injection이 ignore previous instructions를 차단했다. 메시지: 비정상적인 요청 패턴이 감지되어 차단되었습니다: 'ignore previous instructions'",
+      "defect_id": "",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-004",
+      "status": "FAIL",
+      "evidence": "find_stat(dong, industry)는 구를 보지 않는다. 신사동은 ['강남구', '관악구']에 있고 첫 매칭은 관악구만 반환한다.",
+      "defect_id": "DEF-QA01-004",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-005",
+      "status": "PASS",
+      "evidence": "2024-06-30 종료 공고는 2026-11-02 기준 closed/False이다. 종료 3건은 is_open이 아니다.",
+      "defect_id": "",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-006",
+      "status": "FAIL",
+      "evidence": "지원 공고는 POLICY_DATABASE에 고정돼 있고 공식 모집 페이지 존재·일자를 조회하는 코드가 없다. URL은 기관 홈이다.",
+      "defect_id": "DEF-QA01-006",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-007",
+      "status": "FAIL",
+      "evidence": "RAW_KNOWLEDGE_DOCUMENTS 출처가 서울시 상권분석서비스 등으로 적혀 있고 샘플·예시 라벨이 없다.",
+      "defect_id": "DEF-QA01-007",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-008",
+      "status": "FAIL",
+      "evidence": "V1 users(ADMIN 역할 가능)는 있으나 Spring Security와 컨트롤러 인가가 없다. 현재 진단 API 인증 범위가 문서·코드에 고정돼 있지 않다.",
+      "defect_id": "DEF-QA01-008",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-009",
+      "status": "PASS",
+      "evidence": "500은 '서버 오류가 발생했습니다.' 고정 문구이고 AI 실패도 'AI 서버 호출에 실패했습니다.'만 반환한다. 비밀번호·키는 본문에 없다.",
+      "defect_id": "",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-010",
+      "status": "PASS",
+      "evidence": "CORS는 application.yml과 compose의 명시적 Origin 목록만 허용한다. https://evil.example 은 없고 와일드카드 오리진도 없다.",
+      "defect_id": "",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-011",
+      "status": "FAIL",
+      "evidence": "백엔드에 CSRF 토큰·CookieCsrf 설정이 없다. 쿠키 인증 환경에 대한 방어가 확인되지 않는다.",
+      "defect_id": "DEF-QA01-011",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-012",
+      "status": "FAIL",
+      "evidence": "front/nginx.conf에 Content-Security-Policy와 Referrer-Policy 헤더가 없다.",
+      "defect_id": "DEF-QA01-012",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-013",
+      "status": "FAIL",
+      "evidence": "워크플로에 SCA/이미지 스캔이 없고 .github/dependabot.yml도 없다.",
+      "defect_id": "DEF-QA01-013",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-014",
+      "status": "FAIL",
+      "evidence": "CommercialRagRequest.question에 max_length가 없어 100만 자 질문이 그대로 통과한다.",
+      "defect_id": "DEF-QA01-014",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-015",
+      "status": "RISK",
+      "evidence": "RISK: 100동시 analyze의 오류율·p95를 재지 않았다. 실행 중인 API가 없고 docker compose up은 범위 밖이다.",
+      "defect_id": "",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-016",
+      "status": "FAIL",
+      "evidence": "모델은 최초 1회 적재하지만 Cold-start latency를 재어 둔 로그·벤치마크가 없다.",
+      "defect_id": "DEF-QA01-016",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-017",
+      "status": "PASS",
+      "evidence": "청크 임베딩은 _EMBEDDINGS_CACHE가 비어 있을 때만 계산하고 이후 검색은 캐시를 재사용한다.",
+      "defect_id": "",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-018",
+      "status": "FAIL",
+      "evidence": "Diagnosis.quarter는 API 타입에 있으나 ResultPage·RecommendPage는 기준 분기를 그리지 않는다.",
+      "defect_id": "DEF-QA01-018",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-019",
+      "status": "FAIL",
+      "evidence": "헤더는 flex-nowrap, 추천 표는 overflow-x 없이 w-full, index.css에 320px 규칙이 없다. 좁은 화면 탭·표 접근이 보장되지 않는다.",
+      "defect_id": "DEF-QA01-019",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-020",
+      "status": "PASS",
+      "evidence": "진단·추천은 label 안 select와 button이라 Tab으로 이동하고 Enter로 버튼을 누를 수 있다.",
+      "defect_id": "",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-021",
+      "status": "PASS",
+      "evidence": "DiagnosePage는 자치구·행정동·업종 텍스트가 select를 감싼 label이고 h2 제목이 있다.",
+      "defect_id": "",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-022",
+      "status": "PASS",
+      "evidence": "STATUS_INFO가 안정/주의/위험 문구를 갖고 ResultPage는 status.label 텍스트와 색 클래스를 함께 보여 준다.",
+      "defect_id": "",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-023",
+      "status": "PASS",
+      "evidence": "basic_explanation은 공공데이터 추정값·현장 확인을 말하고, RAG 안내문은 실제 결과를 보장하지 않는다고 적는다.",
+      "defect_id": "",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-024",
+      "status": "FAIL",
+      "evidence": "진단은 DB에 저장되지만 README와 화면에 개인정보·보존정책 설명이 없다.",
+      "defect_id": "DEF-QA01-024",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-025",
+      "status": "RISK",
+      "evidence": "RISK: db/ai 재시작 뒤 사용자 흐름 재개를 보려면 기동 중인 스택이 필요하다. docker compose up은 범위 밖이라 재시작을 실행하지 않았다.",
+      "defect_id": "",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-026",
+      "status": "FAIL",
+      "evidence": "워크플로와 compose에 API 5xx 버스트 알림(Prometheus, Sentry 등)이 없다.",
+      "defect_id": "DEF-QA01-026",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-027",
+      "status": "RISK",
+      "evidence": "RISK: PostgreSQL 볼륨 백업을 떠서 복원하지 않았다. compose up과 데이터 파괴가 범위 밖이고 저장소에 pg_dump 복원 절차도 없어 무결성을 측정하지 못했다.",
+      "defect_id": "",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-028",
+      "status": "FAIL",
+      "evidence": "dong_stats.json 행과 metrics_ml.json에 데이터 버전·출처 필드가 없다. 갱신 이력을 구분할 키가 없다.",
+      "defect_id": "DEF-QA01-028",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-029",
+      "status": "RISK",
+      "evidence": "RISK: 브라우저→Nginx→Spring→AI→DB 경로는 docker compose up이 금지되어 실행하지 못했다. 결과 UI 성공을 관찰하지 않았다.",
+      "defect_id": "",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA01-030",
+      "status": "FAIL",
+      "evidence": "README에는 96.2%가 없고, 수치는 docs/portfolio-materialized-view.md에만 있다. 현재 Java에 AnalyticsRefresh 측정 코드·원본 로그가 없어 재현되지 않는다.",
+      "defect_id": "DEF-QA01-030",
+      "section": "QA01_보안비기능"
+    },
+    {
+      "id": "QA02-001",
+      "status": "PASS",
+      "evidence": "README는 상권 진단·추천만 적고 MV 글은 docs/portfolio-materialized-view.md로 분리한다. README.md와 Readme.md 동일 파일=True.",
+      "defect_id": "",
+      "section": "QA02_문서추적회귀"
+    },
+    {
+      "id": "QA02-002",
+      "status": "FAIL",
+      "evidence": "README의 96.2% 문장은 빠져 있고 포트폴리오 문서에만 남았다. 현재 Java에 MV 측정 코드와 원본 측정 로그가 없어 재현할 수 없다.",
+      "defect_id": "DEF-QA02-002",
+      "section": "QA02_문서추적회귀"
+    },
+    {
+      "id": "QA02-003",
+      "status": "FAIL",
+      "evidence": "현재 컨트롤러는 진단·추천·health뿐인데 README/legacy-deployment가 Auth·Story·Admin의 존재 여부를 대조해 적지 않는다.",
+      "defect_id": "DEF-QA02-003",
+      "section": "QA02_문서추적회귀"
+    },
+    {
+      "id": "QA02-004",
+      "status": "FAIL",
+      "evidence": "README에 GET /api/options, POST /api/diagnoses, POST /api/recommendations 표가 없다. 코드 컨트롤러에는 있다.",
+      "defect_id": "DEF-QA02-004",
+      "section": "QA02_문서추적회귀"
+    },
+    {
+      "id": "QA02-005",
+      "status": "FAIL",
+      "evidence": "ai/src/main.py FastAPI version은 2.1.0인데 README에는 그 릴리스 번호가 없다.",
+      "defect_id": "DEF-QA02-005",
+      "section": "QA02_문서추적회귀"
+    },
+    {
+      "id": "QA02-006",
+      "status": "FAIL",
+      "evidence": "main.py는 /api/v1/commercial-rag/* 를 등록하지만 README는 그 API를 적지 않는다.",
+      "defect_id": "DEF-QA02-006",
+      "section": "QA02_문서추적회귀"
+    },
+    {
+      "id": "QA02-007",
+      "status": "FAIL",
+      "evidence": "README는 docker compose와 DB_PASSWORD만 적는다. 서비스명 db·ai·back·front와 pgvector Postgres는 compose에만 있다.",
+      "defect_id": "DEF-QA02-007",
+      "section": "QA02_문서추적회귀"
+    },
+    {
+      "id": "QA02-008",
+      "status": "FAIL",
+      "evidence": "README는 main 푸시 때 docker compose build를 돌린다고 하지만 ci.yml에는 그 스텝이 없다. front는 npm run build다.",
+      "defect_id": "DEF-QA02-008",
+      "section": "QA02_문서추적회귀"
+    },
+    {
+      "id": "QA02-009",
+      "status": "FAIL",
+      "evidence": "metrics_ml.json 키는 ['mae', 'r2', 'rows'] , metrics_dl.json 키는 ['mae', 'r2', 'rows'] 뿐이다. 버전·출처가 없고 README도 이 파일을 가리키지 않는다.",
+      "defect_id": "DEF-QA02-009",
+      "section": "QA02_문서추적회귀"
+    },
+    {
+      "id": "QA02-010",
+      "status": "FAIL",
+      "evidence": "transform.py는 가장 최근 분기만 dong_stats로 남기지만 README 전처리 절은 dong_stats.json과 그 분기 규칙을 설명하지 않는다.",
+      "defect_id": "DEF-QA02-010",
+      "section": "QA02_문서추적회귀"
+    },
+    {
+      "id": "QA02-011",
+      "status": "FAIL",
+      "evidence": "지원 정책 source_url 6개는 기관 홈 수준이고 공고 본문 경로는 0개다. README에 샘플·실재 여부 고지가 없다.",
+      "defect_id": "DEF-QA02-011",
+      "section": "QA02_문서추적회귀"
+    },
+    {
+      "id": "QA02-012",
+      "status": "FAIL",
+      "evidence": "핸들러는 400 VALIDATION_ERROR·INVALID_JSON과 500 INTERNAL_ERROR를 반환하지만 README에 사용자/운영 오류 안내가 없다.",
+      "defect_id": "DEF-QA02-012",
+      "section": "QA02_문서추적회귀"
+    },
+    {
+      "id": "QA02-013",
+      "status": "FAIL",
+      "evidence": "케이스 URL은 blob/main인데 작업 트리와 HEAD가 다른 문서가 있다: ['README.md']. README 현재 내용과 GitHub URL이 같지 않다.",
+      "defect_id": "DEF-QA02-013",
+      "section": "QA02_문서추적회귀"
+    },
+    {
+      "id": "QA02-014",
+      "status": "PASS",
+      "evidence": "qa/_meta/sections 44개 파일, TC 973건에서 중복 ID가 없다.",
+      "defect_id": "",
+      "section": "QA02_문서추적회귀"
+    },
+    {
+      "id": "QA02-015",
+      "status": "PASS",
+      "evidence": "normalize_status는 passed만 통과로 두고 skipped·failed를 통과로 바꾸지 않는다. 미실행 항목을 PASS로 적지 않는다.",
+      "defect_id": "",
+      "section": "QA02_문서추적회귀"
+    },
+    {
+      "id": "QA02-016",
+      "status": "PASS",
+      "evidence": "compose.yaml을 읽은 뒤에야 pgvector/pgvector:pg16 여부를 판단했다. 문자열이 있어 결함으로 단정하지 않았다.",
+      "defect_id": "",
+      "section": "QA02_문서추적회귀"
+    },
+    {
+      "id": "QA02-017",
+      "status": "RISK",
+      "evidence": "RISK: AI 다운·DB 다운·Nginx 502를 재현하려면 운영 장애 또는 compose up이 필요하다. 여기서 스택을 내리지 않아 로그로 원인을 재현하지 못했다.",
+      "defect_id": "",
+      "section": "QA02_문서추적회귀"
+    },
+    {
+      "id": "QA02-018",
+      "status": "PASS",
+      "evidence": "OPS·QA 119개 ID가 스펙 status를 갖고 테스트 함수와 1:1이다.",
+      "defect_id": "",
+      "section": "QA02_문서추적회귀"
+    }
+  ]
+}

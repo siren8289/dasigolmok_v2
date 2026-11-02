@@ -1,0 +1,502 @@
+{
+  "command": "/tmp/qa-venv/bin/python -m pytest qa/automation/ops/test_ops.py qa/automation/qa_docs/test_qa.py",
+  "cases": [
+    {
+      "id": "OPS1-001",
+      "status": "PASS",
+      "evidence": "DB_PASSWORD=pass docker compose config 종료코드 0. 서비스 ['ai', 'back', 'db', 'front'] 스키마가 해석됐다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-002",
+      "status": "PASS",
+      "evidence": "DB_PASSWORD 미설정 시 docker compose config가 required variable DB_PASSWORD 오류로 종료코드 1이다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-003",
+      "status": "PASS",
+      "evidence": "docker compose config --services 기준 서비스는 db, ai, back, front 네 개다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-004",
+      "status": "PASS",
+      "evidence": "compose config의 db image는 pgvector/pgvector:pg16이다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-005",
+      "status": "PASS",
+      "evidence": "db-data named volume이 /var/lib/postgresql/data에 마운트되어 컨테이너 재생성과 분리된 영속 볼륨이다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-006",
+      "status": "PASS",
+      "evidence": "compose config에서 POSTGRES_USER=dasi, DB=dasigolmok, 비밀번호가 보간되고 JDBC/AI URL이 db:5432를 가리킨다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-007",
+      "status": "PASS",
+      "evidence": "db healthcheck는 pg_isready -U dasi -d dasigolmok 이며 interval 5s, retries 20이다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-008",
+      "status": "PASS",
+      "evidence": "ai와 back 모두 depends_on.db.condition=service_healthy라 pg_isready 실패 시 기동이 막힌다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-009",
+      "status": "PASS",
+      "evidence": "back 환경변수 APP_AI_BASE_URL=http://ai:8000이고 compose 서비스 이름이 ai라 내부 DNS 대상이 맞다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-010",
+      "status": "PASS",
+      "evidence": "SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/dasigolmok 이고 db 서비스가 같은 네트워크에 있다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-011",
+      "status": "PASS",
+      "evidence": "ai.depends_on.db.condition은 service_healthy라 DB 준비 후에 AI가 생성된다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-012",
+      "status": "PASS",
+      "evidence": "back은 db service_healthy, ai service_started에 의존한다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-013",
+      "status": "FAIL",
+      "evidence": "ai에는 healthcheck가 없고 back은 ai를 service_started만 본다. 모델 로딩 실패여도 back이 기동되어 readiness가 보장되지 않는다.",
+      "defect_id": "DEF-OPS1-013",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-014",
+      "status": "PASS",
+      "evidence": "front/nginx.conf location /api/ 가 proxy_pass http://back:8080 으로 연결된다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-015",
+      "status": "PASS",
+      "evidence": "front ports는 published 80, target 80이라 호스트 80으로 웹에 접근하는 구성이다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-016",
+      "status": "PASS",
+      "evidence": "compose config에서 ai.ports가 없어 호스트 8000으로 직접 붙는 매핑이 없다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-017",
+      "status": "PASS",
+      "evidence": "compose config에서 back.ports가 없어 호스트 8080 직접 매핑이 없다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-018",
+      "status": "PASS",
+      "evidence": "compose config에서 db.ports가 없어 외부 5432 매핑이 없다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-019",
+      "status": "PASS",
+      "evidence": "db/migration 9개 SQL이 /docker-entrypoint-initdb.d 읽기전용 마운트다: V1__init_schema.sql, V2__seed_data.sql, V3__efficiency_optimization.sql, V4__mock_data_extended.sql, V5__area_context_external.sql, V6__analytics_star_schema.sql, V7__ai_adapter_scaffold.sql, V8__story_optimistic_lock.sql, V9__commercial_rag_pgvector.sql.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-020",
+      "status": "RISK",
+      "evidence": "RISK: 기동 중인 스택이 없어 docker compose ps Up과 /api/health를 대조하지 못했다. compose up은 범위 밖이다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-021",
+      "status": "PASS",
+      "evidence": "GEMINI_API_KEY 미설정 시 compose 값은 빈 문자열이고 explain()은 basic 문장으로 떨어진다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-022",
+      "status": "PASS",
+      "evidence": "DB_PASSWORD를 넣고 docker compose logs --tail=50 ai back 이 종료코드 0이다. 컨테이너가 없으면 본문은 비어도 서비스 로그 조회는 된다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-023",
+      "status": "PASS",
+      "evidence": "nginx.conf upstream이 http://back:8080 이고 compose 서비스 이름 back과 같다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-024",
+      "status": "FAIL",
+      "evidence": "compose.yaml와 config 어디에도 AI/서비스 메모리 상한(mem_limit, deploy.resources)이 없다.",
+      "defect_id": "DEF-OPS1-024",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-025",
+      "status": "PASS",
+      "evidence": "db-data는 named volume이고 up --build 경로(deploy.sh, CD)에 down -v가 없어 리빌드만으로 볼륨이 지워지지 않는다.",
+      "defect_id": "",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS1-026",
+      "status": "FAIL",
+      "evidence": "compose.yaml과 scripts/deploy.sh에 docker compose up 병렬 실행을 막는 락이 없다.",
+      "defect_id": "DEF-OPS1-026",
+      "section": "OPS1_Docker연결"
+    },
+    {
+      "id": "OPS2-001",
+      "status": "PASS",
+      "evidence": "ci.yml on.push.branches에 main이 있어 main 푸시가 CI를 트리거한다.",
+      "defect_id": "",
+      "section": "OPS2_GitHubCI"
+    },
+    {
+      "id": "OPS2-002",
+      "status": "PASS",
+      "evidence": "ci.yml on.pull_request.branches에 main이 있어 main PR이 CI를 트리거한다.",
+      "defect_id": "",
+      "section": "OPS2_GitHubCI"
+    },
+    {
+      "id": "OPS2-003",
+      "status": "PASS",
+      "evidence": "data 잡이 python -m pytest data/tests -q 를 실행한다.",
+      "defect_id": "",
+      "section": "OPS2_GitHubCI"
+    },
+    {
+      "id": "OPS2-004",
+      "status": "PASS",
+      "evidence": "ai 잡은 working-directory ai에서 python -m pytest tests -q 를 실행한다.",
+      "defect_id": "",
+      "section": "OPS2_GitHubCI"
+    },
+    {
+      "id": "OPS2-005",
+      "status": "PASS",
+      "evidence": "back 잡은 working-directory back에서 ./gradlew test(JUnit)를 실행한다.",
+      "defect_id": "",
+      "section": "OPS2_GitHubCI"
+    },
+    {
+      "id": "OPS2-006",
+      "status": "PASS",
+      "evidence": "front 잡에 npm ci와 npm run build가 별도 스텝으로 있다.",
+      "defect_id": "",
+      "section": "OPS2_GitHubCI"
+    },
+    {
+      "id": "OPS2-007",
+      "status": "PASS",
+      "evidence": "data 잡 setup-python python-version은 3.11이다.",
+      "defect_id": "",
+      "section": "OPS2_GitHubCI"
+    },
+    {
+      "id": "OPS2-008",
+      "status": "PASS",
+      "evidence": "ai 잡 setup-python python-version은 3.12이다.",
+      "defect_id": "",
+      "section": "OPS2_GitHubCI"
+    },
+    {
+      "id": "OPS2-009",
+      "status": "PASS",
+      "evidence": "back 잡 setup-java distribution=temurin, java-version=17이다.",
+      "defect_id": "",
+      "section": "OPS2_GitHubCI"
+    },
+    {
+      "id": "OPS2-010",
+      "status": "PASS",
+      "evidence": "front 잡 setup-node node-version은 22이다.",
+      "defect_id": "",
+      "section": "OPS2_GitHubCI"
+    },
+    {
+      "id": "OPS2-011",
+      "status": "PASS",
+      "evidence": "ai pytest 스텝에 continue-on-error가 없다. 해당 잡이 실패하면 GitHub Actions 워크플로 결론도 실패다.",
+      "defect_id": "",
+      "section": "OPS2_GitHubCI"
+    },
+    {
+      "id": "OPS2-012",
+      "status": "FAIL",
+      "evidence": "ci.yml에 permissions 최소 권한(contents: read 등) 선언이 없다.",
+      "defect_id": "DEF-OPS2-012",
+      "section": "OPS2_GitHubCI"
+    },
+    {
+      "id": "OPS2-013",
+      "status": "PASS",
+      "evidence": "ai CI가 ai/tests를 pytest로 돌리고 그 안에 test_commercial_rag.py 회귀 테스트가 있다.",
+      "defect_id": "",
+      "section": "OPS2_GitHubCI"
+    },
+    {
+      "id": "OPS2-014",
+      "status": "FAIL",
+      "evidence": "ci.yml에 docker compose build 또는 docker build 스텝이 없다.",
+      "defect_id": "DEF-OPS2-014",
+      "section": "OPS2_GitHubCI"
+    },
+    {
+      "id": "OPS2-015",
+      "status": "FAIL",
+      "evidence": "ci.yml에 Postgres 서비스가 없고 백엔드 테스트는 H2다. 실제 PostgreSQL JPA/SQL 통합테스트가 없다.",
+      "defect_id": "DEF-OPS2-015",
+      "section": "OPS2_GitHubCI"
+    },
+    {
+      "id": "OPS2-016",
+      "status": "PASS",
+      "evidence": "ci.yml은 secrets 참조와 pull_request_target이 없다. 포크 PR에 넘길 비밀키가 워크플로에 없다.",
+      "defect_id": "",
+      "section": "OPS2_GitHubCI"
+    },
+    {
+      "id": "OPS2-017",
+      "status": "FAIL",
+      "evidence": "ci.yml에 concurrency가 없어 같은 커밋의 연속 push 실행이 겹치고 결과를 구분하는 장치가 없다.",
+      "defect_id": "DEF-OPS2-017",
+      "section": "OPS2_GitHubCI"
+    },
+    {
+      "id": "OPS2-018",
+      "status": "FAIL",
+      "evidence": "ci.yml에 ESLint, ruff, Checkstyle 등 정적 분석 게이트가 없다.",
+      "defect_id": "DEF-OPS2-018",
+      "section": "OPS2_GitHubCI"
+    },
+    {
+      "id": "OPS3-001",
+      "status": "PASS",
+      "evidence": "deploy.yml on.push.branches에 main이 있어 main 푸시가 CD를 트리거한다.",
+      "defect_id": "",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-002",
+      "status": "PASS",
+      "evidence": "deploy.yml on.workflow_dispatch가 있어 수동 배포 트리거가 있다.",
+      "defect_id": "",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-003",
+      "status": "PASS",
+      "evidence": "SSH_KEY가 비면 Setup SSH 스크립트가 EC2_SSH_KEY 오류를 내고 종료코드 1로 멈춘다.",
+      "defect_id": "",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-004",
+      "status": "PASS",
+      "evidence": "EC2_HOST가 비면 스크립트가 EC2_HOST 오류를 내고 0이 아닌 코드로 멈춘다.",
+      "defect_id": "",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-005",
+      "status": "PASS",
+      "evidence": "임시 키로 Setup SSH를 실행하니 $HOME/.ssh/deploy_key 모드가 600이다.",
+      "defect_id": "",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-006",
+      "status": "PASS",
+      "evidence": "Setup SSH 실행 후 $HOME/.ssh 디렉터리 모드가 700이다.",
+      "defect_id": "",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-007",
+      "status": "PASS",
+      "evidence": "쓰레기 문자열 키는 ssh-keygen -y 단계에서 실패하고 set -eu 때문에 스크립트가 중단된다.",
+      "defect_id": "",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-008",
+      "status": "PASS",
+      "evidence": "ssh-keyscan 스텁 결과가 known_hosts에 추가됐다. 워크플로 원문도 ssh-keyscan -H >> known_hosts 이다.",
+      "defect_id": "",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-009",
+      "status": "PASS",
+      "evidence": "배포 ssh 명령에 -o ConnectTimeout=30 이 있다.",
+      "defect_id": "",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-010",
+      "status": "PASS",
+      "evidence": "원문 if 순서는 /home/ubuntu/dasigolmok_v2가 먼저다. 두 디렉터리가 있으면 그 분기가 선택된다.",
+      "defect_id": "",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-011",
+      "status": "PASS",
+      "evidence": "첫 경로가 없으면 원문 elif의 $HOME/dasigolmok_v2 분기가 선택된다.",
+      "defect_id": "",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-012",
+      "status": "PASS",
+      "evidence": "두 후보 디렉터리가 없으면 원문 else가 오류 문구를 내고 종료코드 1이다.",
+      "defect_id": "",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-013",
+      "status": "PASS",
+      "evidence": "배포 스크립트에 git fetch origin main이 있고, 임시 origin에서 그 명령이 새 커밋 참조를 받았다.",
+      "defect_id": "",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-014",
+      "status": "PASS",
+      "evidence": "배포 스크립트는 git pull --ff-only origin main이다. 갈라진 임시 저장소에서 그 명령은 머지 커밋 없이 실패했다.",
+      "defect_id": "",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-015",
+      "status": "PASS",
+      "evidence": "서버 스크립트와 scripts/deploy.sh 모두 .env가 없으면 기동 전에 오류로 종료한다. 저장소 루트 .env는 없다.",
+      "defect_id": "",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-016",
+      "status": "PASS",
+      "evidence": "배포 스크립트는 up 전에 docker compose config --quiet를 호출한다. 깨진 compose.yaml로 config를 실행하면 종료코드가 0이 아니다.",
+      "defect_id": "",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-017",
+      "status": "PASS",
+      "evidence": "원격 스크립트에 docker compose up -d --build --remove-orphans 가 있다. 스택은 기동하지 않았다.",
+      "defect_id": "",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-018",
+      "status": "PASS",
+      "evidence": "up 다음에 docker compose ps가 있어 서비스 상태를 출력하도록 되어 있다.",
+      "defect_id": "",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-019",
+      "status": "PASS",
+      "evidence": "배포 스크립트가 http://localhost/ 를 curl --fail --retry 10 --retry-delay 3 으로 확인한다.",
+      "defect_id": "",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-020",
+      "status": "FAIL",
+      "evidence": "배포 검증은 curl http://localhost/ 뿐이고 내부 AI 8000 readiness 확인이 없다.",
+      "defect_id": "DEF-OPS3-020",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-021",
+      "status": "FAIL",
+      "evidence": "배포 스크립트에 /api/health 확인이 없다. 프론트 HTML curl만 있다.",
+      "defect_id": "DEF-OPS3-021",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-022",
+      "status": "FAIL",
+      "evidence": "deploy.yml에 배포 실패 시 이전 커밋으로 되돌리는 rollback 단계가 없다.",
+      "defect_id": "DEF-OPS3-022",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-023",
+      "status": "FAIL",
+      "evidence": "deploy.yml은 push main이면 CI 성공 여부와 무관하게 배포한다. workflow_run 성공 게이트가 없다.",
+      "defect_id": "DEF-OPS3-023",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-024",
+      "status": "PASS",
+      "evidence": "concurrency.group=dasigolmok-production, cancel-in-progress=false 라 배포가 취소되지 않고 직렬로 기다린다.",
+      "defect_id": "",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-025",
+      "status": "PASS",
+      "evidence": "ssh는 StrictHostKeyChecking=accept-new 다. known_hosts와 다른 기존 키는 OpenSSH가 거부한다.",
+      "defect_id": "",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-026",
+      "status": "FAIL",
+      "evidence": "curl 실패 때 docker compose logs를 출력하는 단계가 배포 스크립트에 없다.",
+      "defect_id": "DEF-OPS3-026",
+      "section": "OPS3_배포스크립트"
+    },
+    {
+      "id": "OPS3-027",
+      "status": "FAIL",
+      "evidence": "배포 헬스체크가 http://localhost/ HTML뿐이고 GET /api/options 사용자 요청 확인이 없다.",
+      "defect_id": "DEF-OPS3-027",
+      "section": "OPS3_배포스크립트"
+    }
+  ]
+}

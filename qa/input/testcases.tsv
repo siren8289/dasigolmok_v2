@@ -1,0 +1,974 @@
+﻿tc_id	area	section	feature	item	expected	code_path
+AI01-001	02_web_api	ai01_fastapi_contract	FastAPI 엔드포인트·스키마	옵션 API	200 districts/dongs/industries JSON	ai/src/main.py
+AI01-002	02_web_api	ai01_fastapi_contract	FastAPI 엔드포인트·스키마	진단 API	200 진단 결과	ai/src/main.py
+AI01-003	02_web_api	ai01_fastapi_contract	FastAPI 엔드포인트·스키마	추천 API	200 추천 결과	ai/src/main.py
+AI01-004	02_web_api	ai01_fastapi_contract	FastAPI 엔드포인트·스키마	헬스 API	status=ok, version=2.1.0	ai/src/main.py
+AI01-005	02_web_api	ai01_fastapi_contract	FastAPI 엔드포인트·스키마	RAG ask 연결	신규 라우터 정상 진입	ai/src/main.py
+AI01-006	02_web_api	ai01_fastapi_contract	FastAPI 엔드포인트·스키마	RAG health 연결	status=ok	ai/src/main.py
+AI01-007	02_web_api	ai01_fastapi_contract	FastAPI 엔드포인트·스키마	진단 존재하지 않는 조합	404 detail	ai/src/main.py
+AI01-008	02_web_api	ai01_fastapi_contract	FastAPI 엔드포인트·스키마	추천 존재하지 않는 동	404 detail	ai/src/main.py
+AI01-009	02_web_api	ai01_fastapi_contract	FastAPI 엔드포인트·스키마	진단 JSON 누락	Pydantic 요청 검증 확인	ai/src/main.py
+AI01-010	02_web_api	ai01_fastapi_contract	FastAPI 엔드포인트·스키마	추천 JSON 누락	422	ai/src/main.py
+AI01-011	02_web_api	ai01_fastapi_contract	FastAPI 엔드포인트·스키마	진단 숫자 타입	422 또는 일관된 Pydantic 타입 정책	ai/src/main.py
+AI01-012	02_web_api	ai01_fastapi_contract	FastAPI 엔드포인트·스키마	빈 문자열	잘못된 값에 대한 422 사전 검증	ai/src/main.py
+AI01-013	02_web_api	ai01_fastapi_contract	FastAPI 엔드포인트·스키마	최대 길이	리소스 보호 위해 길이 제한	ai/src/main.py
+AI01-014	02_web_api	ai01_fastapi_contract	FastAPI 엔드포인트·스키마	응답 404 본문	detail=result.error	ai/src/main.py
+AI01-015	02_web_api	ai01_fastapi_contract	FastAPI 엔드포인트·스키마	OPTIONS 요청 CORS	환경에 따른 CORS 설정 검증	ai/src/main.py
+AI01-016	02_web_api	ai01_fastapi_contract	FastAPI 엔드포인트·스키마	프론트 경로 비공개	네트워크 접근 범위 정책 검증	ai/src/main.py
+AI02-001	02_web_api	ai02_options_query	행정동 통계·옵션 캐시	통계 JSON 로드	list로 로드	ai/src/dong_stats.py
+AI02-002	02_web_api	ai02_options_query	행정동 통계·옵션 캐시	옵션 JSON 로드	dict로 로드	ai/src/dong_stats.py
+AI02-003	02_web_api	ai02_options_query	행정동 통계·옵션 캐시	통계 경로 오류	안전한 실행 실패와 경로 로그	ai/src/dong_stats.py
+AI02-004	02_web_api	ai02_options_query	행정동 통계·옵션 캐시	옵션 경로 오류	명확한 실패 안내	ai/src/dong_stats.py
+AI02-005	02_web_api	ai02_options_query	행정동 통계·옵션 캐시	첫 조회 캐시	두 번째 파일 재읽기 없음	ai/src/dong_stats.py
+AI02-006	02_web_api	ai02_options_query	행정동 통계·옵션 캐시	첫 옵션 캐시	두 번째 파일 재읽기 없음	ai/src/dong_stats.py
+AI02-007	02_web_api	ai02_options_query	행정동 통계·옵션 캐시	동업종 완전 일치	대상 row만 반환	ai/src/dong_stats.py
+AI02-008	02_web_api	ai02_options_query	행정동 통계·옵션 캐시	업종 다름	다른 업종 row 제외	ai/src/dong_stats.py
+AI02-009	02_web_api	ai02_options_query	행정동 통계·옵션 캐시	동 다름	다른 동 row 제외	ai/src/dong_stats.py
+AI02-010	02_web_api	ai02_options_query	행정동 통계·옵션 캐시	존재하지 않는 동	None/빈 배열	ai/src/dong_stats.py
+AI02-011	02_web_api	ai02_options_query	행정동 통계·옵션 캐시	동 기준 전체 업종	해당 동 모든 행 반환	ai/src/dong_stats.py
+AI02-012	02_web_api	ai02_options_query	행정동 통계·옵션 캐시	동 문자열 공백	일치 정책·trim 여부 명시	ai/src/dong_stats.py
+AI02-013	02_web_api	ai02_options_query	행정동 통계·옵션 캐시	동 이름 중복 자치구	district 포함 식별키 사용	ai/src/dong_stats.py
+AI02-014	02_web_api	ai02_options_query	행정동 통계·옵션 캐시	중복 분기 통계	최신 데이터만 선택됨을 검증	ai/src/dong_stats.py
+AI02-015	02_web_api	ai02_options_query	행정동 통계·옵션 캐시	대용량 조회	선형 탐색 병목 계측·인덱스 검토	ai/src/dong_stats.py
+AI02-016	02_web_api	ai02_options_query	행정동 통계·옵션 캐시	없는 필수 key	키 오류를 파악 가능한 메시지로 전달	ai/src/dong_stats.py
+AI02-017	02_web_api	ai02_options_query	행정동 통계·옵션 캐시	JSON 타입 변조	구조 검증 필요	ai/src/dong_stats.py
+AI02-018	02_web_api	ai02_options_query	행정동 통계·옵션 캐시	옵션 JSON 새 버전	캐시 무효화/재시작 정책 검증	ai/src/dong_stats.py
+AI03-001	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	정상 조회	정확히 1행 통계 사용	ai/src/service.py
+AI03-002	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	없는 업종	error 반환	ai/src/service.py
+AI03-003	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	없는 동	error 반환	ai/src/service.py
+AI03-004	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	입력 district 오타	실제 stat의 district와 입력 불일치 감지	ai/src/service.py
+AI03-005	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	특성 추출	make_input_frame 8개 피처 보존	ai/src/service.py
+AI03-006	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	ML 모델 호출	ml_close_rate=3.33	ai/src/service.py
+AI03-007	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	DL 모델 호출	dl_sales_per_store=450.0	ai/src/service.py
+AI03-008	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	실제 폐업률 상태판정	danger	ai/src/service.py
+AI03-009	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	예측 폐업률과 상태 분리	상태는 실제 2% 기준	ai/src/service.py
+AI03-010	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	상권변화 HL 우선	danger	ai/src/service.py
+AI03-011	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	분기	quarter 필드 그대로	ai/src/service.py
+AI03-012	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	점포 수	store_count 그대로	ai/src/service.py
+AI03-013	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	개업률	open_rate 그대로	ai/src/service.py
+AI03-014	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	폐업률	close_rate 그대로	ai/src/service.py
+AI03-015	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	유동인구	foot_traffic 그대로	ai/src/service.py
+AI03-016	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	상권변화명	change_name 그대로	ai/src/service.py
+AI03-017	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	프랜차이즈 비중	0.15 보존	ai/src/service.py
+AI03-018	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	영업 개월	50 보존	ai/src/service.py
+AI03-019	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	점포당 매출	700 보존	ai/src/service.py
+AI03-020	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	LLM 설명 호출	explanation/text, explanation_source/basic	ai/src/service.py
+AI03-021	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	설명에서 수치 확인	근거 수치와 설명 문장이 일치	ai/src/service.py
+AI03-022	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	모델 결과 빈 배열	IndexError가 아닌 명확한 실패 처리	ai/src/service.py
+AI03-023	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	모델 비정상 NaN	NaN이 API JSON에 포함되지 않도록 차단	ai/src/service.py
+AI03-024	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	모델 타임아웃	실패/시간제한 안내	ai/src/service.py
+AI03-025	02_web_api	ai03_diagnosis_pipeline	상권 진단 오케스트레이션	중복 호출	결과 일관성 및 원본 상태 불변	ai/src/service.py
+AI04-001	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	동 업종 목록	7개를 함께 평가	ai/src/service.py
+AI04-002	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	동 데이터 없음	error와 recommendations=[] 반환	ai/src/service.py
+AI04-003	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	특성 행합치기	ML/DL 입력 DataFrame 3행	ai/src/service.py
+AI04-004	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	ML 예측 매핑	각 업종 행에 대응 점수	ai/src/service.py
+AI04-005	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	DL 예측 매핑	각 업종 행에 대응 매출	ai/src/service.py
+AI04-006	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	추천 점수 공식	1000/100-3×8=-14.0	ai/src/service.py
+AI04-007	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	추천 점수 공식 2	15-8=7.0	ai/src/service.py
+AI04-008	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	추천 점수 공식 경계	0.0	ai/src/service.py
+AI04-009	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	소수 점수 반올림	한 자리로 반올림	ai/src/service.py
+AI04-010	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	점수 내림차순	9,5,1 순서	ai/src/service.py
+AI04-011	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	상위 5 제한	recommendations 5개	ai/src/service.py
+AI04-012	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	전체 업종 유지	all_industries 7개	ai/src/service.py
+AI04-013	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	업종 1개	추천도 전체도 1개	ai/src/service.py
+AI04-014	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	업종 5개	추천 5개	ai/src/service.py
+AI04-015	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	업종 6개	추천 5개, 전체 6개	ai/src/service.py
+AI04-016	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	예상 폐업률 기준 상태	추천 status danger(예측 기준)	ai/src/service.py
+AI04-017	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	실제 폐업률 보존	항목 close_rate=2.3	ai/src/service.py
+AI04-018	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	상권 축소 우선	danger	ai/src/service.py
+AI04-019	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	변화명 대표값	반환 change_name 일치	ai/src/service.py
+AI04-020	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	원본 행 순서 변화	점수 기반 정렬 유지	ai/src/service.py
+AI04-021	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	ML 예측 건수 불일치	zip 잘림으로 누락되지 않게 오류 검증	ai/src/service.py
+AI04-022	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	DL 음수 매출	부적절한 추천 점수 방어	ai/src/service.py
+AI04-023	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	동 이름만 조회	district 필터 추가 필요	ai/src/service.py
+AI04-024	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	limit=0	추천 빈 배열, 전체 목록 유지	ai/src/service.py
+AI04-025	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	limit=-1	의도치 않은 항목 누락 방어	ai/src/service.py
+AI04-026	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	limit=10000	전체 행 이내	ai/src/service.py
+AI04-027	02_web_api	ai04_recommend_pipeline	행정동 업종 추천	동시 추천	출력의 지역/업종 교차 오염 없음	ai/src/service.py
+AI05-001	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 3.99% HH	stable,false	ai/src/risk.py
+AI05-002	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 4.00% HH	warning,false	ai/src/risk.py
+AI05-003	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 4.01% HH	warning,false	ai/src/risk.py
+AI05-004	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 7.99% HH	warning,false	ai/src/risk.py
+AI05-005	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 8.00% HH	danger,true	ai/src/risk.py
+AI05-006	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 8.01% HH	danger,true	ai/src/risk.py
+AI05-007	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 0% HH	stable,false	ai/src/risk.py
+AI05-008	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 2% HL	danger,true	ai/src/risk.py
+AI05-009	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 4% HL	danger,true	ai/src/risk.py
+AI05-010	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 9% HL	danger,true	ai/src/risk.py
+AI05-011	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 2% LL	warning,false	ai/src/risk.py
+AI05-012	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 8% LL	danger,true	ai/src/risk.py
+AI05-013	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 2% LH	stable,false	ai/src/risk.py
+AI05-014	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 8% LH	danger,true	ai/src/risk.py
+AI05-015	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 None	unknown,false	ai/src/risk.py
+AI05-016	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	변화코드 기타	stable,false	ai/src/risk.py
+AI05-017	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	음수 폐업률	범위 오류가 별도로 검증돼야 함	ai/src/risk.py
+AI05-018	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	폐업률 120%	100% 초과 데이터 오류 감지 필요	ai/src/risk.py
+AI05-019	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	문자열 폐업률	타입 안전성 검증/명확한 실패	ai/src/risk.py
+AI05-020	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	NaN 폐업률	unknown 등 안전한 상태로 처리	ai/src/risk.py
+AI05-021	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	정수 4	warning,false	ai/src/risk.py
+AI05-022	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	실수 정밀도	stable,false	ai/src/risk.py
+AI05-023	01_unit_integration	ai05_risk_boundary	classify 규칙·경계	예상 폐업률 사용 여부	진단은 실제값, 추천은 예측값으로 구분	ai/src/risk.py
+AI06-001	01_unit_integration	ai06_training_features	ML·DL 피처 공통	district 문자 피처	DataFrame district 컬럼	ai/src/features.py
+AI06-002	01_unit_integration	ai06_training_features	ML·DL 피처 공통	industry 문자 피처	industry 컬럼	ai/src/features.py
+AI06-003	01_unit_integration	ai06_training_features	ML·DL 피처 공통	change_code 문자 피처	change_code 컬럼	ai/src/features.py
+AI06-004	01_unit_integration	ai06_training_features	ML·DL 피처 공통	store_count 수치	숫자 13 보존	ai/src/features.py
+AI06-005	01_unit_integration	ai06_training_features	ML·DL 피처 공통	open_rate 수치	수치 1.1 보존	ai/src/features.py
+AI06-006	01_unit_integration	ai06_training_features	ML·DL 피처 공통	franchise_ratio 수치	0.33 보존	ai/src/features.py
+AI06-007	01_unit_integration	ai06_training_features	ML·DL 피처 공통	foot_traffic 수치	50000 보존	ai/src/features.py
+AI06-008	01_unit_integration	ai06_training_features	ML·DL 피처 공통	operate_months 수치	18 보존	ai/src/features.py
+AI06-009	01_unit_integration	ai06_training_features	ML·DL 피처 공통	열 목록 순서	CATEGORY_COLUMNS+NUMBER_COLUMNS 순서	ai/src/features.py
+AI06-010	01_unit_integration	ai06_training_features	ML·DL 피처 공통	예측 종속값 누출 방지	타깃 변수가 feature에서 제외	ai/src/features.py
+AI06-011	01_unit_integration	ai06_training_features	ML·DL 피처 공통	단일 입력 행수	shape[0]==1	ai/src/features.py
+AI06-012	01_unit_integration	ai06_training_features	ML·DL 피처 공통	피처 열 개수	shape[1]==8	ai/src/features.py
+AI06-013	01_unit_integration	ai06_training_features	ML·DL 피처 공통	음수 점포수	비정상 입력 사전검증 필요	ai/src/features.py
+AI06-014	01_unit_integration	ai06_training_features	ML·DL 피처 공통	unknown category	전처리 unknown 범주 처리 검증	ai/src/features.py
+AI06-015	01_unit_integration	ai06_training_features	ML·DL 피처 공통	NaN 유동인구	모델 전처리 허용 여부 검증	ai/src/features.py
+AI06-016	01_unit_integration	ai06_training_features	ML·DL 피처 공통	혼합 dtype	학습/추론 타입 불일치 방어	ai/src/features.py
+AI06-017	01_unit_integration	ai06_training_features	ML·DL 피처 공통	범주 순서	학습과 추론 피처 순서 일치	ai/src/features.py
+AI06-018	01_unit_integration	ai06_training_features	ML·DL 피처 공통	숫자 정밀도	형변환 누락/정밀도 유지	ai/src/features.py
+AI07-001	01_unit_integration	ai07_closure_ml_inference	RandomForest 폐업률 예측	모델 첫 로드	joblib.load 1회	ai/src/ml_model.py
+AI07-002	01_unit_integration	ai07_closure_ml_inference	RandomForest 폐업률 예측	모델 캐시 재사용	두 번째 디스크 읽기 없음	ai/src/ml_model.py
+AI07-003	01_unit_integration	ai07_closure_ml_inference	RandomForest 폐업률 예측	단일 행	1개 실수 리스트	ai/src/ml_model.py
+AI07-004	01_unit_integration	ai07_closure_ml_inference	RandomForest 폐업률 예측	여러 행	3개 결과 순서 유지	ai/src/ml_model.py
+AI07-005	01_unit_integration	ai07_closure_ml_inference	RandomForest 폐업률 예측	소수 둘째자리 반올림	소수점 2자리 round	ai/src/ml_model.py
+AI07-006	01_unit_integration	ai07_closure_ml_inference	RandomForest 폐업률 예측	모델 파일 누락	명확한 파일 오류	ai/src/ml_model.py
+AI07-007	01_unit_integration	ai07_closure_ml_inference	RandomForest 폐업률 예측	joblib 손상	오류 포착/장애 로그	ai/src/ml_model.py
+AI07-008	01_unit_integration	ai07_closure_ml_inference	RandomForest 폐업률 예측	스키마 누락	예측 실패를 설명하는 오류	ai/src/ml_model.py
+AI07-009	01_unit_integration	ai07_closure_ml_inference	RandomForest 폐업률 예측	범주 미등록	파이프라인 unknown 처리/실패 정책	ai/src/ml_model.py
+AI07-010	01_unit_integration	ai07_closure_ml_inference	RandomForest 폐업률 예측	예측 음수	폐업률 0 미만 금지 후처리 검토	ai/src/ml_model.py
+AI07-011	01_unit_integration	ai07_closure_ml_inference	RandomForest 폐업률 예측	예측 100 초과	폐업률 100 초과 금지 후처리 검토	ai/src/ml_model.py
+AI07-012	01_unit_integration	ai07_closure_ml_inference	RandomForest 폐업률 예측	모델 NaN	응답 직전 NaN 방어	ai/src/ml_model.py
+AI07-013	01_unit_integration	ai07_closure_ml_inference	RandomForest 폐업률 예측	불변 입력	입력 DataFrame 원본 불변	ai/src/ml_model.py
+AI07-014	01_unit_integration	ai07_closure_ml_inference	RandomForest 폐업률 예측	모델 순서 정합성	순서별 레이블 일치	ai/src/ml_model.py
+AI07-015	01_unit_integration	ai07_closure_ml_inference	RandomForest 폐업률 예측	빈 입력	안전한 빈 리스트/오류 정책	ai/src/ml_model.py
+AI07-016	01_unit_integration	ai07_closure_ml_inference	RandomForest 폐업률 예측	메모리 증폭	latency 및 peak memory 측정	ai/src/ml_model.py
+AI07-017	01_unit_integration	ai07_closure_ml_inference	RandomForest 폐업률 예측	동시 추론	결과 교차 간섭 없음	ai/src/ml_model.py
+AI07-018	01_unit_integration	ai07_closure_ml_inference	RandomForest 폐업률 예측	설명 재현성	결과 일관성	ai/src/ml_model.py
+AI08-001	01_unit_integration	ai08_sales_dl_inference	PyTorch MLP 매출 예측	전처리기 로드	정상 로딩	ai/src/dl_model.py
+AI08-002	01_unit_integration	ai08_sales_dl_inference	PyTorch MLP 매출 예측	가중치 로드	weights_only=True 정상 로드	ai/src/dl_model.py
+AI08-003	01_unit_integration	ai08_sales_dl_inference	PyTorch MLP 매출 예측	model.eval	Dropout 비활성화	ai/src/dl_model.py
+AI08-004	01_unit_integration	ai08_sales_dl_inference	PyTorch MLP 매출 예측	모델 캐시	모델 로드 재실행 없음	ai/src/dl_model.py
+AI08-005	01_unit_integration	ai08_sales_dl_inference	PyTorch MLP 매출 예측	1행 매출	양수 점포당 매출 1개	ai/src/dl_model.py
+AI08-006	01_unit_integration	ai08_sales_dl_inference	PyTorch MLP 매출 예측	5행 매출	5개 결과 순서 보존	ai/src/dl_model.py
+AI08-007	01_unit_integration	ai08_sales_dl_inference	PyTorch MLP 매출 예측	로그 역변환	np.expm1 적용 후 원 단위 만원 값	ai/src/dl_model.py
+AI08-008	01_unit_integration	ai08_sales_dl_inference	PyTorch MLP 매출 예측	음수 예측 방어	0으로 클리핑	ai/src/dl_model.py
+AI08-009	01_unit_integration	ai08_sales_dl_inference	PyTorch MLP 매출 예측	0 예측	매출 0만원	ai/src/dl_model.py
+AI08-010	01_unit_integration	ai08_sales_dl_inference	PyTorch MLP 매출 예측	소수 한 자리	333.3 출력	ai/src/dl_model.py
+AI08-011	01_unit_integration	ai08_sales_dl_inference	PyTorch MLP 매출 예측	입력 dtype	float32 모델 피처	ai/src/dl_model.py
+AI08-012	01_unit_integration	ai08_sales_dl_inference	PyTorch MLP 매출 예측	배치 100행	메모리·성능 확인	ai/src/dl_model.py
+AI08-013	01_unit_integration	ai08_sales_dl_inference	PyTorch MLP 매출 예측	모델 파일 누락	명확한 로딩 실패	ai/src/dl_model.py
+AI08-014	01_unit_integration	ai08_sales_dl_inference	PyTorch MLP 매출 예측	전처리기 누락	명확한 로딩 실패	ai/src/dl_model.py
+AI08-015	01_unit_integration	ai08_sales_dl_inference	PyTorch MLP 매출 예측	state dict 불일치	강제 로딩 예외	ai/src/dl_model.py
+AI08-016	01_unit_integration	ai08_sales_dl_inference	PyTorch MLP 매출 예측	NaN 출력	NaN API 유출 방어	ai/src/dl_model.py
+AI08-017	01_unit_integration	ai08_sales_dl_inference	PyTorch MLP 매출 예측	무한대 출력	가격 오버플로 방어	ai/src/dl_model.py
+AI08-018	01_unit_integration	ai08_sales_dl_inference	PyTorch MLP 매출 예측	예측 재현성	eval 모드 결과 동일	ai/src/dl_model.py
+AI08-019	01_unit_integration	ai08_sales_dl_inference	PyTorch MLP 매출 예측	메모리 누수	torch.no_grad로 그래프 미누적	ai/src/dl_model.py
+AI08-020	01_unit_integration	ai08_sales_dl_inference	PyTorch MLP 매출 예측	컨테이너 CPU 환경	CPU에서 실행	ai/src/dl_model.py
+AI09-001	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	안정 문구	'안정' 한글 설명	ai/src/llm_explain.py
+AI09-002	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	주의 문구	'주의' 한글 설명	ai/src/llm_explain.py
+AI09-003	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	위험 문구	'위험' 한글 설명	ai/src/llm_explain.py
+AI09-004	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	판단 불가 문구	'판단 불가' 문구	ai/src/llm_explain.py
+AI09-005	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	동 이름 보존	설명에 연남동 포함	ai/src/llm_explain.py
+AI09-006	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	업종 보존	업종 포함	ai/src/llm_explain.py
+AI09-007	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	최근 폐업률	7.3%를 그대로 설명	ai/src/llm_explain.py
+AI09-008	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	ML 예상 폐업률	3.4%를 그대로 설명	ai/src/llm_explain.py
+AI09-009	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	DL 예상 매출	740만원 포함	ai/src/llm_explain.py
+AI09-010	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	추정값 고지	확정이 아닌 추정값 안내	ai/src/llm_explain.py
+AI09-011	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	키 없음 fallback	basic 설명·source=basic	ai/src/llm_explain.py
+AI09-012	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	Gemini 정상	source=gemini	ai/src/llm_explain.py
+AI09-013	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	Gemini API 오류	basic fallback	ai/src/llm_explain.py
+AI09-014	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	Gemini 타임아웃	basic fallback	ai/src/llm_explain.py
+AI09-015	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	Gemini 빈 텍스트	basic fallback	ai/src/llm_explain.py
+AI09-016	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	Gemini 설명 검증	수치·투자 권유 등 출력 검증 필요	ai/src/llm_explain.py
+AI09-017	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	프롬프트 숫자 정확성	정확한 숫자가 prompt에 보존	ai/src/llm_explain.py
+AI09-018	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	프롬프트 상권변화	상권축소로 명칭 매핑	ai/src/llm_explain.py
+AI09-019	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	프롬프트 3문장	3문장 이내+조언 요구	ai/src/llm_explain.py
+AI09-020	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	프롬프트 주입	LLM 지시 오염 방어	ai/src/llm_explain.py
+AI09-021	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	API Key 로그 유출	키가 로그에 노출되지 않도록 검사	ai/src/llm_explain.py
+AI09-022	01_unit_integration	ai09_llm_basic_explain	Gemini 및 fallback 설명	source 값 계약	explanation_source 정확	ai/src/llm_explain.py
+BE01-001	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	정상 3필드	@Valid 통과	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-002	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	district 누락	400 VALIDATION_ERROR	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-003	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	district null	400 VALIDATION_ERROR	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-004	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	district 빈 문자열	400 VALIDATION_ERROR	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-005	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	district 공백만	400 VALIDATION_ERROR	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-006	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	dong 누락	400 VALIDATION_ERROR	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-007	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	dong null	400 VALIDATION_ERROR	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-008	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	dong 빈 문자열	400 VALIDATION_ERROR	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-009	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	dong 공백만	400 VALIDATION_ERROR	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-010	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	industry 누락	400 VALIDATION_ERROR	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-011	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	industry null	400 VALIDATION_ERROR	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-012	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	industry 빈 문자열	400 VALIDATION_ERROR	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-013	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	industry 공백만	400 VALIDATION_ERROR	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-014	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	필드 타입 숫자	400 또는 Jackson 정의에 따른 일관된 변환/검증	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-015	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	객체 대신 배열	400 INVALID_JSON	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-016	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	깨진 JSON	400 INVALID_JSON	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-017	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	JSON Content-Type 누락	415 또는 400 일관 정책	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-018	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	키 대소문자 오류	400 VALIDATION_ERROR	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-019	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	10000자 district	입력 길이 제한과 안전한 응답 검증	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-020	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	스크립트 동 이름	HTML 실행 없이 안전한 오류·데이터 반환	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-021	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	SQL 문장 업종	DB 인젝션 없이 입력 거절·안전처리	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-022	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	추가 필드	의도된 API 규격 처리 검증	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-023	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	지역·동 불일치	상위 계층에서 조합 검증 필요	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE01-024	01_unit_integration	be01_diagnosis_request_dto	진단 DTO 유효성	예외 메시지 구성	필드별 검증 결과를 사용자에게 전달	back/src/main/java/com/dasigolmok/diagnosis/dto/DiagnosisRequest.java
+BE02-001	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	AI 요청 필드 매핑	district/dong/industry 3키를 그대로 AI에 전달	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-002	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	AI 응답 우선 지역	AI 응답값 저장	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-003	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	AI 지역 누락 fallback	요청 district 값 저장	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-004	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	AI 동 누락 fallback	요청 dong 값 저장	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-005	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	AI 업종 누락 fallback	요청 industry 값 저장	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-006	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	분기 필드 저장	정확한 분기 값 저장	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-007	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	점포 수 숫자 저장	Double=25 저장	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-008	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	개업률 숫자 저장	Double=3.4 저장	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-009	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	폐업률 숫자 저장	Double=6.2 저장	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-010	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	프랜차이즈 비율 저장	Double=0.2 저장	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-011	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	유동인구 저장	Double=3000 저장	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-012	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	변화코드 저장	'HL' 저장	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-013	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	변화명 저장	'상권축소' 저장	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-014	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	영업기간 저장	Double=23.1 저장	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-015	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	점포당 매출 저장	Double=800.5 저장	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-016	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	ML 예측 저장	Double=5.1 저장	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-017	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	DL 예측 저장	Double=730.5 저장	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-018	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	상태 저장	danger 저장	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-019	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	위험불리언 저장	danger=true 저장	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-020	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	설명 저장	설명 한글 저장	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-021	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	설명 출처 저장	basic 저장	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-022	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	숫자 문자열 혼입	잘못된 숫자는 null 처리되고 결측치 보완/거절 검증	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-023	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	AI 필수 키 누락	0/빈값으로 성공 저장하지 않도록 스키마 검증	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-024	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	설명 2000자 초과	DB 길이 초과 전에 명확한 검증·절단 처리	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-025	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	AI 장애 시 비저장	DB record 생성되지 않음	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-026	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	ID 정상 조회	저장된 Diagnosis 반환	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-027	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	ID 미등록 조회	404 NOT_FOUND	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-028	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	최근 조회 정렬	ID 내림차순 10개	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-029	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	동시 생성	ID 유일성과 저장 누락 방지	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE02-030	01_unit_integration	be02_diagnosis_crud	진단 서비스·저장	존재하지 않는 지역	잘못된 성공 저장 없이 오류 반환	back/src/main/java/com/dasigolmok/diagnosis/service/DiagnosisService.java
+BE03-001	02_web_api	be03_diagnosis_http	Spring 진단 HTTP 계약	POST 상태	201 Created	back/src/main/java/com/dasigolmok/diagnosis/controller/DiagnosisController.java
+BE03-002	02_web_api	be03_diagnosis_http	Spring 진단 HTTP 계약	POST 응답 id	응답 id=10	back/src/main/java/com/dasigolmok/diagnosis/controller/DiagnosisController.java
+BE03-003	02_web_api	be03_diagnosis_http	Spring 진단 HTTP 계약	GET 단건	200+해당 데이터	back/src/main/java/com/dasigolmok/diagnosis/controller/DiagnosisController.java
+BE03-004	02_web_api	be03_diagnosis_http	Spring 진단 HTTP 계약	GET 최근	200+List	back/src/main/java/com/dasigolmok/diagnosis/controller/DiagnosisController.java
+BE03-005	02_web_api	be03_diagnosis_http	Spring 진단 HTTP 계약	단건 잘못된 ID	400 type mismatch	back/src/main/java/com/dasigolmok/diagnosis/controller/DiagnosisController.java
+BE03-006	02_web_api	be03_diagnosis_http	Spring 진단 HTTP 계약	단건 0	404	back/src/main/java/com/dasigolmok/diagnosis/controller/DiagnosisController.java
+BE03-007	02_web_api	be03_diagnosis_http	Spring 진단 HTTP 계약	단건 음수	404	back/src/main/java/com/dasigolmok/diagnosis/controller/DiagnosisController.java
+BE03-008	02_web_api	be03_diagnosis_http	Spring 진단 HTTP 계약	단건 id 너무 큼	400	back/src/main/java/com/dasigolmok/diagnosis/controller/DiagnosisController.java
+BE03-009	02_web_api	be03_diagnosis_http	Spring 진단 HTTP 계약	Content-Type	application/json 응답	back/src/main/java/com/dasigolmok/diagnosis/controller/DiagnosisController.java
+BE03-010	02_web_api	be03_diagnosis_http	Spring 진단 HTTP 계약	메서드 허용	405	back/src/main/java/com/dasigolmok/diagnosis/controller/DiagnosisController.java
+BE03-011	02_web_api	be03_diagnosis_http	Spring 진단 HTTP 계약	다중 검증 실패	400+필드 에러	back/src/main/java/com/dasigolmok/diagnosis/controller/DiagnosisController.java
+BE03-012	02_web_api	be03_diagnosis_http	Spring 진단 HTTP 계약	404 코드	errorCode NOT_FOUND 정책 확인	back/src/main/java/com/dasigolmok/diagnosis/controller/DiagnosisController.java
+BE03-013	02_web_api	be03_diagnosis_http	Spring 진단 HTTP 계약	API 응답 한글	한글 깨짐 없음	back/src/main/java/com/dasigolmok/diagnosis/controller/DiagnosisController.java
+BE03-014	02_web_api	be03_diagnosis_http	Spring 진단 HTTP 계약	조회 ID 타인 데이터	접근제어/프라이버시 정책 확인	back/src/main/java/com/dasigolmok/diagnosis/controller/DiagnosisController.java
+BE04-001	02_web_api	be04_recommend_http	옵션·추천 HTTP	옵션 GET	200 AI 옵션 JSON	back/src/main/java/com/dasigolmok/recommend/controller/RecommendController.java
+BE04-002	02_web_api	be04_recommend_http	옵션·추천 HTTP	추천 POST	200 AI 추천 JSON	back/src/main/java/com/dasigolmok/recommend/controller/RecommendController.java
+BE04-003	02_web_api	be04_recommend_http	옵션·추천 HTTP	추천 district 누락	400 VALIDATION_ERROR	back/src/main/java/com/dasigolmok/recommend/controller/RecommendController.java
+BE04-004	02_web_api	be04_recommend_http	옵션·추천 HTTP	추천 district 공백	400 VALIDATION_ERROR	back/src/main/java/com/dasigolmok/recommend/controller/RecommendController.java
+BE04-005	02_web_api	be04_recommend_http	옵션·추천 HTTP	추천 dong 누락	400 VALIDATION_ERROR	back/src/main/java/com/dasigolmok/recommend/controller/RecommendController.java
+BE04-006	02_web_api	be04_recommend_http	옵션·추천 HTTP	추천 dong 공백	400 VALIDATION_ERROR	back/src/main/java/com/dasigolmok/recommend/controller/RecommendController.java
+BE04-007	02_web_api	be04_recommend_http	옵션·추천 HTTP	추천 JSON 오류	400 INVALID_JSON	back/src/main/java/com/dasigolmok/recommend/controller/RecommendController.java
+BE04-008	02_web_api	be04_recommend_http	옵션·추천 HTTP	추천 잘못된 지역	AI 404→Spring 정책에 따라 오류 변환	back/src/main/java/com/dasigolmok/recommend/controller/RecommendController.java
+BE04-009	02_web_api	be04_recommend_http	옵션·추천 HTTP	GET /api/options 후 응답 null	502/내부 오류·빈 응답 감지	back/src/main/java/com/dasigolmok/recommend/controller/RecommendController.java
+BE04-010	02_web_api	be04_recommend_http	옵션·추천 HTTP	옵션 응답 형태	배열이 유지되고 응답 그대로 전달	back/src/main/java/com/dasigolmok/recommend/controller/RecommendController.java
+BE04-011	02_web_api	be04_recommend_http	옵션·추천 HTTP	추천 응답 전체 업종	정렬 순서와 필드 보존	back/src/main/java/com/dasigolmok/recommend/controller/RecommendController.java
+BE04-012	02_web_api	be04_recommend_http	옵션·추천 HTTP	추천 top5	최대 5개	back/src/main/java/com/dasigolmok/recommend/controller/RecommendController.java
+BE04-013	02_web_api	be04_recommend_http	옵션·추천 HTTP	추천 실패 DB 비저장	추천은 별도 저장 없이 오류 반환	back/src/main/java/com/dasigolmok/recommend/controller/RecommendController.java
+BE04-014	02_web_api	be04_recommend_http	옵션·추천 HTTP	POST 동시 요청	요청 간 데이터 섞이지 않음	back/src/main/java/com/dasigolmok/recommend/controller/RecommendController.java
+BE04-015	02_web_api	be04_recommend_http	옵션·추천 HTTP	옵션 GET 오류	GlobalExceptionHandler를 거쳐 상태코드·메시지 통일	back/src/main/java/com/dasigolmok/recommend/controller/RecommendController.java
+BE04-016	02_web_api	be04_recommend_http	옵션·추천 HTTP	API 메서드 방어	405	back/src/main/java/com/dasigolmok/recommend/controller/RecommendController.java
+BE04-017	02_web_api	be04_recommend_http	옵션·추천 HTTP	불필요한 필드	DTO 규칙이 일관되게 처리	back/src/main/java/com/dasigolmok/recommend/controller/RecommendController.java
+BE04-018	02_web_api	be04_recommend_http	옵션·추천 HTTP	지역·동 일치	교차 지역 추천을 방지하는 검증 필요	back/src/main/java/com/dasigolmok/recommend/controller/RecommendController.java
+BE05-001	03_security_quality	be05_ai_integration_errors	RestTemplate 연동·오류	옵션 URL	GET /api/v1/options	back/src/main/java/com/dasigolmok/ai/AiClient.java
+BE05-002	03_security_quality	be05_ai_integration_errors	RestTemplate 연동·오류	진단 URL	POST /api/v1/diagnose	back/src/main/java/com/dasigolmok/ai/AiClient.java
+BE05-003	03_security_quality	be05_ai_integration_errors	RestTemplate 연동·오류	추천 URL	POST /api/v1/recommend	back/src/main/java/com/dasigolmok/ai/AiClient.java
+BE05-004	03_security_quality	be05_ai_integration_errors	RestTemplate 연동·오류	AI 옵션 정상	JsonNode 반환	back/src/main/java/com/dasigolmok/ai/AiClient.java
+BE05-005	03_security_quality	be05_ai_integration_errors	RestTemplate 연동·오류	AI 진단 정상	JsonNode 반환	back/src/main/java/com/dasigolmok/ai/AiClient.java
+BE05-006	03_security_quality	be05_ai_integration_errors	RestTemplate 연동·오류	AI 추천 정상	JsonNode 반환	back/src/main/java/com/dasigolmok/ai/AiClient.java
+BE05-007	03_security_quality	be05_ai_integration_errors	RestTemplate 연동·오류	AI null 응답	ApiException.aiError	back/src/main/java/com/dasigolmok/ai/AiClient.java
+BE05-008	03_security_quality	be05_ai_integration_errors	RestTemplate 연동·오류	연결거부	ApiException.aiError	back/src/main/java/com/dasigolmok/ai/AiClient.java
+BE05-009	03_security_quality	be05_ai_integration_errors	RestTemplate 연동·오류	DNS 실패	ApiException.aiError	back/src/main/java/com/dasigolmok/ai/AiClient.java
+BE05-010	03_security_quality	be05_ai_integration_errors	RestTemplate 연동·오류	AI Timeout	ApiException.aiError	back/src/main/java/com/dasigolmok/ai/AiClient.java
+BE05-011	03_security_quality	be05_ai_integration_errors	RestTemplate 연동·오류	AI 404	의도된 Spring 에러코드로 변환·구분	back/src/main/java/com/dasigolmok/ai/AiClient.java
+BE05-012	03_security_quality	be05_ai_integration_errors	RestTemplate 연동·오류	AI 422	요청 validation 원인 재해석 가능	back/src/main/java/com/dasigolmok/ai/AiClient.java
+BE05-013	03_security_quality	be05_ai_integration_errors	RestTemplate 연동·오류	AI 500	사용자에 내부 스택 미노출	back/src/main/java/com/dasigolmok/ai/AiClient.java
+BE05-014	03_security_quality	be05_ai_integration_errors	RestTemplate 연동·오류	AI 빈 JSON	핵심 필드 누락을 감지해야 한다	back/src/main/java/com/dasigolmok/ai/AiClient.java
+BE05-015	03_security_quality	be05_ai_integration_errors	RestTemplate 연동·오류	AI HTML 응답	JSON 역직렬화 실패 안내	back/src/main/java/com/dasigolmok/ai/AiClient.java
+BE05-016	03_security_quality	be05_ai_integration_errors	RestTemplate 연동·오류	재시도 여부	서비스 정책에 맞는 재시도/타임아웃 확인	back/src/main/java/com/dasigolmok/ai/AiClient.java
+BE05-017	03_security_quality	be05_ai_integration_errors	RestTemplate 연동·오류	동시 요청 pool	리소스 누수·무한 대기 방지	back/src/main/java/com/dasigolmok/ai/AiClient.java
+BE05-018	03_security_quality	be05_ai_integration_errors	RestTemplate 연동·오류	AI 잘못된 주소	설정 오류 로그·안내	back/src/main/java/com/dasigolmok/ai/AiClient.java
+BE05-019	03_security_quality	be05_ai_integration_errors	RestTemplate 연동·오류	비밀 값 마스킹	환경변수·DB_PASSWORD 노출 없음	back/src/main/java/com/dasigolmok/ai/AiClient.java
+BE05-020	03_security_quality	be05_ai_integration_errors	RestTemplate 연동·오류	고의 무한대기 서버	명시적 connect/read timeout 적용 여부 확인	back/src/main/java/com/dasigolmok/ai/AiClient.java
+BE06-001	03_security_quality	be06_global_exception	Spring 에러 표준화·로그	ApiException 404	404 {errorCode,message}	back/src/main/java/com/dasigolmok/global/exception/GlobalExceptionHandler.java
+BE06-002	03_security_quality	be06_global_exception	Spring 에러 표준화·로그	ApiException 502	5xx {errorCode,message}	back/src/main/java/com/dasigolmok/global/exception/GlobalExceptionHandler.java
+BE06-003	03_security_quality	be06_global_exception	Spring 에러 표준화·로그	Bean Validation	400 VALIDATION_ERROR	back/src/main/java/com/dasigolmok/global/exception/GlobalExceptionHandler.java
+BE06-004	03_security_quality	be06_global_exception	Spring 에러 표준화·로그	JSON 문법 오류	400 INVALID_JSON	back/src/main/java/com/dasigolmok/global/exception/GlobalExceptionHandler.java
+BE06-005	03_security_quality	be06_global_exception	Spring 에러 표준화·로그	알 수 없는 예외	500 INTERNAL_ERROR	back/src/main/java/com/dasigolmok/global/exception/GlobalExceptionHandler.java
+BE06-006	03_security_quality	be06_global_exception	Spring 에러 표준화·로그	서버 오류 로깅	서버 로그에 원인 기록	back/src/main/java/com/dasigolmok/global/exception/GlobalExceptionHandler.java
+BE06-007	03_security_quality	be06_global_exception	Spring 에러 표준화·로그	사용자 오류 로그 수준	불필요한 스택 로그 제한	back/src/main/java/com/dasigolmok/global/exception/GlobalExceptionHandler.java
+BE06-008	03_security_quality	be06_global_exception	Spring 에러 표준화·로그	예외 스택 마스킹	응답에는 내부 스택 미노출	back/src/main/java/com/dasigolmok/global/exception/GlobalExceptionHandler.java
+BE06-009	03_security_quality	be06_global_exception	Spring 에러 표준화·로그	동시 실패 10건	요청별 오류 응답 분리	back/src/main/java/com/dasigolmok/global/exception/GlobalExceptionHandler.java
+BE06-010	03_security_quality	be06_global_exception	Spring 에러 표준화·로그	다중 필드 검증	모든 누락 필드 메시지 연결	back/src/main/java/com/dasigolmok/global/exception/GlobalExceptionHandler.java
+BE06-011	03_security_quality	be06_global_exception	Spring 에러 표준화·로그	NULL 오류 메시지	Map.of NULL 처리 예외 추가 방지	back/src/main/java/com/dasigolmok/global/exception/GlobalExceptionHandler.java
+BE06-012	03_security_quality	be06_global_exception	Spring 에러 표준화·로그	CORS 실패	브라우저 차단 및 서버 로그 점검	back/src/main/java/com/dasigolmok/global/exception/GlobalExceptionHandler.java
+BE06-013	03_security_quality	be06_global_exception	Spring 에러 표준화·로그	HTTP 405	405 상태 확인	back/src/main/java/com/dasigolmok/global/exception/GlobalExceptionHandler.java
+BE06-014	03_security_quality	be06_global_exception	Spring 에러 표준화·로그	타입 변환 오류	400/공통 JSON 포맷 적용	back/src/main/java/com/dasigolmok/global/exception/GlobalExceptionHandler.java
+DB01-001	01_unit_integration	db01_diagnosis_persistence	JPA 엔터티·Repository	기본키 자동생성	id auto increment	back/src/main/java/com/dasigolmok/diagnosis/entity/Diagnosis.java
+DB01-002	01_unit_integration	db01_diagnosis_persistence	JPA 엔터티·Repository	한글 지역 저장	UTF8 유지	back/src/main/java/com/dasigolmok/diagnosis/entity/Diagnosis.java
+DB01-003	01_unit_integration	db01_diagnosis_persistence	JPA 엔터티·Repository	한글 동 저장	UTF8 유지	back/src/main/java/com/dasigolmok/diagnosis/entity/Diagnosis.java
+DB01-004	01_unit_integration	db01_diagnosis_persistence	JPA 엔터티·Repository	한글 업종 저장	UTF8 유지	back/src/main/java/com/dasigolmok/diagnosis/entity/Diagnosis.java
+DB01-005	01_unit_integration	db01_diagnosis_persistence	JPA 엔터티·Repository	분기 저장	분기 문자열 보존	back/src/main/java/com/dasigolmok/diagnosis/entity/Diagnosis.java
+DB01-006	01_unit_integration	db01_diagnosis_persistence	JPA 엔터티·Repository	저장/조회 일치	모든 필드 원본 일치	back/src/main/java/com/dasigolmok/diagnosis/entity/Diagnosis.java
+DB01-007	01_unit_integration	db01_diagnosis_persistence	JPA 엔터티·Repository	Double null	nullable Double 저장 가능	back/src/main/java/com/dasigolmok/diagnosis/entity/Diagnosis.java
+DB01-008	01_unit_integration	db01_diagnosis_persistence	JPA 엔터티·Repository	위험 boolean false	false 보존	back/src/main/java/com/dasigolmok/diagnosis/entity/Diagnosis.java
+DB01-009	01_unit_integration	db01_diagnosis_persistence	JPA 엔터티·Repository	위험 boolean true	true 보존	back/src/main/java/com/dasigolmok/diagnosis/entity/Diagnosis.java
+DB01-010	01_unit_integration	db01_diagnosis_persistence	JPA 엔터티·Repository	설명 길이 2000	저장	back/src/main/java/com/dasigolmok/diagnosis/entity/Diagnosis.java
+DB01-011	01_unit_integration	db01_diagnosis_persistence	JPA 엔터티·Repository	설명 길이 2001	DB 제약 오류 또는 정책에 따른 거절	back/src/main/java/com/dasigolmok/diagnosis/entity/Diagnosis.java
+DB01-012	01_unit_integration	db01_diagnosis_persistence	JPA 엔터티·Repository	설명 특수문자	인코딩 보존	back/src/main/java/com/dasigolmok/diagnosis/entity/Diagnosis.java
+DB01-013	01_unit_integration	db01_diagnosis_persistence	JPA 엔터티·Repository	생성 시각	createdAt 설정	back/src/main/java/com/dasigolmok/diagnosis/entity/Diagnosis.java
+DB01-014	01_unit_integration	db01_diagnosis_persistence	JPA 엔터티·Repository	최근 10건 조회	정렬/개수 10	back/src/main/java/com/dasigolmok/diagnosis/entity/Diagnosis.java
+DB01-015	01_unit_integration	db01_diagnosis_persistence	JPA 엔터티·Repository	단건 삭제 후 조회	get=404	back/src/main/java/com/dasigolmok/diagnosis/entity/Diagnosis.java
+DB01-016	01_unit_integration	db01_diagnosis_persistence	JPA 엔터티·Repository	동시 저장	ID 중복 없음	back/src/main/java/com/dasigolmok/diagnosis/entity/Diagnosis.java
+DB01-017	01_unit_integration	db01_diagnosis_persistence	JPA 엔터티·Repository	재시작 후 데이터 유지	재접속 데이터 일치	back/src/main/java/com/dasigolmok/diagnosis/entity/Diagnosis.java
+DB01-018	01_unit_integration	db01_diagnosis_persistence	JPA 엔터티·Repository	실수 특수 값	DB 직렬화 허용 여부·응답 안전성 검증	back/src/main/java/com/dasigolmok/diagnosis/entity/Diagnosis.java
+DB01-019	01_unit_integration	db01_diagnosis_persistence	JPA 엔터티·Repository	트랜잭션 AI 실패	불완전 row 미저장	back/src/main/java/com/dasigolmok/diagnosis/entity/Diagnosis.java
+DB01-020	01_unit_integration	db01_diagnosis_persistence	JPA 엔터티·Repository	데이터 접근 경계	개인정보/소유권 정책 검증	back/src/main/java/com/dasigolmok/diagnosis/entity/Diagnosis.java
+DB02-001	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	V1 사용자 테이블	users 테이블 생성	db/migration/V1__init_schema.sql
+DB02-002	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	V1 장소 테이블	places 생성	db/migration/V1__init_schema.sql
+DB02-003	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	V1 지역 테이블	regions 생성	db/migration/V1__init_schema.sql
+DB02-004	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	V1 스토리 테이블	stories 생성	db/migration/V1__init_schema.sql
+DB02-005	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	V1 외래키 관계	regions.id 참조	db/migration/V1__init_schema.sql
+DB02-006	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	V1 유니크 이메일	DB uniqueness 차단	db/migration/V1__init_schema.sql
+DB02-007	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	V1 인덱스	인덱스 존재	db/migration/V1__init_schema.sql
+DB02-008	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	V6 이벤트	테이블/키 생성	db/migration/V1__init_schema.sql
+DB02-009	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	V6 팩트 테이블	스키마 생성	db/migration/V1__init_schema.sql
+DB02-010	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	V6 KPI 스냅샷	테이블 생성	db/migration/V1__init_schema.sql
+DB02-011	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	V8 낙관잠금	버전 칼럼 적용	db/migration/V1__init_schema.sql
+DB02-012	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	V1~V9 순서	구문/의존성 성공 여부 점검	db/migration/V1__init_schema.sql
+DB02-013	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	기존 DB 재실행	초기화 SQL 재적용되지 않는지 검증	db/migration/V1__init_schema.sql
+DB02-014	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	마이그레이션 별도 앱	실제 실행 경로 검증 필요	db/migration/V1__init_schema.sql
+DB02-015	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	레거시 스키마와 현재 JPA	서로 다른 기능 구현·테이블 사용처 정리	db/migration/V1__init_schema.sql
+DB02-016	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	V4 시드 개발 데이터	운영 DB에 더미 데이터 혼입 방지	db/migration/V1__init_schema.sql
+DB02-017	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	V6 MV 존재	현재 스키마/실행 코드 존재 확인	db/migration/V1__init_schema.sql
+DB02-018	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	V9 extension	pgvector 설치된 PG16에서 성공	db/migration/V1__init_schema.sql
+DB02-019	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	V9 인덱스	embedding vector(64) 색인	db/migration/V1__init_schema.sql
+DB02-020	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	V9 정책 테이블	정책 보관 테이블 생성	db/migration/V1__init_schema.sql
+DB02-021	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	V9 의존 플래그	선행 테이블이 있어 insert 성공	db/migration/V1__init_schema.sql
+DB02-022	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	V9 트랜잭션 롤백	DB 일부 상태 방지	db/migration/V1__init_schema.sql
+DB02-023	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	정적 SQL 실패 리포트	정확한 SQL line/db log 확보	db/migration/V1__init_schema.sql
+DB02-024	01_unit_integration	db02_sql_migration	SQL 스키마 버전·무결성	마이그레이션 히스토리	이력/재시도 체계 확립	db/migration/V1__init_schema.sql
+DB03-001	01_unit_integration	db03_pgvector	RAG 데이터베이스 스키마	vector 확장 존재	vector 활성	db/migration/V9__commercial_rag_pgvector.sql
+DB03-002	01_unit_integration	db03_pgvector	RAG 데이터베이스 스키마	청크 ID 기본키	중복 실패	db/migration/V9__commercial_rag_pgvector.sql
+DB03-003	01_unit_integration	db03_pgvector	RAG 데이터베이스 스키마	title NOT NULL	저장 차단	db/migration/V9__commercial_rag_pgvector.sql
+DB03-004	01_unit_integration	db03_pgvector	RAG 데이터베이스 스키마	content NOT NULL	저장 차단	db/migration/V9__commercial_rag_pgvector.sql
+DB03-005	01_unit_integration	db03_pgvector	RAG 데이터베이스 스키마	doc_type NOT NULL	저장 차단	db/migration/V9__commercial_rag_pgvector.sql
+DB03-006	01_unit_integration	db03_pgvector	RAG 데이터베이스 스키마	source optional	허용 여부	db/migration/V9__commercial_rag_pgvector.sql
+DB03-007	01_unit_integration	db03_pgvector	RAG 데이터베이스 스키마	region 필터 인덱스	인덱스 유효	db/migration/V9__commercial_rag_pgvector.sql
+DB03-008	01_unit_integration	db03_pgvector	RAG 데이터베이스 스키마	dong 필터 인덱스	인덱스 유효	db/migration/V9__commercial_rag_pgvector.sql
+DB03-009	01_unit_integration	db03_pgvector	RAG 데이터베이스 스키마	industry 필터 인덱스	인덱스 유효	db/migration/V9__commercial_rag_pgvector.sql
+DB03-010	01_unit_integration	db03_pgvector	RAG 데이터베이스 스키마	embedding 64차원	저장 성공	db/migration/V9__commercial_rag_pgvector.sql
+DB03-011	01_unit_integration	db03_pgvector	RAG 데이터베이스 스키마	embedding 512차원	차원 불일치 오류	db/migration/V9__commercial_rag_pgvector.sql
+DB03-012	01_unit_integration	db03_pgvector	RAG 데이터베이스 스키마	HNSW 인덱스	벡터 코사인 인덱스 생성	db/migration/V9__commercial_rag_pgvector.sql
+DB03-013	01_unit_integration	db03_pgvector	RAG 데이터베이스 스키마	메타데이터 JSONB	저장/조회	db/migration/V9__commercial_rag_pgvector.sql
+DB03-014	01_unit_integration	db03_pgvector	RAG 데이터베이스 스키마	마감 정책 테이블	문자열 저장	db/migration/V9__commercial_rag_pgvector.sql
+DB03-015	01_unit_integration	db03_pgvector	RAG 데이터베이스 스키마	DB 정책 실시간 소스	실제 DB 정책과 연결되어 있는지 검증	db/migration/V9__commercial_rag_pgvector.sql
+DB03-016	01_unit_integration	db03_pgvector	RAG 데이터베이스 스키마	정책 날짜 CHECK	DB 검증 제약 필요	db/migration/V9__commercial_rag_pgvector.sql
+DB03-017	01_unit_integration	db03_pgvector	RAG 데이터베이스 스키마	정책 source_url 검증	원본 검증 정책 필요	db/migration/V9__commercial_rag_pgvector.sql
+DB03-018	01_unit_integration	db03_pgvector	RAG 데이터베이스 스키마	외부 연결 차단	외부 5432 공개 금지	db/migration/V9__commercial_rag_pgvector.sql
+DB03-019	01_unit_integration	db03_pgvector	RAG 데이터베이스 스키마	정책 갱신/삭제	데이터 갱신 전략 명세 필요	db/migration/V9__commercial_rag_pgvector.sql
+DE01-001	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	인증키 없음	RuntimeError 안내	data/etl/fetch.py
+DE01-002	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	SEMAS 정상 resultCode	JSON 파싱	data/etl/fetch.py
+DE01-003	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	SEMAS 성공 코드 0	허용	data/etl/fetch.py
+DE01-004	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	SEMAS 성공 코드 000	허용	data/etl/fetch.py
+DE01-005	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	SEMAS 오류 코드	RuntimeError	data/etl/fetch.py
+DE01-006	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	SEMAS 타임아웃	적절한 오류	data/etl/fetch.py
+DE01-007	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	SEMAS HTTP 500	에러 전파	data/etl/fetch.py
+DE01-008	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	대분류와 중분류	두 목록 리턴	data/etl/fetch.py
+DE01-009	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	자치구 목록	서울 행정구역 대상	data/etl/fetch.py
+DE01-010	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	업소 샘플 페이지 1	1페이지만	data/etl/fetch.py
+DE01-011	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	업소 샘플 페이지 3	최대 3페이지	data/etl/fetch.py
+DE01-012	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	업소 totalCount 미달	다음 페이지	data/etl/fetch.py
+DE01-013	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	업소 목록 빈 페이지	페이지 루프 종료	data/etl/fetch.py
+DE01-014	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	업소 전체 건수 충족	페이지 루프 종료	data/etl/fetch.py
+DE01-015	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	업소 max_pages=0	빈 배열	data/etl/fetch.py
+DE01-016	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	외부 API 429	재시도/속도제한 정책 검증	data/etl/fetch.py
+DE01-017	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	비정상 JSON	명확한 디코딩 실패	data/etl/fetch.py
+DE01-018	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	인증키 로그	로그에서 키 마스킹	data/etl/fetch.py
+DE01-019	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	서울시 ZIP 다운로드	CSV DataFrame 반환	data/etl/fetch.py
+DE01-020	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	서울시 Sheet 다운로드	CSV DataFrame 반환	data/etl/fetch.py
+DE01-021	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	서울시 ZIP 손상	예외와 재수집 안내	data/etl/fetch.py
+DE01-022	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	다운로드 timeout	시간 초과 오류	data/etl/fetch.py
+DE01-023	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	서울시 표 연도 병합	행 연결 순서 보존	data/etl/fetch.py
+DE01-024	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	없는 SEOUL_FILES key	키 오류·안내	data/etl/fetch.py
+DE01-025	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	서울 외 데이터	ETL 후 서울 지역만 남김	data/etl/fetch.py
+DE01-026	01_unit_integration	de01_public_api_ingest	소상공인 API·서울시 수집	응답 URL 변경	실제 파일 타입 검증	data/etl/fetch.py
+DE02-001	01_unit_integration	de02_csv_encoding	ZIP·CSV 인코딩·형식	cp949 CSV	읽기 성공·한글 유지	data/etl/fetch.py
+DE02-002	01_unit_integration	de02_csv_encoding	ZIP·CSV 인코딩·형식	UTF8 BOM CSV	fallback 읽기	data/etl/fetch.py
+DE02-003	01_unit_integration	de02_csv_encoding	ZIP·CSV 인코딩·형식	UTF8 일반 CSV	문자 정상 처리	data/etl/fetch.py
+DE02-004	01_unit_integration	de02_csv_encoding	ZIP·CSV 인코딩·형식	깨진 한글	UnicodeDecodeError나 명확한 오류	data/etl/fetch.py
+DE02-005	01_unit_integration	de02_csv_encoding	ZIP·CSV 인코딩·형식	빈 CSV	파싱 실패를 처리	data/etl/fetch.py
+DE02-006	01_unit_integration	de02_csv_encoding	ZIP·CSV 인코딩·형식	CSV 헤더만	빈 DataFrame	data/etl/fetch.py
+DE02-007	01_unit_integration	de02_csv_encoding	ZIP·CSV 인코딩·형식	ZIP 안 CSV 하나	첫 CSV 선택	data/etl/fetch.py
+DE02-008	01_unit_integration	de02_csv_encoding	ZIP·CSV 인코딩·형식	ZIP 안 CSV 여러개	의도한 첫 파일 선택 검증	data/etl/fetch.py
+DE02-009	01_unit_integration	de02_csv_encoding	ZIP·CSV 인코딩·형식	ZIP 안 CSV 없음	StopIteration 오류 명확화	data/etl/fetch.py
+DE02-010	01_unit_integration	de02_csv_encoding	ZIP·CSV 인코딩·형식	ZIP 폴더 포함	경로 내 CSV 탐지	data/etl/fetch.py
+DE02-011	01_unit_integration	de02_csv_encoding	ZIP·CSV 인코딩·형식	CSV 악성 수식	엑셀 수식 실행 우려, raw 값 데이터 처리	data/etl/fetch.py
+DE02-012	01_unit_integration	de02_csv_encoding	ZIP·CSV 인코딩·형식	CSV 쉼표 인용	한 필드 보존	data/etl/fetch.py
+DE02-013	01_unit_integration	de02_csv_encoding	ZIP·CSV 인코딩·형식	CSV 줄바꿈 인용	하나의 셀 보존	data/etl/fetch.py
+DE02-014	01_unit_integration	de02_csv_encoding	ZIP·CSV 인코딩·형식	숫자 열 선행 0	행정동 코드 선행 0 보존	data/etl/fetch.py
+DE02-015	01_unit_integration	de02_csv_encoding	ZIP·CSV 인코딩·형식	빈 원본 ZIP	명확한 오류	data/etl/fetch.py
+DE02-016	01_unit_integration	de02_csv_encoding	ZIP·CSV 인코딩·형식	zip 폭탄	최대 파일 크기 검증 필요	data/etl/fetch.py
+DE02-017	01_unit_integration	de02_csv_encoding	ZIP·CSV 인코딩·형식	CSV 컬럼명 변동	스키마 변화 감지·경고	data/etl/fetch.py
+DE02-018	01_unit_integration	de02_csv_encoding	ZIP·CSV 인코딩·형식	잘못된 파일 mime	CSV 대신 HTML 감지	data/etl/fetch.py
+DE03-001	01_unit_integration	de03_store_clean	점포 통계 clean_store	공통 key 추출	영문 key 통일	data/etl/transform.py
+DE03-002	01_unit_integration	de03_store_clean	점포 통계 clean_store	서울 자치구 매핑	마포구 매핑	data/etl/transform.py
+DE03-003	01_unit_integration	de03_store_clean	점포 통계 clean_store	타 지역 코드	district='' 제거	data/etl/transform.py
+DE03-004	01_unit_integration	de03_store_clean	점포 통계 clean_store	점포수 >0	포함	data/etl/transform.py
+DE03-005	01_unit_integration	de03_store_clean	점포 통계 clean_store	점포수 0	제외	data/etl/transform.py
+DE03-006	01_unit_integration	de03_store_clean	점포 통계 clean_store	점포수 음수	제외	data/etl/transform.py
+DE03-007	01_unit_integration	de03_store_clean	점포 통계 clean_store	점포수 문자열	1000 변환	data/etl/transform.py
+DE03-008	01_unit_integration	de03_store_clean	점포 통계 clean_store	폐업률 문자열	float 5.25	data/etl/transform.py
+DE03-009	01_unit_integration	de03_store_clean	점포 통계 clean_store	개업률 문자열	float 3.20	data/etl/transform.py
+DE03-010	01_unit_integration	de03_store_clean	점포 통계 clean_store	프랜차이즈 비율	0.2	data/etl/transform.py
+DE03-011	01_unit_integration	de03_store_clean	점포 통계 clean_store	프랜차이즈 비율 >1	1로 클리핑	data/etl/transform.py
+DE03-012	01_unit_integration	de03_store_clean	점포 통계 clean_store	프랜차이즈 음수	0으로 클리핑	data/etl/transform.py
+DE03-013	01_unit_integration	de03_store_clean	점포 통계 clean_store	프랜차이즈 결측	NaN 후처리 필요	data/etl/transform.py
+DE03-014	01_unit_integration	de03_store_clean	점포 통계 clean_store	동일 복제 행	중복 한 행	data/etl/transform.py
+DE03-015	01_unit_integration	de03_store_clean	점포 통계 clean_store	다른 분기	분기별 유지	data/etl/transform.py
+DE03-016	01_unit_integration	de03_store_clean	점포 통계 clean_store	업종 코드 다름	각 업종 유지	data/etl/transform.py
+DE03-017	01_unit_integration	de03_store_clean	점포 통계 clean_store	선행 영점	자치구 코드 보존 확인	data/etl/transform.py
+DE03-018	01_unit_integration	de03_store_clean	점포 통계 clean_store	동이 빈 문자열	잘못된 지역 엔트리 배제 필요	data/etl/transform.py
+DE03-019	01_unit_integration	de03_store_clean	점포 통계 clean_store	폐업률 120%	0~100 데이터 정합성 검증	data/etl/transform.py
+DE03-020	01_unit_integration	de03_store_clean	점포 통계 clean_store	점포수 소수	정수로 검증하거나 사유 문서화	data/etl/transform.py
+DE04-001	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	매출 원→만원	1000만원	data/etl/transform.py
+DE04-002	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	매출 1원	0.0001만원	data/etl/transform.py
+DE04-003	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	매출 0원	필터 제외	data/etl/transform.py
+DE04-004	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	매출 음수	필터 제외	data/etl/transform.py
+DE04-005	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	매출 null	필터 제외	data/etl/transform.py
+DE04-006	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	매출 1,000 문자열	0.1만원	data/etl/transform.py
+DE04-007	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	매출 건수	3000 변환	data/etl/transform.py
+DE04-008	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	타지역 매출	필터 제외	data/etl/transform.py
+DE04-009	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	매출 중복 분기	중복 하나	data/etl/transform.py
+DE04-010	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	유동인구 양수	포함	data/etl/transform.py
+DE04-011	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	유동인구 0	제외	data/etl/transform.py
+DE04-012	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	유동인구 음수	제외	data/etl/transform.py
+DE04-013	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	유동인구 문자열	50000	data/etl/transform.py
+DE04-014	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	유동인구 동일 동/분기 중복	중복 하나	data/etl/transform.py
+DE04-015	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	변화코드 HH	정체	data/etl/transform.py
+DE04-016	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	변화코드 HL	상권축소	data/etl/transform.py
+DE04-017	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	변화코드 LH	상권확장	data/etl/transform.py
+DE04-018	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	변화코드 LL	다이나믹	data/etl/transform.py
+DE04-019	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	모르는 변화코드	원본 변화명 fallback	data/etl/transform.py
+DE04-020	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	운영 개월 문자열	15.5	data/etl/transform.py
+DE04-021	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	서울 외 변화지표	필터 제외	data/etl/transform.py
+DE04-022	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	CSV 스키마 누락	명확한 컬럼 오류	data/etl/transform.py
+DE04-023	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	대형 데이터 병합	메모리·수행시간 계측	data/etl/transform.py
+DE05-001	01_unit_integration	de05_missing_outlier	중앙값 결측·이상치 1%	소수 쉼표	1234.5	data/etl/transform.py
+DE05-002	01_unit_integration	de05_missing_outlier	중앙값 결측·이상치 1%	빈 문자열 숫자	NaN	data/etl/transform.py
+DE05-003	01_unit_integration	de05_missing_outlier	중앙값 결측·이상치 1%	잘못된 문자열 숫자	NaN	data/etl/transform.py
+DE05-004	01_unit_integration	de05_missing_outlier	중앙값 결측·이상치 1%	전체 중앙값 대체	전체 median 사용	data/etl/transform.py
+DE05-005	01_unit_integration	de05_missing_outlier	중앙값 결측·이상치 1%	업종 중앙값 대체	중앙값 2	data/etl/transform.py
+DE05-006	01_unit_integration	de05_missing_outlier	중앙값 결측·이상치 1%	업종 외 값 유지	50 유지	data/etl/transform.py
+DE05-007	01_unit_integration	de05_missing_outlier	중앙값 결측·이상치 1%	모든 값 NaN	NaN 유지; 후속 품질검사 필요	data/etl/transform.py
+DE05-008	01_unit_integration	de05_missing_outlier	중앙값 결측·이상치 1%	업종 하나만	이상치 제거 정책 확인	data/etl/transform.py
+DE05-009	01_unit_integration	de05_missing_outlier	중앙값 결측·이상치 1%	업종 100행	경계 quantile 밖 제거	data/etl/transform.py
+DE05-010	01_unit_integration	de05_missing_outlier	중앙값 결측·이상치 1%	상위 극단값	상위 극단값 제거	data/etl/transform.py
+DE05-011	01_unit_integration	de05_missing_outlier	중앙값 결측·이상치 1%	하위 극단값	하위 극단값 제거	data/etl/transform.py
+DE05-012	01_unit_integration	de05_missing_outlier	중앙값 결측·이상치 1%	중앙값 일관성	2.5 중앙값	data/etl/transform.py
+DE05-013	01_unit_integration	de05_missing_outlier	중앙값 결측·이상치 1%	중앙값 dtype	사전 숫자화 필요	data/etl/transform.py
+DE05-014	01_unit_integration	de05_missing_outlier	중앙값 결측·이상치 1%	업종별 독립 제거	각 업종 quantile 별도	data/etl/transform.py
+DE05-015	01_unit_integration	de05_missing_outlier	중앙값 결측·이상치 1%	결측 열 이름 오타	키 오류로 인한 원인 표기	data/etl/transform.py
+DE05-016	01_unit_integration	de05_missing_outlier	중앙값 결측·이상치 1%	그룹 key NaN	그룹 결측치 정책 확인	data/etl/transform.py
+DE05-017	01_unit_integration	de05_missing_outlier	중앙값 결측·이상치 1%	outlier 결과 빈 그룹	pd.concat(empty) 예외 방어	data/etl/transform.py
+DE05-018	01_unit_integration	de05_missing_outlier	중앙값 결측·이상치 1%	상하위 같은 값	행이 불필요하게 삭제되지 않음	data/etl/transform.py
+DE05-019	01_unit_integration	de05_missing_outlier	중앙값 결측·이상치 1%	NaN quantile	예외 혹은 정제 정책	data/etl/transform.py
+DE06-001	01_unit_integration	de06_table_join	4종 표 join·파생 변수	점포-매출 키 결합	매출 값 병합	data/etl/transform.py
+DE06-002	01_unit_integration	de06_table_join	4종 표 join·파생 변수	점포-인구 키 결합	유동인구 병합	data/etl/transform.py
+DE06-003	01_unit_integration	de06_table_join	4종 표 join·파생 변수	점포-변화 키 결합	change 정보 병합	data/etl/transform.py
+DE06-004	01_unit_integration	de06_table_join	4종 표 join·파생 변수	기준 점포 유지	left join으로 점포 정보 보존	data/etl/transform.py
+DE06-005	01_unit_integration	de06_table_join	4종 표 join·파생 변수	매출 결측 대체	중앙값으로 보완	data/etl/transform.py
+DE06-006	01_unit_integration	de06_table_join	4종 표 join·파생 변수	유동인구 결측 대체	중앙값으로 보완	data/etl/transform.py
+DE06-007	01_unit_integration	de06_table_join	4종 표 join·파생 변수	운영개월 결측 대체	중앙값으로 보완	data/etl/transform.py
+DE06-008	01_unit_integration	de06_table_join	4종 표 join·파생 변수	변화코드 결측	HH	data/etl/transform.py
+DE06-009	01_unit_integration	de06_table_join	4종 표 join·파생 변수	변화명 결측	정체	data/etl/transform.py
+DE06-010	01_unit_integration	de06_table_join	4종 표 join·파생 변수	점포당 매출	100만원	data/etl/transform.py
+DE06-011	01_unit_integration	de06_table_join	4종 표 join·파생 변수	점포 2개	학습 데이터에서 제외	data/etl/transform.py
+DE06-012	01_unit_integration	de06_table_join	4종 표 join·파생 변수	점포 3개	최소 조건 통과	data/etl/transform.py
+DE06-013	01_unit_integration	de06_table_join	4종 표 join·파생 변수	동일 동 다른 업종	업종별 매출만 매칭	data/etl/transform.py
+DE06-014	01_unit_integration	de06_table_join	4종 표 join·파생 변수	동일 업종 다른 동	상권 혼입 없이 결합	data/etl/transform.py
+DE06-015	01_unit_integration	de06_table_join	4종 표 join·파생 변수	분기 다름	다른 분기 값 섞이지 않음	data/etl/transform.py
+DE06-016	01_unit_integration	de06_table_join	4종 표 join·파생 변수	조인 중복 방지	row 개수 비정상 증식 감지	data/etl/transform.py
+DE06-017	01_unit_integration	de06_table_join	4종 표 join·파생 변수	매출 0원 대체	비정상 0 매출 처리 확인	data/etl/transform.py
+DE06-018	01_unit_integration	de06_table_join	4종 표 join·파생 변수	최근 분기 선택	20242만 dong_stats	data/etl/transform.py
+DE06-019	01_unit_integration	de06_table_join	4종 표 join·파생 변수	동 중앙값 폐업률	4.0 median	data/etl/transform.py
+DE06-020	01_unit_integration	de06_table_join	4종 표 join·파생 변수	동 중앙값 매출	200 median	data/etl/transform.py
+DE06-021	01_unit_integration	de06_table_join	4종 표 join·파생 변수	날짜 분기 문자열	분기 정렬 유효 형식 검증	data/etl/transform.py
+DE06-022	01_unit_integration	de06_table_join	4종 표 join·파생 변수	상권변화 코드 공통	상권축소 매핑	data/etl/transform.py
+DE06-023	01_unit_integration	de06_table_join	4종 표 join·파생 변수	전처리 통계 결과 수	최신 3개 행	data/etl/transform.py
+DE06-024	01_unit_integration	de06_table_join	4종 표 join·파생 변수	업종 정보 누락	최종 모델 피처 오류 방어	data/etl/transform.py
+DE07-001	01_unit_integration	de07_options_build	선택 목록 옵션 생성	자치구 알파벳순	sorted districts	data/etl/transform.py
+DE07-002	01_unit_integration	de07_options_build	선택 목록 옵션 생성	동 지역순	district,dong 정렬	data/etl/transform.py
+DE07-003	01_unit_integration	de07_options_build	선택 목록 옵션 생성	동 중복 제거	한 동 하나	data/etl/transform.py
+DE07-004	01_unit_integration	de07_options_build	선택 목록 옵션 생성	업종 정렬	industry 기준	data/etl/transform.py
+DE07-005	01_unit_integration	de07_options_build	선택 목록 옵션 생성	업종 중복 제거	한 업종 하나	data/etl/transform.py
+DE07-006	01_unit_integration	de07_options_build	선택 목록 옵션 생성	업종 코드 다름	정책에 따라 각각 포함	data/etl/transform.py
+DE07-007	01_unit_integration	de07_options_build	선택 목록 옵션 생성	지역 옵션 메타	district,dong,dong_code 보존	data/etl/transform.py
+DE07-008	01_unit_integration	de07_options_build	선택 목록 옵션 생성	SEMAS 자치구 카운트	semas_dong_count=5	data/etl/transform.py
+DE07-009	01_unit_integration	de07_options_build	선택 목록 옵션 생성	SEMAS 업종 카운트	semas_upjong_count=10	data/etl/transform.py
+DE07-010	01_unit_integration	de07_options_build	선택 목록 옵션 생성	SEMAS 누락	0 카운트	data/etl/transform.py
+DE07-011	01_unit_integration	de07_options_build	선택 목록 옵션 생성	빈 데이터 train	빈 옵션 또는 명확한 오류	data/etl/transform.py
+DE07-012	01_unit_integration	de07_options_build	선택 목록 옵션 생성	train district null	districts null 제거	data/etl/transform.py
+DE07-013	01_unit_integration	de07_options_build	선택 목록 옵션 생성	동 코드 앞자리	코드 정확 보존	data/etl/transform.py
+DE07-014	01_unit_integration	de07_options_build	선택 목록 옵션 생성	업종명 공백	정규화 필요 검증	data/etl/transform.py
+DE07-015	01_unit_integration	de07_options_build	선택 목록 옵션 생성	옵션과 통계 일치	각 옵션이 통계 row에 존재	data/etl/transform.py
+DE07-016	01_unit_integration	de07_options_build	선택 목록 옵션 생성	구 바꾸면 다른 구 동	district별 dongs 선택지 정확	data/etl/transform.py
+DE08-001	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	전체 실행	세 단계 완료	data/etl/run.py
+DE08-002	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	캐시 실행	원본 캐시 사용	data/etl/run.py
+DE08-003	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	캐시 없을 때	다운로드 fallback	data/etl/run.py
+DE08-004	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	SEMAS API 실패	빈 옵션 보조자료로 진행	data/etl/run.py
+DE08-005	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	서울 점포 API 실패	실패 로그 후 종료	data/etl/run.py
+DE08-006	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	서울 매출 API 실패	잘못된 성공 파일 저장 차단	data/etl/run.py
+DE08-007	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	서울 유동인구 실패	파이프라인 실패 안내	data/etl/run.py
+DE08-008	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	서울 상권변화 실패	파이프라인 실패 안내	data/etl/run.py
+DE08-009	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	저장 processed/train	train CSV 생성	data/etl/run.py
+DE08-010	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	저장 processed/dong_stats	dong_stats CSV 생성	data/etl/run.py
+DE08-011	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	저장 processed/options	options JSON 생성	data/etl/run.py
+DE08-012	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	원본 저장	raw 파일 생성	data/etl/run.py
+DE08-013	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	불완전 데이터	완료로 위장하지 않도록 품질 게이트 필요	data/etl/run.py
+DE08-014	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	최신 분기 데이터 지연	quarter 선택 정책 확인	data/etl/run.py
+DE08-015	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	JSON 인코딩	UTF-8 정상	data/etl/run.py
+DE08-016	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	파일 쓰기 실패	오류 메시지와 잔존 파일 처리	data/etl/run.py
+DE08-017	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	저장 중 크래시	원자적 파일 교체 필요	data/etl/run.py
+DE08-018	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	기존 모델 데이터 갱신	모델/옵션 배포 싱크 확인	data/etl/run.py
+DE08-019	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	ETL 멱등성	동일 결과/중복 없음	data/etl/run.py
+DE08-020	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	ETL 원본 공개	개인정보/라이선스 정책 준수	data/etl/run.py
+DE08-021	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	서버 CI 범위	기존 테스트 통과	data/etl/run.py
+DE08-022	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	상세 로그	행 수·기간 기록	data/etl/run.py
+DE08-023	01_unit_integration	de08_etl_run_store	데이터 수집→전처리→아티팩트	출처 자료 최신성	데이터 기준일과 실제 처리일을 기록	data/etl/run.py
+FE01-001	02_web_api	fe01_common_routing	React 라우팅·공통 UX	루트 진입	상권 진단 입력 화면이 렌더링된다	front/src/App.tsx
+FE01-002	02_web_api	fe01_common_routing	React 라우팅·공통 UX	추천 경로 진입	추천 입력 화면이 렌더링된다	front/src/App.tsx
+FE01-003	02_web_api	fe01_common_routing	React 라우팅·공통 UX	진단 결과 경로 진입	ResultPage가 id=1로 결과 조회를 시도한다	front/src/App.tsx
+FE01-004	02_web_api	fe01_common_routing	React 라우팅·공통 UX	네비게이션 진단 링크	루트 화면으로 이동한다	front/src/App.tsx
+FE01-005	02_web_api	fe01_common_routing	React 라우팅·공통 UX	네비게이션 추천 링크	/recommend로 이동한다	front/src/App.tsx
+FE01-006	02_web_api	fe01_common_routing	React 라우팅·공통 UX	뒤로가기 라우팅	이전 주소와 화면이 복원된다	front/src/App.tsx
+FE01-007	02_web_api	fe01_common_routing	React 라우팅·공통 UX	새로고침 딥링크	Nginx history fallback으로 앱이 재진입한다	front/src/App.tsx
+FE01-008	02_web_api	fe01_common_routing	React 라우팅·공통 UX	없는 경로	오류나 빈 화면 대신 유효한 404 안내가 제공된다	front/src/App.tsx
+FE01-009	02_web_api	fe01_common_routing	React 라우팅·공통 UX	반응형 좁은 화면	탭·선택박스가 가로 잘림 없이 접근 가능하다	front/src/App.tsx
+FE01-010	02_web_api	fe01_common_routing	React 라우팅·공통 UX	키보드 탭 이동	상단 메뉴와 입력 요소 이동이 가능하다	front/src/App.tsx
+FE01-011	02_web_api	fe01_common_routing	React 라우팅·공통 UX	타이틀/랜드마크	header/main 의미 구조와 제목 노출이 유지된다	front/src/App.tsx
+FE01-012	02_web_api	fe01_common_routing	React 라우팅·공통 UX	초기 로딩 상태	명확한 화면 구조가 표시되고 콘솔 오류가 없다	front/src/App.tsx
+FE01-013	02_web_api	fe01_common_routing	React 라우팅·공통 UX	링크 직접 키보드 활성화	해당 페이지로 이동한다	front/src/App.tsx
+FE01-014	02_web_api	fe01_common_routing	React 라우팅·공통 UX	브라우저 새 탭 링크	주소가 독립적으로 열린다	front/src/App.tsx
+FE01-015	02_web_api	fe01_common_routing	React 라우팅·공통 UX	모바일 320px	접근 가능한 탐색과 가독성이 유지된다	front/src/App.tsx
+FE01-016	02_web_api	fe01_common_routing	React 라우팅·공통 UX	URL query 보존	정상 추천 화면 표시 및 예외 없음	front/src/App.tsx
+FE01-017	02_web_api	fe01_common_routing	React 라우팅·공통 UX	기존 새 화면 영향	메인 기존 두 화면 라우팅 회귀가 없어야 한다	front/src/App.tsx
+FE01-018	02_web_api	fe01_common_routing	React 라우팅·공통 UX	404 검색엔진/접근성	사용자용 오류 안내와 웹 접근성 검증 필요	front/src/App.tsx
+FE02-001	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	기본 자치구	마포구가 기본 자치구로 지정된다	front/src/pages/DiagnosePage.tsx
+FE02-002	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	기본 행정동	연남동이 기본 행정동으로 표시된다	front/src/pages/DiagnosePage.tsx
+FE02-003	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	기본 업종	한식음식점이 기본 업종으로 표시된다	front/src/pages/DiagnosePage.tsx
+FE02-004	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	옵션 목록 호출	GET /api/options가 1회 실행된다	front/src/pages/DiagnosePage.tsx
+FE02-005	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	마포구 옵션 존재	마포구 선택 유지	front/src/pages/DiagnosePage.tsx
+FE02-006	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	마포구 옵션 없음	첫 번째 강남구로 대체된다	front/src/pages/DiagnosePage.tsx
+FE02-007	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	옵션 빈 목록	선택 상태를 안전하게 표시하고 실패 요청을 피한다	front/src/pages/DiagnosePage.tsx
+FE02-008	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	자치구 변경	행정동 선택지는 강남구 항목으로 갱신된다	front/src/pages/DiagnosePage.tsx
+FE02-009	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	기존 동 미포함	새 자치구 첫 동으로 선택한다	front/src/pages/DiagnosePage.tsx
+FE02-010	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	기존 동 포함	동 선택을 불필요하게 바꾸지 않는다	front/src/pages/DiagnosePage.tsx
+FE02-011	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	동 선택 변경	선택 행정동 값이 변경된다	front/src/pages/DiagnosePage.tsx
+FE02-012	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	업종 선택 변경	선택 업종 값이 변경된다	front/src/pages/DiagnosePage.tsx
+FE02-013	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	분석 버튼	POST /api/diagnoses로 세 필드 전송	front/src/pages/DiagnosePage.tsx
+FE02-014	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	분석 중 버튼 중복	버튼 disabled로 중복 실행이 차단된다	front/src/pages/DiagnosePage.tsx
+FE02-015	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	분석 중 라벨	'AI가 분석하는 중...'으로 바뀐다	front/src/pages/DiagnosePage.tsx
+FE02-016	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	성공 결과 이동	/diagnoses/12로 이동한다	front/src/pages/DiagnosePage.tsx
+FE02-017	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	전송 오류 메시지	서버 message가 사용자에게 표시된다	front/src/pages/DiagnosePage.tsx
+FE02-018	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	비JSON 오류	기본 오류 메시지가 표시된다	front/src/pages/DiagnosePage.tsx
+FE02-019	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	요청 끝난 뒤 버튼	loading=false로 버튼 복구	front/src/pages/DiagnosePage.tsx
+FE02-020	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	옵션 요청 실패	'목록을 불러오지 못했습니다' 또는 구체 메시지를 표시	front/src/pages/DiagnosePage.tsx
+FE02-021	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	빈 지역 제출 방어	유효하지 않은 선택값은 제출 전 차단되어야 한다	front/src/pages/DiagnosePage.tsx
+FE02-022	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	서로 다른 구·동 제출 방어	구·동 불일치 제출을 차단한다	front/src/pages/DiagnosePage.tsx
+FE02-023	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	업종 미지원 값	사용자에게 선택 오류 안내 후 서버 결과를 확인	front/src/pages/DiagnosePage.tsx
+FE02-024	02_web_api	fe02_diagnosis_input_ui	진단 페이지 입력·셀렉트	API 응답 순서 역전	오래된 응답이 최신 선택을 덮지 않아야 한다	front/src/pages/DiagnosePage.tsx
+FE03-001	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	결과 API 조회	GET /api/diagnoses/12 호출	front/src/pages/ResultPage.tsx
+FE03-002	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	조회 대기	'불러오는 중...' 표출	front/src/pages/ResultPage.tsx
+FE03-003	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	조회 실패	오류 메시지 표출	front/src/pages/ResultPage.tsx
+FE03-004	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	구·동·업종	상단에 세 값 모두 표시	front/src/pages/ResultPage.tsx
+FE03-005	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	최근 폐업률	'폐업률 5.6%' 표출	front/src/pages/ResultPage.tsx
+FE03-006	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	상태 안정	안정 칩 스타일·문구	front/src/pages/ResultPage.tsx
+FE03-007	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	상태 주의	주의 칩 스타일·문구	front/src/pages/ResultPage.tsx
+FE03-008	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	상태 위험	위험 칩 스타일·문구	front/src/pages/ResultPage.tsx
+FE03-009	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	상태 미지정	판단 불가 스타일·문구	front/src/pages/ResultPage.tsx
+FE03-010	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	모르는 상태	unknown fallback 스타일	front/src/pages/ResultPage.tsx
+FE03-011	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	상권변화명	칩에 상권축소 표시	front/src/pages/ResultPage.tsx
+FE03-012	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	ML 예상 폐업률	7.34% 표시	front/src/pages/ResultPage.tsx
+FE03-013	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	DL 예상 매출	650.2만원 표시	front/src/pages/ResultPage.tsx
+FE03-014	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	점포 수	점포 30개 표시	front/src/pages/ResultPage.tsx
+FE03-015	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	개업률	개업률 2.1% 표시	front/src/pages/ResultPage.tsx
+FE03-016	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	유동인구 반올림	1,100명 표시	front/src/pages/ResultPage.tsx
+FE03-017	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	설명 기본 출처	기본 문장 표출	front/src/pages/ResultPage.tsx
+FE03-018	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	설명 Gemini 출처	Gemini 표출	front/src/pages/ResultPage.tsx
+FE03-019	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	줄바꿈 유지	줄바꿈 유지	front/src/pages/ResultPage.tsx
+FE03-020	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	다시 분석 링크	/로 이동	front/src/pages/ResultPage.tsx
+FE03-021	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	필수 수치 누락	NaN/런타임 오류 없이 결측치 안내가 제공되어야 한다	front/src/pages/ResultPage.tsx
+FE03-022	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	다른 ID 순차 조회	ID별 최신 결과만 표출된다	front/src/pages/ResultPage.tsx
+FE03-023	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	악의적 설명	React가 문자를 이스케이프하고 실행하지 않는다	front/src/pages/ResultPage.tsx
+FE03-024	02_web_api	fe03_diagnosis_result_ui	진단 결과 렌더링	빈 설명	UI가 무너짐 없이 표시된다	front/src/pages/ResultPage.tsx
+FE04-001	02_web_api	fe04_recommend_ui	업종 추천 화면	기본 지역	마포구/연남동 기본값	front/src/pages/RecommendPage.tsx
+FE04-002	02_web_api	fe04_recommend_ui	업종 추천 화면	옵션 목록	GET /api/options 호출	front/src/pages/RecommendPage.tsx
+FE04-003	02_web_api	fe04_recommend_ui	업종 추천 화면	자치구 선택 교체	해당 구의 동 목록 재계산	front/src/pages/RecommendPage.tsx
+FE04-004	02_web_api	fe04_recommend_ui	업종 추천 화면	동 일치 검사	새 구의 첫 행정동으로 교체	front/src/pages/RecommendPage.tsx
+FE04-005	02_web_api	fe04_recommend_ui	업종 추천 화면	기존 동 유지	현재 동 유지	front/src/pages/RecommendPage.tsx
+FE04-006	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 버튼	POST /api/recommendations 전송	front/src/pages/RecommendPage.tsx
+FE04-007	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 버튼 로딩	disabled와 로딩 문구	front/src/pages/RecommendPage.tsx
+FE04-008	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 결과 표출	3개 업종 각각 한 행 표시	front/src/pages/RecommendPage.tsx
+FE04-009	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 결과 빈 배열	빈 상태 안내가 제공되도록 확인	front/src/pages/RecommendPage.tsx
+FE04-010	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 결과 상태 안정	안정 뱃지	front/src/pages/RecommendPage.tsx
+FE04-011	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 결과 상태 주의	주의 뱃지	front/src/pages/RecommendPage.tsx
+FE04-012	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 결과 상태 위험	위험 뱃지	front/src/pages/RecommendPage.tsx
+FE04-013	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 결과 미지정	판단 불가 뱃지	front/src/pages/RecommendPage.tsx
+FE04-014	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 수치 단위	4.2%	front/src/pages/RecommendPage.tsx
+FE04-015	02_web_api	fe04_recommend_ui	업종 추천 화면	매출 수치 단위	620.1만원	front/src/pages/RecommendPage.tsx
+FE04-016	02_web_api	fe04_recommend_ui	업종 추천 화면	상권변화	행정동·상권변화 헤더 표출	front/src/pages/RecommendPage.tsx
+FE04-017	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 서버 오류	오류 문장 표출	front/src/pages/RecommendPage.tsx
+FE04-018	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 중복 클릭	중복 요청 차단	front/src/pages/RecommendPage.tsx
+FE04-019	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 재요청	최신 지역 결과로 교체	front/src/pages/RecommendPage.tsx
+FE04-020	02_web_api	fe04_recommend_ui	업종 추천 화면	지역 변경 즉시 오래된 표 처리	구 지역과 표 지역이 불일치하지 않게 결과 초기화	front/src/pages/RecommendPage.tsx
+FE04-021	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 상위 5와 전체 목록 차이	전체 표가 10개 렌더링되고 상위 추천 표시 여부 점검	front/src/pages/RecommendPage.tsx
+FE04-022	02_web_api	fe04_recommend_ui	업종 추천 화면	모바일 테이블	가로 오버플로 안전 처리	front/src/pages/RecommendPage.tsx
+FE04-023	02_web_api	fe04_recommend_ui	업종 추천 화면	중복 업종	React key 중복 경고가 없도록 정책 확인	front/src/pages/RecommendPage.tsx
+FE04-024	02_web_api	fe04_recommend_ui	업종 추천 화면	옵션 실패 후 추천	유효한 기존 값일 때만 요청/오류 안내	front/src/pages/RecommendPage.tsx
+FE05-001	02_web_api	fe05_http_client	프론트 fetch API 계약	baseURL 기본값	http://localhost:8080 사용	front/src/api/api.ts
+FE05-002	02_web_api	fe05_http_client	프론트 fetch API 계약	baseURL 상대 경로	현재 origin /api/* 호출	front/src/api/api.ts
+FE05-003	02_web_api	fe05_http_client	프론트 fetch API 계약	옵션 URL	GET /api/options	front/src/api/api.ts
+FE05-004	02_web_api	fe05_http_client	프론트 fetch API 계약	진단 URL	POST /api/diagnoses	front/src/api/api.ts
+FE05-005	02_web_api	fe05_http_client	프론트 fetch API 계약	결과 조회 URL	GET /api/diagnoses/17	front/src/api/api.ts
+FE05-006	02_web_api	fe05_http_client	프론트 fetch API 계약	추천 URL	POST /api/recommendations	front/src/api/api.ts
+FE05-007	02_web_api	fe05_http_client	프론트 fetch API 계약	JSON 헤더	Content-Type application/json	front/src/api/api.ts
+FE05-008	02_web_api	fe05_http_client	프론트 fetch API 계약	문자열 JSON 직렬화	원문 값 변형 없는 JSON body	front/src/api/api.ts
+FE05-009	02_web_api	fe05_http_client	프론트 fetch API 계약	HTTP 200 JSON	제네릭 타입 일치 데이터 반환	front/src/api/api.ts
+FE05-010	02_web_api	fe05_http_client	프론트 fetch API 계약	HTTP 201 JSON	결과 data 반환	front/src/api/api.ts
+FE05-011	02_web_api	fe05_http_client	프론트 fetch API 계약	400 message 우선	오류 메시지를 그대로 노출	front/src/api/api.ts
+FE05-012	02_web_api	fe05_http_client	프론트 fetch API 계약	422 detail 대체	detail로 대체	front/src/api/api.ts
+FE05-013	02_web_api	fe05_http_client	프론트 fetch API 계약	500 비JSON	기본 오류 문구 사용	front/src/api/api.ts
+FE05-014	02_web_api	fe05_http_client	프론트 fetch API 계약	네트워크 실패	호출자 catch로 오류 전파	front/src/api/api.ts
+FE05-015	02_web_api	fe05_http_client	프론트 fetch API 계약	빈 응답 body	JSON 파싱 오류를 의미 있게 처리해야 한다	front/src/api/api.ts
+FE05-016	02_web_api	fe05_http_client	프론트 fetch API 계약	API 경로 이중 슬래시	//api 중복 처리 확인	front/src/api/api.ts
+FE05-017	02_web_api	fe05_http_client	프론트 fetch API 계약	민감정보 에러 반사	사용자 노출 전 민감정보 제거	front/src/api/api.ts
+FE05-018	02_web_api	fe05_http_client	프론트 fetch API 계약	조회 ID 인코딩	경로 삽입을 검증하고 서버 400 처리	front/src/api/api.ts
+OPS1-001	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	compose config	스키마 유효	compose.yaml
+OPS1-002	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	DB_PASSWORD 미설정	compose 구성 단계 실패	compose.yaml
+OPS1-003	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	서비스 4개	db,ai,back,front	compose.yaml
+OPS1-004	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	Postgres 16 pgvector	pgvector/pgvector:pg16	compose.yaml
+OPS1-005	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	DB named volume	영속성 유지	compose.yaml
+OPS1-006	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	DB 자격	PostgreSQL 접속 정상	compose.yaml
+OPS1-007	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	DB 헬스	db healthy	compose.yaml
+OPS1-008	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	DB 다운	AI/백 실행 순서 차단	compose.yaml
+OPS1-009	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	AI 서비스명	back→ai DNS 성공	compose.yaml
+OPS1-010	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	DB 서비스명	back→db 연결	compose.yaml
+OPS1-011	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	AI depends_on	DB 준비 후 AI 생성	compose.yaml
+OPS1-012	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	Back depends_on	서비스 의존 생성	compose.yaml
+OPS1-013	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	AI started≠healthy	back 호출 성공이 보장되지 않음; readiness 검증	compose.yaml
+OPS1-014	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	Nginx proxy	/api 프록시 연결	compose.yaml
+OPS1-015	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	Host 80 노출	브라우저 웹 접근	compose.yaml
+OPS1-016	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	AI 호스트 비공개	호스트 8000 직접 연결 불가	compose.yaml
+OPS1-017	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	Back 호스트 비공개	호스트 8080 직접 연결 불가	compose.yaml
+OPS1-018	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	DB 호스트 비공개	외부 5432 연결 불가	compose.yaml
+OPS1-019	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	V1~V9 initdb	신규 데이터 볼륨 초기화가 성공해야 한다	compose.yaml
+OPS1-020	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	상태 Up 의미	실제 health/API 확인 별도 수행	compose.yaml
+OPS1-021	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	ENV 문자열	미설정 fallback	compose.yaml
+OPS1-022	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	로그 확인	오류 원인 추적 가능	compose.yaml
+OPS1-023	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	front nginx upstream	upstream DNS 성공	compose.yaml
+OPS1-024	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	컨테이너 메모리	메모리 상한/압박 측정	compose.yaml
+OPS1-025	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	리빌드 후 데이터	db-data 소실 없음	compose.yaml
+OPS1-026	04_infra_deploy	ops1_docker_connect	Docker Compose 4서비스	동시 배포	배포 충돌/락 검증	compose.yaml
+OPS2-001	04_infra_deploy	ops2_github_ci	CI 4잡·자동검증	main 푸시	CI 실행	.github/workflows/ci.yml
+OPS2-002	04_infra_deploy	ops2_github_ci	CI 4잡·자동검증	main PR	CI 실행	.github/workflows/ci.yml
+OPS2-003	04_infra_deploy	ops2_github_ci	CI 4잡·자동검증	data pytest	pytest 실행	.github/workflows/ci.yml
+OPS2-004	04_infra_deploy	ops2_github_ci	CI 4잡·자동검증	ai pytest	pytest 실행	.github/workflows/ci.yml
+OPS2-005	04_infra_deploy	ops2_github_ci	CI 4잡·자동검증	back gradle	JUnit 실행	.github/workflows/ci.yml
+OPS2-006	04_infra_deploy	ops2_github_ci	CI 4잡·자동검증	front npm	빌드 성공	.github/workflows/ci.yml
+OPS2-007	04_infra_deploy	ops2_github_ci	CI 4잡·자동검증	Python 데이터 3.11	환경 3.11	.github/workflows/ci.yml
+OPS2-008	04_infra_deploy	ops2_github_ci	CI 4잡·자동검증	Python AI 3.12	환경 3.12	.github/workflows/ci.yml
+OPS2-009	04_infra_deploy	ops2_github_ci	CI 4잡·자동검증	Java 17	Temurin 17	.github/workflows/ci.yml
+OPS2-010	04_infra_deploy	ops2_github_ci	CI 4잡·자동검증	Node 22	Node 22	.github/workflows/ci.yml
+OPS2-011	04_infra_deploy	ops2_github_ci	CI 4잡·자동검증	CI 실패	전체 CI 실패	.github/workflows/ci.yml
+OPS2-012	04_infra_deploy	ops2_github_ci	CI 4잡·자동검증	워크플로 권한	최소 권한 확인	.github/workflows/ci.yml
+OPS2-013	04_infra_deploy	ops2_github_ci	CI 4잡·자동검증	테스트 커버리지	회귀 케이스 포함 여부 확인	.github/workflows/ci.yml
+OPS2-014	04_infra_deploy	ops2_github_ci	CI 4잡·자동검증	Docker 빌드 누락	실행 이미지 빌드 검증 추가 검토	.github/workflows/ci.yml
+OPS2-015	04_infra_deploy	ops2_github_ci	CI 4잡·자동검증	DB 통합테스트 누락	실제 JPA/SQL 통합테스트 추가 검토	.github/workflows/ci.yml
+OPS2-016	04_infra_deploy	ops2_github_ci	CI 4잡·자동검증	비밀 환경 분리	비밀키 미노출	.github/workflows/ci.yml
+OPS2-017	04_infra_deploy	ops2_github_ci	CI 4잡·자동검증	중복 실행	CI 결과 혼동 없음	.github/workflows/ci.yml
+OPS2-018	04_infra_deploy	ops2_github_ci	CI 4잡·자동검증	lint 여부	정적 분석 게이트 유무 확인	.github/workflows/ci.yml
+OPS3-001	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	main 푸시	CD 트리거	.github/workflows/deploy.yml
+OPS3-002	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	수동 배포	CD 트리거	.github/workflows/deploy.yml
+OPS3-003	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	누락 SSH 키	배포 중단+에러 출력	.github/workflows/deploy.yml
+OPS3-004	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	누락 EC2_HOST	배포 중단+에러 출력	.github/workflows/deploy.yml
+OPS3-005	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	SSH 키 권한	chmod 600	.github/workflows/deploy.yml
+OPS3-006	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	SSH 디렉터리 권한	chmod 700	.github/workflows/deploy.yml
+OPS3-007	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	SSH key parse	잘못된 키 중단	.github/workflows/deploy.yml
+OPS3-008	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	SSH host fingerprint	known_hosts 등록	.github/workflows/deploy.yml
+OPS3-009	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	SSH ConnectTimeout	연결 제한	.github/workflows/deploy.yml
+OPS3-010	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	서버 경로 첫 후보	해당 폴더 사용	.github/workflows/deploy.yml
+OPS3-011	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	서버 경로 HOME	두 번째 후보 사용	.github/workflows/deploy.yml
+OPS3-012	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	서버 경로 없음	오류 후 종료	.github/workflows/deploy.yml
+OPS3-013	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	git fetch	최신 Git 참조 수신	.github/workflows/deploy.yml
+OPS3-014	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	git pull ff only	임의 merge 없이 실패	.github/workflows/deploy.yml
+OPS3-015	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	환경파일 없음	배포 중단	.github/workflows/deploy.yml
+OPS3-016	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	compose config 오류	기동 이전 실패	.github/workflows/deploy.yml
+OPS3-017	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	compose up	--build --remove-orphans 실행	.github/workflows/deploy.yml
+OPS3-018	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	배포 ps	서비스 상태 출력	.github/workflows/deploy.yml
+OPS3-019	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	Front health curl	재시도 10회	.github/workflows/deploy.yml
+OPS3-020	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	AI health 미검증	내부 AI API 직접 readiness 검증 추가 필요	.github/workflows/deploy.yml
+OPS3-021	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	BE health 미검증	API 성공 확인 추가 필요	.github/workflows/deploy.yml
+OPS3-022	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	rollback 없음	자동 이전 버전 복귀 설계 필요	.github/workflows/deploy.yml
+OPS3-023	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	main push 배포 실패	CI 성공 게이트 없이 자동 배포되는지 검증	.github/workflows/deploy.yml
+OPS3-024	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	동시 배포 제한	배포가 직렬 처리	.github/workflows/deploy.yml
+OPS3-025	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	SSH 호스트 신뢰	기존 키 불일치 시 실패	.github/workflows/deploy.yml
+OPS3-026	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	오류 로그 수집	실패 시 docker compose logs 자동 출력 필요	.github/workflows/deploy.yml
+OPS3-027	04_infra_deploy	ops3_deploy_scripts	CD SSH·Compose 자동배포	앱 헬스 실사용	실제 사용자 요청 성공 여부도 확인	.github/workflows/deploy.yml
+QA01-001	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	SQL 인젝션 방어	DB 쿼리 파라미터화/오류 처리	front/src/api/api.ts
+QA01-002	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	XSS React 렌더링	스크립트 실행 안 됨	front/src/api/api.ts
+QA01-003	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	RAG 프롬프트 주입	명령 취급 없이 가드레일 적용	front/src/api/api.ts
+QA01-004	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	지역 데이터 분리	지역 다르면 통계 섞이지 않음	front/src/api/api.ts
+QA01-005	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	공고 종료 오안내	접수 중이라고 표시하지 않음	front/src/api/api.ts
+QA01-006	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	실존 공고 검증	공식 모집 페이지와 존재/일자 확인	front/src/api/api.ts
+QA01-007	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	RAG 샘플 표시	실제 공식 조사로 오인되지 않도록 라벨	front/src/api/api.ts
+QA01-008	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	접근제어 관리자 API	현재 서비스 인증 범위 확인	front/src/api/api.ts
+QA01-009	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	민감정보 노출	호스트/키/비밀번호 미노출	front/src/api/api.ts
+QA01-010	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	CORS Origin	비인가 도메인 차단	front/src/api/api.ts
+QA01-011	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	CSRF POST	CSRF 적정 방어 여부 확인	front/src/api/api.ts
+QA01-012	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	HTTP 헤더	적정 보안 헤더 설정	front/src/api/api.ts
+QA01-013	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	보안 취약성 스캔	SCA 및 이미지 취약점 탐지	front/src/api/api.ts
+QA01-014	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	입력 최대 길이	메모리/토큰 요청 제한	front/src/api/api.ts
+QA01-015	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	API 100동시	HTTP 오류율·p95 latency 계측	front/src/api/api.ts
+QA01-016	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	ML 초기 로딩	Cold-start latency 측정	front/src/api/api.ts
+QA01-017	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	RAG 벡터 생성	중복 모델 호출/메모리 급등 방지	front/src/api/api.ts
+QA01-018	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	데이터 최신성	기준 분기 표시	front/src/api/api.ts
+QA01-019	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	모바일 접근성	탭/테이블 접근성	front/src/api/api.ts
+QA01-020	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	키보드 사용	입력·실행 접근성	front/src/api/api.ts
+QA01-021	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	스크린리더 레이블	명확한 label 제공	front/src/api/api.ts
+QA01-022	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	색상 대체정보	텍스트 위험도 함께 제공	front/src/api/api.ts
+QA01-023	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	불확실성 설명	실제 결과 보장 아님 고지	front/src/api/api.ts
+QA01-024	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	사용자 데이터 저장 고지	개인정보·보존정책 설명	front/src/api/api.ts
+QA01-025	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	장애 후 복구	서비스 사용자 흐름 재개	front/src/api/api.ts
+QA01-026	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	모니터링 알림	알림 체계 검증	front/src/api/api.ts
+QA01-027	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	백업·복구	백업 복원 무결성	front/src/api/api.ts
+QA01-028	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	데이터 수정 추적	데이터 버전 기록	front/src/api/api.ts
+QA01-029	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	사용자 요청 end-to-end	결과 UI 성공까지 검사	front/src/api/api.ts
+QA01-030	03_security_quality	qa01_security_nfr	보안·성능·사용자 품질	개선 지표 검증	현재 코드에서 측정 환경/재현 가능성 별도 평가	front/src/api/api.ts
+QA02-001	03_security_quality	qa02_doc_trace_regression	문서·구현 일치성·테스트 회귀	README.md 기능 차이	현재 실행 기능/기록 문서 명확히 분리	README.md
+QA02-002	03_security_quality	qa02_doc_trace_regression	문서·구현 일치성·테스트 회귀	레거시 MV 개선 주장	실제 최신 코드/측정 로그의 재현 가능성 확인	README.md
+QA02-003	03_security_quality	qa02_doc_trace_regression	문서·구현 일치성·테스트 회귀	레거시 API 문서	현재 endpoint 존재 여부 구분	README.md
+QA02-004	03_security_quality	qa02_doc_trace_regression	문서·구현 일치성·테스트 회귀	현재 API 표	GET options,POST diagnose,POST recommend로 동기화	README.md
+QA02-005	03_security_quality	qa02_doc_trace_regression	문서·구현 일치성·테스트 회귀	버전 기록	문서 릴리스 정보 일치	README.md
+QA02-006	03_security_quality	qa02_doc_trace_regression	문서·구현 일치성·테스트 회귀	RAG 기능 표기	문서와 API 동기화	README.md
+QA02-007	03_security_quality	qa02_doc_trace_regression	문서·구현 일치성·테스트 회귀	배포 방법	현재 서비스명/DB 방식과 일치	README.md
+QA02-008	03_security_quality	qa02_doc_trace_regression	문서·구현 일치성·테스트 회귀	테스트 방법	실제 CI와 동기화	README.md
+QA02-009	03_security_quality	qa02_doc_trace_regression	문서·구현 일치성·테스트 회귀	모델 평가 자료	지표 출처 및 버전 추적	README.md
+QA02-010	03_security_quality	qa02_doc_trace_regression	문서·구현 일치성·테스트 회귀	상권통계 데이터	수집 분기·규칙 설명	README.md
+QA02-011	03_security_quality	qa02_doc_trace_regression	문서·구현 일치성·테스트 회귀	지원 정책 원천	실재 여부 근거 링크 및 운영 고지	README.md
+QA02-012	03_security_quality	qa02_doc_trace_regression	문서·구현 일치성·테스트 회귀	오류 사례 추가	사용자 안내/개발자 운영 문서	README.md
+QA02-013	03_security_quality	qa02_doc_trace_regression	문서·구현 일치성·테스트 회귀	각 소스 경로	코드 현재 버전과 일치	README.md
+QA02-014	03_security_quality	qa02_doc_trace_regression	문서·구현 일치성·테스트 회귀	TC ID 유일성	중복 ID 없음	README.md
+QA02-015	03_security_quality	qa02_doc_trace_regression	문서·구현 일치성·테스트 회귀	테스트 자동화 기록	테스트가 실행된 항목만 PASS	README.md
+QA02-016	03_security_quality	qa02_doc_trace_regression	문서·구현 일치성·테스트 회귀	정적 리뷰 구분	실행 검증 없이 결함 단정 금지	README.md
+QA02-017	03_security_quality	qa02_doc_trace_regression	문서·구현 일치성·테스트 회귀	운영 장애 재현	로그 근거로 원인 재현	README.md
+QA02-018	03_security_quality	qa02_doc_trace_regression	문서·구현 일치성·테스트 회귀	상태별 판정	모든 행 판정 기록	README.md
+RG01-001	02_web_api	rg01_rag_http	상권 RAG API	RAG health	status=ok feature=commercial_rag_001	ai/src/features/commercial_rag_001/router.py
+RG01-002	02_web_api	rg01_rag_http	상권 RAG API	RAG ask 정상	200 CommercialRagResponse	ai/src/features/commercial_rag_001/router.py
+RG01-003	02_web_api	rg01_rag_http	상권 RAG API	시장 검색 정상	200 MarketSearchResponse	ai/src/features/commercial_rag_001/router.py
+RG01-004	02_web_api	rg01_rag_http	상권 RAG API	정책 검색 정상	200 SupportPolicyResponse	ai/src/features/commercial_rag_001/router.py
+RG01-005	02_web_api	rg01_rag_http	상권 RAG API	평가 정상	200 EvaluationMetrics	ai/src/features/commercial_rag_001/router.py
+RG01-006	02_web_api	rg01_rag_http	상권 RAG API	RAG ask question 누락	422 validation	ai/src/features/commercial_rag_001/router.py
+RG01-007	02_web_api	rg01_rag_http	상권 RAG API	RAG ask question null	422 validation	ai/src/features/commercial_rag_001/router.py
+RG01-008	02_web_api	rg01_rag_http	상권 RAG API	RAG ask question 빈문자열	빈 질문 가드레일 검증	ai/src/features/commercial_rag_001/router.py
+RG01-009	02_web_api	rg01_rag_http	상권 RAG API	시장 검색 query 누락	422 validation	ai/src/features/commercial_rag_001/router.py
+RG01-010	02_web_api	rg01_rag_http	상권 RAG API	정책 검색 입력 없음	기본값으로 정책 검색	ai/src/features/commercial_rag_001/router.py
+RG01-011	02_web_api	rg01_rag_http	상권 RAG API	지원 정책 top_k 음수	유효한 1 이상 제한 필요	ai/src/features/commercial_rag_001/router.py
+RG01-012	02_web_api	rg01_rag_http	상권 RAG API	시장 검색 top_k=0	0건 요구에 대한 명확한 검증 필요	ai/src/features/commercial_rag_001/router.py
+RG01-013	02_web_api	rg01_rag_http	상권 RAG API	지원 정책 날짜 형식	422 또는 유효성 에러 필요	ai/src/features/commercial_rag_001/router.py
+RG01-014	02_web_api	rg01_rag_http	상권 RAG API	RAG ask 내부 예외	HTTP 500 detail 반환	ai/src/features/commercial_rag_001/router.py
+RG01-015	02_web_api	rg01_rag_http	상권 RAG API	지원 정책 내부 예외	HTTP 500 detail	ai/src/features/commercial_rag_001/router.py
+RG01-016	02_web_api	rg01_rag_http	상권 RAG API	평가 내부 예외	HTTP 500 detail	ai/src/features/commercial_rag_001/router.py
+RG01-017	02_web_api	rg01_rag_http	상권 RAG API	RAG 장애 정보 마스킹	detail로 내부 정보 노출 방지	ai/src/features/commercial_rag_001/router.py
+RG01-018	02_web_api	rg01_rag_http	상권 RAG API	RAG JSON 응답 타입	필수 필드 타입 일관	ai/src/features/commercial_rag_001/router.py
+RG01-019	02_web_api	rg01_rag_http	상권 RAG API	RAG 직접 공개 여부	외부 공개 정책과 인증 통제 확인	ai/src/features/commercial_rag_001/router.py
+RG01-020	02_web_api	rg01_rag_http	상권 RAG API	RAG 과도한 요청	timeout/요금폭증 방어	ai/src/features/commercial_rag_001/router.py
+RG02-001	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	지식 문서 로드	보고서·지원사업 목록	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-002	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	문서 종류 분류	doc_type 보존	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-003	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	행정동 메타데이터	district/dong 분리	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-004	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	업종 메타데이터	industry 보존	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-005	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	분기 메타데이터	quarter 보존	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-006	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	출처 URL	링크 원문 보존	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-007	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	공고 날짜	정책 날짜 유지	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-008	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	짧은 문서 청킹	1개 청크	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-009	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	경계 딱 맞는 문서	1개 청크	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-010	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	긴 문서 청킹	중첩 청크 생성	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-011	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	중첩량 보존	서로 겹치는 본문 50자	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-012	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	0글자 문서	빈 문서 검색 처리 정책	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-013	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	chunk_size=overlap	무한루프 없이 입력 거절 필요	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-014	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	chunk_size 음수	무한루프/잘못된 슬라이싱 차단	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-015	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	청크 출처 보존	모든 청크 title/source/dong 유지	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-016	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	문서 ID 유일	청크 ID 중복 없음	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-017	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	오프라인 임베딩	64차원 로컬 임베딩	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-018	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	외부 API 임베딩	Gemini 경로 결과 반환	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-019	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	Gemini 오류 fallback	로컬 임베딩	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-020	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	빈 문자열 임베딩	형식이 유지되고 divide-by-zero 없음	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-021	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	벡터 유사도 자기일치	cosine≈1.0	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-022	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	벡터 유사도 영벡터	0 또는 안전 처리	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-023	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	다차원 불일치	명확한 경고/대체 차원 정책	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-024	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	임베딩 차원 DB 일치	DB 스키마와 모형 차원 정합성 확인	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-025	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	실제 공개 자료 여부	실제 공시 확인 전 실데이터로 표기 금지	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG02-026	01_unit_integration	rg02_knowledge_base	상권 문서 청킹·임베딩	지식 문서 갱신	캐시 갱신 정책 점검	ai/src/features/commercial_rag_001/market_knowledge/service.py
+RG03-001	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	보고서만 검색	market_report만 후보	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-002	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	지역 일치 필터	마포구 보고서만 1차 선택	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-003	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	지역 다름 배제	강남구 문서 1차 배제	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-004	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	행정동 선택	연남동 우대 점수 0.3	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-005	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	구 선택	일치 우대 점수 0.2	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-006	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	업종 선택	일치 우대 점수 0.2	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-007	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	키워드 일치	일치 비율×0.2 가산	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-008	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	유사도 원본	score 기본 0.75	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-009	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	rerank 정렬	내림차순	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-010	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	top_k 1	1개 반환	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-011	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	top_k 3	최대 3개 반환	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-012	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	top_k 20	후보수 범위 내 반환	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-013	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	중복 문서	중복 제거 여부 확인	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-014	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	없는 자치구	전체 보고서 fallback 현재 동작 확인	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-015	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	없는 자치구 fallback 교차오염	타구 문서가 동일 지역 근거로 오안내되지 않도록 차단	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-016	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	동 매칭 불일치	다른 동 문서에 근거해 단정하지 않기	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-017	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	업종 불일치	타업종 보고서 표시 정책 검증	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-018	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	분기 조건	분기 조건이 실제 필터로 반영되어야 한다	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-019	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	시점 최신성	오래된 문서 최신 통계처럼 오안내 방지	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-020	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	문서 캐시 재사용	build_document_chunks 중복 실행 없음	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-021	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	임베딩 캐시 재사용	중복 임베딩 없음	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-022	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	pgvector SQL	DISTRICT/DONG/INDUSTRY/QUARTER 바인딩	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-023	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	pgvector SQL 파라미터	쿼리 파라미터 바인딩 사용	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-024	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	pgvector 연결 실패	[]/fallback 검증	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-025	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	pgvector 임베딩 차원	실제 색인과 쿼리 벡터 차원 일치	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-026	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	pgvector 백엔드 미연결	DB 경로 미사용 여부 확인	ai/src/features/commercial_rag_001/market_search/service.py
+RG03-027	01_unit_integration	rg03_market_evidence_search	하이브리드 검색·재순위화	콘텐츠 타입 비정상	검색 중 타입 에러 방어	ai/src/features/commercial_rag_001/market_search/service.py
+RG04-001	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	모집 시작 전	upcoming,false	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-002	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	모집 시작 당일	open,true	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-003	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	모집 중간	open,true	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-004	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	마감 당일	open,true	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-005	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	마감 다음날	closed,false	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-006	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	과거 종료 지원	closed,false	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-007	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	마감일 형식 오류	closed,false	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-008	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	시작일 형식 오류	closed,false	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-009	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	기준 날짜 잘못된 형식	오류를 사용자에 알리고 현시점 fallback 오판 방지	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-010	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	기준 날짜 없는 경우	시스템 오늘 날짜 사용	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-011	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	종료 정책 only_open	마감 공고 제외	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-012	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	종료 정책 포함	마감 상태 표기한 조회 허용	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-013	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	예정 정책 only_open	예정 공고 제외	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-014	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	지역 전역 정책	서울 전역 공고 포함	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-015	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	지역 지정 정책	해당 공고 포함	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-016	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	타구 정책 배제	강남구 공고 제외	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-017	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	업종 전역 정책	모든 업종 조회에 포함	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-018	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	음식점 대상 정책	포함	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-019	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	비대상 업종 정책	제외	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-020	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	맞춤 구 점수	score +0.5	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-021	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	맞춤 업종 점수	score +0.5	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-022	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	키워드 일치 점수	일치 수×0.3 추가	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-023	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	정렬 기준	상단 배치	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-024	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	top_k=1	상위 1건	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-025	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	top_k=5	5개 이내	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-026	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	top_k=-1	잘못된 결과 슬라이싱 방어	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-027	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	top_k=0	빈 배열 또는 422 정책	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-028	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	정책 원천 진위	실제 공식 공고 확인 전 실시간 공고 단정 금지	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-029	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	소진 조기마감	출처 최신 상태 확인 경고 필요	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-030	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	날짜 범위 역전	잘못된 데이터 차단	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-031	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	정책 중복 제목	id 기준 중복 정리 정책	ai/src/features/commercial_rag_001/support_policy/service.py
+RG04-032	01_unit_integration	rg04_support_policy_rules	지원정책 기간·적합성	today timezone	시점 일관성 보장	ai/src/features/commercial_rag_001/support_policy/service.py
+RG05-001	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	진단 동·업종 있음	base_diagnose 호출	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-002	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	진단 업종 없음	진단 None 반환	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-003	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	진단 동 없음	진단 None 반환	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-004	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	진단에 오류	진단 None 반환	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-005	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	기본 자치구 fallback	기본 마포구로 호출	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-006	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	상권 stable 설명	안정 표기	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-007	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	상권 warning 설명	주의 표기	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-008	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	상권 danger 설명	위험 표기	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-009	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	상권 수치 인용	세 수치 그대로	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-010	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	상권 변화명	상권변화 안내	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-011	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	보고서 있는 경우	출처/보고서명 본문 포함	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-012	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	보고서 없는 경우	근거 부재 안내	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-013	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	지원사업 open	신청 기간 및 혜택 안내	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-014	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	지원사업 마감	마감된 사업을 신청 가능으로 안내하지 않음	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-015	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	지원사업 없음	지원 없음 안내	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-016	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	보고서 citation	인용 구조 생성	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-017	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	정책 citation	인용 구조 생성	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-018	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	근거 120자 초과	citation snippet 120자+...	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-019	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	키 없음 fallback	템플릿 답변	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-020	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	Gemini 정상	생성 본문 반환	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-021	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	Gemini 에러 fallback	템플릿 답변	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-022	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	필수 추정치 경고	미래 확정 매출을 보장하지 않는다고 표기	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-023	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	현장 실사 문구	현장 조사·계약 조건 검토	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-024	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	Gemini 오안내	근거 없는 보장·정책 마감 문구 후검증 필요	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-025	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	출처 위조	문서 목록과 답변 인용 대조 필요	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG05-026	01_unit_integration	rg05_commercial_guidance	상권 진단·출처 결합 설명	비밀키 유출 시도	민감정보 노출 없이 안전 응답	ai/src/features/commercial_rag_001/commercial_guidance/service.py
+RG06-001	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	상권 질문 분류	market_analysis	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-002	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	지원 질문 분류	support_policy	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-003	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	혼합 질문 분류	hybrid	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-004	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	일반 질문 분류	default intent 규칙 확인	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-005	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	검증 노드 입력	검증 로그	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-006	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	지원 의도 도구	정책 검색 경로	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-007	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	상권 의도 도구	상권 근거 검색 경로	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-008	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	혼합 의도 도구	두 검색 경로	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-009	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	검색 결과 결합	response evidence_documents와 policies 분리	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-010	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	진단 자동 결합	base diagnose 접목	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-011	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	진단정보 누락	안전하게 진단 생략	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-012	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	지원 날짜 전파	policy query target_date 보존	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-013	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	top_k 전파	상권 및 정책 각각 2개 이내	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-014	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	질문 원문 보존	response.question 원문	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-015	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	결과 인용	citations 목록	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-016	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	실행 메타	execution_metadata 로그·시간	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-017	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	검증 경고	warnings에 반영	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-018	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	프롬프트 인젝션	실행 거절 또는 안전한 안내	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-019	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	검색 도구 권한	차단	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-020	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	검색 타임아웃	전체 실패 아닌 부분적 degraded 안내	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-021	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	검색 예외	다른 결과 유지·경고 전파	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-022	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	다른 회사 데이터	교차 지역 근거 혼입 차단	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-023	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	반복 실행	캐시와 결과 일관성	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-024	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	빈 질문	명확한 입력 오류 안내	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG06-025	01_unit_integration	rg06_orchestration	RAG 의도분류·분기	질문 10만자	입력 제한, API 비용 통제	ai/src/features/commercial_rag_001/orchestration/workflow.py
+RG07-001	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	허용 서울 자치구	오류 없음	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-002	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	허용 강남구	오류 없음	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-003	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	잘못된 자치구	서울 구 범위 오류	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-004	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	공백만 자치구	형식 오류/미선택으로 처리	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-005	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	동이 없고 구 있음	정상 검색 가능한 조건	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-006	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	날짜 형식 정상	검증 통과	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-007	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	날짜 형식 오류	검증 오류	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-008	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	존재하지 않는 날짜	검증 오류	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-009	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	영어 인젝션	공격 패턴 탐지	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-010	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	한국어 인젝션	공격 패턴 탐지	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-011	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	관리자 모드 요청	차단	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-012	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	API_KEY 요구	차단	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-013	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	단순 정책 질문	인젝션 아님	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-014	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	허용 도구 검색	True	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-015	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	허용 도구 정책	True	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-016	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	허용 도구 진단	True	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-017	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	미허용 도구	False	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-018	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	미허용 배포	False	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-019	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	미허용 셸	False	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-020	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	대소문자 혼합 도구	화이트리스트 정책에 따른 거부	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-021	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	예외 재시도	재시도 후 성공	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-022	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	최대 재시도 초과	fallback value/실패 이유	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-023	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	타임아웃 검증	설정 timeout 시 오류/폴백	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-024	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	서버 연산 중단	실제 중단 여부 검증	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-025	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	실행 로그	3 단계 로그	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-026	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	비용·입출력 추적	입출력 크기 메타	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-027	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	민감정보 로그	로그 비밀키 마스킹 필요	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-028	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	자치구 목록 확장	확장 변경시 테스트	ai/src/features/commercial_rag_001/harness/runtime.py
+RG07-029	03_security_quality	rg07_security_harness	RAG 입력 검증·가드레일	대규모 요청	DoS 제한 및 latency 측정	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-001	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	Recall 완전	1.0	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-002	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	Recall 절반	0.5	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-003	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	Recall 0	0	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-004	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	Recall 기준 없음	정의된 1.0 반환	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-005	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	인용 정확 100%	1.0	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-006	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	인용 정확 50%	0.5	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-007	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	인용 정확 0%	0	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-008	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	인용 없음	지표 분모 처리 정책 확인	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-009	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	지역 적합성 완전	1.0	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-010	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	지역 적합성 절반	0.5	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-011	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	타구 근거만	0	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-012	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	지역 선택 없음	기본 적합성 정책 확인	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-013	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	종료 정책 오안내 없음	0.0	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-014	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	종료 정책 오안내 1건	오안내율 1/N	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-015	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	마감 지원 없음	오안내율 0.0	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-016	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	샘플 평가	4개 지표 및 총 평가 건수	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-017	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	지표 범위	모든 값 0..1	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-018	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	자료 없음 분모	zero division 없음	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-019	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	재현성	매 실행 지표 동일	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-020	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	평가 결과 노출	items/total_evaluated 일치	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-021	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	평가 품질 기준	실제 운영품질 일반화 금지	ai/src/features/commercial_rag_001/harness/runtime.py
+RG08-022	01_unit_integration	rg08_rag_eval	RAG 품질 지표·평가	인용 위조 회귀	잘못된 인용 검출	ai/src/features/commercial_rag_001/harness/runtime.py

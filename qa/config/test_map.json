@@ -1,0 +1,98 @@
+{
+  "version": 3,
+  "timezone": "Asia/Seoul",
+  "areas": {
+    "01_unit_integration": {
+      "purpose": "함수 결과·분기·서비스/DB 연동",
+      "checks": ["record", "python", "java", "front", "regression"]
+    },
+    "02_web_api": {
+      "purpose": "UI 흐름·HTTP 상태·본문·오류·권한",
+      "checks": ["web_api"]
+    },
+    "03_security_quality": {
+      "purpose": "취약 패턴·비밀·인가 누락·정적 분석",
+      "checks": ["security"]
+    },
+    "04_infra_deploy": {
+      "purpose": "컨테이너 준비·실제 요청·배포 기준",
+      "checks": ["infra"]
+    }
+  },
+  "checks": {
+    "record": {
+      "area": "03_security_quality",
+      "section": "qa02_doc_trace_regression",
+      "tool_a": "pytest",
+      "command_a": "python -m pytest qa/runner/tests/test_record.py -q",
+      "tool_b": "check_record",
+      "command_b": "python qa/runner/tools/check_record.py",
+      "purpose": "기록 누적·미실행 섹션 생략"
+    },
+    "python": {
+      "area": "01_unit_integration",
+      "section": "de05_missing_outlier",
+      "tool_a": "pytest",
+      "command_a": "python -m pytest data/tests -q",
+      "tool_b": "regression_oracle",
+      "command_b": "python qa/runner/tools/regression_oracle.py",
+      "purpose": "ETL 정상·예외·NULL·매출 단위"
+    },
+    "java": {
+      "area": "01_unit_integration",
+      "section": "be01_diagnosis_request_dto",
+      "tool_a": "gradle_junit",
+      "command_a": "./gradlew test",
+      "tool_b": "junit_audit",
+      "command_b": "python qa/runner/tools/junit_audit.py",
+      "purpose": "JUnit 실행과 XML 재집계"
+    },
+    "front": {
+      "area": "01_unit_integration",
+      "section": "fe01_common_routing",
+      "tool_a": "vitest",
+      "command_a": "npm test",
+      "tool_b": "tsc",
+      "command_b": "npx tsc --noEmit --pretty false",
+      "purpose": "프론트 단위 테스트와 타입 검사"
+    },
+    "regression": {
+      "area": "01_unit_integration",
+      "section": "de05_missing_outlier",
+      "tool_a": "pytest",
+      "command_a": "python -m pytest qa/automation/de/test_de05.py -q",
+      "tool_b": "regression_oracle",
+      "command_b": "python qa/runner/tools/regression_oracle.py",
+      "purpose": "DE05 회귀와 독립 오라클"
+    },
+    "web_api": {
+      "area": "02_web_api",
+      "section": "ai01_fastapi_contract",
+      "tool_a": "httpx_contract",
+      "command_a": "python qa/runner/tools/api_contract_httpx.py",
+      "tool_b": "schemathesis",
+      "command_b": "python qa/runner/tools/api_smoke_curl.py",
+      "purpose": "FastAPI 헬스·옵션 계약의 독립 HTTP/OpenAPI 검증",
+      "notes": "1차 httpx TestClient, 2차 Schemathesis(OpenAPI ASGI). Playwright UI E2E는 별도 도입."
+    },
+    "security": {
+      "area": "03_security_quality",
+      "section": "qa01_security_nfr",
+      "tool_a": "semgrep",
+      "command_a": "python qa/runner/tools/semgrep_scan.py",
+      "tool_b": "secret_scan",
+      "command_b": "python qa/runner/tools/secret_scan.py .",
+      "purpose": "Semgrep 규칙과 비밀·렌더링 스캔",
+      "notes": "CodeQL은 GitHub Actions codeql 잡에서 실행한다. 로컬에 CodeQL CLI가 없으면 CI 결과를 2차 경로로 인정하고 로컬은 semgrep+secret_scan을 사용한다."
+    },
+    "infra": {
+      "area": "04_infra_deploy",
+      "section": "ops1_docker_connect",
+      "tool_a": "compose_config",
+      "command_a": "python qa/runner/tools/infra_compose_check.py",
+      "tool_b": "curl_health",
+      "command_b": "python qa/runner/tools/infra_curl_smoke.py",
+      "purpose": "Compose 설정·healthcheck와 HTTP 스모크"
+    }
+  }
+}

@@ -1,0 +1,2 @@
+﻿tc_id	area	section	feature	item	verify_a	verify_a_result	verify_b	verify_b_result	final_status	expected	actual	defect_id	code_path	executed_on
+TC-INFRA-001	04_infra_deploy	ops1_docker_connect	Compose·HTTP 스모크	docker compose config/healthcheck와 curl HTTP 스모크 교차	compose_config	PASS	curl_health	PASS	PASS	compose config PASS 이고 최소 1개 엔드포인트 HTTP 성공	A=PASS, B=PASS, final=PASS		UNKNOWN	2026-11-03

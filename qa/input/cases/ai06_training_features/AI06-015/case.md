@@ -1,0 +1,54 @@
+# AI06-015 NaN 유동인구
+
+| 항목 | 내용 |
+| --- | --- |
+| TC ID | AI06-015 |
+| 분야 | AI06_학습피처 |
+| 세부 기능 | ML·DL 피처 공통 |
+| 원자 검증 항목 | NaN 유동인구 |
+| 우선순위 | P1 |
+| 테스트 구분 | 검증 |
+| 근거 분류 | 개선제안 |
+| 추천 도구 | pytest/모킹 + HTTPX |
+| 관련 코드 경로 | `ai/src/features.py` |
+| GitHub 코드 URL | https://github.com/siren8289/dasigolmok_v2/blob/main/ai/src/features.py |
+
+## 검증 목적
+
+ML·DL 피처 공통에서 'NaN 유동인구' 단일 조건을 검증하여 입력·처리·출력·예외가 일치하는지 확인
+
+## 사전조건
+
+ML·DL 피처 공통 모듈 준비; 입력 사례 'NaN 유동인구'에 필요한 fixture/mock 구성; 외부 API는 테스트 더블 사용
+
+## 테스트 입력값
+
+NaN
+
+## 실행 절차
+
+1. NaN 준비
+2. ML·DL 피처 공통의 'NaN 유동인구' 조건 실행
+3. 반환값·상태코드·로그·부수효과를 기대결과와 비교
+
+## 기대 결과
+
+모델 전처리 허용 여부 검증
+
+## 판정 기준
+
+PASS: 모델 전처리 허용 여부 검증 관찰 및 예상치 밖 부작용 없음
+FAIL: 예상 불일치·예외 누락·데이터 오염
+RISK: 검증 불가/정책 미정/잠재 위험
+
+## 실행 기록
+
+| 열 | 값 |
+| --- | --- |
+| 실행 상태 (O) | PASS |
+| 실제 결과/증적 (P) | 결측 유동인구 foot_traffic=NaN frame=np.float64(nan) → ValueError: Input X contains NaN. RandomForestRegressor does not accept missing values encoded as NaN natively. For supervised learning, you might want to consider sklearn.ensemble.HistGradientBoostingClassifier and Regr |
+| 결함 ID (Q) | — |
+
+## 비고/근거
+
+개선제안/방어 테스트: 아직 구현된 보장이라고 단정하지 않음

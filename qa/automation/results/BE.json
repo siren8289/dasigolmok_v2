@@ -1,0 +1,845 @@
+{
+  "command": "cd /Users/jeong-yelim/orca/dasigolmok_v2/back && ./gradlew test --tests com.dasigolmok.qa.* --tests com.dasigolmok.diagnosis.DiagnosisControllerTest --console=plain",
+  "cases": [
+    {
+      "id": "BE01-001",
+      "status": "PASS",
+      "evidence": "POST {district:마포구,dong:연남동,industry:한식}가 201 Created. 응답에 VALIDATION_ERROR가 없고 @Valid를 통과했다.",
+      "defect_id": "",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-002",
+      "status": "PASS",
+      "evidence": "district 키를 뺀 POST는 400, body errorCode=VALIDATION_ERROR.",
+      "defect_id": "",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-003",
+      "status": "PASS",
+      "evidence": "district=null POST는 400, errorCode=VALIDATION_ERROR.",
+      "defect_id": "",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-004",
+      "status": "PASS",
+      "evidence": "district=\"\" POST는 400, errorCode=VALIDATION_ERROR.",
+      "defect_id": "",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-005",
+      "status": "PASS",
+      "evidence": "district가 공백만인 POST는 400, errorCode=VALIDATION_ERROR.",
+      "defect_id": "",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-006",
+      "status": "PASS",
+      "evidence": "dong 키를 뺀 POST는 400, errorCode=VALIDATION_ERROR.",
+      "defect_id": "",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-007",
+      "status": "PASS",
+      "evidence": "dong=null POST는 400, errorCode=VALIDATION_ERROR.",
+      "defect_id": "",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-008",
+      "status": "PASS",
+      "evidence": "dong=\"\" POST는 400, errorCode=VALIDATION_ERROR.",
+      "defect_id": "",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-009",
+      "status": "PASS",
+      "evidence": "dong이 공백만인 POST는 400, errorCode=VALIDATION_ERROR.",
+      "defect_id": "",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-010",
+      "status": "PASS",
+      "evidence": "industry 키를 뺀 POST는 400, errorCode=VALIDATION_ERROR.",
+      "defect_id": "",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-011",
+      "status": "PASS",
+      "evidence": "industry=null POST는 400, errorCode=VALIDATION_ERROR.",
+      "defect_id": "",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-012",
+      "status": "PASS",
+      "evidence": "industry=\"\" POST는 400, errorCode=VALIDATION_ERROR.",
+      "defect_id": "",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-013",
+      "status": "PASS",
+      "evidence": "industry가 공백만인 POST는 400, errorCode=VALIDATION_ERROR.",
+      "defect_id": "",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-014",
+      "status": "PASS",
+      "evidence": "industry=123은 400이 아니라 201. AiClient로 전달된 industry 값은 문자열 \"123\"으로 Jackson이 변환했다.",
+      "defect_id": "",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-015",
+      "status": "PASS",
+      "evidence": "본문 [] POST는 400, errorCode=INVALID_JSON.",
+      "defect_id": "",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-016",
+      "status": "PASS",
+      "evidence": "깨진 JSON {'district': POST는 400, errorCode=INVALID_JSON.",
+      "defect_id": "",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-017",
+      "status": "FAIL",
+      "evidence": "text/plain POST /api/diagnoses가 415 또는 400이 아니라 500. body={\"errorCode\":\"INTERNAL_ERROR\",\"message\":\"서버 오류가 발생했습니다.\"}. HttpMediaTypeNotSupportedException이 공통 Exception 핸들러에 흡수됨.",
+      "defect_id": "DEF-BE01-017",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-018",
+      "status": "PASS",
+      "evidence": "키 District/DOng은 바인딩되지 않아 400, errorCode=VALIDATION_ERROR.",
+      "defect_id": "",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-019",
+      "status": "FAIL",
+      "evidence": "district 10000자를 AI 응답에 실어 저장하자 400/413/422나 255자 절단이 아니라 500 INTERNAL_ERROR. @NotBlank 외 길이 제한이 없고 DB 단계에서 실패.",
+      "defect_id": "DEF-BE01-019",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-020",
+      "status": "FAIL",
+      "evidence": "dong=<script>alert(1)</script>가 거절되지 않고 201. 응답 dong에 script 태그가 그대로 있음. application/json이지만 살균·입력 거절 없음.",
+      "defect_id": "DEF-BE01-020",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-021",
+      "status": "FAIL",
+      "evidence": "industry=\"; DROP TABLE diagnosis;--\"가 400/422로 거절되지 않고 201. diagnosis COUNT=1로 행이 생성됨. 테이블 조회는 되나 입력 거절은 없음.",
+      "defect_id": "DEF-BE01-021",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-022",
+      "status": "PASS",
+      "evidence": "extra=value를 추가한 정상 요청은 201. 응답 district/dong/industry는 원값이고 extra 속성은 없다.",
+      "defect_id": "",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-023",
+      "status": "FAIL",
+      "evidence": "마포구/역삼동 POST가 400이 아니라 201. 응답 district=마포구, dong=역삼동으로 저장됨. 지역·동 조합 검증 없음.",
+      "defect_id": "DEF-BE01-023",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE01-024",
+      "status": "PASS",
+      "evidence": "district와 dong을 동시에 빼면 400 VALIDATION_ERROR. message에 district와 dong이 함께 들어 있다.",
+      "defect_id": "",
+      "section": "BE01_진단요청DTO"
+    },
+    {
+      "id": "BE02-001",
+      "status": "PASS",
+      "evidence": "diagnose에 넘긴 Map은 district=마포구, dong=연남동, industry=한식 세 키뿐이었다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-002",
+      "status": "PASS",
+      "evidence": "요청 district=종로구, AI district=마포구일 때 저장 district는 마포구였다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-003",
+      "status": "PASS",
+      "evidence": "AI JSON에 district 키가 없으면 저장값은 요청 district 마포구였다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-004",
+      "status": "PASS",
+      "evidence": "AI JSON에 dong 키가 없으면 저장값은 요청 dong 연남동이었다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-005",
+      "status": "PASS",
+      "evidence": "AI JSON에 industry 키가 없으면 저장값은 요청 industry 한식이었다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-006",
+      "status": "PASS",
+      "evidence": "AI quarter=\"20244\"가 Diagnosis.quarter에 문자열 20244로 저장됐다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-007",
+      "status": "PASS",
+      "evidence": "store_count=25가 Double 25.0으로 저장됐다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-008",
+      "status": "PASS",
+      "evidence": "open_rate=3.4가 Double 3.4로 저장됐다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-009",
+      "status": "PASS",
+      "evidence": "close_rate=6.2가 Double 6.2로 저장됐다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-010",
+      "status": "PASS",
+      "evidence": "franchise_ratio=0.2가 Double 0.2로 저장됐다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-011",
+      "status": "PASS",
+      "evidence": "foot_traffic=3000이 Double 3000.0으로 저장됐다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-012",
+      "status": "PASS",
+      "evidence": "change_code=HL이 문자열 HL로 저장됐다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-013",
+      "status": "PASS",
+      "evidence": "change_name=상권축소가 한글 그대로 저장됐다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-014",
+      "status": "PASS",
+      "evidence": "operate_months=23.1이 Double 23.1로 저장됐다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-015",
+      "status": "PASS",
+      "evidence": "sales_per_store=800.5가 Double 800.5로 저장됐다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-016",
+      "status": "PASS",
+      "evidence": "ml_close_rate=5.1이 Double 5.1로 저장됐다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-017",
+      "status": "PASS",
+      "evidence": "dl_sales_per_store=730.5가 Double 730.5로 저장됐다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-018",
+      "status": "PASS",
+      "evidence": "status=danger가 문자열 danger로 저장됐다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-019",
+      "status": "PASS",
+      "evidence": "is_danger=true일 때 엔티티 danger=true로 저장됐다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-020",
+      "status": "PASS",
+      "evidence": "explanation=기본 설명이 한글 그대로 저장됐다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-021",
+      "status": "PASS",
+      "evidence": "explanation_source=basic이 basic으로 저장됐다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-022",
+      "status": "FAIL",
+      "evidence": "close_rate 문자열 \"5.0\"은 Double로 파싱되지 않고 closeRate=null인 채 저장됨(id 부여, 예외 없음). 결측 보완이나 거절이 없다.",
+      "defect_id": "DEF-BE02-022",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-023",
+      "status": "FAIL",
+      "evidence": "AI 응답 {}를 스키마 검증 없이 성공 저장. 관측값 status='', closeRate=null, danger=false이고 id가 발급됨.",
+      "defect_id": "DEF-BE02-023",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-024",
+      "status": "FAIL",
+      "evidence": "explanation 4000자에서 사전 검증·절단 없이 DataIntegrityViolationException. H2 메시지: Value too long for column EXPLANATION CHARACTER VARYING(2000).",
+      "defect_id": "DEF-BE02-024",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-025",
+      "status": "PASS",
+      "evidence": "AiClient가 ApiException을 던지면 저장 전 예외가 전파되고 diagnosis 건수는 호출 전과 같았다. status=502, code=AI_ERROR.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-026",
+      "status": "PASS",
+      "evidence": "id를 1로 재시작한 저장 건을 get(1)로 조회하면 같은 Diagnosis(dong=연남동, industry=한식)가 반환됐다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-027",
+      "status": "PASS",
+      "evidence": "get(9999999)는 ApiException status=404, errorCode=NOT_FOUND.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-028",
+      "status": "PASS",
+      "evidence": "12건 저장 후 recent()는 10건이고 id가 내림차순이며 가장 오래된 2건은 빠졌다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-029",
+      "status": "PASS",
+      "evidence": "병렬 10건 diagnose가 모두 커밋됐다. 서로 다른 id 10개, diagnosis 행 수 10.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE02-030",
+      "status": "PASS",
+      "evidence": "AI 404를 흉내 낸 예외에서 저장 건수는 그대로이고 ApiException(5xx)이 반환됐다.",
+      "defect_id": "",
+      "section": "BE02_진단CRUD"
+    },
+    {
+      "id": "BE03-001",
+      "status": "PASS",
+      "evidence": "유효 진단 POST /api/diagnoses 응답 상태 201 Created.",
+      "defect_id": "",
+      "section": "BE03_진단HTTP"
+    },
+    {
+      "id": "BE03-002",
+      "status": "PASS",
+      "evidence": "H2 identity를 10으로 재시작 후 POST 응답 JSON id=10.",
+      "defect_id": "",
+      "section": "BE03_진단HTTP"
+    },
+    {
+      "id": "BE03-003",
+      "status": "PASS",
+      "evidence": "id=10 행을 넣은 뒤 GET /api/diagnoses/10은 200. district=마포구, dong=연남동, industry=한식.",
+      "defect_id": "",
+      "section": "BE03_진단HTTP"
+    },
+    {
+      "id": "BE03-004",
+      "status": "PASS",
+      "evidence": "GET /api/diagnoses는 200이고 본문은 JSON 배열이며 크기 1 이상.",
+      "defect_id": "",
+      "section": "BE03_진단HTTP"
+    },
+    {
+      "id": "BE03-005",
+      "status": "FAIL",
+      "evidence": "GET /api/diagnoses/abc는 400 type mismatch가 아니라 500. body errorCode=INTERNAL_ERROR, message=서버 오류가 발생했습니다.",
+      "defect_id": "DEF-BE03-005",
+      "section": "BE03_진단HTTP"
+    },
+    {
+      "id": "BE03-006",
+      "status": "PASS",
+      "evidence": "GET /api/diagnoses/0은 404.",
+      "defect_id": "",
+      "section": "BE03_진단HTTP"
+    },
+    {
+      "id": "BE03-007",
+      "status": "PASS",
+      "evidence": "GET /api/diagnoses/-1은 404.",
+      "defect_id": "",
+      "section": "BE03_진단HTTP"
+    },
+    {
+      "id": "BE03-008",
+      "status": "FAIL",
+      "evidence": "GET /api/diagnoses/99999999999999999999는 Long 범위를 넘지만 400이 아니라 500 INTERNAL_ERROR.",
+      "defect_id": "DEF-BE03-008",
+      "section": "BE03_진단HTTP"
+    },
+    {
+      "id": "BE03-009",
+      "status": "PASS",
+      "evidence": "POST JSON 응답 Content-Type에 application/json이 포함됐다.",
+      "defect_id": "",
+      "section": "BE03_진단HTTP"
+    },
+    {
+      "id": "BE03-010",
+      "status": "FAIL",
+      "evidence": "DELETE /api/diagnoses/1은 405가 아니라 500 INTERNAL_ERROR. 허용되지 않은 메서드가 공통 Exception 핸들러로 떨어짐.",
+      "defect_id": "DEF-BE03-010",
+      "section": "BE03_진단HTTP"
+    },
+    {
+      "id": "BE03-011",
+      "status": "PASS",
+      "evidence": "district/dong/industry를 모두 빈 문자열로 보내면 400. message에 세 필드명이 모두 있다.",
+      "defect_id": "",
+      "section": "BE03_진단HTTP"
+    },
+    {
+      "id": "BE03-012",
+      "status": "PASS",
+      "evidence": "없는 id GET /api/diagnoses/424242는 404이고 body에 errorCode=NOT_FOUND.",
+      "defect_id": "",
+      "section": "BE03_진단HTTP"
+    },
+    {
+      "id": "BE03-013",
+      "status": "PASS",
+      "evidence": "201 응답 본문에 연남동과 기본 설명이 UTF-8로 그대로 있고 ??? 또는 占 깨짐은 없다.",
+      "defect_id": "",
+      "section": "BE03_진단HTTP"
+    },
+    {
+      "id": "BE03-014",
+      "status": "FAIL",
+      "evidence": "Authorization 없는 GET /api/diagnoses/{id}가 401/403이 아니라 200. 저장 진단 JSON(마포구/연남동/한식)이 그대로 반환됨.",
+      "defect_id": "DEF-BE03-014",
+      "section": "BE03_진단HTTP"
+    },
+    {
+      "id": "BE04-001",
+      "status": "PASS",
+      "evidence": "GET /api/options는 200. districts/dongs/industries JSON이 스텁한 AI 본문과 동일했다.",
+      "defect_id": "",
+      "section": "BE04_추천HTTP"
+    },
+    {
+      "id": "BE04-002",
+      "status": "PASS",
+      "evidence": "POST /api/recommendations 마포구/연남동은 200. AI 추천 JSON이 그대로 반환됐다.",
+      "defect_id": "",
+      "section": "BE04_추천HTTP"
+    },
+    {
+      "id": "BE04-003",
+      "status": "PASS",
+      "evidence": "district 누락 추천 POST는 400, errorCode=VALIDATION_ERROR.",
+      "defect_id": "",
+      "section": "BE04_추천HTTP"
+    },
+    {
+      "id": "BE04-004",
+      "status": "PASS",
+      "evidence": "district가 공백인 추천 POST는 400, errorCode=VALIDATION_ERROR.",
+      "defect_id": "",
+      "section": "BE04_추천HTTP"
+    },
+    {
+      "id": "BE04-005",
+      "status": "PASS",
+      "evidence": "dong 누락 추천 POST는 400, errorCode=VALIDATION_ERROR.",
+      "defect_id": "",
+      "section": "BE04_추천HTTP"
+    },
+    {
+      "id": "BE04-006",
+      "status": "PASS",
+      "evidence": "dong이 공백인 추천 POST는 400, errorCode=VALIDATION_ERROR.",
+      "defect_id": "",
+      "section": "BE04_추천HTTP"
+    },
+    {
+      "id": "BE04-007",
+      "status": "PASS",
+      "evidence": "깨진 추천 JSON은 400, errorCode=INVALID_JSON.",
+      "defect_id": "",
+      "section": "BE04_추천HTTP"
+    },
+    {
+      "id": "BE04-008",
+      "status": "PASS",
+      "evidence": "AI HTTP 404는 Spring 502로 변환됐다. body errorCode=AI_ERROR, message 필드가 있다.",
+      "defect_id": "",
+      "section": "BE04_추천HTTP"
+    },
+    {
+      "id": "BE04-009",
+      "status": "PASS",
+      "evidence": "options용 RestTemplate이 null을 반환하면 200 빈 본문이 아니라 502, errorCode=AI_ERROR.",
+      "defect_id": "",
+      "section": "BE04_추천HTTP"
+    },
+    {
+      "id": "BE04-010",
+      "status": "PASS",
+      "evidence": "GET /api/options 200. districts 2개, dongs.마포구 두 번째 값이 성산동으로 배열 구조가 유지됐다.",
+      "defect_id": "",
+      "section": "BE04_추천HTTP"
+    },
+    {
+      "id": "BE04-011",
+      "status": "PASS",
+      "evidence": "all_industries 순서는 한식(score 2.0, status stable) 다음 카페. 필드와 순서가 보존됐다.",
+      "defect_id": "",
+      "section": "BE04_추천HTTP"
+    },
+    {
+      "id": "BE04-012",
+      "status": "PASS",
+      "evidence": "recommendations 길이는 5이고 업종1부터 업종5 순서가 유지됐다.",
+      "defect_id": "",
+      "section": "BE04_추천HTTP"
+    },
+    {
+      "id": "BE04-013",
+      "status": "PASS",
+      "evidence": "추천 AI 404는 4xx/5xx이고 전후 diagnosis 행 수가 같았다. 추천 전용 저장은 없다.",
+      "defect_id": "",
+      "section": "BE04_추천HTTP"
+    },
+    {
+      "id": "BE04-014",
+      "status": "PASS",
+      "evidence": "마포구/연남동, 강남구/역삼동, 종로구/청운효자동, 용산구/이태원동 병렬 POST가 각각 200이고 응답 지역이 요청과 같았다.",
+      "defect_id": "",
+      "section": "BE04_추천HTTP"
+    },
+    {
+      "id": "BE04-015",
+      "status": "PASS",
+      "evidence": "options Read timed out은 502. errorCode=AI_ERROR, message가 있고 본문에 SocketTimeoutException은 없다.",
+      "defect_id": "",
+      "section": "BE04_추천HTTP"
+    },
+    {
+      "id": "BE04-016",
+      "status": "FAIL",
+      "evidence": "GET /api/recommendations는 405가 아니라 500 INTERNAL_ERROR. body errorCode=INTERNAL_ERROR.",
+      "defect_id": "DEF-BE04-016",
+      "section": "BE04_추천HTTP"
+    },
+    {
+      "id": "BE04-017",
+      "status": "PASS",
+      "evidence": "industry를 추가한 추천 요청은 200. AI로 전달된 Map 키는 district, dong뿐이었다.",
+      "defect_id": "",
+      "section": "BE04_추천HTTP"
+    },
+    {
+      "id": "BE04-018",
+      "status": "FAIL",
+      "evidence": "마포구+역삼동 POST /api/recommendations가 400이 아니라 200. body dong=역삼동, recommendations=[]. 교차 지역 검증 없음.",
+      "defect_id": "DEF-BE04-018",
+      "section": "BE04_추천HTTP"
+    },
+    {
+      "id": "BE05-001",
+      "status": "PASS",
+      "evidence": "baseUrl http://ai:8000에서 options()가 GET http://ai:8000/api/v1/options를 호출했다.",
+      "defect_id": "",
+      "section": "BE05_AI연동예외"
+    },
+    {
+      "id": "BE05-002",
+      "status": "PASS",
+      "evidence": "diagnose()가 POST http://ai:8000/api/v1/diagnose를 호출했다.",
+      "defect_id": "",
+      "section": "BE05_AI연동예외"
+    },
+    {
+      "id": "BE05-003",
+      "status": "PASS",
+      "evidence": "recommend()가 POST http://ai:8000/api/v1/recommend를 호출했다.",
+      "defect_id": "",
+      "section": "BE05_AI연동예외"
+    },
+    {
+      "id": "BE05-004",
+      "status": "PASS",
+      "evidence": "options() 200 JSON 스텁이 JsonNode로 그대로 반환됐다. districts=[마포구].",
+      "defect_id": "",
+      "section": "BE05_AI연동예외"
+    },
+    {
+      "id": "BE05-005",
+      "status": "PASS",
+      "evidence": "diagnose()가 스텁 JsonNode {status:stable}를 반환했다.",
+      "defect_id": "",
+      "section": "BE05_AI연동예외"
+    },
+    {
+      "id": "BE05-006",
+      "status": "PASS",
+      "evidence": "recommend()가 스텁 JsonNode {recommendations:[]}를 반환했다.",
+      "defect_id": "",
+      "section": "BE05_AI연동예외"
+    },
+    {
+      "id": "BE05-007",
+      "status": "PASS",
+      "evidence": "getForObject가 null이면 ApiException errorCode=AI_ERROR, HTTP 502.",
+      "defect_id": "",
+      "section": "BE05_AI연동예외"
+    },
+    {
+      "id": "BE05-008",
+      "status": "PASS",
+      "evidence": "Connection refused를 감싼 ResourceAccessException이 AI_ERROR 502로 변환됐다.",
+      "defect_id": "",
+      "section": "BE05_AI연동예외"
+    },
+    {
+      "id": "BE05-009",
+      "status": "PASS",
+      "evidence": "UnknownHostException을 cause로 둔 ResourceAccessException이 AI_ERROR로 변환됐다.",
+      "defect_id": "",
+      "section": "BE05_AI연동예외"
+    },
+    {
+      "id": "BE05-010",
+      "status": "PASS",
+      "evidence": "Read timed out ResourceAccessException이 AI_ERROR, HTTP 502로 변환됐다.",
+      "defect_id": "",
+      "section": "BE05_AI연동예외"
+    },
+    {
+      "id": "BE05-011",
+      "status": "FAIL",
+      "evidence": "AI HTTP 404와 HTTP 500이 모두 ApiException errorCode=AI_ERROR, status 502. 404 전용 코드로 구분되지 않음.",
+      "defect_id": "DEF-BE05-011",
+      "section": "BE05_AI연동예외"
+    },
+    {
+      "id": "BE05-012",
+      "status": "FAIL",
+      "evidence": "AI HTTP 422 body의 field required/industry가 사용자 메시지에 없음. 관측 message=AI 서버 호출에 실패했습니다. code=AI_ERROR.",
+      "defect_id": "DEF-BE05-012",
+      "section": "BE05_AI연동예외"
+    },
+    {
+      "id": "BE05-013",
+      "status": "PASS",
+      "evidence": "AI 500 본문의 IllegalStateException, com.internal, Model.java가 ApiException 메시지와 핸들러 응답 JSON에 없었다.",
+      "defect_id": "",
+      "section": "BE05_AI연동예외"
+    },
+    {
+      "id": "BE05-014",
+      "status": "FAIL",
+      "evidence": "diagnose에 {}를 주면 예외 없이 그 JsonNode를 반환. status/close_rate 등 핵심 필드 누락을 감지하지 않음.",
+      "defect_id": "DEF-BE05-014",
+      "section": "BE05_AI연동예외"
+    },
+    {
+      "id": "BE05-015",
+      "status": "FAIL",
+      "evidence": "content-type text/html(UnknownContentTypeException)의 안내가 JSON 역직렬화 실패가 아니라 message=AI 서버 호출에 실패했습니다.",
+      "defect_id": "DEF-BE05-015",
+      "section": "BE05_AI연동예외"
+    },
+    {
+      "id": "BE05-016",
+      "status": "FAIL",
+      "evidence": "HTTP 503에서 RestTemplate.postForObject가 1회만 호출되고 ApiException으로 종료. 재시도 0.",
+      "defect_id": "DEF-BE05-016",
+      "section": "BE05_AI연동예외"
+    },
+    {
+      "id": "BE05-017",
+      "status": "PASS",
+      "evidence": "동시 20건 options()가 5초 안에 모두 JsonNode를 반환. 빈 RestTemplate 팩토리 connectTimeout=3000, readTimeout=40000.",
+      "defect_id": "",
+      "section": "BE05_AI연동예외"
+    },
+    {
+      "id": "BE05-018",
+      "status": "FAIL",
+      "evidence": "baseUrl=https://wrong 실패 시 message=AI 서버 호출에 실패했습니다. 로그는 API error와 UnknownHost 스택뿐이고 설정/base-url 안내는 없음.",
+      "defect_id": "DEF-BE05-018",
+      "section": "BE05_AI연동예외"
+    },
+    {
+      "id": "BE05-019",
+      "status": "FAIL",
+      "evidence": "응답 JSON에는 DB_PASSWORD가 없으나 GlobalExceptionHandler ERROR 로그 cause에 RestClientException: upstream failed DB_PASSWORD=supersecret이 남음.",
+      "defect_id": "DEF-BE05-019",
+      "section": "BE05_AI연동예외"
+    },
+    {
+      "id": "BE05-020",
+      "status": "PASS",
+      "evidence": "운영 RestTemplate 요청 팩토리는 SimpleClientHttpRequestFactory. connectTimeout=3000, readTimeout=40000.",
+      "defect_id": "",
+      "section": "BE05_AI연동예외"
+    },
+    {
+      "id": "BE06-001",
+      "status": "PASS",
+      "evidence": "없는 진단 GET은 404. JSON에 errorCode=NOT_FOUND와 message가 있다.",
+      "defect_id": "",
+      "section": "BE06_전역예외"
+    },
+    {
+      "id": "BE06-002",
+      "status": "PASS",
+      "evidence": "진단 POST 중 AI ApiException은 502. body errorCode=AI_ERROR, message가 있다.",
+      "defect_id": "",
+      "section": "BE06_전역예외"
+    },
+    {
+      "id": "BE06-003",
+      "status": "PASS",
+      "evidence": "빈 district POST는 400, errorCode=VALIDATION_ERROR.",
+      "defect_id": "",
+      "section": "BE06_전역예외"
+    },
+    {
+      "id": "BE06-004",
+      "status": "PASS",
+      "evidence": "깨진 JSON POST는 400, errorCode=INVALID_JSON.",
+      "defect_id": "",
+      "section": "BE06_전역예외"
+    },
+    {
+      "id": "BE06-005",
+      "status": "PASS",
+      "evidence": "RuntimeException(boom-internal-detail)은 500 INTERNAL_ERROR. message는 서버 오류가 발생했습니다.이고 상세 문자열은 없다.",
+      "defect_id": "",
+      "section": "BE06_전역예외"
+    },
+    {
+      "id": "BE06-006",
+      "status": "PASS",
+      "evidence": "5xx ApiException 처리 로그에 ai-down-marker와 cause root-cause-marker가 있고 ERROR throwable이 붙었다.",
+      "defect_id": "",
+      "section": "BE06_전역예외"
+    },
+    {
+      "id": "BE06-007",
+      "status": "PASS",
+      "evidence": "4xx NOT_FOUND 처리 시 GlobalExceptionHandler ERROR 로그와 throwable이 없었다.",
+      "defect_id": "",
+      "section": "BE06_전역예외"
+    },
+    {
+      "id": "BE06-008",
+      "status": "PASS",
+      "evidence": "SQLException의 DROP TABLE, secret-stack, SQLException 문구는 응답에 없고 status=500, errorCode=INTERNAL_ERROR.",
+      "defect_id": "",
+      "section": "BE06_전역예외"
+    },
+    {
+      "id": "BE06-009",
+      "status": "PASS",
+      "evidence": "병렬 GET id 910000~910009가 각각 404 NOT_FOUND이고 본문에 자기 id만 들어 응답이 섞이지 않았다.",
+      "defect_id": "",
+      "section": "BE06_전역예외"
+    },
+    {
+      "id": "BE06-010",
+      "status": "PASS",
+      "evidence": "district/dong/industry 세 @NotBlank 실패가 400 VALIDATION_ERROR 한 메시지에 세 필드명을 모두 이었다.",
+      "defect_id": "",
+      "section": "BE06_전역예외"
+    },
+    {
+      "id": "BE06-011",
+      "status": "FAIL",
+      "evidence": "message=null인 ApiException을 처리하다 Map.of가 NullPointerException. errorCode/message JSON으로 막지 못함.",
+      "defect_id": "DEF-BE06-011",
+      "section": "BE06_전역예외"
+    },
+    {
+      "id": "BE06-012",
+      "status": "PASS",
+      "evidence": "Origin https://evil.example OPTIONS /api/diagnoses는 403, Allow-Origin 헤더 없음. 로그: Reject: 'https://evil.example' origin is not allowed.",
+      "defect_id": "",
+      "section": "BE06_전역예외"
+    },
+    {
+      "id": "BE06-013",
+      "status": "FAIL",
+      "evidence": "DELETE /api/options는 405가 아니라 500. body errorCode=INTERNAL_ERROR, message=서버 오류가 발생했습니다.",
+      "defect_id": "DEF-BE06-013",
+      "section": "BE06_전역예외"
+    },
+    {
+      "id": "BE06-014",
+      "status": "FAIL",
+      "evidence": "GET /api/diagnoses/abc는 400이 아니라 500. Content-Type은 application/json이고 errorCode=INTERNAL_ERROR. 공통 포맷이나 상태코드가 400이 아님.",
+      "defect_id": "DEF-BE06-014",
+      "section": "BE06_전역예외"
+    }
+  ]
+}

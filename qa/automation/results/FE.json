@@ -1,0 +1,761 @@
+{
+  "command": "cd front && npx vitest run",
+  "cases": [
+    {
+      "id": "FE01-001",
+      "section": "FE01_공통라우팅",
+      "status": "PASS",
+      "evidence": "GET / 렌더에서 heading '골목 상권 진단'과 자치구·행정동·업종 셀렉트가 보인다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE01-002",
+      "section": "FE01_공통라우팅",
+      "status": "PASS",
+      "evidence": "GET /recommend 에서 heading '업종 추천'이 렌더된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE01-003",
+      "section": "FE01_공통라우팅",
+      "status": "PASS",
+      "evidence": "경로 /diagnoses/1 이 GET /api/diagnoses/1 을 호출한다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE01-004",
+      "section": "FE01_공통라우팅",
+      "status": "PASS",
+      "evidence": "상단 '골목 상권 진단' 링크 클릭 후 진단 화면 heading이 돌아온다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE01-005",
+      "section": "FE01_공통라우팅",
+      "status": "PASS",
+      "evidence": "상단 '업종 추천' 클릭 후 /recommend 화면이 표시된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE01-006",
+      "section": "FE01_공통라우팅",
+      "status": "PASS",
+      "evidence": "진단 화면에서 추천으로 이동한 뒤 window.history.back() 으로 진단 화면과 이전 주소가 복원된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE01-007",
+      "section": "FE01_공통라우팅",
+      "status": "PASS",
+      "evidence": "front/nginx.conf location / 에 try_files $uri $uri/ /index.html history fallback이 있다. 라이브 Nginx 재시작은 이 단위 실행에 포함하지 않았다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE01-008",
+      "section": "FE01_공통라우팅",
+      "status": "FAIL",
+      "evidence": "실제 본문에는 404 안내가 없다: dasiGolmok골목 상권 진단업종 추천: expected null not to be null",
+      "defect_id": "DEF-FE01-008"
+    },
+    {
+      "id": "FE01-009",
+      "section": "FE01_공통라우팅",
+      "status": "RISK",
+      "evidence": "jsdom은 375px 뷰포트의 가로 잘림(scrollWidth)을 계산하지 않아 탭·셀렉트 overflow를 실행 측정할 수 없음",
+      "defect_id": ""
+    },
+    {
+      "id": "FE01-010",
+      "section": "FE01_공통라우팅",
+      "status": "PASS",
+      "evidence": "Tab 이동으로 포커스가 바뀐 요소: A:골목 상권 진단 | A:업종 추천 | SELECT:강남구마포구 | SELECT:연남동망원동 | SELECT:한식음식점커피-음료 | BUTTON:진단하기 | BODY:dasiGolmok골목 상권 진단업종",
+      "defect_id": ""
+    },
+    {
+      "id": "FE01-011",
+      "section": "FE01_공통라우팅",
+      "status": "PASS",
+      "evidence": "header/main 랜드마크와 브랜드 텍스트, 진단 heading이 있다. document title은 index.html의 'dasiGolmok - 서울 골목 상권 진단'이다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE01-012",
+      "section": "FE01_공통라우팅",
+      "status": "PASS",
+      "evidence": "옵션 목 응답으로 첫 렌더 후 header/main/heading이 있고 console.error가 비어 있다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE01-013",
+      "section": "FE01_공통라우팅",
+      "status": "PASS",
+      "evidence": "업종 추천 링크에 포커스한 뒤 Enter로 추천 화면에 진입했다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE01-014",
+      "section": "FE01_공통라우팅",
+      "status": "PASS",
+      "evidence": "상단 메뉴는 href가 있는 <a>라 중클릭·새 탭으로 주소가 독립적으로 열린다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE01-015",
+      "section": "FE01_공통라우팅",
+      "status": "RISK",
+      "evidence": "jsdom은 320px에서 실제 글자 폭과 가로 스크롤을 계산하지 않아 가독성·잘림을 실행 측정할 수 없음",
+      "defect_id": ""
+    },
+    {
+      "id": "FE01-016",
+      "section": "FE01_공통라우팅",
+      "status": "PASS",
+      "evidence": "/recommend?utm=qa 진입 시 추천 화면이 렌더되고 console.error가 없다. 쿼리는 라우트가 제거하지 않는다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE01-017",
+      "section": "FE01_공통라우팅",
+      "status": "PASS",
+      "evidence": "App 라우트는 / 와 /recommend 두 화면을 그대로 렌더한다. RAG API는 이 두 라우트를 바꾸지 않는다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE01-018",
+      "section": "FE01_공통라우팅",
+      "status": "FAIL",
+      "evidence": "알 수 없는 경로에 사용자용 오류 heading이 없다: expected null not to be null",
+      "defect_id": "DEF-FE01-018"
+    },
+    {
+      "id": "FE02-001",
+      "section": "FE02_진단입력UI",
+      "status": "PASS",
+      "evidence": "옵션 로드 후 자치구 값이 마포구다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE02-002",
+      "section": "FE02_진단입력UI",
+      "status": "PASS",
+      "evidence": "최초 행정동 값이 연남동이다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE02-003",
+      "section": "FE02_진단입력UI",
+      "status": "PASS",
+      "evidence": "최초 업종 값이 한식음식점이다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE02-004",
+      "section": "FE02_진단입력UI",
+      "status": "PASS",
+      "evidence": "StrictMode 없이 마운트하면 GET /api/options 가 1회다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE02-005",
+      "section": "FE02_진단입력UI",
+      "status": "PASS",
+      "evidence": "districts에 마포구가 있으면 선택이 마포구로 유지된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE02-006",
+      "section": "FE02_진단입력UI",
+      "status": "PASS",
+      "evidence": "마포구가 없으면 첫 자치구 강남구로 바뀐다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE02-007",
+      "section": "FE02_진단입력UI",
+      "status": "FAIL",
+      "evidence": "빈 목록 안내 없음. 본문=골목 상권 진단행정동과 업종을 고르면, 폐업률(ML)·점포당 매출(DL)·쉬운 설명(LLM)을 보여 줍니다.자치구행정동연남동업종진단하기: expected null not to be null",
+      "defect_id": "DEF-FE02-007"
+    },
+    {
+      "id": "FE02-008",
+      "section": "FE02_진단입력UI",
+      "status": "PASS",
+      "evidence": "강남구로 바꾸면 행정동 선택지가 역삼동·삼성동이다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE02-009",
+      "section": "FE02_진단입력UI",
+      "status": "PASS",
+      "evidence": "연남동은 강남구 목록에 없어 첫 동 역삼동으로 바뀐다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE02-010",
+      "section": "FE02_진단입력UI",
+      "status": "PASS",
+      "evidence": "마포구 목록에 망원동이 있으면 선택 후 첫 동으로 되돌리지 않는다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE02-011",
+      "section": "FE02_진단입력UI",
+      "status": "PASS",
+      "evidence": "연남동에서 망원동으로 행정동 값이 바뀐다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE02-012",
+      "section": "FE02_진단입력UI",
+      "status": "PASS",
+      "evidence": "업종 값이 커피-음료로 바뀐다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE02-013",
+      "section": "FE02_진단입력UI",
+      "status": "PASS",
+      "evidence": "POST /api/diagnoses body에 district, dong, industry 세 필드가 실렸다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE02-014",
+      "section": "FE02_진단입력UI",
+      "status": "PASS",
+      "evidence": "응답 대기 중 버튼이 disabled이고 POST는 1회만 나갔다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE02-015",
+      "section": "FE02_진단입력UI",
+      "status": "PASS",
+      "evidence": "대기 중 버튼 문구가 'AI가 분석하는 중...'이다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE02-016",
+      "section": "FE02_진단입력UI",
+      "status": "PASS",
+      "evidence": "id=12 응답 후 결과 화면(폐업률)이 같은 라우터의 /diagnoses/12 로 표시된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE02-017",
+      "section": "FE02_진단입력UI",
+      "status": "PASS",
+      "evidence": "404 JSON message가 화면에 그대로 표시된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE02-018",
+      "section": "FE02_진단입력UI",
+      "status": "PASS",
+      "evidence": "HTML 500은 JSON 파싱에 실패해 기본 문구 '요청에 실패했습니다.'를 보여 준다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE02-019",
+      "section": "FE02_진단입력UI",
+      "status": "PASS",
+      "evidence": "오류로 Promise가 끝나면 버튼이 다시 '진단하기'이고 활성화된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE02-020",
+      "section": "FE02_진단입력UI",
+      "status": "PASS",
+      "evidence": "GET /api/options 503의 message '옵션 장애'가 표시된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE02-021",
+      "section": "FE02_진단입력UI",
+      "status": "FAIL",
+      "evidence": "빈 자치구 제출이 차단되지 않음. POST 1건: expected false to be truthy",
+      "defect_id": "DEF-FE02-021"
+    },
+    {
+      "id": "FE02-022",
+      "section": "FE02_진단입력UI",
+      "status": "PASS",
+      "evidence": "마포구로 돌아오면 역삼동은 유지되지 않고 연남동으로 교정된 뒤 제출된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE02-023",
+      "section": "FE02_진단입력UI",
+      "status": "PASS",
+      "evidence": "NOT_EXIST 제출 후 서버 message '지원하지 않는 업종입니다.'가 사용자에게 표시된다. 제출 전 별도 클라이언트 차단 문구는 없다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE02-024",
+      "section": "FE02_진단입력UI",
+      "status": "RISK",
+      "evidence": "옵션 도착 전 셀렉트 선택지가 현재 구 하나뿐이고, 응답 콜백은 요청 세대 가드 없이 setDistrict를 호출한다. 오래된 응답이 사용자 선택을 덮는 시나리오는 이 UI에서 재현되지 않았다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-001",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "GET /api/diagnoses/12 가 호출된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-002",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "미응답 동안 '불러오는 중...'이 보인다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-003",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "404 message가 오류 문장으로 표시된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-004",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "상단에 마포구, 연남동, 한식음식점이 한 줄에 있다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-005",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "'폐업률 5.6%' 문자열이 있다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-006",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "stable 칩 문구는 안정이고 emerald 클래스가 붙는다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-007",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "warning 칩 문구는 주의이고 amber 클래스가 붙는다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-008",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "danger 칩 문구는 위험이고 red 클래스가 붙는다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-009",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "unknown 칩 문구는 판단 불가다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-010",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "알 수 없는 status=weird 는 unknown 스타일·판단 불가로 떨어진다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-011",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "상태 칩 텍스트에 상권축소가 포함된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-012",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "ML 예상 폐업률 7.34%가 표시된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-013",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "DL 예상 매출 650.2만원이 표시된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-014",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "'점포 30개'가 표시된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-015",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "'개업률 2.1%'가 표시된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-016",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "Math.round(1099.9) 후 toLocaleString으로 유동인구 1,100명이다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-017",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "explanationSource=basic 이면 '기본 문장'이 보인다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-018",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "explanationSource=gemini 이면 'Gemini'가 보인다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-019",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "설명 노드에 whitespace-pre-line 이 있고 두 줄 텍스트가 유지된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-020",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "'다시 진단하기' 링크가 / 화면으로 이동한다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-021",
+      "section": "FE03_진단결과UI",
+      "status": "FAIL",
+      "evidence": "결측 안내 없음. 본문=마포구 연남동 · 한식음식점폐업률 %안정 · 상권축소규칙: 폐업률 8% 이상 또는 상권축소면 위험 / 4% 이상 또는 다이나믹이면 주의AI 예측ML 예상 폐업률7.34%DL 예상 점포당 매출650.2만원점포 30개 · 개업률 2.1% · 유동인구 1,100명AI 설명 (기본 문장)한 줄",
+      "defect_id": "DEF-FE03-021"
+    },
+    {
+      "id": "FE03-022",
+      "section": "FE03_진단결과UI",
+      "status": "FAIL",
+      "evidence": "expected <p …(1)></p> to be null",
+      "defect_id": "DEF-FE03-022"
+    },
+    {
+      "id": "FE03-023",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "설명의 HTML/script는 텍스트로만 보이고 script·img 요소는 만들어지지 않는다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE03-024",
+      "section": "FE03_진단결과UI",
+      "status": "PASS",
+      "evidence": "빈 설명이어도 폐업률과 출처 라벨이 남고 예외가 없다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE04-001",
+      "section": "FE04_추천UI",
+      "status": "PASS",
+      "evidence": "첫 진입 기본값은 마포구/연남동이다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE04-002",
+      "section": "FE04_추천UI",
+      "status": "PASS",
+      "evidence": "마운트 시 GET /api/options 가 호출된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE04-003",
+      "section": "FE04_추천UI",
+      "status": "PASS",
+      "evidence": "강남구 선택 후 동 목록이 역삼동·삼성동으로 다시 계산된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE04-004",
+      "section": "FE04_추천UI",
+      "status": "PASS",
+      "evidence": "기존 연남동이 새 구에 없으면 첫 행정동 역삼동으로 바뀐다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE04-005",
+      "section": "FE04_추천UI",
+      "status": "PASS",
+      "evidence": "현재 동이 마포구 목록에 있으면 망원동 선택을 유지한다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE04-006",
+      "section": "FE04_추천UI",
+      "status": "PASS",
+      "evidence": "POST /api/recommendations 에 마포구/연남동이 전송된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE04-007",
+      "section": "FE04_추천UI",
+      "status": "PASS",
+      "evidence": "지연 중 버튼이 disabled이고 문구는 '업종을 계산하는 중...'이다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE04-008",
+      "section": "FE04_추천UI",
+      "status": "PASS",
+      "evidence": "all_industries 3개가 헤더 1행 + 본문 3행으로 표시된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE04-009",
+      "section": "FE04_추천UI",
+      "status": "FAIL",
+      "evidence": "빈 all_industries에 대한 안내 문구가 없다: expected null not to be null",
+      "defect_id": "DEF-FE04-009"
+    },
+    {
+      "id": "FE04-010",
+      "section": "FE04_추천UI",
+      "status": "PASS",
+      "evidence": "status=stable 행에 안정 뱃지가 있다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE04-011",
+      "section": "FE04_추천UI",
+      "status": "PASS",
+      "evidence": "status=warning 행에 주의 뱃지가 있다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE04-012",
+      "section": "FE04_추천UI",
+      "status": "PASS",
+      "evidence": "status=danger 행에 위험 뱃지가 있다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE04-013",
+      "section": "FE04_추천UI",
+      "status": "PASS",
+      "evidence": "status=OTHER 는 판단 불가 뱃지로 떨어진다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE04-014",
+      "section": "FE04_추천UI",
+      "status": "PASS",
+      "evidence": "ml_close_rate 4.2가 '4.2%'로 표시된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE04-015",
+      "section": "FE04_추천UI",
+      "status": "PASS",
+      "evidence": "dl_sales_per_store 620.1이 '620.1만원'으로 표시된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE04-016",
+      "section": "FE04_추천UI",
+      "status": "PASS",
+      "evidence": "결과 헤더에 행정동과 상권변화명이 함께 있다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE04-017",
+      "section": "FE04_추천UI",
+      "status": "PASS",
+      "evidence": "500 message가 화면에 표시된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE04-018",
+      "section": "FE04_추천UI",
+      "status": "PASS",
+      "evidence": "느린 응답 동안 두 번째 클릭은 막혀 POST가 1회다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE04-019",
+      "section": "FE04_추천UI",
+      "status": "PASS",
+      "evidence": "지역을 바꾼 뒤 다시 누르면 최신 역삼동 결과로 헤더가 바뀐다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE04-020",
+      "section": "FE04_추천UI",
+      "status": "FAIL",
+      "evidence": "구를 바꿨는데 이전 동 결과 표가 그대로 남아 있다: expected <p class=\"font-bold mb-1\"></p> to be null",
+      "defect_id": "DEF-FE04-020"
+    },
+    {
+      "id": "FE04-021",
+      "section": "FE04_추천UI",
+      "status": "FAIL",
+      "evidence": "10행은 렌더되지만 recommendations 5개를 구분하는 상위 추천 표시가 없다: expected null not to be null",
+      "defect_id": "DEF-FE04-021"
+    },
+    {
+      "id": "FE04-022",
+      "section": "FE04_추천UI",
+      "status": "RISK",
+      "evidence": "jsdom은 375px에서 30자 업종명의 테이블 가로 overflow를 계산하지 못한다",
+      "defect_id": ""
+    },
+    {
+      "id": "FE04-023",
+      "section": "FE04_추천UI",
+      "status": "FAIL",
+      "evidence": "Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 한식음식점 ",
+      "defect_id": "DEF-FE04-023"
+    },
+    {
+      "id": "FE04-024",
+      "section": "FE04_추천UI",
+      "status": "PASS",
+      "evidence": "옵션 503 안내 뒤에도 기본값 마포구/연남동은 유효해 추천 POST가 나가고 결과가 교체된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE05-001",
+      "section": "FE05_HTTP클라이언트",
+      "status": "PASS",
+      "evidence": "VITE_API_URL 미설정 시 fetch URL이 http://localhost:8080/api/options 이다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE05-002",
+      "section": "FE05_HTTP클라이언트",
+      "status": "PASS",
+      "evidence": "VITE_API_URL='' 이면 상대 경로 /api/options 로 현재 origin에 요청한다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE05-003",
+      "section": "FE05_HTTP클라이언트",
+      "status": "PASS",
+      "evidence": "getOptions()는 GET /api/options 이다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE05-004",
+      "section": "FE05_HTTP클라이언트",
+      "status": "PASS",
+      "evidence": "createDiagnosis()는 POST /api/diagnoses 이다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE05-005",
+      "section": "FE05_HTTP클라이언트",
+      "status": "PASS",
+      "evidence": "getDiagnosis('17')는 GET /api/diagnoses/17 이다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE05-006",
+      "section": "FE05_HTTP클라이언트",
+      "status": "PASS",
+      "evidence": "getRecommendations()는 POST /api/recommendations 이다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE05-007",
+      "section": "FE05_HTTP클라이언트",
+      "status": "PASS",
+      "evidence": "POST 두 건 모두 Content-Type application/json 이다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE05-008",
+      "section": "FE05_HTTP클라이언트",
+      "status": "PASS",
+      "evidence": "한글 district/dong/industry가 JSON 문자열에 그대로 들어간다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE05-009",
+      "section": "FE05_HTTP클라이언트",
+      "status": "PASS",
+      "evidence": "HTTP 200 JSON이 호출자에게 그대로 반환된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE05-010",
+      "section": "FE05_HTTP클라이언트",
+      "status": "PASS",
+      "evidence": "HTTP 201 JSON도 ok로 보고 data를 반환한다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE05-011",
+      "section": "FE05_HTTP클라이언트",
+      "status": "PASS",
+      "evidence": "400 body.message '오류'가 Error message로 전달된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE05-012",
+      "section": "FE05_HTTP클라이언트",
+      "status": "PASS",
+      "evidence": "message가 없으면 detail '검증 실패'를 쓴다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE05-013",
+      "section": "FE05_HTTP클라이언트",
+      "status": "PASS",
+      "evidence": "HTML 500은 기본 문구 '요청에 실패했습니다.'다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE05-014",
+      "section": "FE05_HTTP클라이언트",
+      "status": "PASS",
+      "evidence": "fetch reject는 호출자 catch로 그대로 전파된다.",
+      "defect_id": ""
+    },
+    {
+      "id": "FE05-015",
+      "section": "FE05_HTTP클라이언트",
+      "status": "FAIL",
+      "evidence": "빈 200 body는 의미 있는 오류 문구로 바뀌어야 한다: expected [Function] to throw error including '요청에 실패했습니다.' but got 'Unexpected end of JSON input'",
+      "defect_id": "DEF-FE05-015"
+    },
+    {
+      "id": "FE05-016",
+      "section": "FE05_HTTP클라이언트",
+      "status": "FAIL",
+      "evidence": "실제 URL https://host//api/options: expected 'https://host//api/options' not to contain '//api'",
+      "defect_id": "DEF-FE05-016"
+    },
+    {
+      "id": "FE05-017",
+      "section": "FE05_HTTP클라이언트",
+      "status": "FAIL",
+      "evidence": "실제 메시지에 토큰이 남아 있다: token=SECRET-TOKEN-123 failed: expected 'token=SECRET-TOKEN-123 failed' not to contain 'SECRET-TOKEN-123'",
+      "defect_id": "DEF-FE05-017"
+    },
+    {
+      "id": "FE05-018",
+      "section": "FE05_HTTP클라이언트",
+      "status": "FAIL",
+      "evidence": "실제 URL http://localhost:8080/api/diagnoses/1/../../: expected 'http://localhost:8080/api/diagnoses/1…' not to contain '/../'",
+      "defect_id": "DEF-FE05-018"
+    }
+  ]
+}
