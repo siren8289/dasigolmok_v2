@@ -1,0 +1,446 @@
+{
+  "command": "/tmp/qa-venv/bin/python -m pytest qa/automation/db/test_db.py -q --tb=line",
+  "cases": [
+    {
+      "id": "DB01-001",
+      "section": "DB01_진단영속성",
+      "status": "PASS",
+      "evidence": "diagnosis.id IDENTITY 로 값을 넣지 않았는데 id=1, 2 로 증가했다. 엔터티 전략은 GenerationType.IDENTITY.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB01-002",
+      "section": "DB01_진단영속성",
+      "status": "PASS",
+      "evidence": "server_encoding=UTF8. district '마포구' 저장 후 조회 값이 같다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB01-003",
+      "section": "DB01_진단영속성",
+      "status": "PASS",
+      "evidence": "dong '연남동' 이 UTF-8 그대로 저장·조회됐다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB01-004",
+      "section": "DB01_진단영속성",
+      "status": "PASS",
+      "evidence": "industry '한식음식점' 이 UTF-8 그대로 저장·조회됐다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB01-005",
+      "section": "DB01_진단영속성",
+      "status": "PASS",
+      "evidence": "quarter '20244' 문자열이 숫자로 바뀌지 않고 그대로 보존됐다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB01-006",
+      "section": "DB01_진단영속성",
+      "status": "PASS",
+      "evidence": "진단 20개 컬럼(문자·실수·boolean·시각)을 넣고 RETURNING 값이 원본과 같다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB01-007",
+      "section": "DB01_진단영속성",
+      "status": "PASS",
+      "evidence": "foot_traffic NULL 저장·조회가 성공했다. 엔터티 필드는 primitive가 아닌 Double.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB01-008",
+      "section": "DB01_진단영속성",
+      "status": "PASS",
+      "evidence": "danger=false 가 true나 NULL로 바뀌지 않고 false로 조회됐다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB01-009",
+      "section": "DB01_진단영속성",
+      "status": "PASS",
+      "evidence": "danger=true 가 false로 바뀌지 않고 true로 조회됐다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB01-010",
+      "section": "DB01_진단영속성",
+      "status": "PASS",
+      "evidence": "한글 2000자를 explanation varchar(2000)에 저장했다. @Column(length=2000).",
+      "defect_id": ""
+    },
+    {
+      "id": "DB01-011",
+      "section": "DB01_진단영속성",
+      "status": "PASS",
+      "evidence": "한글 2001자는 varchar(2000) 제약으로 거절됐다. 22001 value too long for type character varying(2000)",
+      "defect_id": ""
+    },
+    {
+      "id": "DB01-012",
+      "section": "DB01_진단영속성",
+      "status": "PASS",
+      "evidence": "한글, 큰따옴표, 이모지(😀)가 explanation에 그대로 남았다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB01-013",
+      "section": "DB01_진단영속성",
+      "status": "PASS",
+      "evidence": "Diagnosis 필드 초기화가 createdAt=LocalDateTime.now()이다. DB 컬럼 default는 None이고, 앱이 넣은 2026-11-02T19:41:38가 그대로 저장됐다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB01-014",
+      "section": "DB01_진단영속성",
+      "status": "PASS",
+      "evidence": "12건 추가 후 ORDER BY id DESC LIMIT 10 결과 10건, 내림차순, 최대 id=25가 맨 앞. 리포지토리 메서드는 findTop10ByOrderByIdDesc.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB01-015",
+      "section": "DB01_진단영속성",
+      "status": "PASS",
+      "evidence": "id=26 삭제 후 SELECT count=0. DiagnosisService.get은 없으면 ApiException.notFound(HttpStatus.NOT_FOUND)를 던지고 GlobalExceptionHandler가 e.getStatus()로 응답하므로 HTTP 404다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB01-016",
+      "section": "DB01_진단영속성",
+      "status": "PASS",
+      "evidence": "스레드 20개가 동시에 INSERT 했고 id 20개가 모두 다르다. 범위 27–46.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB01-017",
+      "section": "DB01_진단영속성",
+      "status": "PASS",
+      "evidence": "docker restart qa-pg-dasigolmok 후 id=47 재접속 조회가 삽입값과 같다. ('재시작구', '재시작동', '재시작업', '20244', '유지')",
+      "defect_id": ""
+    },
+    {
+      "id": "DB01-018",
+      "section": "DB01_진단영속성",
+      "status": "FAIL",
+      "evidence": "PostgreSQL float8이 NaN과 Infinity를 저장·재조회한다. Diagnosis Double 필드에는 거절이나 안전 직렬화 가드가 없어 DB 직렬화 허용 여부가 열려 있고 응답 안전성이 보장되지 않는다.",
+      "defect_id": "DEF-DB01-018"
+    },
+    {
+      "id": "DB01-019",
+      "section": "DB01_진단영속성",
+      "status": "PASS",
+      "evidence": "DiagnosisService.diagnose는 aiClient.diagnose 다음에만 save한다. AI 예외면 save에 도달하지 않는다. 같은 DB에서 INSERT 후 예외를 롤백하면 id=19 행이 0건이다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB01-020",
+      "section": "DB01_진단영속성",
+      "status": "FAIL",
+      "evidence": "인증 없는 GET /api/diagnoses/{id}가 Diagnosis를 그대로 반환한다. build.gradle에 Spring Security가 없고 diagnosis에 user_id가 없어 소유권 검사를 할 수 없다. 개인정보/소유권 정책이 없다.",
+      "defect_id": "DEF-DB01-020"
+    },
+    {
+      "id": "DB02-001",
+      "section": "DB02_SQL마이그레이션",
+      "status": "PASS",
+      "evidence": "V1 적용 후 public.users 테이블이 있다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB02-002",
+      "section": "DB02_SQL마이그레이션",
+      "status": "PASS",
+      "evidence": "V1 적용 후 public.places 테이블이 있다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB02-003",
+      "section": "DB02_SQL마이그레이션",
+      "status": "PASS",
+      "evidence": "V1 적용 후 public.regions 테이블이 있다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB02-004",
+      "section": "DB02_SQL마이그레이션",
+      "status": "PASS",
+      "evidence": "V1 적용 후 public.stories 테이블이 있다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB02-005",
+      "section": "DB02_SQL마이그레이션",
+      "status": "PASS",
+      "evidence": "places FK는 FOREIGN KEY (region_id) REFERENCES regions(id). 없는 region_id INSERT는 23503 insert or update on table \"places\" violates foreign key constraint \"places_region_id_fkey\".",
+      "defect_id": ""
+    },
+    {
+      "id": "DB02-006",
+      "section": "DB02_SQL마이그레이션",
+      "status": "PASS",
+      "evidence": "users.email UNIQUE. 기존 이메일 admin@dasi-golmok.kr 재삽입이 23505 duplicate key value violates unique constraint \"users_email_key\"로 차단됐다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB02-007",
+      "section": "DB02_SQL마이그레이션",
+      "status": "FAIL",
+      "evidence": "V1은 CREATE INDEX idx_stories_status ON stories(status)를 만들지만, V3__efficiency_optimization.sql이 DROP INDEX IF EXISTS idx_stories_status를 실행한 뒤 같은 이름으로 다시 만들지 않는다. 최종 DB pg_indexes에 idx_stories_status가 없다.",
+      "defect_id": "DEF-DB02-007"
+    },
+    {
+      "id": "DB02-008",
+      "section": "DB02_SQL마이그레이션",
+      "status": "PASS",
+      "evidence": "raw_events 테이블과 PK event_id, 인덱스 ['idx_raw_events_name_time', 'idx_raw_events_region', 'idx_raw_events_story']가 있다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB02-009",
+      "section": "DB02_SQL마이그레이션",
+      "status": "PASS",
+      "evidence": "fact_story_lifecycle 생성됨. 컬럼 15개, PK 성격의 story_id 포함.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB02-010",
+      "section": "DB02_SQL마이그레이션",
+      "status": "PASS",
+      "evidence": "V6 적용 후 da_kpi_snapshot 테이블이 있다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB02-011",
+      "section": "DB02_SQL마이그레이션",
+      "status": "PASS",
+      "evidence": "V8이 stories.version을 추가했다. type=bigint nullable=NO default=0.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB02-012",
+      "section": "DB02_SQL마이그레이션",
+      "status": "PASS",
+      "evidence": "빈 DB에 V1부터 V9까지 psql ON_ERROR_STOP으로 순서대로 적용했고 모두 exit 0. server_version=16.15 (Debian 16.15-1.pgdg12+2).",
+      "defect_id": ""
+    },
+    {
+      "id": "DB02-013",
+      "section": "DB02_SQL마이그레이션",
+      "status": "PASS",
+      "evidence": "기존 데이터 디렉터리에서 docker restart. users 4건 유지, qa_reapply_probe 유지. Skipping initialization 로그=있음. entrypoint는 PG_VERSION이 있는 디렉터리에 초기화 SQL을 다시 적용하지 않는다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB02-014",
+      "section": "DB02_SQL마이그레이션",
+      "status": "FAIL",
+      "evidence": "V1 주석 '-- PostgreSQL 16 + Flyway'와 달리 런타임 의존성에 Flyway가 없다. compose는 ./db/migration을 docker-entrypoint-initdb.d에만 마운트하고, application.yml은 ddl-auto: update 이다. 앱이 마이그레이션을 실행하는 경로가 없다.",
+      "defect_id": "DEF-DB02-014"
+    },
+    {
+      "id": "DB02-015",
+      "section": "DB02_SQL마이그레이션",
+      "status": "FAIL",
+      "evidence": "stories는 V1 SQL에만 있고 현재 Spring 엔터티가 없다. diagnosis는 JPA @Table만 있고 V1~V9 CREATE TABLE이 없다. 레거시 스토리 스키마와 진단 엔터티의 테이블 사용처가 정리되어 있지 않다.",
+      "defect_id": "DEF-DB02-015"
+    },
+    {
+      "id": "DB02-016",
+      "section": "DB02_SQL마이그레이션",
+      "status": "FAIL",
+      "evidence": "V4 mock INSERT가 스키마와 같은 initdb.d 경로로 실행돼 archive@example.com, retro@example.com 2건이 들어갔다. 운영/개발 분기나 프로파일이 없어 더미 데이터 혼입을 막지 않는다.",
+      "defect_id": "DEF-DB02-016"
+    },
+    {
+      "id": "DB02-017",
+      "section": "DB02_SQL마이그레이션",
+      "status": "FAIL",
+      "evidence": "스키마 MV=['mv_region_story_stats', 'mv_story_curation_summary']. back/ai/front/data 실행 코드에서 mv_region_story_stats·mv_story_curation_summary 참조=없음. docs/portfolio-materialized-view.md가 말하는 Refresh 실행 코드는 저장소에 없다.",
+      "defect_id": "DEF-DB02-017"
+    },
+    {
+      "id": "DB02-018",
+      "section": "DB02_SQL마이그레이션",
+      "status": "PASS",
+      "evidence": "CREATE EXTENSION vector 성공. pgvector 0.8.7, PostgreSQL 16.15 (Debian 16.15-1.pgdg12+2).",
+      "defect_id": ""
+    },
+    {
+      "id": "DB02-019",
+      "section": "DB02_SQL마이그레이션",
+      "status": "PASS",
+      "evidence": "embedding vector(64) HNSW 코사인 색인이 있다. CREATE INDEX idx_market_knowledge_embedding ON public.market_knowledge_chunks USING hnsw (embedding vector_cosine_ops)",
+      "defect_id": ""
+    },
+    {
+      "id": "DB02-020",
+      "section": "DB02_SQL마이그레이션",
+      "status": "PASS",
+      "evidence": "V9가 support_policies 정책 보관 테이블을 만들었다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB02-021",
+      "section": "DB02_SQL마이그레이션",
+      "status": "PASS",
+      "evidence": "V7 ai_feature_flags가 먼저 있어 V9 INSERT가 성공했다. enabled=True description=RAG 기반 상권 분석 근거 및 창업 지원 정책 안내 (v2.1).",
+      "defect_id": ""
+    },
+    {
+      "id": "DB02-022",
+      "section": "DB02_SQL마이그레이션",
+      "status": "FAIL",
+      "evidence": "V9에는 BEGIN/COMMIT이 없다. psql은 문장마다 커밋하므로 HNSW 인덱스 실패(embedding_missing) 뒤에도 market_knowledge_chunks=market_knowledge_chunks가 남고 이후 support_policies=None는 없다. 일부 상태가 방지되지 않는다. ERROR:  column \"embedding_missing\" does not exist",
+      "defect_id": "DEF-DB02-022"
+    },
+    {
+      "id": "DB02-023",
+      "section": "DB02_SQL마이그레이션",
+      "status": "PASS",
+      "evidence": "psql -f 실패 로그가 파일 3행과 서버 오류를 가리킨다. exit=3. psql:/tmp/qa-db02-023.sql:3: ERROR:  relation \"qa_missing_relation_db02_023\" does not exist",
+      "defect_id": ""
+    },
+    {
+      "id": "DB02-024",
+      "section": "DB02_SQL마이그레이션",
+      "status": "FAIL",
+      "evidence": "V1~V9 적용 후 flyway_schema_history·schema_migrations 같은 추적 테이블이 없다. 실패한 버전을 기록하거나 그 버전만 재시도하는 체계가 없다.",
+      "defect_id": "DEF-DB02-024"
+    },
+    {
+      "id": "DB03-001",
+      "section": "DB03_pgvector전용",
+      "status": "PASS",
+      "evidence": "pg_extension vector 활성. version=0.8.7.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB03-002",
+      "section": "DB03_pgvector전용",
+      "status": "PASS",
+      "evidence": "market_knowledge_chunks.id 중복 INSERT가 실패했다. 23505 duplicate key value violates unique constraint \"market_knowledge_chunks_pkey\"",
+      "defect_id": ""
+    },
+    {
+      "id": "DB03-003",
+      "section": "DB03_pgvector전용",
+      "status": "PASS",
+      "evidence": "title NULL 저장이 차단됐다. 23502 null value in column \"title\" of relation \"market_knowledge_chunks\" violates not-null constraint",
+      "defect_id": ""
+    },
+    {
+      "id": "DB03-004",
+      "section": "DB03_pgvector전용",
+      "status": "PASS",
+      "evidence": "content NULL 저장이 차단됐다. 23502 null value in column \"content\" of relation \"market_knowledge_chunks\" violates not-null constraint",
+      "defect_id": ""
+    },
+    {
+      "id": "DB03-005",
+      "section": "DB03_pgvector전용",
+      "status": "PASS",
+      "evidence": "doc_type NULL 저장이 차단됐다. 23502 null value in column \"doc_type\" of relation \"market_knowledge_chunks\" violates not-null constraint",
+      "defect_id": ""
+    },
+    {
+      "id": "DB03-006",
+      "section": "DB03_pgvector전용",
+      "status": "PASS",
+      "evidence": "source 컬럼 is_nullable=YES. NULL 저장 후 조회값=None. NULL을 허용한다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB03-007",
+      "section": "DB03_pgvector전용",
+      "status": "PASS",
+      "evidence": "idx_market_knowledge_district indisvalid=True indisready=True method=btree.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB03-008",
+      "section": "DB03_pgvector전용",
+      "status": "PASS",
+      "evidence": "idx_market_knowledge_dong indisvalid=True indisready=True method=btree.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB03-009",
+      "section": "DB03_pgvector전용",
+      "status": "PASS",
+      "evidence": "idx_market_knowledge_industry indisvalid=True indisready=True method=btree.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB03-010",
+      "section": "DB03_pgvector전용",
+      "status": "PASS",
+      "evidence": "vector(64) 임베딩 저장 성공. vector_dims=64.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB03-011",
+      "section": "DB03_pgvector전용",
+      "status": "PASS",
+      "evidence": "512차원 벡터는 차원 불일치로 거절됐다. 22000 expected 64 dimensions, not 512",
+      "defect_id": ""
+    },
+    {
+      "id": "DB03-012",
+      "section": "DB03_pgvector전용",
+      "status": "PASS",
+      "evidence": "embedding HNSW vector_cosine_ops 인덱스가 유효하다. CREATE INDEX idx_market_knowledge_embedding ON public.market_knowledge_chunks USING hnsw (embedding vector_cosine_ops)",
+      "defect_id": ""
+    },
+    {
+      "id": "DB03-013",
+      "section": "DB03_pgvector전용",
+      "status": "PASS",
+      "evidence": "metadata JSONB에 {\"구역\":\"마포구\",\"n\":1}을 넣고 키 조회가 마포구, 1로 돌아왔다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB03-014",
+      "section": "DB03_pgvector전용",
+      "status": "PASS",
+      "evidence": "start_date/end_date가 character varying로 '2026-01-05', '2026-12-31' 그대로 저장됐다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB03-015",
+      "section": "DB03_pgvector전용",
+      "status": "FAIL",
+      "evidence": "search_policies/get_all_policy_items는 support_policies가 아니라 service.py의 POLICY_DATABASE 정적 목록을 순회한다. 마이그레이션 직후 support_policies 행 수는 테스트 삽입을 포함해 1건이며 RAG 조회 경로와 연결되어 있지 않다.",
+      "defect_id": "DEF-DB03-015"
+    },
+    {
+      "id": "DB03-016",
+      "section": "DB03_pgvector전용",
+      "status": "FAIL",
+      "evidence": "support_policies에 end_date>=start_date CHECK가 없다. start_date='2026-12-31', end_date='2026-01-01' INSERT가 성공했다. 날짜 검증 제약이 필요하다.",
+      "defect_id": "DEF-DB03-016"
+    },
+    {
+      "id": "DB03-017",
+      "section": "DB03_pgvector전용",
+      "status": "FAIL",
+      "evidence": "support_policies.source_url에 URI 형식 CHECK가 없다. 'not a uri'가 저장됐다. 원본 URL 검증 정책이 없다.",
+      "defect_id": "DEF-DB03-017"
+    },
+    {
+      "id": "DB03-018",
+      "section": "DB03_pgvector전용",
+      "status": "PASS",
+      "evidence": "compose.yaml db 서비스에 ports가 없고 5432:5432 바인딩도 없다. 호스트 공개 포트는 front 80:80뿐이고 DB는 컨테이너 내부 db:5432만 쓴다.",
+      "defect_id": ""
+    },
+    {
+      "id": "DB03-019",
+      "section": "DB03_pgvector전용",
+      "status": "FAIL",
+      "evidence": "만료 정책(2024-01-01~2024-06-30)이 support_policies에 그대로 저장된다. 컬럼은 ['id', 'title', 'organization', 'target_district', 'target_industry', 'start_date', 'end_date', 'support_amount', 'description', 'eligibility', 'source_url', 'created_at']뿐이고 deleted_at/status/updated_at이 없다. support_policy/service.py는 정적 POLICY_DATABASE만 읽고 갱신·삭제 SQL이 없다. 갱신 전략이 명세되어 있지 않다.",
+      "defect_id": "DEF-DB03-019"
+    }
+  ]
+}
