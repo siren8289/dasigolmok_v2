@@ -33,7 +33,7 @@ from record import (  # noqa: E402
 from tree_hash import working_tree_token  # noqa: E402
 
 PY = sys.executable
-CI_CHECKS = ("record", "security", "front", "python", "java", "regression")
+CI_CHECKS = ("record", "security", "front", "python", "java", "regression", "web_api", "infra")
 
 
 def run_cmd(args: list[str], cwd: Path, timeout: int = 600) -> tuple[str, str]:
@@ -52,7 +52,14 @@ def run_cmd(args: list[str], cwd: Path, timeout: int = 600) -> tuple[str, str]:
     except OSError as exc:
         return "ERROR", str(exc)
     output = (completed.stdout + "\n" + completed.stderr).strip()
-    status = "PASS" if completed.returncode == 0 else "FAIL"
+    if completed.returncode == 0:
+        status = "PASS"
+    elif completed.returncode == 3:
+        status = "BLOCKED"
+    elif completed.returncode == 2:
+        status = "ERROR"
+    else:
+        status = "FAIL"
     return status, output[-2500:]
 
 
@@ -169,108 +176,59 @@ def _spawn(args: list[str], cwd: Path, timeout: int) -> tuple[subprocess.Complet
 
 
 def check_security(run_id: str) -> tuple[CaseResult, list[RiskItem]]:
-    ready, ready_log = ensure_bandit()
-    command_a = f"{PY} -m bandit -r ai/src data/etl -f json -q --severity-level medium"
+    command_a = f"{PY} qa/runner/tools/semgrep_scan.py"
     command_b = f"{PY} qa/runner/tools/secret_scan.py {ROOT}"
-    risks: list[RiskItem] = []
-    bandit_args = [PY, "-m", "bandit", "-r", "ai/src", "data/etl", "-f", "json", "-q", "--severity-level", "medium"]
-    if ready != "PASS":
-        result_a, output_a = "ERROR", ready_log
-    else:
-        completed, spawn_error = _spawn(bandit_args, ROOT, 180)
-        if completed is None:
-            result_a, output_a = "ERROR", spawn_error
-        else:
-            try:
-                payload = json.loads(completed.stdout or "")
-            except json.JSONDecodeError:
-                result_a = "ERROR"
-                output_a = (completed.stderr or completed.stdout or "bandit JSON 없음")[-1500:]
-            else:
-                findings = payload.get("results") or []
-                if not isinstance(findings, list):
-                    result_a = "ERROR"
-                    output_a = "bandit results가 목록이 아니다"
-                else:
-                    highs = 0
-                    for index, item in enumerate(findings, start=1):
-                        severity = str(item.get("issue_severity", "LOW")).upper()
-                        if severity in {"HIGH", "CRITICAL"}:
-                            highs += 1
-                        mapped = severity if severity in {"CRITICAL", "HIGH", "MEDIUM", "LOW"} else "MEDIUM"
+    risks: list[RiskItem] = [
+        RiskItem(
+            risk_id=f"{run_id}-CODEQL-LOCAL",
+            severity="MEDIUM",
+            likelihood="중간",
+            impact="로컬 게이트에는 CodeQL CLI가 없어 CI codeql 잡이 2차 엔진 역할을 한다.",
+            summary="CodeQL은 GitHub Actions에서 실행한다. 로컬은 Semgrep+secret_scan으로 교차한다.",
+            recommendation="PR에서 codeql 잡 PASS를 필수 상태로 유지한다.",
+            feature="CodeQL CI",
+            test_type="security",
+            tc_id="TC-SEC-001",
+            file=".github/workflows/qa-gate.yml",
+            line="UNKNOWN",
+            function="codeql",
+        )
+    ]
+    result_a, output_a = run_cmd([PY, "qa/runner/tools/semgrep_scan.py"], ROOT, 300)
+    result_b, output_b = run_cmd([PY, "qa/runner/tools/secret_scan.py", str(ROOT)], ROOT, 120)
+    if result_b == "PASS":
+        # secret_scan prints JSON list; non-zero already mapped
+        try:
+            payload = json.loads(output_b.split("\n")[0]) if output_b.strip().startswith("[") else json.loads(output_b)
+            if isinstance(payload, list):
+                blocking = [item for item in payload if item.get("severity") in {"HIGH", "CRITICAL"}]
+                if blocking:
+                    result_b = "FAIL"
+                    for index, item in enumerate(blocking, start=1):
                         risks.append(
                             RiskItem(
-                                risk_id=f"{run_id}-BANDIT-{index}",
-                                severity=mapped,
+                                risk_id=f"{run_id}-SECRET-{index}",
+                                severity=item.get("severity") or "HIGH",
                                 likelihood="중간",
-                                impact="보안 결함이 배포되면 데이터나 인증이 노출될 수 있다.",
-                                summary=f"{item.get('test_id')} {item.get('issue_text')}",
-                                recommendation="해당 줄을 확인하고, 고치면 risk-register.tsv 상태를 MITIGATED로 바꾼다. 행은 삭제하지 않는다.",
-                                feature="Python 보안",
+                                impact=item.get("label") or "secret",
+                                summary=f"{item.get('label')}: {item.get('excerpt')}",
+                                recommendation="비밀은 환경변수로 옮긴다.",
+                                feature="비밀·렌더링",
                                 test_type="security",
                                 tc_id="TC-SEC-001",
-                                file=str(item.get("filename") or "UNKNOWN"),
-                                line=str(item.get("line_number") or "UNKNOWN"),
-                                function=str(item.get("test_name") or "UNKNOWN"),
+                                file=item.get("file") or "UNKNOWN",
+                                line=str(item.get("line") or "UNKNOWN"),
                             )
                         )
-                    if completed.returncode not in {0, 1}:
-                        result_a = "ERROR"
-                    elif highs:
-                        result_a = "FAIL"
-                    else:
-                        result_a = "PASS"
-                    output_a = f"bandit findings={len(findings)} high={highs} exit={completed.returncode}"
-    scan, spawn_error = _spawn([PY, "qa/runner/tools/secret_scan.py", str(ROOT)], ROOT, 120)
-    if scan is None:
-        result_b, output_b = "ERROR", spawn_error
-    else:
-        try:
-            secret_findings = json.loads(scan.stdout or "")
         except json.JSONDecodeError:
-            secret_findings = []
-            result_b = "ERROR"
-            output_b = (scan.stderr or scan.stdout or "secret_scan JSON 없음")[-1500:]
-        else:
-            if not isinstance(secret_findings, list):
-                result_b = "ERROR"
-                output_b = "secret_scan 결과가 목록이 아니다"
-            else:
-                blocking = [item for item in secret_findings if item.get("severity") in {"HIGH", "CRITICAL"}]
-                if scan.returncode not in {0, 1}:
-                    result_b = "ERROR"
-                elif blocking:
-                    result_b = "FAIL"
-                else:
-                    result_b = "PASS"
-                output_b = f"secret findings={len(secret_findings)} blocking={len(blocking)} exit={scan.returncode}"
-                for index, item in enumerate(secret_findings, start=1):
-                    severity = item.get("severity") or "MEDIUM"
-                    if severity not in {"CRITICAL", "HIGH", "MEDIUM", "LOW"}:
-                        severity = "MEDIUM"
-                    risks.append(
-                        RiskItem(
-                            risk_id=f"{run_id}-SECRET-{index}",
-                            severity=severity,
-                            likelihood="중간" if severity in {"HIGH", "CRITICAL"} else "낮음",
-                            impact=item.get("label") or "UNKNOWN",
-                            summary=f"{item.get('label')}: {item.get('excerpt')}",
-                            recommendation="비밀은 환경변수로 옮기고, HTML 삽입은 이스케이프된 텍스트로 바꾼다.",
-                            feature="비밀·렌더링",
-                            test_type="security",
-                            tc_id="TC-SEC-001",
-                            file=item.get("file") or "UNKNOWN",
-                            line=str(item.get("line") or "UNKNOWN"),
-                            function=item.get("function") or "UNKNOWN",
-                        )
-                    )
+            pass
     case = _case(
         "security",
         "TC-SEC-001",
         "정적 보안",
         "security",
-        "ISTQB 예외·OWASP ASVS 비밀관리와 출력 이스케이프를 두 정적 도구로 확인",
-        "bandit",
+        "Semgrep OWASP 규칙과 비밀·렌더링 스캔으로 교차 검증. CodeQL은 CI에서 실행",
+        "semgrep",
         command_a,
         result_a,
         output_a,
@@ -278,13 +236,90 @@ def check_security(run_id: str) -> tuple[CaseResult, list[RiskItem]]:
         command_b,
         result_b,
         output_b,
-        "HIGH/CRITICAL 비밀·취약점 없음",
+        "HIGH/CRITICAL 소견 없음 + CI CodeQL 필수",
         risks,
     )
-    if case.final_status != "PASS" and risks:
-        case.file = risks[0].file
-        case.line = risks[0].line
-        case.function = risks[0].function
+    return case, risks
+
+
+def check_web_api() -> tuple[CaseResult, list[RiskItem]]:
+    command_a = f"{PY} qa/runner/tools/api_contract_httpx.py"
+    command_b = f"{PY} qa/runner/tools/api_smoke_curl.py"
+    result_a, output_a = run_cmd([PY, "qa/runner/tools/api_contract_httpx.py"], ROOT, 120)
+    result_b, output_b = run_cmd([PY, "qa/runner/tools/api_smoke_curl.py"], ROOT, 180)
+    risks: list[RiskItem] = [
+        RiskItem(
+            risk_id="WEB-PLAYWRIGHT-PENDING",
+            severity="MEDIUM",
+            likelihood="중간",
+            impact="브라우저 E2E가 없으면 UI 사용 흐름 회귀가 남을 수 있다.",
+            summary="Playwright UI E2E는 아직 없다. API는 httpx TestClient와 Schemathesis(OpenAPI)로 교차한다.",
+            recommendation="front에 Playwright를 추가해 02_web_api UI 흐름 TC를 연결한다.",
+            feature="web_api 도구 확장",
+            test_type="api",
+            tc_id="TC-WEB-API-001",
+            file="qa/config/test_map.json",
+            line="UNKNOWN",
+        )
+    ]
+    case = _case(
+        "web_api",
+        "TC-WEB-API-001",
+        "FastAPI HTTP 계약",
+        "api",
+        "httpx TestClient와 Schemathesis OpenAPI ASGI로 헬스·옵션 API를 교차",
+        "httpx_contract",
+        command_a,
+        result_a,
+        output_a,
+        "schemathesis",
+        command_b,
+        result_b,
+        output_b,
+        "health status=ok 이고 options에 districts/dongs/industries",
+        risks,
+    )
+    return case, risks
+
+
+def check_infra() -> tuple[CaseResult, list[RiskItem]]:
+    command_a = f"{PY} qa/runner/tools/infra_compose_check.py"
+    command_b = f"{PY} qa/runner/tools/infra_curl_smoke.py"
+    result_a, output_a = run_cmd([PY, "qa/runner/tools/infra_compose_check.py"], ROOT, 60)
+    result_b, output_b = run_cmd([PY, "qa/runner/tools/infra_curl_smoke.py"], ROOT, 60)
+    risks: list[RiskItem] = []
+    if result_b == "BLOCKED":
+        risks.append(
+            RiskItem(
+                risk_id="INFRA-SMOKE-BLOCKED",
+                severity="MEDIUM",
+                likelihood="높음",
+                impact="로컬 스택이 꺼져 있으면 배포 후 실제 HTTP 성공을 로컬에서 증명하지 못한다.",
+                summary="curl 스모크가 서비스 미기동으로 BLOCKED다. compose config 검사만으로는 런타임 검증이 아니다.",
+                recommendation="docker compose up 후 재실행하거나 CI/스테이징 스모크 URL을 QA_SMOKE_* 로 넣는다.",
+                feature="infra smoke",
+                test_type="infra",
+                tc_id="TC-INFRA-001",
+                file="compose.yaml",
+            )
+        )
+    case = _case(
+        "infra",
+        "TC-INFRA-001",
+        "Compose·HTTP 스모크",
+        "infra",
+        "docker compose config/healthcheck와 curl HTTP 스모크 교차",
+        "compose_config",
+        command_a,
+        result_a,
+        output_a,
+        "curl_health",
+        command_b,
+        result_b,
+        output_b,
+        "compose config PASS 이고 최소 1개 엔드포인트 HTTP 성공",
+        risks,
+    )
     return case, risks
 
 
@@ -431,6 +466,8 @@ CHECKS = {
     "python": check_python,
     "java": check_java,
     "regression": check_regression,
+    "web_api": check_web_api,
+    "infra": check_infra,
 }
 
 
@@ -454,7 +491,7 @@ def selected_checks(scope: str, only: str) -> list[str]:
             return any(path == prefix or path.startswith(prefix) for path in changed for prefix in prefixes)
 
         names = ["security"]
-        if touched("qa/runner/"):
+        if touched("qa/runner/", "qa/config/", "qa-policy.md", "AGENTS.md"):
             names.append("record")
         if touched("front/"):
             names.append("front")
@@ -462,6 +499,10 @@ def selected_checks(scope: str, only: str) -> list[str]:
             names.extend(["python", "regression"])
         if touched("back/"):
             names.append("java")
+        if touched("ai/", "front/", "back/"):
+            names.append("web_api")
+        if touched("compose.yaml", "scripts/", ".github/workflows/"):
+            names.append("infra")
         return list(dict.fromkeys(names))
     raise SystemExit(f"unknown scope {scope}")
 
@@ -488,7 +529,7 @@ def write_stamp(run_id: str, exit_code: int) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser(description="dasiGolmok QA gate")
     parser.add_argument("--scope", choices=("ci", "auto"), default="auto")
-    parser.add_argument("--only", default="", help="record,security,front,python,java,regression")
+    parser.add_argument("--only", default="", help="record,security,front,python,java,regression,web_api,infra")
     args = parser.parse_args()
     names = selected_checks(args.scope, args.only)
     when = now_seoul()

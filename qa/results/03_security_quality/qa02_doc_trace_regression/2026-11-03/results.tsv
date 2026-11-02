@@ -1,3 +1,4 @@
 ﻿tc_id	area	section	feature	item	verify_a	verify_a_result	verify_b	verify_b_result	final_status	expected	actual	defect_id	code_path	executed_on
 TC-UNIT-RECORD-001	03_security_quality	qa02_doc_trace_regression	QA 기록기	같은 날짜의 이전 RUN을 유지하고 미실행 섹션 폴더를 만들지 않는지 확인	pytest	PASS	python	PASS	PASS	두 실행기 모두 누적 기록 검사를 통과	A=PASS, B=PASS, final=PASS		UNKNOWN	2026-11-03
 TC-UNIT-RECORD-001	03_security_quality	qa02_doc_trace_regression	QA 기록기	같은 날짜의 이전 RUN을 유지하고 미실행 섹션 폴더를 만들지 않는지 확인	pytest	PASS	python	PASS	PASS	두 실행기 모두 누적 기록 검사를 통과	A=PASS, B=PASS, final=PASS		UNKNOWN	2026-11-03
+TC-UNIT-RECORD-001	03_security_quality	qa02_doc_trace_regression	QA 기록기	같은 날짜의 이전 RUN을 유지하고 미실행 섹션 폴더를 만들지 않는지 확인	pytest	PASS	python	PASS	PASS	두 실행기 모두 누적 기록 검사를 통과	A=PASS, B=PASS, final=PASS		UNKNOWN	2026-11-03

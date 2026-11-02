@@ -25,6 +25,7 @@ WATCH_PREFIXES = (
     "scripts/",
     ".github/workflows/",
     "qa/runner/",
+    "qa/config/",
     "compose.yaml",
     "AGENTS.md",
     "qa-policy.md",

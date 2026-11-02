@@ -1,10 +1,11 @@
 """QA 게이트 실행 결과를 4영역·섹션·날짜 폴더에 누적한다.
 
 경로: qa/results/{area}/{section}/{YYYY-MM-DD}/
-파일: test_sheet.xlsx, pass.md, fail.md, risk.md, summary.tsv
+파일: test_sheet.xlsx, pass.md, fail.md, risk.md, results.tsv
 
 과거 행은 지우거나 덮어쓰지 않는다. 실행하지 않은 섹션은 폴더를 만들지 않는다.
 날짜와 시각은 Asia/Seoul 기준이다. 본문 설명은 한국어, 경로·식별자는 영어다.
+실행 이력은 qa/history/execution_log.tsv에 append-only로 남긴다.
 """
 
 from __future__ import annotations
@@ -193,8 +194,8 @@ def _append_md(path: Path, title: str, block: str) -> None:
 
 
 def _sync_test_sheet(folder: Path) -> None:
-    """summary.tsv 전체를 test_sheet.xlsx로 동기화한다."""
-    summary = folder / "summary.tsv"
+    """results.tsv 전체를 test_sheet.xlsx로 동기화한다."""
+    summary = folder / "results.tsv"
     rows = read_tsv(summary)
     try:
         from openpyxl import Workbook
@@ -352,31 +353,67 @@ def write_run(
         else:
             _append_md(folder / "risk.md", "RISK", run_heading + "이 RUN에서 새 위험은 없다.\n")
 
+        result_rows = [
+            [
+                case.tc_id,
+                area,
+                section,
+                case.feature,
+                case.purpose,
+                case.tool_a,
+                case.tool_a_result,
+                case.tool_b,
+                case.tool_b_result,
+                case.final_status,
+                case.expected,
+                case.actual,
+                case.issue_id,
+                case.file,
+                day,
+            ]
+            for case in typed
+        ]
+        _append_tsv(folder / "results.tsv", SUMMARY_HEADER, result_rows)
+        _sync_test_sheet(folder)
+        history = qa_root / "history" / "execution_log.tsv"
         _append_tsv(
-            folder / "summary.tsv",
-            SUMMARY_HEADER,
+            history,
+            [
+                "run_id",
+                "tc_id",
+                "area",
+                "section",
+                "started_at",
+                "finished_at",
+                "tool_a",
+                "tool_a_result",
+                "tool_b",
+                "tool_b_result",
+                "final_status",
+                "git_commit",
+                "code_path",
+                "evidence",
+            ],
             [
                 [
+                    run_id,
                     case.tc_id,
                     area,
                     section,
-                    case.feature,
-                    case.purpose,
+                    stamp,
+                    stamp,
                     case.tool_a,
                     case.tool_a_result,
                     case.tool_b,
                     case.tool_b_result,
                     case.final_status,
-                    case.expected,
-                    case.actual,
-                    case.issue_id,
+                    commit or "UNKNOWN",
                     case.file,
-                    day,
+                    case.evidence,
                 ]
                 for case in typed
             ],
         )
-        _sync_test_sheet(folder)
         written.append(f"{area}/{section}")
 
     fresh_risks = _new_risks(meta, risks)

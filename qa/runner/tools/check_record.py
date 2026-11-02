@@ -52,7 +52,7 @@ def main() -> int:
             return 1
         write_run(qa_root, meta, second, when, "abc", [_case("TC-B", "FAIL")], [])
         folder = qa_root / "results" / AREA / SECTION / DAY
-        rows = read_tsv(folder / "summary.tsv")
+        rows = read_tsv(folder / "results.tsv")
         ids = [row["tc_id"] for row in rows]
         if ids != ["TC-A", "TC-B"]:
             print("FAIL history overwritten", ids)
@@ -66,6 +66,9 @@ def main() -> int:
             return 1
         if not (folder / "test_sheet.xlsx").exists():
             print("FAIL missing test_sheet.xlsx")
+            return 1
+        if not (qa_root / "history" / "execution_log.tsv").exists():
+            print("FAIL missing execution_log.tsv")
             return 1
     print("check_record PASS")
     return 0

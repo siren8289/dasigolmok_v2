@@ -49,12 +49,13 @@ def test_appends_and_skips_unrun_section(tmp_path: Path) -> None:
     second = allocate_run_id(tmp_path, when)
     write_run(tmp_path, meta, second, when, "def", [_case("TC-B", "FAIL"), skipped], [])
     folder = tmp_path / "results" / AREA / SECTION / DAY
-    rows = read_tsv(folder / "summary.tsv")
+    rows = read_tsv(folder / "results.tsv")
     assert [row["tc_id"] for row in rows] == ["TC-A", "TC-B"]
     assert rows[0]["final_status"] == "PASS"
     assert rows[1]["final_status"] == "FAIL"
     assert first in (folder / "pass.md").read_text(encoding="utf-8")
     assert not (tmp_path / "results" / "02_web_api" / "fe01_common_routing").exists()
-    raw = (folder / "summary.tsv").read_bytes()
+    raw = (folder / "results.tsv").read_bytes()
     assert raw.startswith(b"\xef\xbb\xbf")
     assert (folder / "test_sheet.xlsx").exists()
+    assert (tmp_path / "history" / "execution_log.tsv").exists()

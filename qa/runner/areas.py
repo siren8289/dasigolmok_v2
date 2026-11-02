@@ -63,10 +63,12 @@ SECTION_TO_AREA: dict[str, str] = {
 CHECK_TO_SECTION: dict[str, tuple[str, str]] = {
     "record": ("03_security_quality", "qa02_doc_trace_regression"),
     "security": ("03_security_quality", "qa01_security_nfr"),
-    "front": ("02_web_api", "fe01_common_routing"),
+    "front": ("01_unit_integration", "fe01_common_routing"),
     "python": ("01_unit_integration", "de05_missing_outlier"),
     "java": ("01_unit_integration", "be01_diagnosis_request_dto"),
     "regression": ("01_unit_integration", "de05_missing_outlier"),
+    "web_api": ("02_web_api", "ai01_fastapi_contract"),
+    "infra": ("04_infra_deploy", "ops1_docker_connect"),
 }
 
 
