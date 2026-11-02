@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .grok/hooks/qa_gate_stop.py",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .grok/hooks/qa_gate_stop.py",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

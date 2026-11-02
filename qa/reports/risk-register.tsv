@@ -1,0 +1,2 @@
+﻿risk_id	opened_at	run_id	severity	likelihood	impact	status	feature	test_type	file	function	line	tc_id	summary	recommendation
+RISK-20261102-201533-1	2026-11-02T20:15:33+0900	20261102-201533	MEDIUM	높음	타입 오류가 있으면 빌드 스크립트 tsc --noEmit이 배포를 막거나, 검사를 빼면 타입 회귀가 남는다.	MITIGATED	프론트 타입	unit	front/src/test/FE01_routing.test.tsx	UNKNOWN	1	TC-UNIT-FRONT-001	src/test/FE01_routing.test.tsx(1,30): error TS2307: Cannot find module 'node:fs' or its corresponding type declarations.	node 타입 선언을 테스트 범위에 포함하고 tsc를 다시 실행한다.
