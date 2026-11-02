@@ -1,0 +1,25 @@
+﻿TC_ID	영역	섹션	기능	항목	검증A	검증A결과	검증B	검증B결과	최종상태	예상결과	실제결과	결함ID	코드경로	실행일
+FE02-001	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	기본 자치구	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	마포구가 기본 자치구로 지정된다	옵션 로드 후 자치구 값이 마포구다.		front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-002	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	기본 행정동	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	연남동이 기본 행정동으로 표시된다	최초 행정동 값이 연남동이다.		front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-003	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	기본 업종	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	한식음식점이 기본 업종으로 표시된다	최초 업종 값이 한식음식점이다.		front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-004	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	옵션 목록 호출	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	GET /api/options가 1회 실행된다	StrictMode 없이 마운트하면 GET /api/options 가 1회다.		front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-005	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	마포구 옵션 존재	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	마포구 선택 유지	districts에 마포구가 있으면 선택이 마포구로 유지된다.		front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-006	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	마포구 옵션 없음	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	첫 번째 강남구로 대체된다	마포구가 없으면 첫 자치구 강남구로 바뀐다.		front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-007	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	옵션 빈 목록	Vitest	FAIL	Playwright	NOT_RUN	FAIL	선택 상태를 안전하게 표시하고 실패 요청을 피한다	빈 목록 안내 없음. 본문=골목 상권 진단행정동과 업종을 고르면, 폐업률(ML)·점포당 매출(DL)·쉬운 설명(LLM)을 보여 줍니다.자치구행정동연남동업종진단하기: expected null not to be null	DEF-FE02-007	front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-008	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	자치구 변경	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	행정동 선택지는 강남구 항목으로 갱신된다	강남구로 바꾸면 행정동 선택지가 역삼동·삼성동이다.		front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-009	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	기존 동 미포함	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	새 자치구 첫 동으로 선택한다	연남동은 강남구 목록에 없어 첫 동 역삼동으로 바뀐다.		front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-010	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	기존 동 포함	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	동 선택을 불필요하게 바꾸지 않는다	마포구 목록에 망원동이 있으면 선택 후 첫 동으로 되돌리지 않는다.		front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-011	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	동 선택 변경	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	선택 행정동 값이 변경된다	연남동에서 망원동으로 행정동 값이 바뀐다.		front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-012	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	업종 선택 변경	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	선택 업종 값이 변경된다	업종 값이 커피-음료로 바뀐다.		front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-013	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	분석 버튼	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	POST /api/diagnoses로 세 필드 전송	POST /api/diagnoses body에 district, dong, industry 세 필드가 실렸다.		front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-014	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	분석 중 버튼 중복	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	버튼 disabled로 중복 실행이 차단된다	응답 대기 중 버튼이 disabled이고 POST는 1회만 나갔다.		front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-015	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	분석 중 라벨	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	'AI가 분석하는 중...'으로 바뀐다	대기 중 버튼 문구가 'AI가 분석하는 중...'이다.		front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-016	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	성공 결과 이동	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	/diagnoses/12로 이동한다	id=12 응답 후 결과 화면(폐업률)이 같은 라우터의 /diagnoses/12 로 표시된다.		front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-017	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	전송 오류 메시지	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	서버 message가 사용자에게 표시된다	404 JSON message가 화면에 그대로 표시된다.		front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-018	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	비JSON 오류	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	기본 오류 메시지가 표시된다	HTML 500은 JSON 파싱에 실패해 기본 문구 '요청에 실패했습니다.'를 보여 준다.		front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-019	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	요청 끝난 뒤 버튼	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	loading=false로 버튼 복구	오류로 Promise가 끝나면 버튼이 다시 '진단하기'이고 활성화된다.		front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-020	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	옵션 요청 실패	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	'목록을 불러오지 못했습니다' 또는 구체 메시지를 표시	GET /api/options 503의 message '옵션 장애'가 표시된다.		front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-021	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	빈 지역 제출 방어	Vitest	FAIL	Playwright	NOT_RUN	FAIL	유효하지 않은 선택값은 제출 전 차단되어야 한다	빈 자치구 제출이 차단되지 않음. POST 1건: expected false to be truthy	DEF-FE02-021	front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-022	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	서로 다른 구·동 제출 방어	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	구·동 불일치 제출을 차단한다	마포구로 돌아오면 역삼동은 유지되지 않고 연남동으로 교정된 뒤 제출된다.		front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-023	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	업종 미지원 값	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	사용자에게 선택 오류 안내 후 서버 결과를 확인	NOT_EXIST 제출 후 서버 message '지원하지 않는 업종입니다.'가 사용자에게 표시된다. 제출 전 별도 클라이언트 차단 문구는 없다.		front/src/pages/DiagnosePage.tsx	2026-11-02
+FE02-024	웹·API 테스트	FE02_진단입력UI	진단 페이지 입력·셀렉트	API 응답 순서 역전	Vitest	RISK	Playwright	NOT_RUN	RISK	오래된 응답이 최신 선택을 덮지 않아야 한다	옵션 도착 전 셀렉트 선택지가 현재 구 하나뿐이고, 응답 콜백은 요청 세대 가드 없이 setDistrict를 호출한다. 오래된 응답이 사용자 선택을 덮는 시나리오는 이 UI에서 재현되지 않았다.		front/src/pages/DiagnosePage.tsx	2026-11-02

@@ -1,0 +1,26 @@
+﻿TC_ID	영역	섹션	기능	항목	검증A	검증A결과	검증B	검증B결과	최종상태	예상결과	실제결과	결함ID	코드경로	실행일
+RG06-001	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	상권 질문 분류	pytest	PASS	모킹	NOT_RUN	NOT_RUN	market_analysis	'연남동 매출이 어떨까' 의도는 market_analysis 이다.		ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-002	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	지원 질문 분류	pytest	PASS	모킹	NOT_RUN	NOT_RUN	support_policy	'지원금 신청 방법 알려줘' 의도는 support_policy 이다.		ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-003	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	혼합 질문 분류	pytest	PASS	모킹	NOT_RUN	NOT_RUN	hybrid	'연남동 폐업률과 지원금' 의도는 hybrid 이다.		ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-004	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	일반 질문 분류	pytest	PASS	모킹	NOT_RUN	NOT_RUN	default intent 규칙 확인	키워드가 없는 '안녕하세요' 의 기본 의도는 hybrid 이다.		ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-005	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	검증 노드 입력	pytest	PASS	모킹	NOT_RUN	NOT_RUN	검증 로그	유효한 마포구 질문은 node_validate 로그를 남긴다.		ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-006	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	지원 의도 도구	pytest	PASS	모킹	NOT_RUN	NOT_RUN	정책 검색 경로	support_policy 의도는 정책 검색만 실행한다.		ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-007	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	상권 의도 도구	pytest	PASS	모킹	NOT_RUN	NOT_RUN	상권 근거 검색 경로	market_analysis 의도는 상권 근거 검색만 실행한다.		ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-008	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	혼합 의도 도구	pytest	PASS	모킹	NOT_RUN	NOT_RUN	두 검색 경로	hybrid 의도는 상권 검색과 정책 검색을 모두 실행한다.		ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-009	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	검색 결과 결합	pytest	PASS	모킹	NOT_RUN	NOT_RUN	response evidence_documents와 policies 분리	상권 2건과 정책 3건이 evidence_documents 와 policies 로 분리된다.		ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-010	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	진단 자동 결합	pytest	PASS	모킹	NOT_RUN	NOT_RUN	base diagnose 접목	dong=연남동, industry=한식 이면 진단 결과가 market_diagnosis 에 붙는다.		ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-011	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	진단정보 누락	pytest	PASS	모킹	NOT_RUN	NOT_RUN	안전하게 진단 생략	dong 만 있고 industry 가 없으면 진단을 생략한다.		ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-012	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	지원 날짜 전파	pytest	PASS	모킹	NOT_RUN	NOT_RUN	policy query target_date 보존	target_date=2026-11-02 가 정책 검색 쿼리에 그대로 전달된다.		ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-013	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	top_k 전파	pytest	PASS	모킹	NOT_RUN	NOT_RUN	상권 및 정책 각각 2개 이내	top_k=2 이면 상권 문서와 정책이 각각 2건 이하다.		ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-014	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	질문 원문 보존	pytest	PASS	모킹	NOT_RUN	NOT_RUN	response.question 원문	한글과 영문이 섞인 question 이 응답 question 에 보존된다.		ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-015	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	결과 인용	pytest	PASS	모킹	NOT_RUN	NOT_RUN	citations 목록	검색 문서 2건이면 citations 목록이 만들어진다.		ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-016	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	실행 메타	pytest	PASS	모킹	NOT_RUN	NOT_RUN	execution_metadata 로그·시간	실행 메타데이터에 latency_ms 와 단계 로그가 있다.		ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-017	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	검증 경고	pytest	PASS	모킹	NOT_RUN	NOT_RUN	warnings에 반영	district=부산시 는 warnings 에 검증 오류로 남는다.		ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-018	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	프롬프트 인젝션	pytest	PASS	모킹	NOT_RUN	NOT_RUN	실행 거절 또는 안전한 안내	ignore previous instructions 는 실행을 거절한다.		ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-019	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	검색 도구 권한	pytest	PASS	모킹	NOT_RUN	NOT_RUN	차단	market_search 권한이 없으면 도구 실행이 차단되고 문서가 비어 있다.		ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-020	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	검색 타임아웃	pytest	FAIL	모킹	NOT_RUN	FAIL	전체 실패 아닌 부분적 degraded 안내	상권 검색 TimeoutError 가 워크플로우 전체로 전파되고 부분 안내가 없음	DEF-RG06-020	ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-021	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	검색 예외	pytest	FAIL	모킹	NOT_RUN	FAIL	다른 결과 유지·경고 전파	정책 검색 예외가 상권 결과까지 폐기함	DEF-RG06-021	ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-022	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	다른 회사 데이터	pytest	PASS	모킹	NOT_RUN	NOT_RUN	교차 지역 근거 혼입 차단	district=강남구 검색 결과에 마포구 문서가 섞이지 않는다.		ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-023	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	반복 실행	pytest	PASS	모킹	NOT_RUN	NOT_RUN	캐시와 결과 일관성	같은 요청 두 번의 답변·문서·정책이 같다.		ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-024	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	빈 질문	pytest	FAIL	모킹	NOT_RUN	FAIL	명확한 입력 오류 안내	빈 질문이 intent=hybrid로 처리되고 입력 오류 안내가 없음	DEF-RG06-024	ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02
+RG06-025	단위·통합 테스트	RG06_오케스트레이션	RAG 의도분류·분기	질문 10만자	pytest	FAIL	모킹	NOT_RUN	FAIL	입력 제한, API 비용 통제	10만 자 질문이 길이 제한 없이 수용됨	DEF-RG06-025	ai/src/features/commercial_rag_001/orchestration/workflow.py	2026-11-02

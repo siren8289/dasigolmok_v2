@@ -1,0 +1,21 @@
+﻿TC_ID	영역	섹션	기능	항목	검증A	검증A결과	검증B	검증B결과	최종상태	예상결과	실제결과	결함ID	코드경로	실행일
+DE03-001	단위·통합 테스트	DE03_점포정제	점포 통계 clean_store	공통 key 추출	pytest	PASS	fixture	NOT_RUN	NOT_RUN	영문 key 통일	공통 키가 quarter=20242, dong_code=11440740, industry_code=CS100001.		data/etl/transform.py	2026-11-02
+DE03-002	단위·통합 테스트	DE03_점포정제	점포 통계 clean_store	서울 자치구 매핑	pytest	PASS	fixture	NOT_RUN	NOT_RUN	마포구 매핑	행정동 코드 11440100의 district는 마포구. 결과 1행.		data/etl/transform.py	2026-11-02
+DE03-003	단위·통합 테스트	DE03_점포정제	점포 통계 clean_store	타 지역 코드	pytest	PASS	fixture	NOT_RUN	NOT_RUN	district='' 제거	코드 26110510은 district가 빈 문자열이라 결과 0행.		data/etl/transform.py	2026-11-02
+DE03-004	단위·통합 테스트	DE03_점포정제	점포 통계 clean_store	점포수 >0	pytest	PASS	fixture	NOT_RUN	NOT_RUN	포함	store_count=1은 포함. 결과 1행, 값 1.		data/etl/transform.py	2026-11-02
+DE03-005	단위·통합 테스트	DE03_점포정제	점포 통계 clean_store	점포수 0	pytest	PASS	fixture	NOT_RUN	NOT_RUN	제외	store_count=0은 제외. 결과 0행.		data/etl/transform.py	2026-11-02
+DE03-006	단위·통합 테스트	DE03_점포정제	점포 통계 clean_store	점포수 음수	pytest	PASS	fixture	NOT_RUN	NOT_RUN	제외	store_count=-1은 제외. 결과 0행.		data/etl/transform.py	2026-11-02
+DE03-007	단위·통합 테스트	DE03_점포정제	점포 통계 clean_store	점포수 문자열	pytest	PASS	fixture	NOT_RUN	NOT_RUN	1000 변환	점포수 문자열 '1,000'은 1000. 결과 1행.		data/etl/transform.py	2026-11-02
+DE03-008	단위·통합 테스트	DE03_점포정제	점포 통계 clean_store	폐업률 문자열	pytest	PASS	fixture	NOT_RUN	NOT_RUN	float 5.25	폐업률 '5.25'는 float 5.25.		data/etl/transform.py	2026-11-02
+DE03-009	단위·통합 테스트	DE03_점포정제	점포 통계 clean_store	개업률 문자열	pytest	PASS	fixture	NOT_RUN	NOT_RUN	float 3.20	개업률 '3.20'은 float 3.20.		data/etl/transform.py	2026-11-02
+DE03-010	단위·통합 테스트	DE03_점포정제	점포 통계 clean_store	프랜차이즈 비율	pytest	PASS	fixture	NOT_RUN	NOT_RUN	0.2	프랜차이즈 2, 점포 10 → franchise_ratio 0.2.		data/etl/transform.py	2026-11-02
+DE03-011	단위·통합 테스트	DE03_점포정제	점포 통계 clean_store	프랜차이즈 비율 >1	pytest	PASS	fixture	NOT_RUN	NOT_RUN	1로 클리핑	프랜차이즈 12, 점포 10 → franchise_ratio 1로 클리핑.		data/etl/transform.py	2026-11-02
+DE03-012	단위·통합 테스트	DE03_점포정제	점포 통계 clean_store	프랜차이즈 음수	pytest	PASS	fixture	NOT_RUN	NOT_RUN	0으로 클리핑	프랜차이즈 -1, 점포 10 → franchise_ratio 0으로 클리핑.		data/etl/transform.py	2026-11-02
+DE03-013	단위·통합 테스트	DE03_점포정제	점포 통계 clean_store	프랜차이즈 결측	pytest	FAIL	fixture	NOT_RUN	FAIL	NaN 후처리 필요	franchise_count=None, store_count=10일 때 franchise_ratio=nan. NaN 후처리가 없음.	DEF-DE03-013	data/etl/transform.py	2026-11-02
+DE03-014	단위·통합 테스트	DE03_점포정제	점포 통계 clean_store	동일 복제 행	pytest	PASS	fixture	NOT_RUN	NOT_RUN	중복 한 행	같은 quarter/dong_code/industry_code 2행이 1행으로 축소.		data/etl/transform.py	2026-11-02
+DE03-015	단위·통합 테스트	DE03_점포정제	점포 통계 clean_store	다른 분기	pytest	PASS	fixture	NOT_RUN	NOT_RUN	분기별 유지	분기 20241과 20242는 둘 다 유지. 결과 2행.		data/etl/transform.py	2026-11-02
+DE03-016	단위·통합 테스트	DE03_점포정제	점포 통계 clean_store	업종 코드 다름	pytest	PASS	fixture	NOT_RUN	NOT_RUN	각 업종 유지	업종 CS100001과 CS100010이 각각 유지. 결과 2행.		data/etl/transform.py	2026-11-02
+DE03-017	단위·통합 테스트	DE03_점포정제	점포 통계 clean_store	선행 영점	pytest	FAIL	fixture	NOT_RUN	FAIL	자치구 코드 보존 확인	행정동 코드 float 11440740.0이 dong_code '11440740.0'으로 저장됨. district는 마포구로 맞지만 코드 문자열이 달라짐.	DEF-DE03-017	data/etl/transform.py	2026-11-02
+DE03-018	단위·통합 테스트	DE03_점포정제	점포 통계 clean_store	동이 빈 문자열	pytest	FAIL	fixture	NOT_RUN	FAIL	잘못된 지역 엔트리 배제 필요	dong='' 이고 코드 11440740·점포 10인 행이 1건 남음. 빈 동 이름이 걸러지지 않음.	DEF-DE03-018	data/etl/transform.py	2026-11-02
+DE03-019	단위·통합 테스트	DE03_점포정제	점포 통계 clean_store	폐업률 120%	pytest	FAIL	fixture	NOT_RUN	FAIL	0~100 데이터 정합성 검증	close_rate=120이 클리핑·제외 없이 1행으로 통과.	DEF-DE03-019	data/etl/transform.py	2026-11-02
+DE03-020	단위·통합 테스트	DE03_점포정제	점포 통계 clean_store	점포수 소수	pytest	FAIL	fixture	NOT_RUN	FAIL	정수로 검증하거나 사유 문서화	store_count=2.5가 정수 검증 없이 1행으로 통과.	DEF-DE03-020	data/etl/transform.py	2026-11-02

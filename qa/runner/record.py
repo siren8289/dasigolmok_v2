@@ -1,6 +1,9 @@
-"""QA 게이트 실행 결과를 날짜별 MD·TSV에 누적한다.
+"""QA 게이트 실행 결과를 4영역·섹션·날짜 폴더에 누적한다.
 
-과거 행은 지우거나 덮어쓰지 않는다. 실행하지 않은 테스트 종류는 폴더를 만들지 않는다.
+경로: qa/{영역}/{섹션}/{YYYY-MM-DD}/
+파일: 테스트_시트.xlsx, pass.md, fail.md, risk.md, summary.tsv
+
+과거 행은 지우거나 덮어쓰지 않는다. 실행하지 않은 섹션은 폴더를 만들지 않는다.
 날짜와 시각은 Asia/Seoul 기준이다.
 """
 
@@ -8,31 +11,33 @@ from __future__ import annotations
 
 import csv
 import io
+import re
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
+from areas import AREAS, resolve_area_section
+
 SEOUL = ZoneInfo("Asia/Seoul")
 STATUSES = ("PASS", "FAIL", "BLOCKED", "ERROR", "NOT_RUN", "SKIPPED")
-TSV_HEADER = [
-    "RUN_ID",
+RUN_HEADING_RE = re.compile(r"^## (\d{8}-\d{6}(?:-\d+)?)\s*$")
+SUMMARY_HEADER = [
     "TC_ID",
-    "executed_at",
-    "feature",
-    "test_type",
-    "tool_a",
-    "tool_a_result",
-    "tool_b",
-    "tool_b_result",
-    "final_status",
-    "git_commit",
-    "file",
-    "function",
-    "line",
-    "issue_id",
-    "risk_id",
-    "evidence",
+    "영역",
+    "섹션",
+    "기능",
+    "항목",
+    "검증A",
+    "검증A결과",
+    "검증B",
+    "검증B결과",
+    "최종상태",
+    "예상결과",
+    "실제결과",
+    "결함ID",
+    "코드경로",
+    "실행일",
 ]
 RISK_HEADER = [
     "risk_id",
@@ -69,6 +74,8 @@ class CaseResult:
     expected: str
     actual: str
     evidence: str
+    area: str = ""
+    section: str = ""
     file: str = "UNKNOWN"
     function: str = "UNKNOWN"
     line: str = "UNKNOWN"
@@ -105,6 +112,8 @@ class RiskItem:
     function: str = "UNKNOWN"
     line: str = "UNKNOWN"
     fingerprint: str = ""
+    area: str = ""
+    section: str = ""
     extra: dict = field(default_factory=dict)
 
 
@@ -124,23 +133,27 @@ def combine_status(left: str, right: str) -> str:
     return left if rank[left] >= rank[right] else right
 
 
-def _existing_run_ids(reports: Path) -> set[str]:
+def _existing_run_ids(qa_root: Path) -> set[str]:
     found: set[str] = set()
-    if not reports.exists():
+    if not qa_root.exists():
         return found
-    for path in reports.glob("*/*/results.tsv"):
-        with path.open(encoding="utf-8-sig", newline="") as handle:
-            reader = csv.DictReader(handle, delimiter="\t")
-            for row in reader:
-                if row.get("RUN_ID"):
-                    found.add(row["RUN_ID"])
+    for area in AREAS:
+        for path in (qa_root / area).glob("*/*/pass.md"):
+            try:
+                text = path.read_text(encoding="utf-8")
+            except OSError:
+                continue
+            for line in text.splitlines():
+                match = RUN_HEADING_RE.match(line.strip())
+                if match:
+                    found.add(match.group(1))
     return found
 
 
-def allocate_run_id(reports: Path, when: datetime | None = None) -> str:
+def allocate_run_id(qa_root: Path, when: datetime | None = None) -> str:
     when = when or now_seoul()
     base = when.strftime("%Y%m%d-%H%M%S")
-    used = _existing_run_ids(reports)
+    used = _existing_run_ids(qa_root)
     if base not in used:
         return base
     index = 2
@@ -174,12 +187,32 @@ def _append_md(path: Path, title: str, block: str) -> None:
     path.write_text(existing + "\n" + block, encoding="utf-8")
 
 
+def _sync_test_sheet(folder: Path) -> None:
+    """summary.tsv 전체를 테스트_시트.xlsx로 동기화한다."""
+    summary = folder / "summary.tsv"
+    rows = read_tsv(summary)
+    try:
+        from openpyxl import Workbook
+    except ImportError:
+        return
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "결과"
+    ws.append(SUMMARY_HEADER)
+    for row in rows:
+        ws.append([row.get(col, "") for col in SUMMARY_HEADER])
+    wb.save(folder / "테스트_시트.xlsx")
+
+
 def _case_bullets(case: CaseResult, when: str, commit: str) -> list[str]:
+    area, section = resolve_area_section(case.section, case.area)
     lines = [
         f"### {case.tc_id} {case.feature}",
         "",
         f"- 실행 시각: {when}",
         f"- Git Commit: {commit or 'UNKNOWN'}",
+        f"- 영역: {area}",
+        f"- 섹션: {section}",
         f"- 테스트 종류: {case.test_type}",
         f"- 검증 목적: {case.purpose}",
         f"- 도구 A: {case.tool_a} / 결과 {case.tool_a_result}",
@@ -227,46 +260,55 @@ def _risk_fingerprint(item: RiskItem) -> str:
     )
 
 
-def load_risk_register(reports: Path) -> list[dict[str, str]]:
-    path = reports / "risk-register.tsv"
+def load_risk_register(meta: Path) -> list[dict[str, str]]:
+    path = meta / "risk-register.tsv"
     if not path.exists():
         return []
     with path.open(encoding="utf-8-sig", newline="") as handle:
         return list(csv.DictReader(handle, delimiter="\t"))
 
 
-def open_blocking_risks(reports: Path) -> list[dict[str, str]]:
+def open_blocking_risks(meta: Path) -> list[dict[str, str]]:
     return [
         row
-        for row in load_risk_register(reports)
+        for row in load_risk_register(meta)
         if row.get("status") == "OPEN" and row.get("severity") in {"HIGH", "CRITICAL"}
     ]
 
 
 def write_run(
-    reports: Path,
+    qa_root: Path,
+    meta: Path,
     run_id: str,
     when: datetime,
     commit: str,
     cases: list[CaseResult],
     risks: list[RiskItem],
 ) -> list[str]:
-    """실행된 종류만 날짜 폴더에 누적한다. 만든 종류 목록을 반환한다."""
+    """실행된 섹션만 날짜 폴더에 누적한다. 만든 영역/섹션 목록을 반환한다."""
     stamp = when.strftime("%Y-%m-%dT%H:%M:%S%z")
     day = when.strftime("%Y-%m-%d")
     written: list[str] = []
-    by_type: dict[str, list[CaseResult]] = {}
+    by_section: dict[tuple[str, str], list[CaseResult]] = {}
     for case in cases:
         if case.final_status == "NOT_RUN" and case.tool_a_result == "NOT_RUN":
             continue
-        by_type.setdefault(case.test_type, []).append(case)
+        area, section = resolve_area_section(case.section, case.area)
+        case.area = area
+        case.section = section
+        by_section.setdefault((area, section), []).append(case)
 
-    for test_type, typed in by_type.items():
-        folder = reports / test_type / day
+    for (area, section), typed in by_section.items():
+        folder = qa_root / area / section / day
         folder.mkdir(parents=True, exist_ok=True)
         passed = [case for case in typed if case.final_status == "PASS"]
         failed = [case for case in typed if case.final_status in {"FAIL", "ERROR", "BLOCKED"}]
-        typed_risks = [item for item in risks if item.test_type == test_type]
+        typed_risks = [
+            item
+            for item in risks
+            if (item.section == section and (not item.area or item.area == area))
+            or (not item.section and item.test_type in {case.test_type for case in typed})
+        ]
         run_heading = f"## {run_id}\n\n- 실행 시각: {stamp}\n- Git Commit: {commit or 'UNKNOWN'}\n"
 
         if passed:
@@ -306,37 +348,37 @@ def write_run(
             _append_md(folder / "risk.md", "RISK", run_heading + "이 RUN에서 새 위험은 없다.\n")
 
         _append_tsv(
-            folder / "results.tsv",
-            TSV_HEADER,
+            folder / "summary.tsv",
+            SUMMARY_HEADER,
             [
                 [
-                    run_id,
                     case.tc_id,
-                    stamp,
+                    area,
+                    section,
                     case.feature,
-                    case.test_type,
+                    case.purpose,
                     case.tool_a,
                     case.tool_a_result,
                     case.tool_b,
                     case.tool_b_result,
                     case.final_status,
-                    commit or "UNKNOWN",
-                    case.file,
-                    case.function,
-                    case.line,
+                    case.expected,
+                    case.actual,
                     case.issue_id,
-                    case.risk_id,
-                    case.evidence,
+                    case.file,
+                    day,
                 ]
                 for case in typed
             ],
         )
-        written.append(test_type)
+        _sync_test_sheet(folder)
+        written.append(f"{area}/{section}")
 
-    fresh_risks = _new_risks(reports, risks)
+    fresh_risks = _new_risks(meta, risks)
     if fresh_risks:
+        meta.mkdir(parents=True, exist_ok=True)
         _append_tsv(
-            reports / "risk-register.tsv",
+            meta / "risk-register.tsv",
             RISK_HEADER,
             [
                 [
@@ -362,8 +404,17 @@ def write_run(
     return written
 
 
-def _new_risks(reports: Path, risks: list[RiskItem]) -> list[RiskItem]:
-    seen = {flatten(row.get("summary", "")) + "|" + row.get("file", "") + "|" + row.get("line", "") + "|" + row.get("severity", "") for row in load_risk_register(reports)}
+def _new_risks(meta: Path, risks: list[RiskItem]) -> list[RiskItem]:
+    seen = {
+        flatten(row.get("summary", ""))
+        + "|"
+        + row.get("file", "")
+        + "|"
+        + row.get("line", "")
+        + "|"
+        + row.get("severity", "")
+        for row in load_risk_register(meta)
+    }
     fresh: list[RiskItem] = []
     for item in risks:
         key = flatten(item.summary) + "|" + item.file + "|" + item.line + "|" + item.severity

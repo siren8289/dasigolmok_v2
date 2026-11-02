@@ -1,0 +1,2 @@
+﻿TC_ID	영역	섹션	기능	항목	검증A	검증A결과	검증B	검증B결과	최종상태	예상결과	실제결과	결함ID	코드경로	실행일
+TC-UNIT-RECORD-001	보안·품질 검사	QA02_문서추적회귀	QA 기록기	같은 날짜의 이전 RUN을 유지하고 미실행 섹션 폴더를 만들지 않는지 확인	pytest	PASS	python	PASS	PASS	두 실행기 모두 누적 기록 검사를 통과	A=PASS, B=PASS, final=PASS		UNKNOWN	2026-11-03

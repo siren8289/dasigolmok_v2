@@ -1,0 +1,19 @@
+﻿TC_ID	영역	섹션	기능	항목	검증A	검증A결과	검증B	검증B결과	최종상태	예상결과	실제결과	결함ID	코드경로	실행일
+AI07-001	단위·통합 테스트	AI07_폐업ML추론	RandomForest 폐업률 예측	모델 첫 로드	pytest	PASS	모킹	NOT_RUN	NOT_RUN	joblib.load 1회	joblib.load 호출=1 model=Pipeline path=close_rf.joblib		ai/src/ml_model.py	2026-11-02
+AI07-002	단위·통합 테스트	AI07_폐업ML추론	RandomForest 폐업률 예측	모델 캐시 재사용	pytest	PASS	모킹	NOT_RUN	NOT_RUN	두 번째 디스크 읽기 없음	2회 호출 load횟수=1 same=True		ai/src/ml_model.py	2026-11-02
+AI07-003	단위·통합 테스트	AI07_폐업ML추론	RandomForest 폐업률 예측	단일 행	pytest	PASS	모킹	NOT_RUN	NOT_RUN	1개 실수 리스트	1행 결과=[2.98] types=['float']		ai/src/ml_model.py	2026-11-02
+AI07-004	단위·통합 테스트	AI07_폐업ML추론	RandomForest 폐업률 예측	여러 행	pytest	PASS	모킹	NOT_RUN	NOT_RUN	3개 결과 순서 유지	일괄과 단건 batch=[2.98, 2.99, 2.99] singles=[2.98, 2.99, 2.99]		ai/src/ml_model.py	2026-11-02
+AI07-005	단위·통합 테스트	AI07_폐업ML추론	RandomForest 폐업률 예측	소수 둘째자리 반올림	pytest	PASS	모킹	NOT_RUN	NOT_RUN	소수점 2자리 round	모델출력 4.125 → [4.12] round(4.125,2)=4.12		ai/src/ml_model.py	2026-11-02
+AI07-006	단위·통합 테스트	AI07_폐업ML추론	RandomForest 폐업률 예측	모델 파일 누락	pytest	PASS	모킹	NOT_RUN	NOT_RUN	명확한 파일 오류	파일 없음 → FileNotFoundError: [Errno 2] No such file or directory: '/private/var/folders/qp/wtpnyvgn0kx_759hkfcdztw80000gn/T/pytest-of-jeong-yelim/pytest-3/test_AI07_0060/close_rf.joblib'		ai/src/ml_model.py	2026-11-02
+AI07-007	단위·통합 테스트	AI07_폐업ML추론	RandomForest 폐업률 예측	joblib 손상	pytest	FAIL	모킹	NOT_RUN	FAIL	오류 포착/장애 로그	손상 joblib 결과=IndexError: pop from empty list 로그=[]	DEF-AI07-007	ai/src/ml_model.py	2026-11-02
+AI07-008	단위·통합 테스트	AI07_폐업ML추론	RandomForest 폐업률 예측	스키마 누락	pytest	PASS	모킹	NOT_RUN	NOT_RUN	예측 실패를 설명하는 오류	open_rate 누락 → ValueError: columns are missing: {'open_rate'}		ai/src/ml_model.py	2026-11-02
+AI07-009	단위·통합 테스트	AI07_폐업ML추론	RandomForest 폐업률 예측	범주 미등록	pytest	PASS	모킹	NOT_RUN	NOT_RUN	파이프라인 unknown 처리/실패 정책	신규 industry 예측=[2.88] handle_unknown='ignore'		ai/src/ml_model.py	2026-11-02
+AI07-010	단위·통합 테스트	AI07_폐업ML추론	RandomForest 폐업률 예측	예측 음수	pytest	FAIL	모킹	NOT_RUN	FAIL	폐업률 0 미만 금지 후처리 검토	음수 예측 model output=-2 → [-2.0]	DEF-AI07-010	ai/src/ml_model.py	2026-11-02
+AI07-011	단위·통합 테스트	AI07_폐업ML추론	RandomForest 폐업률 예측	예측 100 초과	pytest	FAIL	모킹	NOT_RUN	FAIL	폐업률 100 초과 금지 후처리 검토	백 초과 예측 model output=105 → [105.0]	DEF-AI07-011	ai/src/ml_model.py	2026-11-02
+AI07-012	단위·통합 테스트	AI07_폐업ML추론	RandomForest 폐업률 예측	모델 NaN	pytest	FAIL	모킹	NOT_RUN	FAIL	응답 직전 NaN 방어	결측 예측 output=NaN → [nan]	DEF-AI07-012	ai/src/ml_model.py	2026-11-02
+AI07-013	단위·통합 테스트	AI07_폐업ML추론	RandomForest 폐업률 예측	불변 입력	pytest	PASS	모킹	NOT_RUN	NOT_RUN	입력 DataFrame 원본 불변	예측 후 원본 동일=True columns=['district', 'industry', 'change_code', 'store_count', 'open_rate', 'franchise_ratio', 'foot_traffic', 'operate_months']		ai/src/ml_model.py	2026-11-02
+AI07-014	단위·통합 테스트	AI07_폐업ML추론	RandomForest 폐업률 예측	모델 순서 정합성	pytest	PASS	모킹	NOT_RUN	NOT_RUN	순서별 레이블 일치	5행 batch=[2.98, 2.99, 2.99, 3.03, 3.03] singles=[2.98, 2.99, 2.99, 3.03, 3.03]		ai/src/ml_model.py	2026-11-02
+AI07-015	단위·통합 테스트	AI07_폐업ML추론	RandomForest 폐업률 예측	빈 입력	pytest	PASS	모킹	NOT_RUN	NOT_RUN	안전한 빈 리스트/오류 정책	0행 프레임 → ValueError: Found array with 0 sample(s) (shape=(0,)) while a minimum of 1 is required.		ai/src/ml_model.py	2026-11-02
+AI07-016	단위·통합 테스트	AI07_폐업ML추론	RandomForest 폐업률 예측	메모리 증폭	pytest	PASS	모킹	NOT_RUN	NOT_RUN	latency 및 peak memory 측정	10000행 결과=10000 latency=0.051s peak_memory=3.3MB		ai/src/ml_model.py	2026-11-02
+AI07-017	단위·통합 테스트	AI07_폐업ML추론	RandomForest 폐업률 예측	동시 추론	pytest	PASS	모킹	NOT_RUN	NOT_RUN	결과 교차 간섭 없음	순차=[[2.98], [2.99], [2.99], [3.03], [3.03], [3.0], [3.04], [3.04], [3.04], [3.04]] 병렬=[[2.98], [2.99], [2.99], [3.03], [3.03], [3.0], [3.04], [3.04], [3.04], [3.04]]		ai/src/ml_model.py	2026-11-02
+AI07-018	단위·통합 테스트	AI07_폐업ML추론	RandomForest 폐업률 예측	설명 재현성	pytest	PASS	모킹	NOT_RUN	NOT_RUN	결과 일관성	1회=[3.04] 2회=[3.04]		ai/src/ml_model.py	2026-11-02

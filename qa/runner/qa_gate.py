@@ -1,9 +1,9 @@
 """QA·Security 게이트.
 
 변경 영향에 해당하는 검사를 서로 다른 도구 두 개로 실행하고
-qa/reports/{종류}/{YYYY-MM-DD}/ 에 누적 기록한다.
+qa/{영역}/{섹션}/{YYYY-MM-DD}/ 에 누적 기록한다.
 
-실행하지 않은 종류는 폴더를 만들지 않고, 실행하지 않은 검사를 PASS로 적지 않는다.
+실행하지 않은 섹션은 폴더를 만들지 않고, 실행하지 않은 검사를 PASS로 적지 않는다.
 HIGH/CRITICAL OPEN 위험이 있으면 종료 코드 1이다.
 """
 
@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[2]
 RUNNER = Path(__file__).resolve().parent
 sys.path.insert(0, str(RUNNER))
 
+from areas import CHECK_TO_SECTION  # noqa: E402
 from record import (  # noqa: E402
     CaseResult,
     RiskItem,
@@ -77,6 +78,7 @@ def ensure_bandit() -> tuple[str, str]:
 
 
 def _case(
+    check: str,
     tc_id: str,
     feature: str,
     test_type: str,
@@ -94,6 +96,7 @@ def _case(
 ) -> CaseResult:
     final = combine_status(result_a, result_b)
     evidence = f"A[{result_a}] {output_a[-500:]} || B[{result_b}] {output_b[-500:]}"
+    area, section = CHECK_TO_SECTION[check]
     case = CaseResult(
         tc_id=tc_id,
         feature=feature,
@@ -109,11 +112,16 @@ def _case(
         expected=expected,
         actual=f"A={result_a}, B={result_b}, final={final}",
         evidence=evidence,
+        area=area,
+        section=section,
         repro=command_a,
         error_message=output_a if result_a != "PASS" else output_b if result_b != "PASS" else "",
         cause="도구 출력을 확인한다. 코드는 기록 전에 수정하지 않는다." if final != "PASS" else "",
     )
     if risks:
+        for item in risks:
+            item.area = area
+            item.section = section
         case.risk_id = ",".join(item.risk_id for item in risks)
     return case
 
@@ -124,10 +132,11 @@ def check_record() -> tuple[CaseResult, list[RiskItem]]:
     result_a, output_a = run_cmd([PY, "-m", "pytest", "qa/runner/tests/test_record.py", "-q"], ROOT, 120)
     result_b, output_b = run_cmd([PY, "qa/runner/tools/check_record.py"], ROOT, 60)
     case = _case(
+        "record",
         "TC-UNIT-RECORD-001",
         "QA 기록기",
         "unit",
-        "같은 날짜의 이전 RUN을 유지하고 미실행 종류 폴더를 만들지 않는지 확인",
+        "같은 날짜의 이전 RUN을 유지하고 미실행 섹션 폴더를 만들지 않는지 확인",
         "pytest",
         command_a,
         result_a,
@@ -256,6 +265,7 @@ def check_security(run_id: str) -> tuple[CaseResult, list[RiskItem]]:
                         )
                     )
     case = _case(
+        "security",
         "TC-SEC-001",
         "정적 보안",
         "security",
@@ -284,6 +294,7 @@ def check_front() -> tuple[CaseResult, list[RiskItem]]:
     result_a, output_a = run_cmd(["npm", "test"], ROOT / "front", 300)
     result_b, output_b = run_cmd(["npx", "tsc", "--noEmit", "--pretty", "false"], ROOT / "front", 180)
     case = _case(
+        "front",
         "TC-UNIT-FRONT-001",
         "프론트 단위·타입",
         "unit",
@@ -329,6 +340,8 @@ def check_front() -> tuple[CaseResult, list[RiskItem]]:
                 file=file_path,
                 line=line_no,
                 function="UNKNOWN",
+                area=case.area,
+                section=case.section,
             )
         )
         case.file = file_path
@@ -343,6 +356,7 @@ def check_python() -> tuple[CaseResult, list[RiskItem]]:
     result_a, output_a = run_cmd([PY, "-m", "pytest", "data/tests", "-q"], ROOT, 180)
     result_b, output_b = run_cmd([PY, "qa/runner/tools/regression_oracle.py"], ROOT, 120)
     case = _case(
+        "python",
         "TC-UNIT-PY-001",
         "ETL 전처리",
         "unit",
@@ -366,6 +380,7 @@ def check_java() -> tuple[CaseResult, list[RiskItem]]:
     result_a, output_a = run_cmd(["./gradlew", "test", "--console=plain"], ROOT / "back", 600)
     result_b, output_b = run_cmd([PY, "qa/runner/tools/junit_audit.py", str(ROOT)], ROOT, 60)
     case = _case(
+        "java",
         "TC-UNIT-JAVA-001",
         "Spring 진단·추천",
         "unit",
@@ -391,6 +406,7 @@ def check_regression() -> tuple[CaseResult, list[RiskItem]]:
     )
     result_b, output_b = run_cmd([PY, "qa/runner/tools/regression_oracle.py"], ROOT, 120)
     case = _case(
+        "regression",
         "TC-REG-DE05-001",
         "결측·이상치 회귀",
         "regression",
@@ -456,15 +472,15 @@ def assign_risk_ids(run_id: str, risks: list[RiskItem]) -> None:
 
 
 def write_stamp(run_id: str, exit_code: int) -> None:
-    reports = ROOT / "qa" / "reports"
-    reports.mkdir(parents=True, exist_ok=True)
+    meta = ROOT / "qa" / "reports"
+    meta.mkdir(parents=True, exist_ok=True)
     payload = {
         "run_id": run_id,
         "exit_code": exit_code,
         "tree_token": working_tree_token(ROOT),
         "recorded_at": now_seoul().isoformat(),
     }
-    (reports / ".gate-stamp.json").write_text(
+    (meta / ".gate-stamp.json").write_text(
         json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
 
@@ -476,8 +492,10 @@ def main() -> int:
     args = parser.parse_args()
     names = selected_checks(args.scope, args.only)
     when = now_seoul()
-    reports = ROOT / "qa" / "reports"
-    run_id = allocate_run_id(reports, when)
+    qa_root = ROOT / "qa"
+    meta = qa_root / "reports"
+    meta.mkdir(parents=True, exist_ok=True)
+    run_id = allocate_run_id(qa_root, when)
     commit = git_commit()
     cases: list[CaseResult] = []
     risks: list[RiskItem] = []
@@ -493,8 +511,8 @@ def main() -> int:
         linked = [item.risk_id for item in risks if item.tc_id == case.tc_id]
         if linked:
             case.risk_id = ",".join(linked)
-    written = write_run(reports, run_id, when, commit, cases, risks)
-    blocking = open_blocking_risks(reports)
+    written = write_run(qa_root, meta, run_id, when, commit, cases, risks)
+    blocking = open_blocking_risks(meta)
     failed = [case for case in cases if case.final_status != "PASS"]
     exit_code = 1 if failed or blocking else 0
     write_stamp(run_id, exit_code)

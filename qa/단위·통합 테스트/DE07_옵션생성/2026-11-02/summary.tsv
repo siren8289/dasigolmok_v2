@@ -1,0 +1,17 @@
+﻿TC_ID	영역	섹션	기능	항목	검증A	검증A결과	검증B	검증B결과	최종상태	예상결과	실제결과	결함ID	코드경로	실행일
+DE07-001	단위·통합 테스트	DE07_옵션생성	선택 목록 옵션 생성	자치구 알파벳순	pytest	PASS	fixture	NOT_RUN	NOT_RUN	sorted districts	25개 자치구 districts가 sorted 결과와 같고 길이는 25.		data/etl/transform.py	2026-11-02
+DE07-002	단위·통합 테스트	DE07_옵션생성	선택 목록 옵션 생성	동 지역순	pytest	PASS	fixture	NOT_RUN	NOT_RUN	district,dong 정렬	강남구·마포구 4동의 (district,dong) 순서가 정렬 결과와 같음.		data/etl/transform.py	2026-11-02
+DE07-003	단위·통합 테스트	DE07_옵션생성	선택 목록 옵션 생성	동 중복 제거	pytest	PASS	fixture	NOT_RUN	NOT_RUN	한 동 하나	같은 district/dong/dong_code 2행의 dongs는 1건.		data/etl/transform.py	2026-11-02
+DE07-004	단위·통합 테스트	DE07_옵션생성	선택 목록 옵션 생성	업종 정렬	pytest	PASS	fixture	NOT_RUN	NOT_RUN	industry 기준	한식·커피·분식 industries가 industry 기준 sorted와 같음.		data/etl/transform.py	2026-11-02
+DE07-005	단위·통합 테스트	DE07_옵션생성	선택 목록 옵션 생성	업종 중복 제거	pytest	PASS	fixture	NOT_RUN	NOT_RUN	한 업종 하나	같은 industry+code 2행의 industries는 1건.		data/etl/transform.py	2026-11-02
+DE07-006	단위·통합 테스트	DE07_옵션생성	선택 목록 옵션 생성	업종 코드 다름	pytest	PASS	fixture	NOT_RUN	NOT_RUN	정책에 따라 각각 포함	이름 한식의 코드 CS100001과 CS100099가 둘 다 포함.		data/etl/transform.py	2026-11-02
+DE07-007	단위·통합 테스트	DE07_옵션생성	선택 목록 옵션 생성	지역 옵션 메타	pytest	PASS	fixture	NOT_RUN	NOT_RUN	district,dong,dong_code 보존	dongs 1건이 district=마포구, dong=연남동, dong_code=11440740.		data/etl/transform.py	2026-11-02
+DE07-008	단위·통합 테스트	DE07_옵션생성	선택 목록 옵션 생성	SEMAS 자치구 카운트	pytest	PASS	fixture	NOT_RUN	NOT_RUN	semas_dong_count=5	semas 행정동 5건 → semas_dong_count=5.		data/etl/transform.py	2026-11-02
+DE07-009	단위·통합 테스트	DE07_옵션생성	선택 목록 옵션 생성	SEMAS 업종 카운트	pytest	PASS	fixture	NOT_RUN	NOT_RUN	semas_upjong_count=10	semas 업종 10건 → semas_upjong_count=10.		data/etl/transform.py	2026-11-02
+DE07-010	단위·통합 테스트	DE07_옵션생성	선택 목록 옵션 생성	SEMAS 누락	pytest	PASS	fixture	NOT_RUN	NOT_RUN	0 카운트	dongs=[], upjong=[]이면 두 카운트 모두 0.		data/etl/transform.py	2026-11-02
+DE07-011	단위·통합 테스트	DE07_옵션생성	선택 목록 옵션 생성	빈 데이터 train	pytest	PASS	fixture	NOT_RUN	NOT_RUN	빈 옵션 또는 명확한 오류	컬럼만 있는 빈 train은 districts,dongs,industries가 모두 [].		data/etl/transform.py	2026-11-02
+DE07-012	단위·통합 테스트	DE07_옵션생성	선택 목록 옵션 생성	train district null	pytest	PASS	fixture	NOT_RUN	NOT_RUN	districts null 제거	district None은 districts에서 빠지고 마포구만 남음.		data/etl/transform.py	2026-11-02
+DE07-013	단위·통합 테스트	DE07_옵션생성	선택 목록 옵션 생성	동 코드 앞자리	pytest	PASS	fixture	NOT_RUN	NOT_RUN	코드 정확 보존	dong_code '11680640'이 문자열 길이 8 그대로 보존.		data/etl/transform.py	2026-11-02
+DE07-014	단위·통합 테스트	DE07_옵션생성	선택 목록 옵션 생성	업종명 공백	pytest	FAIL	fixture	NOT_RUN	FAIL	정규화 필요 검증	industry=' 한식 '가 옵션에 그대로 남음. strip 결과가 '한식'이 아님.	DEF-DE07-014	data/etl/transform.py	2026-11-02
+DE07-015	단위·통합 테스트	DE07_옵션생성	선택 목록 옵션 생성	옵션과 통계 일치	pytest	PASS	fixture	NOT_RUN	NOT_RUN	각 옵션이 통계 row에 존재	옵션의 동 2건·업종 2건이 같은 train의 dong_stats 행에 있음.		data/etl/transform.py	2026-11-02
+DE07-016	단위·통합 테스트	DE07_옵션생성	선택 목록 옵션 생성	구 바꾸면 다른 구 동	pytest	PASS	fixture	NOT_RUN	NOT_RUN	district별 dongs 선택지 정확	마포구 동은 {연남동,합정동}, 강남구 동은 [역삼1동].		data/etl/transform.py	2026-11-02

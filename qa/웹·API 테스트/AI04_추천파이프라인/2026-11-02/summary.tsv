@@ -1,0 +1,28 @@
+﻿TC_ID	영역	섹션	기능	항목	검증A	검증A결과	검증B	검증B결과	최종상태	예상결과	실제결과	결함ID	코드경로	실행일
+AI04-001	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	동 업종 목록	pytest	PASS	모킹	NOT_RUN	NOT_RUN	7개를 함께 평가	입력=7 ml_rows=7 dl_rows=7 all=7 rec=5		ai/src/service.py	2026-11-02
+AI04-002	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	동 데이터 없음	pytest	PASS	모킹	NOT_RUN	NOT_RUN	error와 recommendations=[] 반환	빈 동 결과={'error': '해당 행정동 데이터가 없습니다.', 'recommendations': []}		ai/src/service.py	2026-11-02
+AI04-003	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	특성 행합치기	pytest	PASS	모킹	NOT_RUN	NOT_RUN	ML/DL 입력 DataFrame 3행	ML/DL 입력 shape=(3, 8) columns=['district', 'industry', 'change_code', 'store_count', 'open_rate', 'franchise_ratio', 'foot_traffic', 'operate_months']		ai/src/service.py	2026-11-02
+AI04-004	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	ML 예측 매핑	pytest	PASS	모킹	NOT_RUN	NOT_RUN	각 업종 행에 대응 점수	ML 매핑={'업종0': 3, '업종1': 5, '업종2': 8}		ai/src/service.py	2026-11-02
+AI04-005	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	DL 예측 매핑	pytest	PASS	모킹	NOT_RUN	NOT_RUN	각 업종 행에 대응 매출	DL 매핑={'업종0': 1000, '업종1': 800, '업종2': 600}		ai/src/service.py	2026-11-02
+AI04-006	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	추천 점수 공식	pytest	PASS	모킹	NOT_RUN	NOT_RUN	1000/100-3×8=-14.0	sales=1000 close=3 score=-14.0 기대=-14.0		ai/src/service.py	2026-11-02
+AI04-007	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	추천 점수 공식 2	pytest	PASS	모킹	NOT_RUN	NOT_RUN	15-8=7.0	sales=1500 close=1 score=7.0 기대=7.0		ai/src/service.py	2026-11-02
+AI04-008	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	추천 점수 공식 경계	pytest	PASS	모킹	NOT_RUN	NOT_RUN	0.0	영 입력 점수 sales=0 close=0 score=0.0		ai/src/service.py	2026-11-02
+AI04-009	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	소수 점수 반올림	pytest	PASS	모킹	NOT_RUN	NOT_RUN	한 자리로 반올림	소수 반올림 sales=999.5 close=3.33 score=-16.6 round1=-16.6		ai/src/service.py	2026-11-02
+AI04-010	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	점수 내림차순	pytest	PASS	모킹	NOT_RUN	NOT_RUN	9,5,1 순서	입력 score 대응 sales 900/100/500 → 정렬 [9.0, 5.0, 1.0]		ai/src/service.py	2026-11-02
+AI04-011	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	상위 5 제한	pytest	PASS	모킹	NOT_RUN	NOT_RUN	recommendations 5개	추천 건수 recommendations=5 all=7		ai/src/service.py	2026-11-02
+AI04-012	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	전체 업종 유지	pytest	PASS	모킹	NOT_RUN	NOT_RUN	all_industries 7개	전체 업종 수 all_industries=7		ai/src/service.py	2026-11-02
+AI04-013	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	업종 1개	pytest	PASS	모킹	NOT_RUN	NOT_RUN	추천도 전체도 1개	추천과 전체 rec=1 all=1		ai/src/service.py	2026-11-02
+AI04-014	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	업종 5개	pytest	PASS	모킹	NOT_RUN	NOT_RUN	추천 5개	기본 상한 rec=5		ai/src/service.py	2026-11-02
+AI04-015	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	업종 6개	pytest	PASS	모킹	NOT_RUN	NOT_RUN	추천 5개, 전체 6개	추천과 전체 rec=5 all=6		ai/src/service.py	2026-11-02
+AI04-016	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	예상 폐업률 기준 상태	pytest	PASS	모킹	NOT_RUN	NOT_RUN	추천 status danger(예측 기준)	실제 close_rate=1 ml=9 status=danger		ai/src/service.py	2026-11-02
+AI04-017	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	실제 폐업률 보존	pytest	PASS	모킹	NOT_RUN	NOT_RUN	항목 close_rate=2.3	반환 폐업률 close_rate=2.3		ai/src/service.py	2026-11-02
+AI04-018	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	상권 축소 우선	pytest	PASS	모킹	NOT_RUN	NOT_RUN	danger	축소 상권 판정 change=HL ml=1 status=danger		ai/src/service.py	2026-11-02
+AI04-019	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	변화명 대표값	pytest	PASS	모킹	NOT_RUN	NOT_RUN	반환 change_name 일치	반환 change_name='첫변화' 추천1=높음		ai/src/service.py	2026-11-02
+AI04-020	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	원본 행 순서 변화	pytest	PASS	모킹	NOT_RUN	NOT_RUN	점수 기반 정렬 유지	정렬=[('A', 9.0), ('B', 5.0), ('C', 1.0)]		ai/src/service.py	2026-11-02
+AI04-021	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	ML 예측 건수 불일치	pytest	FAIL	모킹	NOT_RUN	FAIL	zip 잘림으로 누락되지 않게 오류 검증	3행·ML 2개 → error=None all=2 industries=['업종0', '업종1']	DEF-AI04-021	ai/src/service.py	2026-11-02
+AI04-022	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	DL 음수 매출	pytest	FAIL	모킹	NOT_RUN	FAIL	부적절한 추천 점수 방어	예측 sales=-50 → sales=-50 score=-8.5 error=None	DEF-AI04-022	ai/src/service.py	2026-11-02
+AI04-023	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	동 이름만 조회	pytest	FAIL	모킹	NOT_RUN	FAIL	district 필터 추가 필요	요청 district=강남구 반환 district=관악구 관악구전용업종유입=['모터사이클및부품', '모터사이클수리', '복권방', '자동차미용'] all=149	DEF-AI04-023	ai/src/service.py	2026-11-02
+AI04-024	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	limit=0	pytest	PASS	모킹	NOT_RUN	NOT_RUN	추천 빈 배열, 전체 목록 유지	상한 0건 rec=[] all=3		ai/src/service.py	2026-11-02
+AI04-025	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	limit=-1	pytest	FAIL	모킹	NOT_RUN	FAIL	의도치 않은 항목 누락 방어	limit=-1 → error=None rec=['업종0', '업종1'] all=['업종0', '업종1', '업종2']	DEF-AI04-025	ai/src/service.py	2026-11-02
+AI04-026	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	limit=10000	pytest	PASS	모킹	NOT_RUN	NOT_RUN	전체 행 이내	추천과 전체 rec=4 all=4		ai/src/service.py	2026-11-02
+AI04-027	웹·API 테스트	AI04_추천파이프라인	행정동 업종 추천	동시 추천	pytest	PASS	모킹	NOT_RUN	NOT_RUN	출력의 지역/업종 교차 오염 없음	병렬 dong=['연남동', '역삼1동'] district=['마포구', '강남구'] 순차와동일=True		ai/src/service.py	2026-11-02

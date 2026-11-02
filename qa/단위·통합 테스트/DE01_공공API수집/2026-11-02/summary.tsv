@@ -1,0 +1,27 @@
+﻿TC_ID	영역	섹션	기능	항목	검증A	검증A결과	검증B	검증B결과	최종상태	예상결과	실제결과	결함ID	코드경로	실행일
+DE01-001	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	인증키 없음	pytest	PASS	fixture	NOT_RUN	NOT_RUN	RuntimeError 안내	SERVICE_KEY=''에서 semas_get이 RuntimeError. 메시지에 DATA_GO_KR_KEY 안내가 있음.		data/etl/fetch.py	2026-11-02
+DE01-002	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	SEMAS 정상 resultCode	pytest	PASS	fixture	NOT_RUN	NOT_RUN	JSON 파싱	resultCode '00' 응답을 JSON으로 파싱. items=[{indsLclsCd:'Q'}] 1건.		data/etl/fetch.py	2026-11-02
+DE01-003	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	SEMAS 성공 코드 0	pytest	PASS	fixture	NOT_RUN	NOT_RUN	허용	resultCode '0'을 성공으로 허용. items ok=1 반환.		data/etl/fetch.py	2026-11-02
+DE01-004	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	SEMAS 성공 코드 000	pytest	PASS	fixture	NOT_RUN	NOT_RUN	허용	resultCode '000'을 성공으로 허용. items ok=1 반환.		data/etl/fetch.py	2026-11-02
+DE01-005	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	SEMAS 오류 코드	pytest	PASS	fixture	NOT_RUN	NOT_RUN	RuntimeError	resultCode '03'은 RuntimeError. 예외 문자열에 03이 포함됨.		data/etl/fetch.py	2026-11-02
+DE01-006	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	SEMAS 타임아웃	pytest	PASS	fixture	NOT_RUN	NOT_RUN	적절한 오류	requests.get timeout=30. Timeout 예외가 삼켜지지 않고 전파됨.		data/etl/fetch.py	2026-11-02
+DE01-007	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	SEMAS HTTP 500	pytest	PASS	fixture	NOT_RUN	NOT_RUN	에러 전파	HTTP 500에서 raise_for_status가 HTTPError '500 Server Error'를 전파.		data/etl/fetch.py	2026-11-02
+DE01-008	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	대분류와 중분류	pytest	PASS	fixture	NOT_RUN	NOT_RUN	두 목록 리턴	fetch_semas_upjong이 대분류 [음식], 중분류 [한식] 두 목록을 반환. API 호출 2회.		data/etl/fetch.py	2026-11-02
+DE01-009	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	자치구 목록	pytest	PASS	fixture	NOT_RUN	NOT_RUN	서울 행정구역 대상	fetch_semas_dongs 파라미터 ctprvnCd='11'. 반환 1건 ctyNm=마포구.		data/etl/fetch.py	2026-11-02
+DE01-010	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	업소 샘플 페이지 1	pytest	PASS	fixture	NOT_RUN	NOT_RUN	1페이지만	max_pages=1, total=999여도 pageNo=[1]만 호출. 수집 행 1.		data/etl/fetch.py	2026-11-02
+DE01-011	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	업소 샘플 페이지 3	pytest	PASS	fixture	NOT_RUN	NOT_RUN	최대 3페이지	max_pages=3, total=999이면 pageNo=[1,2,3]. 수집 행 3.		data/etl/fetch.py	2026-11-02
+DE01-012	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	업소 totalCount 미달	pytest	PASS	fixture	NOT_RUN	NOT_RUN	다음 페이지	페이지당 1건, total=5. pageNo 1,2,3으로 늘어나 누적 3건.		data/etl/fetch.py	2026-11-02
+DE01-013	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	업소 목록 빈 페이지	pytest	PASS	fixture	NOT_RUN	NOT_RUN	페이지 루프 종료	items=[]이면 1페이지만 호출하고 [] 반환 후 루프 종료.		data/etl/fetch.py	2026-11-02
+DE01-014	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	업소 전체 건수 충족	pytest	PASS	fixture	NOT_RUN	NOT_RUN	페이지 루프 종료	1페이지 2건, total=2. pageNo=[1]에서 종료. 행 2.		data/etl/fetch.py	2026-11-02
+DE01-015	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	업소 max_pages=0	pytest	PASS	fixture	NOT_RUN	NOT_RUN	빈 배열	max_pages=0이면 [] 반환. requests.get 호출 0회.		data/etl/fetch.py	2026-11-02
+DE01-016	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	외부 API 429	pytest	FAIL	fixture	NOT_RUN	FAIL	재시도/속도제한 정책 검증	status=429 응답 1회에서 HTTPError '429 Server Error'. 재시도 없이 종료되어 이후 200 응답은 호출되지 않음.	DEF-DE01-016	data/etl/fetch.py	2026-11-02
+DE01-017	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	비정상 JSON	pytest	PASS	fixture	NOT_RUN	NOT_RUN	명확한 디코딩 실패	HTTP 200 HTML 본문은 JSONDecodeError. 디코딩 실패가 전파됨.		data/etl/fetch.py	2026-11-02
+DE01-018	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	인증키 로그	pytest	FAIL	fixture	NOT_RUN	FAIL	로그에서 키 마스킹	resultCode 03 헤더에 키가 있으면 로그에 LEAKEDKEY123456789가 평문으로 출력됨. 마스킹 없음. _try_semas는 빈 목록으로 계속 진행.	DEF-DE01-018	data/etl/fetch.py	2026-11-02
+DE01-019	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	서울시 ZIP 다운로드	pytest	PASS	fixture	NOT_RUN	NOT_RUN	CSV DataFrame 반환	zip 안 cp949 CSV를 DataFrame으로 반환. 연남동 1행.		data/etl/fetch.py	2026-11-02
+DE01-020	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	서울시 Sheet 다운로드	pytest	PASS	fixture	NOT_RUN	NOT_RUN	CSV DataFrame 반환	시트 CSV를 DataFrame으로 반환. 망원동 1행.		data/etl/fetch.py	2026-11-02
+DE01-021	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	서울시 ZIP 손상	pytest	FAIL	fixture	NOT_RUN	FAIL	예외와 재수집 안내	손상 바이너리에 BadZipFile 'File is not a zip file'만 발생. 예외 메시지에 재수집 안내가 없음.	DEF-DE01-021	data/etl/fetch.py	2026-11-02
+DE01-022	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	다운로드 timeout	pytest	PASS	fixture	NOT_RUN	NOT_RUN	시간 초과 오류	download_seoul_zip의 requests.post timeout=120. Timeout이 전파됨.		data/etl/fetch.py	2026-11-02
+DE01-023	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	서울시 표 연도 병합	pytest	PASS	fixture	NOT_RUN	NOT_RUN	행 연결 순서 보존	zip 연도 seq 5 다음 6. 결합 year_seq=[5,6]으로 순서 유지.		data/etl/fetch.py	2026-11-02
+DE01-024	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	없는 SEOUL_FILES key	pytest	PASS	fixture	NOT_RUN	NOT_RUN	키 오류·안내	fetch_seoul_table('wrong')은 KeyError. 메시지에 wrong이 있음.		data/etl/fetch.py	2026-11-02
+DE01-025	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	서울 외 데이터	pytest	PASS	fixture	NOT_RUN	NOT_RUN	ETL 후 서울 지역만 남김	11440740은 마포구 1행만 남고 부산 26110510은 0건.		data/etl/fetch.py	2026-11-02
+DE01-026	단위·통합 테스트	DE01_공공API수집	소상공인 API·서울시 수집	응답 URL 변경	pytest	FAIL	fixture	NOT_RUN	FAIL	실제 파일 타입 검증	HTTP 200 HTML 본문을 파일 타입 검사 없이 Zip 파싱. 메시지는 'File is not a zip file'이고 '파일/타입/형식' 검증 문구가 없음.	DEF-DE01-026	data/etl/fetch.py	2026-11-02

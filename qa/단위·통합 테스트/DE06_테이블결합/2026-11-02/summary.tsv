@@ -1,0 +1,25 @@
+﻿TC_ID	영역	섹션	기능	항목	검증A	검증A결과	검증B	검증B결과	최종상태	예상결과	실제결과	결함ID	코드경로	실행일
+DE06-001	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	점포-매출 키 결합	pytest	PASS	fixture	NOT_RUN	NOT_RUN	매출 값 병합	키 일치 시 sales_amount 1000이 점포 1행에 병합.		data/etl/transform.py	2026-11-02
+DE06-002	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	점포-인구 키 결합	pytest	PASS	fixture	NOT_RUN	NOT_RUN	유동인구 병합	quarter·dong_code 일치 시 foot_traffic 80000이 병합.		data/etl/transform.py	2026-11-02
+DE06-003	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	점포-변화 키 결합	pytest	PASS	fixture	NOT_RUN	NOT_RUN	change 정보 병합	change_code LH, change_name 상권확장, operate_months 12가 병합.		data/etl/transform.py	2026-11-02
+DE06-004	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	기준 점포 유지	pytest	FAIL	fixture	NOT_RUN	FAIL	left join으로 점포 정보 보존	매출 테이블 0행 left join 후 최종 0행. 점포(연남동·한식)가 sales_per_store NaN 이상치 제거에서 탈락.	DEF-DE06-004	data/etl/transform.py	2026-11-02
+DE06-005	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	매출 결측 대체	pytest	PASS	fixture	NOT_RUN	NOT_RUN	중앙값으로 보완	한식 매출 100과 결측 1건. 결측 동 성산동의 sales_amount는 중앙값 100.		data/etl/transform.py	2026-11-02
+DE06-006	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	유동인구 결측 대체	pytest	PASS	fixture	NOT_RUN	NOT_RUN	중앙값으로 보완	유동인구 500이 있는 동과 없는 동. 결측 동 foot_traffic은 중앙값 500.		data/etl/transform.py	2026-11-02
+DE06-007	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	운영개월 결측 대체	pytest	PASS	fixture	NOT_RUN	NOT_RUN	중앙값으로 보완	operate_months 15가 있는 동 기준. 결측 동은 15로 채워짐.		data/etl/transform.py	2026-11-02
+DE06-008	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	변화코드 결측	pytest	PASS	fixture	NOT_RUN	NOT_RUN	HH	변화지표가 없으면 change_code는 HH. 결과 1행.		data/etl/transform.py	2026-11-02
+DE06-009	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	변화명 결측	pytest	PASS	fixture	NOT_RUN	NOT_RUN	정체	change_code HH이고 change_name이 비면 정체.		data/etl/transform.py	2026-11-02
+DE06-010	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	점포당 매출	pytest	PASS	fixture	NOT_RUN	NOT_RUN	100만원	sales_amount 1000, store_count 10 → sales_per_store 100.		data/etl/transform.py	2026-11-02
+DE06-011	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	점포 2개	pytest	FAIL	fixture	NOT_RUN	FAIL	학습 데이터에서 제외	store_count=2 단독 행은 제외 대상이나 remove_outliers가 빈 표에서 ValueError 'No objects to concatenate'. 빈 학습셋이 반환되지 않음.	DEF-DE06-011	data/etl/transform.py	2026-11-02
+DE06-012	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	점포 3개	pytest	PASS	fixture	NOT_RUN	NOT_RUN	최소 조건 통과	store_count=3은 최소 조건 통과. 결과 1행.		data/etl/transform.py	2026-11-02
+DE06-013	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	동일 동 다른 업종	pytest	PASS	fixture	NOT_RUN	NOT_RUN	업종별 매출만 매칭	같은 동 CS100001의 sales_count는 11, CS100010은 22. 업종이 섞이지 않음.		data/etl/transform.py	2026-11-02
+DE06-014	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	동일 업종 다른 동	pytest	PASS	fixture	NOT_RUN	NOT_RUN	상권 혼입 없이 결합	11440740 sales_count 111, 11680640은 222이고 foot_traffic 90000. 동이 섞이지 않음.		data/etl/transform.py	2026-11-02
+DE06-015	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	분기 다름	pytest	PASS	fixture	NOT_RUN	NOT_RUN	다른 분기 값 섞이지 않음	20241 sales_count 111, 20242는 222. 분기가 섞이지 않음.		data/etl/transform.py	2026-11-02
+DE06-016	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	조인 중복 방지	pytest	FAIL	fixture	NOT_RUN	FAIL	row 개수 비정상 증식 감지	동일 quarter/dong_code 인구 2행을 붙이면 점포 1행이 결과 2행으로 늘어남. 중복 증식 감지 없음.	DEF-DE06-016	data/etl/transform.py	2026-11-02
+DE06-017	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	매출 0원 대체	pytest	PASS	fixture	NOT_RUN	NOT_RUN	비정상 0 매출 처리 확인	매출 0원 행은 제외되고 10000원(1만원)인 11680640 1행만 남음.		data/etl/transform.py	2026-11-02
+DE06-018	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	최근 분기 선택	pytest	PASS	fixture	NOT_RUN	NOT_RUN	20242만 dong_stats	quarter 20241과 20242 중 dong_stats는 20242 1행.		data/etl/transform.py	2026-11-02
+DE06-019	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	동 중앙값 폐업률	pytest	PASS	fixture	NOT_RUN	NOT_RUN	4.0 median	같은 동 close_rate 2,4,6의 median_close_rate는 4.0.		data/etl/transform.py	2026-11-02
+DE06-020	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	동 중앙값 매출	pytest	PASS	fixture	NOT_RUN	NOT_RUN	200 median	같은 동 sales_per_store 100,300의 median은 200.		data/etl/transform.py	2026-11-02
+DE06-021	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	날짜 분기 문자열	pytest	FAIL	fixture	NOT_RUN	FAIL	분기 정렬 유효 형식 검증	quarter '20249'와 '202410'의 문자열 max는 '20249'. dong_stats 분기가 ['20249']이고 형식 검증 예외가 없음.	DEF-DE06-021	data/etl/transform.py	2026-11-02
+DE06-022	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	상권변화 코드 공통	pytest	PASS	fixture	NOT_RUN	NOT_RUN	상권축소 매핑	change_code HL은 원본명과 관계없이 change_name 상권축소.		data/etl/transform.py	2026-11-02
+DE06-023	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	전처리 통계 결과 수	pytest	PASS	fixture	NOT_RUN	NOT_RUN	최신 3개 행	3업종×2분기(20241,20242)의 dong_stats는 최신 20242 3행.		data/etl/transform.py	2026-11-02
+DE06-024	단위·통합 테스트	DE06_테이블결합	4종 표 join·파생 변수	업종 정보 누락	pytest	FAIL	fixture	NOT_RUN	FAIL	최종 모델 피처 오류 방어	industry=None이면 ValueError 'No objects to concatenate'. 메시지에 업종/industry가 없어 피처 방어가 아님.	DEF-DE06-024	data/etl/transform.py	2026-11-02
