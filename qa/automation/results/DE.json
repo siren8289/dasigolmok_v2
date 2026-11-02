@@ -1,0 +1,1188 @@
+{
+  "command": "cd /Users/jeong-yelim/orca/dasigolmok_v2 && PYTHONPATH=. /tmp/qa-venv/bin/python -m pytest qa/automation/de -q --tb=line",
+  "cases": [
+    {
+      "id": "DE01-001",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "SERVICE_KEY=''에서 semas_get이 RuntimeError. 메시지에 DATA_GO_KR_KEY 안내가 있음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-002",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "resultCode '00' 응답을 JSON으로 파싱. items=[{indsLclsCd:'Q'}] 1건.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-003",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "resultCode '0'을 성공으로 허용. items ok=1 반환.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-004",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "resultCode '000'을 성공으로 허용. items ok=1 반환.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-005",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "resultCode '03'은 RuntimeError. 예외 문자열에 03이 포함됨.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-006",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "requests.get timeout=30. Timeout 예외가 삼켜지지 않고 전파됨.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-007",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "HTTP 500에서 raise_for_status가 HTTPError '500 Server Error'를 전파.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-008",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "fetch_semas_upjong이 대분류 [음식], 중분류 [한식] 두 목록을 반환. API 호출 2회.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-009",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "fetch_semas_dongs 파라미터 ctprvnCd='11'. 반환 1건 ctyNm=마포구.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-010",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "max_pages=1, total=999여도 pageNo=[1]만 호출. 수집 행 1.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-011",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "max_pages=3, total=999이면 pageNo=[1,2,3]. 수집 행 3.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-012",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "페이지당 1건, total=5. pageNo 1,2,3으로 늘어나 누적 3건.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-013",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "items=[]이면 1페이지만 호출하고 [] 반환 후 루프 종료.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-014",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "1페이지 2건, total=2. pageNo=[1]에서 종료. 행 2.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-015",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "max_pages=0이면 [] 반환. requests.get 호출 0회.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-016",
+      "section": "DE01_공공API수집",
+      "status": "FAIL",
+      "evidence": "status=429 응답 1회에서 HTTPError '429 Server Error'. 재시도 없이 종료되어 이후 200 응답은 호출되지 않음.",
+      "defect_id": "DEF-DE01-016"
+    },
+    {
+      "id": "DE01-017",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "HTTP 200 HTML 본문은 JSONDecodeError. 디코딩 실패가 전파됨.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-018",
+      "section": "DE01_공공API수집",
+      "status": "FAIL",
+      "evidence": "resultCode 03 헤더에 키가 있으면 로그에 LEAKEDKEY123456789가 평문으로 출력됨. 마스킹 없음. _try_semas는 빈 목록으로 계속 진행.",
+      "defect_id": "DEF-DE01-018"
+    },
+    {
+      "id": "DE01-019",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "zip 안 cp949 CSV를 DataFrame으로 반환. 연남동 1행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-020",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "시트 CSV를 DataFrame으로 반환. 망원동 1행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-021",
+      "section": "DE01_공공API수집",
+      "status": "FAIL",
+      "evidence": "손상 바이너리에 BadZipFile 'File is not a zip file'만 발생. 예외 메시지에 재수집 안내가 없음.",
+      "defect_id": "DEF-DE01-021"
+    },
+    {
+      "id": "DE01-022",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "download_seoul_zip의 requests.post timeout=120. Timeout이 전파됨.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-023",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "zip 연도 seq 5 다음 6. 결합 year_seq=[5,6]으로 순서 유지.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-024",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "fetch_seoul_table('wrong')은 KeyError. 메시지에 wrong이 있음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-025",
+      "section": "DE01_공공API수집",
+      "status": "PASS",
+      "evidence": "11440740은 마포구 1행만 남고 부산 26110510은 0건.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE01-026",
+      "section": "DE01_공공API수집",
+      "status": "FAIL",
+      "evidence": "HTTP 200 HTML 본문을 파일 타입 검사 없이 Zip 파싱. 메시지는 'File is not a zip file'이고 '파일/타입/형식' 검증 문구가 없음.",
+      "defect_id": "DEF-DE01-026"
+    },
+    {
+      "id": "DE02-001",
+      "section": "DE02_CSV인코딩",
+      "status": "PASS",
+      "evidence": "cp949 CSV의 동이 '연남동', 값은 1로 읽힘.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE02-002",
+      "section": "DE02_CSV인코딩",
+      "status": "PASS",
+      "evidence": "utf-8-sig는 cp949에서 UnicodeDecodeError 후 utf-8-sig로 재시도. 결과 '연남동'.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE02-003",
+      "section": "DE02_CSV인코딩",
+      "status": "PASS",
+      "evidence": "utf-8 CSV의 동이 '망원동' 1행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE02-004",
+      "section": "DE02_CSV인코딩",
+      "status": "PASS",
+      "evidence": "잘못된 바이트는 RuntimeError 'CSV 글자 코드를 알 수 없습니다.'",
+      "defect_id": ""
+    },
+    {
+      "id": "DE02-005",
+      "section": "DE02_CSV인코딩",
+      "status": "PASS",
+      "evidence": "raw=b''는 EmptyDataError로 파싱 실패가 전달됨. DataFrame을 만들지 않음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE02-006",
+      "section": "DE02_CSV인코딩",
+      "status": "PASS",
+      "evidence": "헤더만 있는 CSV는 컬럼 [a,b], 행 0의 빈 DataFrame.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE02-007",
+      "section": "DE02_CSV인코딩",
+      "status": "PASS",
+      "evidence": "zip 안 CSV 1개의 첫 파일을 읽어 연남동 1행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE02-008",
+      "section": "DE02_CSV인코딩",
+      "status": "PASS",
+      "evidence": "first.csv, second.csv 중 namelist 첫 CSV '첫번째' 1행만 선택.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE02-009",
+      "section": "DE02_CSV인코딩",
+      "status": "FAIL",
+      "evidence": "txt만 있는 zip에서 StopIteration. CSV 없음에 대한 별도 메시지가 없음.",
+      "defect_id": "DEF-DE02-009"
+    },
+    {
+      "id": "DE02-010",
+      "section": "DE02_CSV인코딩",
+      "status": "PASS",
+      "evidence": "reports/data.csv 경로의 CSV를 읽어 합정동 1행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE02-011",
+      "section": "DE02_CSV인코딩",
+      "status": "FAIL",
+      "evidence": "메모 셀이 '=HYPERLINK(\"http://evil\")'로 남아 수식 원문이 그대로 저장됨.",
+      "defect_id": "DEF-DE02-011"
+    },
+    {
+      "id": "DE02-012",
+      "section": "DE02_CSV인코딩",
+      "status": "PASS",
+      "evidence": "인용 필드 '카페,음료'가 한 칸으로 보존. 컬럼 수 2.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE02-013",
+      "section": "DE02_CSV인코딩",
+      "status": "PASS",
+      "evidence": "인용 필드 '두\\n줄'이 1행 1셀로 보존.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE02-014",
+      "section": "DE02_CSV인코딩",
+      "status": "FAIL",
+      "evidence": "code '01100000'이 int 1100000으로 읽힘. 선행 0이 사라지고 dtype은 int64.",
+      "defect_id": "DEF-DE02-014"
+    },
+    {
+      "id": "DE02-015",
+      "section": "DE02_CSV인코딩",
+      "status": "FAIL",
+      "evidence": "빈 zip은 StopIteration이고 예외 메시지가 빈 문자열이라 원인 안내가 없음.",
+      "defect_id": "DEF-DE02-015"
+    },
+    {
+      "id": "DE02-016",
+      "section": "DE02_CSV인코딩",
+      "status": "FAIL",
+      "evidence": "압축 해제 400006바이트 CSV를 상한 없이 100000행 DataFrame으로 읽음.",
+      "defect_id": "DEF-DE02-016"
+    },
+    {
+      "id": "DE02-017",
+      "section": "DE02_CSV인코딩",
+      "status": "FAIL",
+      "evidence": "헤더 폐업율 CSV를 경고 없이 읽음. columns=['기준_년분기_코드','행정동_코드','폐업율']. 폐업_률 스키마 경고 없음.",
+      "defect_id": "DEF-DE02-017"
+    },
+    {
+      "id": "DE02-018",
+      "section": "DE02_CSV인코딩",
+      "status": "FAIL",
+      "evidence": "HTTP 200 text/html을 예외 없이 CSV로 읽음. HTML 감지 실패.",
+      "defect_id": "DEF-DE02-018"
+    },
+    {
+      "id": "DE03-001",
+      "section": "DE03_점포정제",
+      "status": "PASS",
+      "evidence": "공통 키가 quarter=20242, dong_code=11440740, industry_code=CS100001.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE03-002",
+      "section": "DE03_점포정제",
+      "status": "PASS",
+      "evidence": "행정동 코드 11440100의 district는 마포구. 결과 1행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE03-003",
+      "section": "DE03_점포정제",
+      "status": "PASS",
+      "evidence": "코드 26110510은 district가 빈 문자열이라 결과 0행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE03-004",
+      "section": "DE03_점포정제",
+      "status": "PASS",
+      "evidence": "store_count=1은 포함. 결과 1행, 값 1.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE03-005",
+      "section": "DE03_점포정제",
+      "status": "PASS",
+      "evidence": "store_count=0은 제외. 결과 0행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE03-006",
+      "section": "DE03_점포정제",
+      "status": "PASS",
+      "evidence": "store_count=-1은 제외. 결과 0행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE03-007",
+      "section": "DE03_점포정제",
+      "status": "PASS",
+      "evidence": "점포수 문자열 '1,000'은 1000. 결과 1행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE03-008",
+      "section": "DE03_점포정제",
+      "status": "PASS",
+      "evidence": "폐업률 '5.25'는 float 5.25.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE03-009",
+      "section": "DE03_점포정제",
+      "status": "PASS",
+      "evidence": "개업률 '3.20'은 float 3.20.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE03-010",
+      "section": "DE03_점포정제",
+      "status": "PASS",
+      "evidence": "프랜차이즈 2, 점포 10 → franchise_ratio 0.2.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE03-011",
+      "section": "DE03_점포정제",
+      "status": "PASS",
+      "evidence": "프랜차이즈 12, 점포 10 → franchise_ratio 1로 클리핑.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE03-012",
+      "section": "DE03_점포정제",
+      "status": "PASS",
+      "evidence": "프랜차이즈 -1, 점포 10 → franchise_ratio 0으로 클리핑.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE03-013",
+      "section": "DE03_점포정제",
+      "status": "FAIL",
+      "evidence": "franchise_count=None, store_count=10일 때 franchise_ratio=nan. NaN 후처리가 없음.",
+      "defect_id": "DEF-DE03-013"
+    },
+    {
+      "id": "DE03-014",
+      "section": "DE03_점포정제",
+      "status": "PASS",
+      "evidence": "같은 quarter/dong_code/industry_code 2행이 1행으로 축소.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE03-015",
+      "section": "DE03_점포정제",
+      "status": "PASS",
+      "evidence": "분기 20241과 20242는 둘 다 유지. 결과 2행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE03-016",
+      "section": "DE03_점포정제",
+      "status": "PASS",
+      "evidence": "업종 CS100001과 CS100010이 각각 유지. 결과 2행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE03-017",
+      "section": "DE03_점포정제",
+      "status": "FAIL",
+      "evidence": "행정동 코드 float 11440740.0이 dong_code '11440740.0'으로 저장됨. district는 마포구로 맞지만 코드 문자열이 달라짐.",
+      "defect_id": "DEF-DE03-017"
+    },
+    {
+      "id": "DE03-018",
+      "section": "DE03_점포정제",
+      "status": "FAIL",
+      "evidence": "dong='' 이고 코드 11440740·점포 10인 행이 1건 남음. 빈 동 이름이 걸러지지 않음.",
+      "defect_id": "DEF-DE03-018"
+    },
+    {
+      "id": "DE03-019",
+      "section": "DE03_점포정제",
+      "status": "FAIL",
+      "evidence": "close_rate=120이 클리핑·제외 없이 1행으로 통과.",
+      "defect_id": "DEF-DE03-019"
+    },
+    {
+      "id": "DE03-020",
+      "section": "DE03_점포정제",
+      "status": "FAIL",
+      "evidence": "store_count=2.5가 정수 검증 없이 1행으로 통과.",
+      "defect_id": "DEF-DE03-020"
+    },
+    {
+      "id": "DE04-001",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "매출 10000000원은 1000만원(sales_amount=1000).",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-002",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "매출 1원은 0.0001만원.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-003",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "매출 0원은 필터 제외. 결과 0행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-004",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "매출 -100원은 필터 제외. 결과 0행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-005",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "매출 None은 필터 제외. 결과 0행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-006",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "매출 문자열 '1,000'은 0.1만원.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-007",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "sales_count '3,000'은 3000.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-008",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "행정동 26110510(district 빈 값) 매출은 0행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-009",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "같은 quarter/dong/업종 매출 2행이 1행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-010",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "foot_traffic=100은 포함. 결과 1행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-011",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "foot_traffic=0은 제외. 결과 0행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-012",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "foot_traffic=-1은 제외. 결과 0행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-013",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "유동인구 '50,000'은 50000.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-014",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "같은 동/분기 유동인구 2행이 1행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-015",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "change_code HH의 change_name은 정체.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-016",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "change_code HL의 change_name은 상권축소.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-017",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "change_code LH의 change_name은 상권확장.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-018",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "change_code LL의 change_name은 다이나믹.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-019",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "change_code XX는 코드표에 없고 change_name은 원본변화명.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-020",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "운영 개월 '15.5'는 15.5.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-021",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "타시도 코드 26110510 변화지표는 0행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-022",
+      "section": "DE04_매출인구정제",
+      "status": "PASS",
+      "evidence": "총_유동인구_수 컬럼이 없으면 KeyError. 메시지에 총_유동인구_수가 있음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE04-023",
+      "section": "DE04_매출인구정제",
+      "status": "FAIL",
+      "evidence": "clean_sales 1행, clean_pop 1행을 실행했으나 메모리·수행시간 계측(tracemalloc/perf_counter/로그)이 없음. 200만행 부하는 계측 부재로 실행하지 않음.",
+      "defect_id": "DEF-DE04-023"
+    },
+    {
+      "id": "DE05-001",
+      "section": "DE05_결측치이상치",
+      "status": "PASS",
+      "evidence": "to_number('1,234.5')=1234.5.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE05-002",
+      "section": "DE05_결측치이상치",
+      "status": "PASS",
+      "evidence": "to_number('')는 NaN.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE05-003",
+      "section": "DE05_결측치이상치",
+      "status": "PASS",
+      "evidence": "to_number('오류')는 NaN.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE05-004",
+      "section": "DE05_결측치이상치",
+      "status": "PASS",
+      "evidence": "한식 값이 모두 NaN, 카페가 10과 30이면 한식 2행이 전체 median 20.0.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE05-005",
+      "section": "DE05_결측치이상치",
+      "status": "PASS",
+      "evidence": "같은 업종 [1, NaN, 3]의 결측이 중앙값 2로 채워져 [1,2,3].",
+      "defect_id": ""
+    },
+    {
+      "id": "DE05-006",
+      "section": "DE05_결측치이상치",
+      "status": "PASS",
+      "evidence": "이미 있는 값 50은 50으로 유지.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE05-007",
+      "section": "DE05_결측치이상치",
+      "status": "FAIL",
+      "evidence": "업종 두 행 모두 NaN이면 fill_missing 결과도 [nan, nan]. 후속 품질검사 속성은 없음.",
+      "defect_id": "DEF-DE05-007"
+    },
+    {
+      "id": "DE05-008",
+      "section": "DE05_결측치이상치",
+      "status": "PASS",
+      "evidence": "업종 1행 값 42는 이상치 제거 후에도 1행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE05-009",
+      "section": "DE05_결측치이상치",
+      "status": "PASS",
+      "evidence": "0부터 99까지 100행. 1% 경계 밖인 0과 99가 제거되고 나머지 98행은 경계 안.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE05-010",
+      "section": "DE05_결측치이상치",
+      "status": "PASS",
+      "evidence": "1..100에 10000000을 더한 집합에서 10000000은 제거되고 50은 남음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE05-011",
+      "section": "DE05_결측치이상치",
+      "status": "PASS",
+      "evidence": "-100과 1..100에서 -100은 제거되고 50은 남음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE05-012",
+      "section": "DE05_결측치이상치",
+      "status": "PASS",
+      "evidence": "[1,2,3,4]와 결측 1개의 채움값은 중앙값 2.5.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE05-013",
+      "section": "DE05_결측치이상치",
+      "status": "FAIL",
+      "evidence": "v=['1','2',None,'4'] 문자열 열에 fill_missing 호출 시 TypeError: median dtype=object. 사전 숫자 변환이 없음.",
+      "defect_id": "DEF-DE05-013"
+    },
+    {
+      "id": "DE05-014",
+      "section": "DE05_결측치이상치",
+      "status": "PASS",
+      "evidence": "한식 99개가 10이고 1000 1개는 제거. 카페 1000은 100건 모두 유지.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE05-015",
+      "section": "DE05_결측치이상치",
+      "status": "PASS",
+      "evidence": "없는 열 no_such는 KeyError. 메시지에 no_such가 있음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE05-016",
+      "section": "DE05_결측치이상치",
+      "status": "FAIL",
+      "evidence": "industry=None 행의 v가 한식 1과 3의 중앙값 2.0으로 채워짐. 그룹키 결측 정책이 따로 없음.",
+      "defect_id": "DEF-DE05-016"
+    },
+    {
+      "id": "DE05-017",
+      "section": "DE05_결측치이상치",
+      "status": "FAIL",
+      "evidence": "industry=None 2행 remove_outliers가 ValueError 'No objects to concatenate'. 빈 그룹 방어가 없음.",
+      "defect_id": "DEF-DE05-017"
+    },
+    {
+      "id": "DE05-018",
+      "section": "DE05_결측치이상치",
+      "status": "PASS",
+      "evidence": "값이 모두 5인 5행은 한 행도 빠지지 않음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE05-019",
+      "section": "DE05_결측치이상치",
+      "status": "PASS",
+      "evidence": "대상 열 2행이 모두 NaN이면 예외 없이 0행으로 정리됨.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE06-001",
+      "section": "DE06_테이블결합",
+      "status": "PASS",
+      "evidence": "키 일치 시 sales_amount 1000이 점포 1행에 병합.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE06-002",
+      "section": "DE06_테이블결합",
+      "status": "PASS",
+      "evidence": "quarter·dong_code 일치 시 foot_traffic 80000이 병합.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE06-003",
+      "section": "DE06_테이블결합",
+      "status": "PASS",
+      "evidence": "change_code LH, change_name 상권확장, operate_months 12가 병합.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE06-004",
+      "section": "DE06_테이블결합",
+      "status": "FAIL",
+      "evidence": "매출 테이블 0행 left join 후 최종 0행. 점포(연남동·한식)가 sales_per_store NaN 이상치 제거에서 탈락.",
+      "defect_id": "DEF-DE06-004"
+    },
+    {
+      "id": "DE06-005",
+      "section": "DE06_테이블결합",
+      "status": "PASS",
+      "evidence": "한식 매출 100과 결측 1건. 결측 동 성산동의 sales_amount는 중앙값 100.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE06-006",
+      "section": "DE06_테이블결합",
+      "status": "PASS",
+      "evidence": "유동인구 500이 있는 동과 없는 동. 결측 동 foot_traffic은 중앙값 500.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE06-007",
+      "section": "DE06_테이블결합",
+      "status": "PASS",
+      "evidence": "operate_months 15가 있는 동 기준. 결측 동은 15로 채워짐.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE06-008",
+      "section": "DE06_테이블결합",
+      "status": "PASS",
+      "evidence": "변화지표가 없으면 change_code는 HH. 결과 1행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE06-009",
+      "section": "DE06_테이블결합",
+      "status": "PASS",
+      "evidence": "change_code HH이고 change_name이 비면 정체.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE06-010",
+      "section": "DE06_테이블결합",
+      "status": "PASS",
+      "evidence": "sales_amount 1000, store_count 10 → sales_per_store 100.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE06-011",
+      "section": "DE06_테이블결합",
+      "status": "FAIL",
+      "evidence": "store_count=2 단독 행은 제외 대상이나 remove_outliers가 빈 표에서 ValueError 'No objects to concatenate'. 빈 학습셋이 반환되지 않음.",
+      "defect_id": "DEF-DE06-011"
+    },
+    {
+      "id": "DE06-012",
+      "section": "DE06_테이블결합",
+      "status": "PASS",
+      "evidence": "store_count=3은 최소 조건 통과. 결과 1행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE06-013",
+      "section": "DE06_테이블결합",
+      "status": "PASS",
+      "evidence": "같은 동 CS100001의 sales_count는 11, CS100010은 22. 업종이 섞이지 않음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE06-014",
+      "section": "DE06_테이블결합",
+      "status": "PASS",
+      "evidence": "11440740 sales_count 111, 11680640은 222이고 foot_traffic 90000. 동이 섞이지 않음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE06-015",
+      "section": "DE06_테이블결합",
+      "status": "PASS",
+      "evidence": "20241 sales_count 111, 20242는 222. 분기가 섞이지 않음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE06-016",
+      "section": "DE06_테이블결합",
+      "status": "FAIL",
+      "evidence": "동일 quarter/dong_code 인구 2행을 붙이면 점포 1행이 결과 2행으로 늘어남. 중복 증식 감지 없음.",
+      "defect_id": "DEF-DE06-016"
+    },
+    {
+      "id": "DE06-017",
+      "section": "DE06_테이블결합",
+      "status": "PASS",
+      "evidence": "매출 0원 행은 제외되고 10000원(1만원)인 11680640 1행만 남음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE06-018",
+      "section": "DE06_테이블결합",
+      "status": "PASS",
+      "evidence": "quarter 20241과 20242 중 dong_stats는 20242 1행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE06-019",
+      "section": "DE06_테이블결합",
+      "status": "PASS",
+      "evidence": "같은 동 close_rate 2,4,6의 median_close_rate는 4.0.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE06-020",
+      "section": "DE06_테이블결합",
+      "status": "PASS",
+      "evidence": "같은 동 sales_per_store 100,300의 median은 200.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE06-021",
+      "section": "DE06_테이블결합",
+      "status": "FAIL",
+      "evidence": "quarter '20249'와 '202410'의 문자열 max는 '20249'. dong_stats 분기가 ['20249']이고 형식 검증 예외가 없음.",
+      "defect_id": "DEF-DE06-021"
+    },
+    {
+      "id": "DE06-022",
+      "section": "DE06_테이블결합",
+      "status": "PASS",
+      "evidence": "change_code HL은 원본명과 관계없이 change_name 상권축소.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE06-023",
+      "section": "DE06_테이블결합",
+      "status": "PASS",
+      "evidence": "3업종×2분기(20241,20242)의 dong_stats는 최신 20242 3행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE06-024",
+      "section": "DE06_테이블결합",
+      "status": "FAIL",
+      "evidence": "industry=None이면 ValueError 'No objects to concatenate'. 메시지에 업종/industry가 없어 피처 방어가 아님.",
+      "defect_id": "DEF-DE06-024"
+    },
+    {
+      "id": "DE07-001",
+      "section": "DE07_옵션생성",
+      "status": "PASS",
+      "evidence": "25개 자치구 districts가 sorted 결과와 같고 길이는 25.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE07-002",
+      "section": "DE07_옵션생성",
+      "status": "PASS",
+      "evidence": "강남구·마포구 4동의 (district,dong) 순서가 정렬 결과와 같음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE07-003",
+      "section": "DE07_옵션생성",
+      "status": "PASS",
+      "evidence": "같은 district/dong/dong_code 2행의 dongs는 1건.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE07-004",
+      "section": "DE07_옵션생성",
+      "status": "PASS",
+      "evidence": "한식·커피·분식 industries가 industry 기준 sorted와 같음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE07-005",
+      "section": "DE07_옵션생성",
+      "status": "PASS",
+      "evidence": "같은 industry+code 2행의 industries는 1건.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE07-006",
+      "section": "DE07_옵션생성",
+      "status": "PASS",
+      "evidence": "이름 한식의 코드 CS100001과 CS100099가 둘 다 포함.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE07-007",
+      "section": "DE07_옵션생성",
+      "status": "PASS",
+      "evidence": "dongs 1건이 district=마포구, dong=연남동, dong_code=11440740.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE07-008",
+      "section": "DE07_옵션생성",
+      "status": "PASS",
+      "evidence": "semas 행정동 5건 → semas_dong_count=5.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE07-009",
+      "section": "DE07_옵션생성",
+      "status": "PASS",
+      "evidence": "semas 업종 10건 → semas_upjong_count=10.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE07-010",
+      "section": "DE07_옵션생성",
+      "status": "PASS",
+      "evidence": "dongs=[], upjong=[]이면 두 카운트 모두 0.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE07-011",
+      "section": "DE07_옵션생성",
+      "status": "PASS",
+      "evidence": "컬럼만 있는 빈 train은 districts,dongs,industries가 모두 [].",
+      "defect_id": ""
+    },
+    {
+      "id": "DE07-012",
+      "section": "DE07_옵션생성",
+      "status": "PASS",
+      "evidence": "district None은 districts에서 빠지고 마포구만 남음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE07-013",
+      "section": "DE07_옵션생성",
+      "status": "PASS",
+      "evidence": "dong_code '11680640'이 문자열 길이 8 그대로 보존.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE07-014",
+      "section": "DE07_옵션생성",
+      "status": "FAIL",
+      "evidence": "industry=' 한식 '가 옵션에 그대로 남음. strip 결과가 '한식'이 아님.",
+      "defect_id": "DEF-DE07-014"
+    },
+    {
+      "id": "DE07-015",
+      "section": "DE07_옵션생성",
+      "status": "PASS",
+      "evidence": "옵션의 동 2건·업종 2건이 같은 train의 dong_stats 행에 있음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE07-016",
+      "section": "DE07_옵션생성",
+      "status": "PASS",
+      "evidence": "마포구 동은 {연남동,합정동}, 강남구 동은 [역삼1동].",
+      "defect_id": ""
+    },
+    {
+      "id": "DE08-001",
+      "section": "DE08_ETL실행저장",
+      "status": "PASS",
+      "evidence": "mock 수집으로 run() stdout에 [1/3] 수집, [2/3] 전처리, [3/3] 저장이 모두 있음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE08-002",
+      "section": "DE08_ETL실행저장",
+      "status": "PASS",
+      "evidence": "--skip-download이고 raw 4파일이 있으면 fetch 호출 0, 로그 '캐시 사용' 4회.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE08-003",
+      "section": "DE08_ETL실행저장",
+      "status": "PASS",
+      "evidence": "--skip-download인데 raw가 없으면 fetch 순서가 store,sales,pop,change.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE08-004",
+      "section": "DE08_ETL실행저장",
+      "status": "PASS",
+      "evidence": "업종 API RuntimeError 후 '건너뜁니다'. semas_dong_count=0, semas_upjong_count=0, [3/3] 저장까지 진행.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE08-005",
+      "section": "DE08_ETL실행저장",
+      "status": "FAIL",
+      "evidence": "store 수집 RuntimeError는 전파되고 train.csv는 없음. stdout은 '[1/3] 수집'과 소상공인 성공 로그만 있고 '실패'/'오류' 로그는 없음.",
+      "defect_id": "DEF-DE08-005"
+    },
+    {
+      "id": "DE08-006",
+      "section": "DE08_ETL실행저장",
+      "status": "PASS",
+      "evidence": "sales 예외 시 raw/store.csv는 생기고 train.csv, dong_stats.csv, options.json은 없음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE08-007",
+      "section": "DE08_ETL실행저장",
+      "status": "PASS",
+      "evidence": "pop 단계에서 RuntimeError '유동인구 수집 실패'가 전파되고 train.csv는 없음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE08-008",
+      "section": "DE08_ETL실행저장",
+      "status": "PASS",
+      "evidence": "change 단계에서 RuntimeError '상권변화 수집 실패'가 전파되고 options.json은 없음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE08-009",
+      "section": "DE08_ETL실행저장",
+      "status": "PASS",
+      "evidence": "processed/train.csv가 생성되고 행은 1행 이상, sales_per_store 컬럼이 있음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE08-010",
+      "section": "DE08_ETL실행저장",
+      "status": "PASS",
+      "evidence": "processed/dong_stats.csv가 생성되고 행은 1행 이상, median_close_rate 컬럼이 있음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE08-011",
+      "section": "DE08_ETL실행저장",
+      "status": "PASS",
+      "evidence": "processed/options.json에 districts, dongs, industries가 있음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE08-012",
+      "section": "DE08_ETL실행저장",
+      "status": "PASS",
+      "evidence": "최초 수집 후 raw/store.csv, sales.csv, pop.csv, change.csv 4개 모두 크기 >0.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE08-013",
+      "section": "DE08_ETL실행저장",
+      "status": "FAIL",
+      "evidence": "매출 0행으로 run()이 예외 없이 반환. 완료로 위장하지 않는 품질 게이트가 없음.",
+      "defect_id": "DEF-DE08-013"
+    },
+    {
+      "id": "DE08-014",
+      "section": "DE08_ETL실행저장",
+      "status": "FAIL",
+      "evidence": "20241은 3업종, 20242는 1업종인데 dong_stats 분기는 {'20242'} 1행. 부분 분기에 대한 선택 정책 표시가 없음.",
+      "defect_id": "DEF-DE08-014"
+    },
+    {
+      "id": "DE08-015",
+      "section": "DE08_ETL실행저장",
+      "status": "PASS",
+      "evidence": "options.json을 utf-8로 읽으면 '연남동'이 있고 \\\\u 이스케이프는 없음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE08-016",
+      "section": "DE08_ETL실행저장",
+      "status": "PASS",
+      "evidence": "processed 디렉터리 권한 0o555에서 save_processed는 PermissionError. train.csv는 생기지 않음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE08-017",
+      "section": "DE08_ETL실행저장",
+      "status": "FAIL",
+      "evidence": "기존 train.csv 'GOOD\\n'이 쓰기 도중 'PARTIAL'로 덮인 뒤 RuntimeError. 원자적 교체가 아님.",
+      "defect_id": "DEF-DE08-017"
+    },
+    {
+      "id": "DE08-018",
+      "section": "DE08_ETL실행저장",
+      "status": "FAIL",
+      "evidence": "ETL options에는 QA동기화업종이 생기지만 ai/models/options.json에는 없음. 모델 옵션 동기화 없음.",
+      "defect_id": "DEF-DE08-018"
+    },
+    {
+      "id": "DE08-019",
+      "section": "DE08_ETL실행저장",
+      "status": "PASS",
+      "evidence": "같은 raw로 2회 실행한 train.csv 바이트가 같고 duplicated 행은 0.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE08-020",
+      "section": "DE08_ETL실행저장",
+      "status": "PASS",
+      "evidence": "raw 4개 CSV에 DATA_GO_KR_KEY, 주민, 전화번호, 이메일, 010-가 없음. store 헤더에 점포_수가 있음.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE08-021",
+      "section": "DE08_ETL실행저장",
+      "status": "PASS",
+      "evidence": "pytest data/tests 종료 코드 0. 기존 전처리 테스트가 통과.",
+      "defect_id": ""
+    },
+    {
+      "id": "DE08-022",
+      "section": "DE08_ETL실행저장",
+      "status": "FAIL",
+      "evidence": "로그에 학습용 행 수는 있으나 분기 '20242'나 '분기' 문구는 없음.",
+      "defect_id": "DEF-DE08-022"
+    },
+    {
+      "id": "DE08-023",
+      "section": "DE08_ETL실행저장",
+      "status": "FAIL",
+      "evidence": "options 키는 districts,dongs,industries,semas_dong_count,semas_upjong_count 5개. 기준일·처리일 키가 없음.",
+      "defect_id": "DEF-DE08-023"
+    }
+  ]
+}
