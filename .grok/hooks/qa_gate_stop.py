@@ -52,7 +52,7 @@ def main() -> int:
                 "reason": (
                     "감시 중인 파일이 마지막 QA 게이트 이후 바뀌었다. "
                     "저장소 루트에서 python qa/runner/qa_gate.py --scope auto 를 실행하고, "
-                    "RUN_ID와 qa/{영역}/{섹션}/{날짜}의 FAIL, OPEN HIGH/CRITICAL을 보고한 뒤 종료한다. "
+                    "RUN_ID와 qa/results/{area}/{section}/{date}의 FAIL, OPEN HIGH/CRITICAL을 보고한 뒤 종료한다. "
                     "실행하지 않은 검사는 PASS가 아니다."
                 ),
             },

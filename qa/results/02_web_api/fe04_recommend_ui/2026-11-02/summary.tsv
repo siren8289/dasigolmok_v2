@@ -1,0 +1,25 @@
+﻿tc_id	area	section	feature	item	verify_a	verify_a_result	verify_b	verify_b_result	final_status	expected	actual	defect_id	code_path	executed_on
+FE04-001	02_web_api	fe04_recommend_ui	업종 추천 화면	기본 지역	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	마포구/연남동 기본값	첫 진입 기본값은 마포구/연남동이다.		front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-002	02_web_api	fe04_recommend_ui	업종 추천 화면	옵션 목록	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	GET /api/options 호출	마운트 시 GET /api/options 가 호출된다.		front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-003	02_web_api	fe04_recommend_ui	업종 추천 화면	자치구 선택 교체	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	해당 구의 동 목록 재계산	강남구 선택 후 동 목록이 역삼동·삼성동으로 다시 계산된다.		front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-004	02_web_api	fe04_recommend_ui	업종 추천 화면	동 일치 검사	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	새 구의 첫 행정동으로 교체	기존 연남동이 새 구에 없으면 첫 행정동 역삼동으로 바뀐다.		front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-005	02_web_api	fe04_recommend_ui	업종 추천 화면	기존 동 유지	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	현재 동 유지	현재 동이 마포구 목록에 있으면 망원동 선택을 유지한다.		front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-006	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 버튼	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	POST /api/recommendations 전송	POST /api/recommendations 에 마포구/연남동이 전송된다.		front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-007	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 버튼 로딩	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	disabled와 로딩 문구	지연 중 버튼이 disabled이고 문구는 '업종을 계산하는 중...'이다.		front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-008	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 결과 표출	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	3개 업종 각각 한 행 표시	all_industries 3개가 헤더 1행 + 본문 3행으로 표시된다.		front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-009	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 결과 빈 배열	Vitest	FAIL	Playwright	NOT_RUN	FAIL	빈 상태 안내가 제공되도록 확인	빈 all_industries에 대한 안내 문구가 없다: expected null not to be null	DEF-FE04-009	front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-010	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 결과 상태 안정	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	안정 뱃지	status=stable 행에 안정 뱃지가 있다.		front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-011	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 결과 상태 주의	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	주의 뱃지	status=warning 행에 주의 뱃지가 있다.		front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-012	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 결과 상태 위험	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	위험 뱃지	status=danger 행에 위험 뱃지가 있다.		front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-013	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 결과 미지정	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	판단 불가 뱃지	status=OTHER 는 판단 불가 뱃지로 떨어진다.		front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-014	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 수치 단위	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	4.2%	ml_close_rate 4.2가 '4.2%'로 표시된다.		front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-015	02_web_api	fe04_recommend_ui	업종 추천 화면	매출 수치 단위	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	620.1만원	dl_sales_per_store 620.1이 '620.1만원'으로 표시된다.		front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-016	02_web_api	fe04_recommend_ui	업종 추천 화면	상권변화	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	행정동·상권변화 헤더 표출	결과 헤더에 행정동과 상권변화명이 함께 있다.		front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-017	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 서버 오류	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	오류 문장 표출	500 message가 화면에 표시된다.		front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-018	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 중복 클릭	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	중복 요청 차단	느린 응답 동안 두 번째 클릭은 막혀 POST가 1회다.		front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-019	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 재요청	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	최신 지역 결과로 교체	지역을 바꾼 뒤 다시 누르면 최신 역삼동 결과로 헤더가 바뀐다.		front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-020	02_web_api	fe04_recommend_ui	업종 추천 화면	지역 변경 즉시 오래된 표 처리	Vitest	FAIL	Playwright	NOT_RUN	FAIL	구 지역과 표 지역이 불일치하지 않게 결과 초기화	"구를 바꿨는데 이전 동 결과 표가 그대로 남아 있다: expected <p class=""font-bold mb-1""></p> to be null"	DEF-FE04-020	front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-021	02_web_api	fe04_recommend_ui	업종 추천 화면	추천 상위 5와 전체 목록 차이	Vitest	FAIL	Playwright	NOT_RUN	FAIL	전체 표가 10개 렌더링되고 상위 추천 표시 여부 점검	10행은 렌더되지만 recommendations 5개를 구분하는 상위 추천 표시가 없다: expected null not to be null	DEF-FE04-021	front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-022	02_web_api	fe04_recommend_ui	업종 추천 화면	모바일 테이블	Vitest	RISK	Playwright	NOT_RUN	RISK	가로 오버플로 안전 처리	jsdom은 375px에서 30자 업종명의 테이블 가로 overflow를 계산하지 못한다		front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-023	02_web_api	fe04_recommend_ui	업종 추천 화면	중복 업종	Vitest	FAIL	Playwright	NOT_RUN	FAIL	React key 중복 경고가 없도록 정책 확인	Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.%s 한식음식점	DEF-FE04-023	front/src/pages/RecommendPage.tsx	2026-11-02
+FE04-024	02_web_api	fe04_recommend_ui	업종 추천 화면	옵션 실패 후 추천	Vitest	PASS	Playwright	NOT_RUN	NOT_RUN	유효한 기존 값일 때만 요청/오류 안내	옵션 503 안내 뒤에도 기본값 마포구/연남동은 유효해 추천 POST가 나가고 결과가 교체된다.		front/src/pages/RecommendPage.tsx	2026-11-02

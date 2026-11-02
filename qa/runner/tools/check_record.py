@@ -13,8 +13,8 @@ sys.path.insert(0, str(ROOT))
 
 from record import CaseResult, allocate_run_id, read_tsv, write_run
 
-SECTION = "DE05_결측치이상치"
-AREA = "단위·통합 테스트"
+SECTION = "de05_missing_outlier"
+AREA = "01_unit_integration"
 DAY = "2026-11-02"
 
 
@@ -51,9 +51,9 @@ def main() -> int:
             print("FAIL run id collision")
             return 1
         write_run(qa_root, meta, second, when, "abc", [_case("TC-B", "FAIL")], [])
-        folder = qa_root / AREA / SECTION / DAY
+        folder = qa_root / "results" / AREA / SECTION / DAY
         rows = read_tsv(folder / "summary.tsv")
-        ids = [row["TC_ID"] for row in rows]
+        ids = [row["tc_id"] for row in rows]
         if ids != ["TC-A", "TC-B"]:
             print("FAIL history overwritten", ids)
             return 1
@@ -61,11 +61,11 @@ def main() -> int:
         if first not in text or "TC-A" not in text:
             print("FAIL pass.md lost the first run")
             return 1
-        if (qa_root / "웹·API 테스트" / "FE01_공통라우팅").exists():
+        if (qa_root / "results" / "02_web_api" / "fe01_common_routing").exists():
             print("FAIL unrun section folder created")
             return 1
-        if not (folder / "테스트_시트.xlsx").exists():
-            print("FAIL missing 테스트_시트.xlsx")
+        if not (folder / "test_sheet.xlsx").exists():
+            print("FAIL missing test_sheet.xlsx")
             return 1
     print("check_record PASS")
     return 0

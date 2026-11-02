@@ -1,6 +1,6 @@
 [
   {
-    "section": "FE01_공통라우팅",
+    "section": "fe01_common_routing",
     "count": 18,
     "ids": [
       "FE01-001",
@@ -24,7 +24,7 @@
     ]
   },
   {
-    "section": "FE02_진단입력UI",
+    "section": "fe02_diagnosis_input_ui",
     "count": 24,
     "ids": [
       "FE02-001",
@@ -54,7 +54,7 @@
     ]
   },
   {
-    "section": "FE03_진단결과UI",
+    "section": "fe03_diagnosis_result_ui",
     "count": 24,
     "ids": [
       "FE03-001",
@@ -84,7 +84,7 @@
     ]
   },
   {
-    "section": "FE04_추천UI",
+    "section": "fe04_recommend_ui",
     "count": 24,
     "ids": [
       "FE04-001",
@@ -114,7 +114,7 @@
     ]
   },
   {
-    "section": "FE05_HTTP클라이언트",
+    "section": "fe05_http_client",
     "count": 18,
     "ids": [
       "FE05-001",
@@ -138,7 +138,7 @@
     ]
   },
   {
-    "section": "BE01_진단요청DTO",
+    "section": "be01_diagnosis_request_dto",
     "count": 24,
     "ids": [
       "BE01-001",
@@ -168,7 +168,7 @@
     ]
   },
   {
-    "section": "BE02_진단CRUD",
+    "section": "be02_diagnosis_crud",
     "count": 30,
     "ids": [
       "BE02-001",
@@ -204,7 +204,7 @@
     ]
   },
   {
-    "section": "BE03_진단HTTP",
+    "section": "be03_diagnosis_http",
     "count": 14,
     "ids": [
       "BE03-001",
@@ -224,7 +224,7 @@
     ]
   },
   {
-    "section": "BE04_추천HTTP",
+    "section": "be04_recommend_http",
     "count": 18,
     "ids": [
       "BE04-001",
@@ -248,7 +248,7 @@
     ]
   },
   {
-    "section": "BE05_AI연동예외",
+    "section": "be05_ai_integration_errors",
     "count": 20,
     "ids": [
       "BE05-001",
@@ -274,7 +274,7 @@
     ]
   },
   {
-    "section": "BE06_전역예외",
+    "section": "be06_global_exception",
     "count": 14,
     "ids": [
       "BE06-001",
@@ -294,7 +294,7 @@
     ]
   },
   {
-    "section": "AI01_FastAPI계약",
+    "section": "ai01_fastapi_contract",
     "count": 16,
     "ids": [
       "AI01-001",
@@ -316,7 +316,7 @@
     ]
   },
   {
-    "section": "AI02_옵션조회",
+    "section": "ai02_options_query",
     "count": 18,
     "ids": [
       "AI02-001",
@@ -340,7 +340,7 @@
     ]
   },
   {
-    "section": "AI03_진단파이프라인",
+    "section": "ai03_diagnosis_pipeline",
     "count": 25,
     "ids": [
       "AI03-001",
@@ -371,7 +371,7 @@
     ]
   },
   {
-    "section": "AI04_추천파이프라인",
+    "section": "ai04_recommend_pipeline",
     "count": 27,
     "ids": [
       "AI04-001",
@@ -404,7 +404,7 @@
     ]
   },
   {
-    "section": "AI05_위험판정경계",
+    "section": "ai05_risk_boundary",
     "count": 23,
     "ids": [
       "AI05-001",
@@ -433,7 +433,7 @@
     ]
   },
   {
-    "section": "AI06_학습피처",
+    "section": "ai06_training_features",
     "count": 18,
     "ids": [
       "AI06-001",
@@ -457,7 +457,7 @@
     ]
   },
   {
-    "section": "AI07_폐업ML추론",
+    "section": "ai07_closure_ml_inference",
     "count": 18,
     "ids": [
       "AI07-001",
@@ -481,7 +481,7 @@
     ]
   },
   {
-    "section": "AI08_매출DL추론",
+    "section": "ai08_sales_dl_inference",
     "count": 20,
     "ids": [
       "AI08-001",
@@ -507,7 +507,7 @@
     ]
   },
   {
-    "section": "AI09_LLM기본설명",
+    "section": "ai09_llm_basic_explain",
     "count": 22,
     "ids": [
       "AI09-001",
@@ -535,7 +535,7 @@
     ]
   },
   {
-    "section": "RG01_RAG_HTTP",
+    "section": "rg01_rag_http",
     "count": 20,
     "ids": [
       "RG01-001",
@@ -561,7 +561,7 @@
     ]
   },
   {
-    "section": "RG02_지식베이스",
+    "section": "rg02_knowledge_base",
     "count": 26,
     "ids": [
       "RG02-001",
@@ -593,7 +593,7 @@
     ]
   },
   {
-    "section": "RG03_상권근거검색",
+    "section": "rg03_market_evidence_search",
     "count": 27,
     "ids": [
       "RG03-001",
@@ -626,7 +626,7 @@
     ]
   },
   {
-    "section": "RG04_지원정책규칙",
+    "section": "rg04_support_policy_rules",
     "count": 32,
     "ids": [
       "RG04-001",
@@ -664,7 +664,7 @@
     ]
   },
   {
-    "section": "RG05_종합가이드",
+    "section": "rg05_commercial_guidance",
     "count": 26,
     "ids": [
       "RG05-001",
@@ -696,7 +696,7 @@
     ]
   },
   {
-    "section": "RG06_오케스트레이션",
+    "section": "rg06_orchestration",
     "count": 25,
     "ids": [
       "RG06-001",
@@ -727,7 +727,7 @@
     ]
   },
   {
-    "section": "RG07_보안하네스",
+    "section": "rg07_security_harness",
     "count": 29,
     "ids": [
       "RG07-001",
@@ -762,7 +762,7 @@
     ]
   },
   {
-    "section": "RG08_RAG정량평가",
+    "section": "rg08_rag_eval",
     "count": 22,
     "ids": [
       "RG08-001",
@@ -790,7 +790,7 @@
     ]
   },
   {
-    "section": "DE01_공공API수집",
+    "section": "de01_public_api_ingest",
     "count": 26,
     "ids": [
       "DE01-001",
@@ -822,7 +822,7 @@
     ]
   },
   {
-    "section": "DE02_CSV인코딩",
+    "section": "de02_csv_encoding",
     "count": 18,
     "ids": [
       "DE02-001",
@@ -846,7 +846,7 @@
     ]
   },
   {
-    "section": "DE03_점포정제",
+    "section": "de03_store_clean",
     "count": 20,
     "ids": [
       "DE03-001",
@@ -872,7 +872,7 @@
     ]
   },
   {
-    "section": "DE04_매출인구정제",
+    "section": "de04_sales_pop_clean",
     "count": 23,
     "ids": [
       "DE04-001",
@@ -901,7 +901,7 @@
     ]
   },
   {
-    "section": "DE05_결측치이상치",
+    "section": "de05_missing_outlier",
     "count": 19,
     "ids": [
       "DE05-001",
@@ -926,7 +926,7 @@
     ]
   },
   {
-    "section": "DE06_테이블결합",
+    "section": "de06_table_join",
     "count": 24,
     "ids": [
       "DE06-001",
@@ -956,7 +956,7 @@
     ]
   },
   {
-    "section": "DE07_옵션생성",
+    "section": "de07_options_build",
     "count": 16,
     "ids": [
       "DE07-001",
@@ -978,7 +978,7 @@
     ]
   },
   {
-    "section": "DE08_ETL실행저장",
+    "section": "de08_etl_run_store",
     "count": 23,
     "ids": [
       "DE08-001",
@@ -1007,7 +1007,7 @@
     ]
   },
   {
-    "section": "DB01_진단영속성",
+    "section": "db01_diagnosis_persistence",
     "count": 20,
     "ids": [
       "DB01-001",
@@ -1033,7 +1033,7 @@
     ]
   },
   {
-    "section": "DB02_SQL마이그레이션",
+    "section": "db02_sql_migration",
     "count": 24,
     "ids": [
       "DB02-001",
@@ -1063,7 +1063,7 @@
     ]
   },
   {
-    "section": "DB03_pgvector전용",
+    "section": "db03_pgvector",
     "count": 19,
     "ids": [
       "DB03-001",
@@ -1088,7 +1088,7 @@
     ]
   },
   {
-    "section": "OPS1_Docker연결",
+    "section": "ops1_docker_connect",
     "count": 26,
     "ids": [
       "OPS1-001",
@@ -1120,7 +1120,7 @@
     ]
   },
   {
-    "section": "OPS2_GitHubCI",
+    "section": "ops2_github_ci",
     "count": 18,
     "ids": [
       "OPS2-001",
@@ -1144,7 +1144,7 @@
     ]
   },
   {
-    "section": "OPS3_배포스크립트",
+    "section": "ops3_deploy_scripts",
     "count": 27,
     "ids": [
       "OPS3-001",
@@ -1177,7 +1177,7 @@
     ]
   },
   {
-    "section": "QA01_보안비기능",
+    "section": "qa01_security_nfr",
     "count": 30,
     "ids": [
       "QA01-001",
@@ -1213,7 +1213,7 @@
     ]
   },
   {
-    "section": "QA02_문서추적회귀",
+    "section": "qa02_doc_trace_regression",
     "count": 18,
     "ids": [
       "QA02-001",

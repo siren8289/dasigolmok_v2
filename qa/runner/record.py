@@ -1,10 +1,10 @@
 """QA 게이트 실행 결과를 4영역·섹션·날짜 폴더에 누적한다.
 
-경로: qa/{영역}/{섹션}/{YYYY-MM-DD}/
-파일: 테스트_시트.xlsx, pass.md, fail.md, risk.md, summary.tsv
+경로: qa/results/{area}/{section}/{YYYY-MM-DD}/
+파일: test_sheet.xlsx, pass.md, fail.md, risk.md, summary.tsv
 
 과거 행은 지우거나 덮어쓰지 않는다. 실행하지 않은 섹션은 폴더를 만들지 않는다.
-날짜와 시각은 Asia/Seoul 기준이다.
+날짜와 시각은 Asia/Seoul 기준이다. 본문 설명은 한국어, 경로·식별자는 영어다.
 """
 
 from __future__ import annotations
@@ -23,21 +23,21 @@ SEOUL = ZoneInfo("Asia/Seoul")
 STATUSES = ("PASS", "FAIL", "BLOCKED", "ERROR", "NOT_RUN", "SKIPPED")
 RUN_HEADING_RE = re.compile(r"^## (\d{8}-\d{6}(?:-\d+)?)\s*$")
 SUMMARY_HEADER = [
-    "TC_ID",
-    "영역",
-    "섹션",
-    "기능",
-    "항목",
-    "검증A",
-    "검증A결과",
-    "검증B",
-    "검증B결과",
-    "최종상태",
-    "예상결과",
-    "실제결과",
-    "결함ID",
-    "코드경로",
-    "실행일",
+    "tc_id",
+    "area",
+    "section",
+    "feature",
+    "item",
+    "verify_a",
+    "verify_a_result",
+    "verify_b",
+    "verify_b_result",
+    "final_status",
+    "expected",
+    "actual",
+    "defect_id",
+    "code_path",
+    "executed_on",
 ]
 RISK_HEADER = [
     "risk_id",
@@ -133,12 +133,17 @@ def combine_status(left: str, right: str) -> str:
     return left if rank[left] >= rank[right] else right
 
 
+def results_root(qa_root: Path) -> Path:
+    return qa_root / "results"
+
+
 def _existing_run_ids(qa_root: Path) -> set[str]:
     found: set[str] = set()
-    if not qa_root.exists():
+    root = results_root(qa_root)
+    if not root.exists():
         return found
     for area in AREAS:
-        for path in (qa_root / area).glob("*/*/pass.md"):
+        for path in (root / area).glob("*/*/pass.md"):
             try:
                 text = path.read_text(encoding="utf-8")
             except OSError:
@@ -188,7 +193,7 @@ def _append_md(path: Path, title: str, block: str) -> None:
 
 
 def _sync_test_sheet(folder: Path) -> None:
-    """summary.tsv 전체를 테스트_시트.xlsx로 동기화한다."""
+    """summary.tsv 전체를 test_sheet.xlsx로 동기화한다."""
     summary = folder / "summary.tsv"
     rows = read_tsv(summary)
     try:
@@ -197,11 +202,11 @@ def _sync_test_sheet(folder: Path) -> None:
         return
     wb = Workbook()
     ws = wb.active
-    ws.title = "결과"
+    ws.title = "results"
     ws.append(SUMMARY_HEADER)
     for row in rows:
         ws.append([row.get(col, "") for col in SUMMARY_HEADER])
-    wb.save(folder / "테스트_시트.xlsx")
+    wb.save(folder / "test_sheet.xlsx")
 
 
 def _case_bullets(case: CaseResult, when: str, commit: str) -> list[str]:
@@ -299,7 +304,7 @@ def write_run(
         by_section.setdefault((area, section), []).append(case)
 
     for (area, section), typed in by_section.items():
-        folder = qa_root / area / section / day
+        folder = results_root(qa_root) / area / section / day
         folder.mkdir(parents=True, exist_ok=True)
         passed = [case for case in typed if case.final_status == "PASS"]
         failed = [case for case in typed if case.final_status in {"FAIL", "ERROR", "BLOCKED"}]

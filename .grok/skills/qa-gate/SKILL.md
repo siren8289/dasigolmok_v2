@@ -1,6 +1,6 @@
 ---
 name: qa-gate
-description: Run the dasiGolmok QA and security gate after code, test, or deploy-config changes and append dated reports under the four QA areas. Use when implementing, fixing, refactoring, or changing CI and deployment files, and when the user mentions QA, security checks, or qa/ reports.
+description: Run the dasiGolmok QA and security gate after code, test, or deploy-config changes and append dated reports under qa/results. Use when implementing, fixing, refactoring, or changing CI and deployment files, and when the user mentions QA, security checks, or qa reports.
 ---
 
 # QA 게이트
@@ -15,8 +15,8 @@ python qa/runner/qa_gate.py --scope auto
 
 배포 설정, CI, 여러 영역을 한 번에 바꾼 경우에는 `--scope ci`를 실행한다. 실패한 검사만 다시 볼 때는 `--only`에 `record`, `security`, `front`, `python`, `java`, `regression`만 넣는다.
 
-게이트가 끝난 뒤 이번 RUN_ID와 `qa/{영역}/{섹션}/{날짜}/` 기록을 읽고, FAIL과 OPEN HIGH/CRITICAL을 사용자에게 보고한다. FAIL 또는 RISK 기록보다 먼저 제품 코드를 고치지 않는다. 실행하지 않은 검증은 PASS가 아니다.
+게이트가 끝난 뒤 이번 RUN_ID와 `qa/results/{area}/{section}/{date}/` 기록을 읽고, FAIL과 OPEN HIGH/CRITICAL을 사용자에게 보고한다. FAIL 또는 RISK 기록보다 먼저 제품 코드를 고치지 않는다. 실행하지 않은 검증은 PASS가 아니다.
 
-결과는 네 영역(`단위·통합 테스트`, `웹·API 테스트`, `보안·품질 검사`, `인프라·배포 검사`) 아래 섹션·날짜 폴더에 `테스트_시트.xlsx`, `pass.md`, `fail.md`, `risk.md`, `summary.tsv`로 남긴다. `qa/` 최상단 엑셀은 `전체_파트_시트.xlsx`만 둔다.
+결과는 네 영역(`01_unit_integration`, `02_web_api`, `03_security_quality`, `04_infra_deploy`) 아래 영어 섹션·날짜 폴더에 `test_sheet.xlsx`, `pass.md`, `fail.md`, `risk.md`, `summary.tsv`로 남긴다. 전체 현황은 `qa/master_test_sheet.tsv`만 쓰고 최상단 Excel은 만들지 않는다. 경로명은 영어, 보고서 본문은 한국어다.
 
 `main`에는 푸시하지 않는다. 기존 `qa/` 케이스 카드와 자동화 이력은 삭제하지 않는다.

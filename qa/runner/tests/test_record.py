@@ -12,8 +12,8 @@ sys.path.insert(0, str(ROOT))
 
 from record import CaseResult, allocate_run_id, read_tsv, write_run
 
-SECTION = "DE05_결측치이상치"
-AREA = "단위·통합 테스트"
+SECTION = "de05_missing_outlier"
+AREA = "01_unit_integration"
 DAY = "2026-11-02"
 
 
@@ -43,18 +43,18 @@ def test_appends_and_skips_unrun_section(tmp_path: Path) -> None:
     meta = tmp_path / "reports"
     first = allocate_run_id(tmp_path, when)
     write_run(tmp_path, meta, first, when, "abc", [_case("TC-A")], [])
-    skipped = _case("TC-SKIP", "NOT_RUN", section="FE01_공통라우팅", area="웹·API 테스트")
+    skipped = _case("TC-SKIP", "NOT_RUN", section="fe01_common_routing", area="02_web_api")
     skipped.tool_a_result = "NOT_RUN"
     skipped.tool_b_result = "NOT_RUN"
     second = allocate_run_id(tmp_path, when)
     write_run(tmp_path, meta, second, when, "def", [_case("TC-B", "FAIL"), skipped], [])
-    folder = tmp_path / AREA / SECTION / DAY
+    folder = tmp_path / "results" / AREA / SECTION / DAY
     rows = read_tsv(folder / "summary.tsv")
-    assert [row["TC_ID"] for row in rows] == ["TC-A", "TC-B"]
-    assert rows[0]["최종상태"] == "PASS"
-    assert rows[1]["최종상태"] == "FAIL"
+    assert [row["tc_id"] for row in rows] == ["TC-A", "TC-B"]
+    assert rows[0]["final_status"] == "PASS"
+    assert rows[1]["final_status"] == "FAIL"
     assert first in (folder / "pass.md").read_text(encoding="utf-8")
-    assert not (tmp_path / "웹·API 테스트" / "FE01_공통라우팅").exists()
+    assert not (tmp_path / "results" / "02_web_api" / "fe01_common_routing").exists()
     raw = (folder / "summary.tsv").read_bytes()
     assert raw.startswith(b"\xef\xbb\xbf")
-    assert (folder / "테스트_시트.xlsx").exists()
+    assert (folder / "test_sheet.xlsx").exists()

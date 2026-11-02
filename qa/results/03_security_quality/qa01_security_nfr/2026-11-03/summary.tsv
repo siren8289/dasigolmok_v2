@@ -1,0 +1,3 @@
+﻿tc_id	area	section	feature	item	verify_a	verify_a_result	verify_b	verify_b_result	final_status	expected	actual	defect_id	code_path	executed_on
+TC-SEC-001	03_security_quality	qa01_security_nfr	정적 보안	ISTQB 예외·OWASP ASVS 비밀관리와 출력 이스케이프를 두 정적 도구로 확인	bandit	PASS	secret_scan	PASS	PASS	HIGH/CRITICAL 비밀·취약점 없음	A=PASS, B=PASS, final=PASS		UNKNOWN	2026-11-03
+TC-SEC-001	03_security_quality	qa01_security_nfr	정적 보안	ISTQB 예외·OWASP ASVS 비밀관리와 출력 이스케이프를 두 정적 도구로 확인	bandit	PASS	secret_scan	PASS	PASS	HIGH/CRITICAL 비밀·취약점 없음	A=PASS, B=PASS, final=PASS		UNKNOWN	2026-11-03

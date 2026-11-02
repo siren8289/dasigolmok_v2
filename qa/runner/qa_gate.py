@@ -1,7 +1,7 @@
 """QA·Security 게이트.
 
 변경 영향에 해당하는 검사를 서로 다른 도구 두 개로 실행하고
-qa/{영역}/{섹션}/{YYYY-MM-DD}/ 에 누적 기록한다.
+qa/results/{area}/{section}/{YYYY-MM-DD}/ 에 누적 기록한다.
 
 실행하지 않은 섹션은 폴더를 만들지 않고, 실행하지 않은 검사를 PASS로 적지 않는다.
 HIGH/CRITICAL OPEN 위험이 있으면 종료 코드 1이다.

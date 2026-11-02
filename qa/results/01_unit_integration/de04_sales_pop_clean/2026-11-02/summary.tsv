@@ -1,0 +1,24 @@
+﻿tc_id	area	section	feature	item	verify_a	verify_a_result	verify_b	verify_b_result	final_status	expected	actual	defect_id	code_path	executed_on
+DE04-001	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	매출 원→만원	pytest	PASS	fixture	NOT_RUN	NOT_RUN	1000만원	매출 10000000원은 1000만원(sales_amount=1000).		data/etl/transform.py	2026-11-02
+DE04-002	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	매출 1원	pytest	PASS	fixture	NOT_RUN	NOT_RUN	0.0001만원	매출 1원은 0.0001만원.		data/etl/transform.py	2026-11-02
+DE04-003	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	매출 0원	pytest	PASS	fixture	NOT_RUN	NOT_RUN	필터 제외	매출 0원은 필터 제외. 결과 0행.		data/etl/transform.py	2026-11-02
+DE04-004	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	매출 음수	pytest	PASS	fixture	NOT_RUN	NOT_RUN	필터 제외	매출 -100원은 필터 제외. 결과 0행.		data/etl/transform.py	2026-11-02
+DE04-005	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	매출 null	pytest	PASS	fixture	NOT_RUN	NOT_RUN	필터 제외	매출 None은 필터 제외. 결과 0행.		data/etl/transform.py	2026-11-02
+DE04-006	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	매출 1,000 문자열	pytest	PASS	fixture	NOT_RUN	NOT_RUN	0.1만원	매출 문자열 '1,000'은 0.1만원.		data/etl/transform.py	2026-11-02
+DE04-007	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	매출 건수	pytest	PASS	fixture	NOT_RUN	NOT_RUN	3000 변환	sales_count '3,000'은 3000.		data/etl/transform.py	2026-11-02
+DE04-008	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	타지역 매출	pytest	PASS	fixture	NOT_RUN	NOT_RUN	필터 제외	행정동 26110510(district 빈 값) 매출은 0행.		data/etl/transform.py	2026-11-02
+DE04-009	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	매출 중복 분기	pytest	PASS	fixture	NOT_RUN	NOT_RUN	중복 하나	같은 quarter/dong/업종 매출 2행이 1행.		data/etl/transform.py	2026-11-02
+DE04-010	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	유동인구 양수	pytest	PASS	fixture	NOT_RUN	NOT_RUN	포함	foot_traffic=100은 포함. 결과 1행.		data/etl/transform.py	2026-11-02
+DE04-011	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	유동인구 0	pytest	PASS	fixture	NOT_RUN	NOT_RUN	제외	foot_traffic=0은 제외. 결과 0행.		data/etl/transform.py	2026-11-02
+DE04-012	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	유동인구 음수	pytest	PASS	fixture	NOT_RUN	NOT_RUN	제외	foot_traffic=-1은 제외. 결과 0행.		data/etl/transform.py	2026-11-02
+DE04-013	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	유동인구 문자열	pytest	PASS	fixture	NOT_RUN	NOT_RUN	50000	유동인구 '50,000'은 50000.		data/etl/transform.py	2026-11-02
+DE04-014	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	유동인구 동일 동/분기 중복	pytest	PASS	fixture	NOT_RUN	NOT_RUN	중복 하나	같은 동/분기 유동인구 2행이 1행.		data/etl/transform.py	2026-11-02
+DE04-015	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	변화코드 HH	pytest	PASS	fixture	NOT_RUN	NOT_RUN	정체	change_code HH의 change_name은 정체.		data/etl/transform.py	2026-11-02
+DE04-016	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	변화코드 HL	pytest	PASS	fixture	NOT_RUN	NOT_RUN	상권축소	change_code HL의 change_name은 상권축소.		data/etl/transform.py	2026-11-02
+DE04-017	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	변화코드 LH	pytest	PASS	fixture	NOT_RUN	NOT_RUN	상권확장	change_code LH의 change_name은 상권확장.		data/etl/transform.py	2026-11-02
+DE04-018	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	변화코드 LL	pytest	PASS	fixture	NOT_RUN	NOT_RUN	다이나믹	change_code LL의 change_name은 다이나믹.		data/etl/transform.py	2026-11-02
+DE04-019	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	모르는 변화코드	pytest	PASS	fixture	NOT_RUN	NOT_RUN	원본 변화명 fallback	change_code XX는 코드표에 없고 change_name은 원본변화명.		data/etl/transform.py	2026-11-02
+DE04-020	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	운영 개월 문자열	pytest	PASS	fixture	NOT_RUN	NOT_RUN	15.5	운영 개월 '15.5'는 15.5.		data/etl/transform.py	2026-11-02
+DE04-021	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	서울 외 변화지표	pytest	PASS	fixture	NOT_RUN	NOT_RUN	필터 제외	타시도 코드 26110510 변화지표는 0행.		data/etl/transform.py	2026-11-02
+DE04-022	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	CSV 스키마 누락	pytest	PASS	fixture	NOT_RUN	NOT_RUN	명확한 컬럼 오류	총_유동인구_수 컬럼이 없으면 KeyError. 메시지에 총_유동인구_수가 있음.		data/etl/transform.py	2026-11-02
+DE04-023	01_unit_integration	de04_sales_pop_clean	매출·유동인구 정제	대형 데이터 병합	pytest	FAIL	fixture	NOT_RUN	FAIL	메모리·수행시간 계측	clean_sales 1행, clean_pop 1행을 실행했으나 메모리·수행시간 계측(tracemalloc/perf_counter/로그)이 없음. 200만행 부하는 계측 부재로 실행하지 않음.	DEF-DE04-023	data/etl/transform.py	2026-11-02
